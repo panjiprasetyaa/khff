@@ -199,23 +199,21 @@ export default function Home() {
             Jadwal Seleksi / Klasifikasi
           </h2>
           
-          <div className="relative border-l-2 border-white/20 ml-4 md:ml-12 space-y-16 pb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-4">
             {schedule.map((day, idx) => (
-              <div key={idx} className="relative pl-10 md:pl-16">
-                {/* Timeline Dot */}
-                <div className="absolute -left-[9px] top-2 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)]"></div>
+              <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-colors">
                 
-                <div className="mb-6">
-                  <span className="text-sm font-bold tracking-widest uppercase text-white/50">{day.day}</span>
-                  <h4 className="text-3xl font-serif font-bold text-white mt-1">{day.date}</h4>
+                <div className="mb-8 border-b border-white/10 pb-6">
+                  <span className="text-xs font-bold tracking-widest uppercase text-gray-500">{day.day}</span>
+                  <h4 className="text-2xl font-serif font-bold text-white mt-2">{day.date}</h4>
                 </div>
                 
                 <div className="space-y-6">
                   {day.events.map((ev, i) => (
-                    <div key={i} className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 bg-white/5 p-6 rounded-xl border border-white/10 hover:border-white/30 transition-colors">
-                      <span className="text-gray-400 font-mono text-xl shrink-0 font-light">{ev.time}</span>
+                    <div key={i} className="flex flex-col gap-2">
+                      <span className="text-gray-400 font-mono text-base shrink-0 font-light">{ev.time}</span>
                       <div>
-                        <p className="text-white font-bold text-xl mb-2">{ev.name}</p>
+                        <p className="text-gray-200 font-bold text-lg leading-snug mb-1">{ev.name}</p>
                         <p className="text-gray-500 text-sm flex items-center gap-2">
                           <MapPin size={14} /> {ev.location}
                         </p>
@@ -249,9 +247,9 @@ export default function Home() {
             href="https://forms.google.com" // Link G-Form
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-4 bg-white text-black px-12 py-6 rounded-full text-xl font-bold hover:bg-gray-200 hover:scale-105 transition-all duration-300 shadow-[0_0_50px_rgba(255,255,255,0.3)]"
+            className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
           >
-            Isi Google Form Pendaftaran <ArrowRight size={24} />
+            Isi Google Form Pendaftaran <ArrowRight size={20} />
           </a>
         </div>
       </section>
