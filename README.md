@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kotabaru Heritage Film Festival (KHFF) 2026 - Official Website
 
-## Getting Started
+Selamat datang di repositori resmi website KHFF 2026! Website ini dibangun secara khusus untuk menampilkan profil festival, program kompetisi, jadwal acara, dan portal pendaftaran audiens secara responsif dan elegan.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Teknologi yang Digunakan (*Tech Stack*)
+- **Framework:** Next.js (App Router)
+- **UI Library:** React.js
+- **Styling:** Tailwind CSS
+- **Data Architecture:** Static JSON (Serverless)
+- **Hosting / Deployment:** Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👥 Pembagian Peran Tim (Workflow)
+Untuk memastikan pengembangan berjalan lancar tanpa ada kode yang bertabrakan (*merge conflict*), tim dibagi menjadi 3 peran spesifik:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Koordinator (Lead Engineer):**
+   - Menyiapkan arsitektur dan struktur *folder*.
+   - Mengatur *routing* dan URL website.
+   - Melakukan *Review Code* (PR) dan bertanggung jawab untuk rilis/laporan mingguan ke Project Manager.
+2. **UI Engineer:**
+   - Membangun komponen antarmuka (Navbar, Footer, Card Film, Pop-up Video).
+   - Menyelaraskan tipografi dan warna (*styling*) dengan arahan Desainer Grafis.
+   - Memastikan tampilan responsif di layar komputer maupun *smartphone*.
+3. **Data / Logic Engineer:**
+   - Mengelola seluruh informasi tertulis pada website (Jadwal, Sinopsis, Daftar Program).
+   - Mengisi dan menyempurnakan struktur data tanpa perlu mengubah kode desain utama.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💾 Panduan Pembaruan Konten (Untuk Data Engineer)
+Seluruh informasi utama (*database*) pada website ini dikelola dalam format JSON terpusat.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Lokasi File:** `src/data/data.json`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Aturan Modifikasi:
+1. **Film Baru:** Selalu daftarkan judul dan sinopsis film baru di dalam objek `"films"` terlebih dahulu.
+2. **Kategori Program:** Jika film tersebut masuk ke dalam "Program Mahaditya", salin ID film tersebut ke dalam *array* `"filmIds"` di objek `"programs"`.
+3. **Penting:** Pastikan format JSON tidak rusak. Selalu gunakan tanda kutip ganda `""` dan akhiri dengan koma `,` jika ada baris data selanjutnya.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Cara Menjalankan Website Secara Lokal
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Bagi anggota tim yang ingin menjalankan dan mengetes *website* ini di komputernya sendiri, silakan ikuti langkah berikut:
+
+1. **Unduh Proyek (Clone):**
+   ```bash
+   git clone https://github.com/panjiprasetyaa/khff.git
+   ```
+2. **Masuk ke Direktori Proyek:**
+   ```bash
+   cd khff-web
+   ```
+3. **Instalasi Modul:**
+   ```bash
+   npm install
+   ```
+4. **Nyalakan Server:**
+   ```bash
+   npm run dev
+   ```
+5. **Buka di Browser:**
+   Buka aplikasi browser (Chrome/Safari) dan ketik `http://localhost:3000`.
