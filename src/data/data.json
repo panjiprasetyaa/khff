@@ -66,43 +66,43 @@
       "id": "mahaditya",
       "name": "Program Mahaditya",
       "description": "Program Pemutaran Kompetisi utama untuk film-film pendek dengan penceritaan yang kuat dan penyutradaraan yang matang.",
-      "filmIds": ["budi-pekerti", "autobiography"]
+      "filmIds": []
     },
     {
       "id": "purwaseswa",
       "name": "Program Purwaseswa",
       "description": "Program Pemutaran Kompetisi yang menyoroti inovasi visual, eksperimen gaya, dan sutradara pendatang baru.",
-      "filmIds": ["yuni", "27-steps-of-may"]
+      "filmIds": []
     },
     {
       "id": "karyanagri",
       "name": "Program Karyanagri",
       "description": "Program Pemutaran Kompetisi untuk film-film yang mengangkat kearifan lokal, sejarah, dan isu sosial Nusantara.",
-      "filmIds": ["penyalin-cahaya", "kucumbu-tubuh-indahku"]
+      "filmIds": []
     },
     {
       "id": "national-heritage",
       "name": "National Heritage",
       "description": "Program Pemutaran Heritage yang merayakan sejarah sinema dan pengarsipan film-film klasik Indonesia.",
-      "filmIds": ["budi-pekerti"]
+      "filmIds": []
     },
     {
       "id": "international-heritage",
       "name": "International Heritage",
       "description": "Program Pemutaran Heritage yang menyoroti karya-karya klasik dan restorasi dari berbagai belahan dunia.",
-      "filmIds": ["autobiography"]
+      "filmIds": []
     },
     {
       "id": "opening-film",
       "name": "Opening Film",
       "description": "Pemutaran khusus film pembuka Kotabaru Heritage Film Festival 2026.",
-      "filmIds": ["yuni"]
+      "filmIds": []
     },
     {
       "id": "closing-film",
       "name": "Closing Film",
       "description": "Pemutaran film penutup yang merayakan kebersamaan festival.",
-      "filmIds": ["27-steps-of-may"]
+      "filmIds": []
     }
   ],
   "specialPrograms": [
