@@ -39,67 +39,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Panel Kiri (SidebarFilter) */}
-          <div className="lg:w-1/4 shrink-0">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sticky top-24">
-              <h3 className="text-xl font-serif font-bold text-white mb-6">
-                Pustaka/Kategori
-              </h3>
-              
-              <div className="space-y-6">
-                {/* Kategori Sutradara */}
-                <div>
-                  <h4 className="text-sm font-bold text-white/50 uppercase tracking-widest mb-4">Sutradara</h4>
-                  <div className="space-y-3">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input 
-                        type="radio" 
-                        name="director" 
-                        checked={selectedDirector === null}
-                        onChange={() => setSelectedDirector(null)}
-                        className="form-radio text-white bg-transparent border-gray-500 w-4 h-4 cursor-pointer"
-                      />
-                      <span className={`text-sm transition-colors ${selectedDirector === null ? 'text-white font-medium' : 'text-gray-400 group-hover:text-gray-200'}`}>Semua Sutradara</span>
-                    </label>
-                    
-                    {directors.map((dir, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
-                        <input 
-                          type="radio" 
-                          name="director" 
-                          checked={selectedDirector === dir}
-                          onChange={() => setSelectedDirector(dir)}
-                          className="form-radio text-white bg-transparent border-gray-500 w-4 h-4 cursor-pointer"
-                        />
-                        <span className={`text-sm transition-colors ${selectedDirector === dir ? 'text-white font-medium' : 'text-gray-400 group-hover:text-gray-200'}`}>{dir}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="border-t border-white/10 my-4"></div>
-
-                {/* Kategori Tipe/Genre */}
-                <div>
-                  <h4 className="text-sm font-bold text-white/50 uppercase tracking-widest mb-4">Tipe</h4>
-                  <div className="space-y-3">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input type="checkbox" defaultChecked className="form-checkbox rounded-sm text-white bg-transparent border-gray-500 w-4 h-4 cursor-pointer" />
-                      <span className="text-sm text-white font-medium">Film Fiksi</span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input type="checkbox" defaultChecked className="form-checkbox rounded-sm text-white bg-transparent border-gray-500 w-4 h-4 cursor-pointer" />
-                      <span className="text-sm text-white font-medium">Dokumenter</span>
-                    </label>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
           {/* Panel Daftar Lengkap (Film) */}
-          <div className="lg:w-3/4">
+          <div className="w-full">
              <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
                 <h2 className="text-2xl font-serif font-bold text-white">Menampilkan {filteredFilms.length} Karya</h2>
                 <span className="text-gray-500 text-sm font-mono">15 Film</span>
