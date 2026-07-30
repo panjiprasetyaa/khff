@@ -42,7 +42,7 @@ Seluruh informasi utama (*database*) pada website ini dikelola dalam format JSON
 
 ---
 
-## 🛠️ Cara Menjalankan Website Secara Lokal
+## Cara Menjalankan Website Secara Lokal
 
 Bagi anggota tim yang ingin menjalankan dan mengetes *website* ini di komputernya sendiri, silakan ikuti langkah berikut:
 
