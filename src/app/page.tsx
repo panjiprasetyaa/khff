@@ -102,7 +102,10 @@ export default function Home() {
             </div>
           </div>
 
-
+          {/* Judul Seksi: Nama Program / Karyanya */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-serif font-bold text-white">Program Mahaditya</h2>
+          </div>
         </div>
 
         {/* Carousel 15 Film */}
