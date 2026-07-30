@@ -4,7 +4,7 @@ Selamat datang di repositori resmi website KHFF 2026! Website ini dibangun secar
 
 ---
 
-## 🚀 Teknologi yang Digunakan (*Tech Stack*)
+## Teknologi yang Digunakan (*Tech Stack*)
 - **Framework:** Next.js (App Router)
 - **UI Library:** React.js
 - **Styling:** Tailwind CSS
@@ -13,7 +13,7 @@ Selamat datang di repositori resmi website KHFF 2026! Website ini dibangun secar
 
 ---
 
-## 👥 Pembagian Peran Tim (Workflow)
+## Pembagian Peran Tim (Workflow)
 Untuk memastikan pengembangan berjalan lancar tanpa ada kode yang bertabrakan (*merge conflict*), tim dibagi menjadi 3 peran spesifik:
 
 1. **Koordinator (Lead Engineer):**
@@ -30,7 +30,7 @@ Untuk memastikan pengembangan berjalan lancar tanpa ada kode yang bertabrakan (*
 
 ---
 
-## 💾 Panduan Pembaruan Konten (Untuk Data Engineer)
+## Panduan Pembaruan Konten (Untuk Data Engineer)
 Seluruh informasi utama (*database*) pada website ini dikelola dalam format JSON terpusat.
 
 **Lokasi File:** `src/data/data.json`
