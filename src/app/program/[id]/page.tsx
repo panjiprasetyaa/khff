@@ -42,8 +42,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           {/* Panel Kiri (SidebarFilter) */}
           <div className="lg:w-1/4 shrink-0">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sticky top-24">
-              <h3 className="text-xl font-serif font-bold text-white mb-6 flex items-center gap-2">
-                <Filter size={20} /> Pustaka/Kategori
+              <h3 className="text-xl font-serif font-bold text-white mb-6">
+                Pustaka/Kategori
               </h3>
               
               <div className="space-y-6">

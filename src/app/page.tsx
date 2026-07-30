@@ -103,7 +103,7 @@ export default function Home() {
           </div>
 
           {/* Judul Seksi: Nama Program / Karyanya */}
-          <div className="mb-8 pl-4 border-l-4 border-white">
+          <div className="mb-8">
             <h2 className="text-3xl font-serif font-bold text-white">Program Mahaditya</h2>
           </div>
         </div>
@@ -117,8 +117,8 @@ export default function Home() {
       {/* Video Teaser (x3) */}
       <section className="py-24 bg-black border-t border-white/10 relative">
         <div className="container mx-auto px-6 lg:px-12">
-           <h2 className="text-3xl font-serif font-bold text-white mb-12 flex items-center gap-4">
-              <span className="w-8 h-[1px] bg-white"></span> Video Teaser
+           <h2 className="text-3xl font-serif font-bold text-white mb-12">
+              Video Teaser
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Teaser 1 */}
@@ -169,8 +169,8 @@ export default function Home() {
       {/* BARIS 4: Special Program (Full Width) */}
       <section className="py-24 bg-[#050505] border-t border-white/10 relative">
         <div className="container mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-serif font-bold text-white mb-12 flex items-center gap-4">
-            <span className="w-8 h-[1px] bg-white"></span> Special Program
+          <h2 className="text-3xl font-serif font-bold text-white mb-12">
+            Special Program
           </h2>
           {specialPrograms.map((sp, idx) => (
             <div key={idx} className="relative w-full h-[50vh] md:h-[60vh] rounded-2xl overflow-hidden group border border-white/10 shadow-2xl mb-12 last:mb-0">
