@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin, PlayCircle, Play, Calendar, X } from "lucide-react";
-import ProgramCarousel from "@/components/ProgramCarousel";
 import { programs, specialPrograms, schedule } from "@/data/dummy";
 import { useState, useEffect } from "react";
 
