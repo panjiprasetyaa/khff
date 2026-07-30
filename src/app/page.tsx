@@ -105,10 +105,7 @@ export default function Home() {
 
         </div>
 
-        {/* Carousel 15 Film */}
-        <div className="w-full pl-6 lg:pl-12 mb-12">
-          <ProgramCarousel films={programs[0].films} programId={programs[0].id} />
-        </div>
+
       </section>
 
       {/* Video Teaser (x3) */}
