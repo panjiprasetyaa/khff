@@ -38,9 +38,9 @@ export default function Navbar() {
           <Link href="/program" className="text-gray-300 hover:text-white transition-colors">
             PROGRAMS
           </Link>
-          <Link href="/guide" className="text-gray-300 hover:text-white transition-colors">
+          <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
             FESTIVAL GUIDE
-          </Link>
+          </a>
           <Link href="/galeri" className="text-gray-300 hover:text-white transition-colors">
             GALERI
           </Link>
@@ -81,13 +81,14 @@ export default function Navbar() {
           >
             PROGRAMS
           </Link>
-          <Link
-            href="/guide"
+          <a
+            href="/festival-guide.pdf"
+            target="_blank" rel="noopener noreferrer"
             className="text-lg text-gray-300 hover:text-white transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             FESTIVAL GUIDE
-          </Link>
+          </a>
           <Link
             href="/galeri"
             className="text-lg text-gray-300 hover:text-white transition-colors"
