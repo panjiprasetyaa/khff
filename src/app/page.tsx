@@ -2,8 +2,41 @@
 
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock, MapPin, PlayCircle, Play, Calendar, X } from "lucide-react";
-import { programs, specialPrograms, schedule } from "@/data/dummy";
+import { programs, specialPrograms } from "@/data/dummy";
 import { useState, useEffect } from "react";
+
+const homepageSchedule = [
+  {
+    day: "Day 1 — Opening",
+    date: "Kamis, 17 September 2026",
+    events: [
+      { time: "16.00", name: "Aktivasi Tenant & Kuliner", location: "Area Tenant" },
+      { time: "17.30", name: "Registrasi & Becak Drive-In", location: "Halaman Pasar Terban" },
+      { time: "19.15", name: "Opening Ceremony", location: "Hall Tengah Pasar" },
+      { time: "20.30", name: "Opening Film", location: "Halaman Pasar Terban" }
+    ]
+  },
+  {
+    day: "Day 2 — Public Screening & Festival",
+    date: "Jumat, 18 September 2026",
+    events: [
+      { time: "13.15", name: "Mahaditya Awards & Shorts #1", location: "PDIN" },
+      { time: "16.00", name: "Aktivasi Tenant & Kuliner", location: "Pasar Terban" },
+      { time: "19.15", name: "Karyanagri Awards", location: "PDIN" },
+      { time: "20.30", name: "Public Screening", location: "Pasar Terban" }
+    ]
+  },
+  {
+    day: "Day 3 — Festival & Closing",
+    date: "Sabtu, 19 September 2026",
+    events: [
+      { time: "13.15", name: "Layar Kobar", location: "PDIN" },
+      { time: "15.15", name: "Jogja Heritage Shorts #2", location: "PDIN" },
+      { time: "19.15", name: "Closing Awarding Ceremony", location: "Hall PDIN" },
+      { time: "20.00", name: "Closing Film", location: "Hall PDIN" }
+    ]
+  }
+];
 
 export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -193,7 +226,7 @@ export default function Home() {
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-4">
-            {schedule.map((day, idx) => (
+            {homepageSchedule.map((day, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-colors">
                 
                 <div className="mb-8 border-b border-white/10 pb-6">
@@ -202,13 +235,13 @@ export default function Home() {
                 </div>
                 
                 <div className="space-y-6">
-                  {(day.events ?? []).map((ev, i) => (
+                  {day.events.map((ev, i) => (
                     <div key={i} className="flex flex-col gap-2">
-                      <span className="text-gray-400 font-mono text-base shrink-0 font-light">{(ev as {time:string}).time}</span>
+                      <span className="text-gray-400 font-mono text-base shrink-0 font-light">{ev.time}</span>
                       <div>
-                        <p className="text-gray-200 font-bold text-lg leading-snug mb-1">{(ev as {program?:string; name?:string}).program ?? (ev as {name?:string}).name}</p>
+                        <p className="text-gray-200 font-bold text-lg leading-snug mb-1">{ev.name}</p>
                         <p className="text-gray-500 text-sm flex items-center gap-2">
-                          <MapPin size={14} /> {(ev as {location:string}).location}
+                          <MapPin size={14} /> {ev.location}
                         </p>
                       </div>
                     </div>

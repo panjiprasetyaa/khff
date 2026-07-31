@@ -60,28 +60,28 @@ const schedule = dataJson.schedule as unknown as ScheduleDay[];
 // Colour accent per day
 const dayColors: Record<string, string> = {
   "pre-festival": "from-white/10 to-transparent border-white/20",
-  "day-1": "from-amber-500/10 to-transparent border-amber-500/20",
-  "day-2": "from-sky-500/10 to-transparent border-sky-500/20",
-  "day-3": "from-rose-500/10 to-transparent border-rose-500/20",
+  "day-1": "from-white/10 to-transparent border-white/20",
+  "day-2": "from-white/10 to-transparent border-white/20",
+  "day-3": "from-white/10 to-transparent border-white/20",
 };
 
 const tabAccent: Record<string, string> = {
   "pre-festival": "bg-white/10 text-white",
-  "day-1": "bg-amber-500/20 text-amber-300",
-  "day-2": "bg-sky-500/20 text-sky-300",
-  "day-3": "bg-rose-500/20 text-rose-300",
+  "day-1": "bg-white/10 text-white",
+  "day-2": "bg-white/10 text-white",
+  "day-3": "bg-white/10 text-white",
 };
 
 const activeTabAccent: Record<string, string> = {
   "pre-festival": "bg-white text-black",
-  "day-1": "bg-amber-400 text-black",
-  "day-2": "bg-sky-400 text-black",
-  "day-3": "bg-rose-400 text-black",
+  "day-1": "bg-white text-black",
+  "day-2": "bg-white text-black",
+  "day-3": "bg-white text-black",
 };
 
 const trackBadgeColor: Record<string, string> = {
-  "Pasar Terban": "bg-amber-500/20 text-amber-300 border-amber-500/30",
-  "PDIN": "bg-sky-500/20 text-sky-300 border-sky-500/30",
+  "Pasar Terban": "bg-white/20 text-white border-white/30",
+  "PDIN": "bg-white/20 text-white border-white/30",
 };
 
 // Render table for single-track (rows: time, location, program)
