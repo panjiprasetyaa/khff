@@ -270,7 +270,7 @@ export default function Home() {
             Amankan kursimu secara gratis. Akses seluruh penayangan film dan pameran karya.
           </p>
           <a
-            href="https://forms.google.com" // Link G-Form
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
