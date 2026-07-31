@@ -125,33 +125,91 @@
   ],
   "schedule": [
     {
-      "day": "Day 1",
-      "date": "17 September 2026",
+      "id": "pre-festival",
+      "day": "Pre-Festival",
+      "date": "Rabu, 16 September 2026",
+      "type": "single",
+      "venue": "PDIN",
       "events": [
-        { "time": "09:00", "name": "Opening Ceremony", "location": "Main Stage" },
-        { "time": "10:00", "name": "Public Lecture: Masa Depan Sinema", "location": "Aula Kotabaru" },
-        { "time": "13:00", "name": "Screening: Program Mahaditya", "location": "Studio 1" },
-        { "time": "19:00", "name": "Gala Premiere (Opening Film)", "location": "Main Theatre" }
+        { "time": "09.00–17.00", "location": "Ruang Meeting (Sekat Kecil)", "program": "Penjurian Kompetisi" },
+        { "time": "09.00–17.00", "location": "Ruang Meeting (Sekat Besar)", "program": "Penataan Ruang Sekretariat Panitia" }
+      ],
+      "roomActivation": []
+    },
+    {
+      "id": "day-1",
+      "day": "Day 1 — Opening",
+      "date": "Kamis, 17 September 2026",
+      "type": "single",
+      "venue": "Pasar Terban",
+      "events": [
+        { "time": "16.00–18.30", "location": "Area Tenant", "program": "Aktivasi Tenant & Kuliner" },
+        { "time": "17.30–18.45", "location": "Halaman Pasar Terban", "program": "Registrasi Peserta & Becak Drive-In Cinema" },
+        { "time": "19.15–20.00", "location": "Hall Tengah Pasar", "program": "Opening Ceremony" },
+        { "time": "20.00–20.30", "location": "Hall Tengah Pasar → Halaman Pasar", "program": "Move to Opening Film" },
+        { "time": "20.30–22.00", "location": "Halaman Pasar Terban", "program": "Opening Film with Becak Drive-In Cinema & Public Gathering" }
+      ],
+      "roomActivation": [
+        { "area": "Hall Tengah Pasar", "function": "Panggung Seremoni & Entertainment" },
+        { "area": "Halaman Pasar Terban", "function": "Becak Drive-In Cinema" },
+        { "area": "Area Tenant", "function": "Tenant & Konsumsi" },
+        { "area": "Ruang Transit", "function": "Transit Penampil" },
+        { "area": "Area Parkir", "function": "Parkir dan Jalur Masuk–Keluar Becak" }
       ]
     },
     {
-      "day": "Day 2",
-      "date": "18 September 2026",
-      "events": [
-        { "time": "10:00", "name": "Screening: Program Purwaseswa", "location": "Studio 2" },
-        { "time": "13:00", "name": "Workshop: Penulisan Naskah", "location": "Ruang Seminar 2" },
-        { "time": "16:00", "name": "Screening: Program Karyanagri", "location": "Studio 1" },
-        { "time": "19:00", "name": "Diskusi Panel", "location": "Aula Kotabaru" }
+      "id": "day-2",
+      "day": "Day 2 — Public Screening & Festival",
+      "date": "Jumat, 18 September 2026",
+      "type": "split",
+      "tracks": [
+        {
+          "venue": "Pasar Terban",
+          "label": "Public Screening",
+          "type": "single",
+          "events": [
+            { "time": "16.00–18.30", "location": "Area Tenant", "program": "Aktivasi Tenant & Kuliner" },
+            { "time": "17.30–18.45", "location": "Halaman Pasar Terban", "program": "Registrasi Peserta & Becak Drive-In Cinema" },
+            { "time": "19.15–20.00", "location": "Hall Tengah Pasar", "program": "Entertainment" },
+            { "time": "20.00–20.30", "location": "Hall Tengah Pasar → Halaman Pasar", "program": "Move to Public Screening" },
+            { "time": "20.30–22.00", "location": "Halaman Pasar Terban", "program": "Public Screening with Becak Drive-In Cinema & Public Gathering" }
+          ]
+        },
+        {
+          "venue": "PDIN",
+          "label": "Festival",
+          "type": "multi-track",
+          "columns": ["Waktu", "Ruang Seminar", "Ruang Audiovisual", "Balkon Rumput Lantai 2"],
+          "events": [
+            { "time": "13.15", "ruangSeminar": "Mahaditya Awards", "ruangAudiovisual": "Jogja Heritage Shorts #1", "balkonRumput": "—" },
+            { "time": "15.15", "ruangSeminar": "National Heritage", "ruangAudiovisual": "Purwaseswa Awards", "balkonRumput": "Public Lecture" },
+            { "time": "19.15", "ruangSeminar": "Karyanagri Awards", "ruangAudiovisual": "International Heritage", "balkonRumput": "Heritage Talk / Artist Talk / Community Forum" }
+          ],
+          "roomActivation": [
+            { "area": "Ruang Meeting", "function": "Sekretariat Panitia" },
+            { "area": "Balkon Rumput Lantai 2", "function": "Area Istirahat & Networking" }
+          ]
+        }
       ]
     },
     {
-      "day": "Day 3",
-      "date": "19 September 2026",
+      "id": "day-3",
+      "day": "Day 3 — Festival & Closing",
+      "date": "Sabtu, 19 September 2026",
+      "type": "multi-track",
+      "venue": "PDIN",
+      "columns": ["Waktu", "Ruang Seminar", "Balkon Rumput", "Hall PDIN"],
       "events": [
-        { "time": "10:00", "name": "Screening: National Heritage", "location": "Studio 1" },
-        { "time": "13:00", "name": "Screening: International Heritage", "location": "Studio 2" },
-        { "time": "19:00", "name": "Closing Ceremony & Awarding", "location": "Main Theatre" }
+        { "time": "13.15", "ruangSeminar": "Layar Kobar", "balkonRumput": "—", "hallPDIN": "—" },
+        { "time": "15.15", "ruangSeminar": "Jogja Heritage Shorts #2", "balkonRumput": "Workshop", "hallPDIN": "—" },
+        { "time": "19.15–22.00", "ruangSeminar": "—", "balkonRumput": "—", "hallPDIN": "Closing Awarding Ceremony & Closing Film" }
+      ],
+      "roomActivation": [
+        { "area": "Hall Tengah Depan Kantin", "function": "Closing Awarding Ceremony" },
+        { "area": "Balkon Rumput", "function": "Area Gathering" },
+        { "area": "Ruang Meeting", "function": "Sekretariat Panitia" }
       ]
     }
   ]
 }
+

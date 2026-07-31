@@ -202,13 +202,13 @@ export default function Home() {
                 </div>
                 
                 <div className="space-y-6">
-                  {day.events.map((ev, i) => (
+                  {(day.events ?? []).map((ev, i) => (
                     <div key={i} className="flex flex-col gap-2">
-                      <span className="text-gray-400 font-mono text-base shrink-0 font-light">{ev.time}</span>
+                      <span className="text-gray-400 font-mono text-base shrink-0 font-light">{(ev as {time:string}).time}</span>
                       <div>
-                        <p className="text-gray-200 font-bold text-lg leading-snug mb-1">{ev.name}</p>
+                        <p className="text-gray-200 font-bold text-lg leading-snug mb-1">{(ev as {program?:string; name?:string}).program ?? (ev as {name?:string}).name}</p>
                         <p className="text-gray-500 text-sm flex items-center gap-2">
-                          <MapPin size={14} /> {ev.location}
+                          <MapPin size={14} /> {(ev as {location:string}).location}
                         </p>
                       </div>
                     </div>
