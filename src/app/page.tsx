@@ -55,7 +55,7 @@ export default function Home() {
   }, [isVideoOpen]);
 
   return (
-    <div className="bg-khff-navy text-khff-cream min-h-screen font-sans">
+    <div className="bg-khff-navy text-khff-cream min-h-screen font-sans overflow-x-hidden w-full relative">
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-khff-navy pt-20">

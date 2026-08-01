@@ -34,9 +34,9 @@ export default function RootLayout({
       lang="en"
       className={`${fontOutfit.variable} ${fontBricolage.variable} ${fontMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-khff-navy text-khff-cream">
+      <body className="min-h-full flex flex-col bg-khff-navy text-khff-cream overflow-x-hidden w-full relative">
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow overflow-x-hidden w-full">{children}</main>
         <Footer />
       </body>
     </html>
