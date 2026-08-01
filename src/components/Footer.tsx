@@ -3,11 +3,10 @@ import { AtSign, Mail, MapPin, Film, Sparkles } from "lucide-react";
 
 export default function Footer() {
   const sponsors = [
-    { id: 1, name: "Dinas Kebudayaan DIY" },
-    { id: 2, name: "Kemenparekraf RI" },
-    { id: 3, name: "Jogja Film Academy" },
-    { id: 4, name: "Komunitas Sinema Kotabaru" },
-    { id: 5, name: "Media Partner Heritage" },
+    { id: 1, name: "Jogja Istimewa", logo: "/assets/sponsor/jogja_istimewa-removebg-preview.png", h: "h-14" },
+    { id: 2, name: "Kotabaru Heritage", logo: "/assets/sponsor/logo kotabaru.png", h: "h-12" },
+    { id: 3, name: "Dinas Pendidikan YK", logo: "/assets/sponsor/logo_sponsor_dinas_pendidikan_yk-removebg-preview.png", h: "h-14" },
+    { id: 4, name: "Official Partner", logo: "/assets/sponsor/Screenshot_2026-08-02_000140-removebg-preview.png", h: "h-12" },
   ];
 
   return (
@@ -26,15 +25,17 @@ export default function Footer() {
           <span className="text-xs font-mono tracking-[0.3em] uppercase text-khff-yellow mb-8 block font-black">
             Supported By & Official Media Partners
           </span>
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {sponsors.map((sponsor) => (
               <div
                 key={sponsor.id}
-                className="px-6 py-4 bg-white/5 border border-khff-cream/20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:bg-khff-yellow hover:text-khff-navy hover:-translate-y-1 hover:border-transparent cursor-pointer shadow-md group"
+                className="p-4 bg-white/5 border border-khff-cream/15 rounded-2xl flex items-center justify-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-1.5 hover:border-khff-yellow/50 shadow-lg group min-w-[140px] md:min-w-[180px]"
               >
-                <span className="text-sm font-mono font-bold tracking-wide text-khff-cream/80 group-hover:text-khff-navy transition-colors">
-                  {sponsor.name}
-                </span>
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  className={`${sponsor.h} w-auto object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-300`}
+                />
               </div>
             ))}
           </div>

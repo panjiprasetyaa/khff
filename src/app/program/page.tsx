@@ -10,9 +10,8 @@ export default function ProgramList() {
       description: "Ajang apresiasi karya sinema pendek pilihan dari seluruh Nusantara. Menampilkan film-film fiksi maupun dokumenter dengan penceritaan kuat, inovasi visual, serta kearifan lokal yang mendalam.",
       bgClass: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tagClass: "bg-khff-navy text-khff-yellow",
-      asset: "/assets/karakter/terompet.png",
+      asset: "/assets/karakter/SINGA.png",
       cta: "Lihat Daftar Karya Kompetisi",
-      icon: <Film size={32} />
     },
     {
       id: "non-kompetisi",
@@ -21,9 +20,8 @@ export default function ProgramList() {
       description: "Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari film pembuka dan penutup festival, hingga screening restorasi arsip sinema nasional dan internasional.",
       bgClass: "bg-khff-pink text-white border-khff-pink",
       tagClass: "bg-white text-khff-pink",
-      asset: "/assets/karakter/genigeni.png",
+      asset: "/assets/karakter/bendera.png",
       cta: "Jelajahi Penayangan Khusus",
-      icon: <Sparkles size={32} />
     },
     {
       id: "non-pemutaran",
@@ -32,9 +30,8 @@ export default function ProgramList() {
       description: "Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi serta pakar film terkemuka Nusantara. Wadah pertukaran ilmu dan jejaring kolaborasi sineas masa depan.",
       bgClass: "bg-white text-khff-navy border-white",
       tagClass: "bg-khff-navy text-white",
-      asset: "/assets/karakter/kendhang.png",
+      asset: "/assets/karakter/butotumpuk.png",
       cta: "Lihat Detail & Pendaftaran",
-      icon: <Users size={32} />
     }
   ];
 
@@ -69,15 +66,12 @@ export default function ProgramList() {
                 <div className={`rounded-3xl p-8 md:p-14 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-2 ${category.bgClass}`}>
                   
                   {/* Floating Character Asset */}
-                  <div className="absolute right-8 bottom-4 opacity-25 w-48 md:w-64 pointer-events-none group-hover:scale-110 group-hover:opacity-40 transition-all duration-700">
-                    <img src={category.asset} alt="" className="w-full h-auto object-contain" />
+                  <div className="absolute right-8 bottom-4 opacity-35 w-48 md:w-72 pointer-events-none group-hover:scale-105 group-hover:opacity-50 transition-all duration-700">
+                    <img src={category.asset} alt="" className="w-full h-auto object-contain drop-shadow-lg" />
                   </div>
 
                   <div className="relative z-10 max-w-4xl">
                     <div className="flex flex-wrap items-center gap-4 mb-6">
-                      <div className="p-3 rounded-2xl bg-black/10 backdrop-blur-md">
-                        {category.icon}
-                      </div>
                       <span className={`text-xs font-mono font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-sm ${category.tagClass}`}>
                         {category.subtitle}
                       </span>

@@ -79,7 +79,7 @@ export default function Home() {
         {/* Center Text Container with High Contrast Gold/Cream Typography */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
           <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-xl border border-khff-navy/20">
-            Kine Klub UMY Presents
+            FESTIVAL SINEMA & ARSITEKTUR SEJARAH 2026
           </span>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
             KHFF <br /> 2026.
@@ -103,19 +103,22 @@ export default function Home() {
           <p className="text-khff-navy text-lg md:text-xl font-mono font-bold">
             Periode Penayangan: 1 September - 15 September 2026
           </p>
-          <a href="https://youtube.com/@KineKlubUMY" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
+          <a href="http://www.youtube.com/@kebudayaanjogjakota" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
             <span>Tonton seluruh arsip di YouTube</span> <PlayCircle size={20} />
           </a>
         </div>
 
         {/* Horizontal Scroll Posters */}
-        <div className="flex overflow-x-auto gap-8 px-6 lg:px-12 pb-10 snap-x hide-scrollbar">
+        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-10 snap-x hide-scrollbar">
           {[1,2,3,4,5,6,7,8,9,10].map((num) => (
-            <div key={num} className="snap-center shrink-0 w-[280px] h-[400px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-xl bg-khff-navy text-khff-cream border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
-              <div className="absolute inset-0 bg-khff-navy flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-khff-cream/20 m-4 rounded-2xl group-hover:bg-khff-navy/90 transition-all">
-                <span className="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🎥</span>
-                <p className="text-khff-yellow font-black font-mono text-xl">Poster #{num}</p>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-khff-cream/50 mt-3 px-3 py-1 bg-white/5 rounded-full">Coming Soon / Placeholder</span>
+            <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
+              <img
+                src={`/assets/pra-event/${num}.png`}
+                alt={`Poster Pra-Event #${num}`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
+                <p className="text-khff-yellow font-black font-mono text-sm uppercase tracking-wider text-center">Panorama #{num}</p>
               </div>
             </div>
           ))}
@@ -165,8 +168,8 @@ export default function Home() {
             {/* Kolom 2: Program Non Kompetisi */}
             <Link href="/program/non-kompetisi" className="block group">
               <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
-                 <div className="absolute top-10 right-6 opacity-30 w-36 mix-blend-screen group-hover:scale-110 transition-transform duration-500">
-                   <img src="/assets/karakter/genigeni.png" alt="" className="w-full" />
+                 <div className="absolute top-6 right-4 opacity-40 w-48 mix-blend-screen group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                   <img src="/assets/karakter/bendera.png" alt="Bendera KHFF" className="w-full h-auto drop-shadow-lg" />
                  </div>
                  <div className="relative z-10">
                    <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-white text-khff-pink rounded-full inline-block mb-6">Screenings</span>
@@ -230,25 +233,26 @@ export default function Home() {
       <section className="py-24 bg-khff-navy border-t border-khff-cream/10 relative">
         <div className="container mx-auto px-6 lg:px-12">
           
-          <div className="relative w-full h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-black">
-            {/* Foto Becak Memanjang */}
-            <div className="w-full h-full opacity-30 flex items-center justify-center bg-khff-navy">
-              <span className="text-xl font-mono text-khff-cream">Gambar Becak (Dummy)</span>
+          <div className="relative w-full min-h-[65vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
+            {/* Foto Becak Asli Ngawi Background */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <img src="/assets/sponsor/becak.jpg" alt="Drive In Cinema Becak" className="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/85 to-transparent z-10" />
             </div>
             
-            <div className="absolute top-10 left-10 opacity-30 pointer-events-none w-32 mix-blend-screen">
-              <img src="/assets/karakter/bendera.png" alt="Bendera" className="w-full h-auto" />
+            <div className="absolute top-10 right-10 opacity-40 pointer-events-none w-48 z-10 mix-blend-screen">
+              <img src="/assets/karakter/cahaya.png" alt="Cahaya" className="w-full h-auto animate-pulse" />
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/80 to-transparent flex flex-col justify-center p-8 md:p-20">
-              <span className="text-khff-pink font-bold tracking-[0.3em] uppercase mb-4 font-mono">Special Program</span>
-              <h3 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-lg leading-none">Drive In<br/>Cinema</h3>
-              <p className="text-khff-cream text-lg md:text-2xl mb-8 max-w-2xl drop-shadow font-medium">
+            <div className="relative z-20 p-8 md:p-20 max-w-3xl">
+              <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">Special Program</span>
+              <h3 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">Drive In<br/>Cinema</h3>
+              <p className="text-khff-cream text-lg md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
                 Special program drive in cinema by Mayora. Keliling Kota Baru naik becak sambil menikmati sinema. Film pembuka: Paraprashub.
               </p>
               <div className="flex flex-wrap items-center gap-4 text-white font-mono text-sm font-bold">
-                <span className="flex items-center gap-2 bg-khff-pink px-5 py-3 rounded-xl shadow-lg"><CalendarDays size={18}/> 16 September 2026</span>
-                <span className="flex items-center gap-2 bg-khff-yellow text-khff-navy px-5 py-3 rounded-xl shadow-lg"><Clock size={18}/> 12.00 - 16.00 WIB</span>
+                <span className="flex items-center gap-2 bg-khff-pink px-6 py-3 rounded-xl shadow-lg"><CalendarDays size={18}/> 16 September 2026</span>
+                <span className="flex items-center gap-2 bg-khff-yellow text-khff-navy px-6 py-3 rounded-xl shadow-lg"><Clock size={18}/> 12.00 - 16.00 WIB</span>
               </div>
             </div>
           </div>
@@ -304,32 +308,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* 7. GALERI DOKUMENTASI (Direct to GDrive) */}
-      <section className="py-24 bg-khff-navy border-t border-khff-cream/10 relative">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-white mb-6">
-            Galeri Dokumentasi
-          </h2>
-          <p className="text-khff-cream/80 max-w-2xl mx-auto mb-16 text-lg">Akses seluruh arsip visual kegiatan Kotabaru Heritage Film Festival di Google Drive resmi kami.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {["Day 1", "Day 2", "Day 3"].map((day, i) => (
-              <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" key={i} className="group block relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden border-2 border-white/10 hover:border-khff-pink transition-all shadow-xl bg-black">
-                <div className="w-full h-full opacity-30 flex items-center justify-center bg-khff-navy group-hover:scale-110 transition-transform duration-700">
-                  <span className="text-xl font-mono text-khff-cream">Foto Dummy {day}</span>
-                </div>
-                <div className="absolute inset-0 bg-khff-navy/50 group-hover:bg-khff-navy/20 transition-colors" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <h3 className="text-4xl font-serif font-black text-white drop-shadow-md">{day}</h3>
-                  <span className="mt-4 flex items-center gap-2 bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                    Buka Folder <ExternalLink size={16} />
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 7. GALERI DOKUMENTASI REMOVED FROM HOME (MOVED TO NAVBAR /galeri) */}
 
       {/* 8. REGISTRASI G-FORM */}
       <section className="py-32 bg-khff-pink text-white relative overflow-hidden">
