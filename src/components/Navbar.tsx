@@ -23,14 +23,14 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-sans ${
         isScrolled
           ? "bg-khff-navy/95 backdrop-blur-md py-4 shadow-2xl border-b border-khff-cream/20 text-khff-cream"
-          : "bg-transparent py-6 text-khff-navy"
+          : "bg-transparent py-6 text-khff-cream"
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center max-w-7xl">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="text-3xl font-serif font-black tracking-tight transition-transform group-hover:scale-105">
-            KHFF<span className={isScrolled ? "text-khff-yellow" : "text-khff-pink"}>.</span>
+            KHFF<span className="text-khff-pink">.</span>
           </span>
           <span className="hidden sm:inline-block text-[10px] font-mono font-bold leading-tight tracking-widest uppercase opacity-80 pl-2 border-l border-current">
             Kotabaru Heritage<br/>Film Festival
@@ -39,30 +39,26 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8 text-sm font-mono font-bold tracking-wider items-center">
-          <Link href="/" className="hover:text-khff-pink transition-colors">
+          <Link href="/" className="hover:text-khff-yellow transition-colors">
             HOME
           </Link>
-          <Link href="/program" className="hover:text-khff-pink transition-colors">
+          <Link href="/program" className="hover:text-khff-yellow transition-colors">
             PROGRAMS
           </Link>
-          <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-pink transition-colors">
+          <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
           </a>
-          <Link href="/galeri" className="hover:text-khff-pink transition-colors">
+          <Link href="/galeri" className="hover:text-khff-yellow transition-colors">
             GALERI
           </Link>
-          <Link href="/jadwal" className="hover:text-khff-pink transition-colors">
+          <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
           </Link>
           <a 
             href={gFormUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 ${
-              isScrolled 
-                ? "bg-khff-yellow text-khff-navy hover:bg-white"
-                : "bg-khff-navy text-khff-yellow hover:bg-khff-pink hover:text-white"
-            }`}
+            className="px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 bg-khff-yellow text-khff-navy font-black hover:bg-white"
           >
             <span>REGISTRASI</span>
             <ExternalLink size={14} />

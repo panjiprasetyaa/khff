@@ -39,25 +39,25 @@ export default function ProgramList() {
   ];
 
   return (
-    <main className="min-h-screen bg-khff-yellow text-khff-navy font-sans relative overflow-hidden">
+    <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
       
-      {/* HEADER SECTION (YELLOW BACKGROUND WITH GREEN TEXT) */}
-      <section className="pt-36 pb-24 px-6 relative z-10 container mx-auto max-w-6xl">
-        <div className="text-center md:text-left">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-khff-navy text-khff-yellow text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-md">
+      {/* HEADER SECTION (CINEMATIC GREEN TO YELLOW GRADIENT) */}
+      <section className="pt-36 pb-28 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
+        <div className="container mx-auto max-w-6xl text-center md:text-left">
+          <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-xl">
             Kotabaru Heritage Film Festival 2026
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-navy mb-8 tracking-tight">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-8 tracking-tight drop-shadow-lg">
             Programs.
           </h1>
-          <p className="text-khff-navy/90 text-lg md:text-2xl max-w-3xl font-medium leading-relaxed">
+          <p className="text-khff-cream/95 text-lg md:text-2xl max-w-3xl font-medium leading-relaxed drop-shadow">
             Eksplorasi tiga pilar utama festival kami: kompetisi karya sineas muda Nusantara, kurasi penayangan warisan budaya, serta ruang kolaborasi edukatif.
           </p>
         </div>
       </section>
 
       {/* CATEGORIES SECTION (NAVY GREEN BACKGROUND) */}
-      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden">
+      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         <div className="absolute top-20 -right-10 opacity-10 pointer-events-none w-96">
           <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
         </div>

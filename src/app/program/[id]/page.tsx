@@ -28,30 +28,32 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
     const activeTabInfo = tabs.find((t) => t.id === activeKompetisiTab);
 
     return (
-      <main className="min-h-screen bg-khff-yellow text-khff-navy font-sans relative overflow-hidden">
+      <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
         
-        {/* HEADER AREA (YELLOW BACKGROUND + GREEN FONTS) */}
-        <section className="pt-36 pb-16 container mx-auto px-6 max-w-7xl relative z-10">
-          <Link href="/program" className="inline-flex items-center gap-2 bg-white/40 border border-khff-navy/20 px-5 py-2 rounded-full text-khff-navy hover:bg-khff-navy hover:text-khff-yellow font-mono mb-8 transition-all text-sm font-black shadow-sm">
-            <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
-          </Link>
-          
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-khff-navy text-khff-yellow px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-md">
-              <Trophy size={16} />
-              <span>Festival Competition 2026</span>
+        {/* HEADER AREA (CINEMATIC GREEN-TO-YELLOW GRADIENT) */}
+        <section className="pt-36 pb-24 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
+          <div className="container mx-auto max-w-7xl">
+            <Link href="/program" className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg">
+              <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
+            </Link>
+            
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
+                <Trophy size={16} />
+                <span>Festival Competition 2026</span>
+              </div>
+              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+                Program Kompetisi.
+              </h1>
+              <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
+                Menampilkan karya terbaik dari sineas muda nusantara. Pilih kategori program di bawah untuk menjelajahi daftar karya terkurasi.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-navy mb-6 tracking-tight">
-              Program Kompetisi.
-            </h1>
-            <p className="text-xl md:text-2xl text-khff-navy/90 font-medium leading-relaxed">
-              Menampilkan karya terbaik dari sineas muda nusantara. Pilih kategori program di bawah untuk menjelajahi daftar karya terkurasi.
-            </p>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden">
+        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           <div className="container mx-auto max-w-7xl">
             {/* TAB BUTTONS */}
             <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-8">
@@ -113,30 +115,32 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
     const currentProgram = programs.find((p) => p.id === activeNonKompetisiTab);
 
     return (
-      <main className="min-h-screen bg-khff-yellow text-khff-navy font-sans relative overflow-hidden">
+      <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
         
-        {/* HEADER AREA (YELLOW BACKGROUND + GREEN FONTS) */}
-        <section className="pt-36 pb-16 container mx-auto px-6 max-w-7xl relative z-10">
-          <Link href="/program" className="inline-flex items-center gap-2 bg-white/40 border border-khff-navy/20 px-5 py-2 rounded-full text-khff-navy hover:bg-khff-navy hover:text-khff-yellow font-mono mb-8 transition-all text-sm font-black shadow-sm">
-            <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
-          </Link>
-          
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-khff-pink text-white px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-md">
-              <Sparkles size={16} />
-              <span>Heritage & Special Screenings</span>
+        {/* HEADER AREA (CINEMATIC GREEN-TO-YELLOW GRADIENT) */}
+        <section className="pt-36 pb-24 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
+          <div className="container mx-auto max-w-7xl">
+            <Link href="/program" className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg">
+              <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
+            </Link>
+            
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-2 bg-khff-pink text-white px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
+                <Sparkles size={16} />
+                <span>Heritage & Special Screenings</span>
+              </div>
+              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+                Program Non-Kompetisi.
+              </h1>
+              <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
+                Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari opening hingga pemutaran restorasi arsip budaya lokal dan global.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-navy mb-6 tracking-tight">
-              Program Non-Kompetisi.
-            </h1>
-            <p className="text-xl md:text-2xl text-khff-navy/90 font-medium leading-relaxed">
-              Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari opening hingga pemutaran restorasi arsip budaya lokal dan global.
-            </p>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden">
+        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           <div className="container mx-auto max-w-7xl">
             
             {/* TAB BUTTONS */}
@@ -215,30 +219,32 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
     const currentEvent = events.find((e) => e.id === activeNonPemutaranTab) || events[0];
 
     return (
-      <main className="min-h-screen bg-khff-yellow text-khff-navy font-sans relative overflow-hidden">
+      <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
         
-        {/* HEADER AREA (YELLOW BACKGROUND + GREEN FONTS) */}
-        <section className="pt-36 pb-16 container mx-auto px-6 max-w-7xl relative z-10">
-          <Link href="/program" className="inline-flex items-center gap-2 bg-white/40 border border-khff-navy/20 px-5 py-2 rounded-full text-khff-navy hover:bg-khff-navy hover:text-khff-yellow font-mono mb-8 transition-all text-sm font-black shadow-sm">
-            <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
-          </Link>
-          
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-khff-navy text-white px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-md">
-              <BookOpen size={16} />
-              <span>Forum & Educational Programs</span>
+        {/* HEADER AREA (CINEMATIC GREEN-TO-YELLOW GRADIENT) */}
+        <section className="pt-36 pb-24 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
+          <div className="container mx-auto max-w-7xl">
+            <Link href="/program" className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg">
+              <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
+            </Link>
+            
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
+                <BookOpen size={16} />
+                <span>Forum & Educational Programs</span>
+              </div>
+              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+                Program Non-Pemutaran.
+              </h1>
+              <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
+                Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi film terkemuka. Wadah pertukaran wawasan, diskusi kerajinan sinema, serta jejaring kolaborasi.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-navy mb-6 tracking-tight">
-              Program Non-Pemutaran.
-            </h1>
-            <p className="text-xl md:text-2xl text-khff-navy/90 font-medium leading-relaxed">
-              Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi film terkemuka. Wadah pertukaran wawasan, diskusi kerajinan sinema, serta jejaring kolaborasi.
-            </p>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden">
+        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           <div className="container mx-auto max-w-7xl">
             
             {/* TAB SELECTOR: WORKSHOP vs PUBLIC LECTURE */}
@@ -339,23 +345,25 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   if (!program) notFound();
 
   return (
-    <main className="min-h-screen bg-khff-yellow text-khff-navy font-sans">
-      <section className="pt-36 pb-16 container mx-auto px-6 max-w-7xl relative z-10">
-        <Link href="/program" className="inline-flex items-center gap-2 bg-white/40 border border-khff-navy/20 px-5 py-2 rounded-full text-khff-navy hover:bg-khff-navy hover:text-khff-yellow font-mono mb-8 transition-all font-black text-sm">
-          <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
-        </Link>
-        
-        <div className="max-w-4xl mb-8">
-          <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-navy mb-6">
-            {program.name}
-          </h1>
-          <p className="text-xl md:text-2xl text-khff-navy/90 font-medium">
-            {program.description}
-          </p>
+    <main className="min-h-screen bg-khff-navy text-khff-cream font-sans">
+      <section className="pt-36 pb-24 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
+        <div className="container mx-auto max-w-7xl">
+          <Link href="/program" className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg">
+            <ArrowLeft size={16} /> KEMBALI KE DAFTAR PROGRAM
+          </Link>
+          
+          <div className="max-w-4xl mb-8">
+            <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-cream mb-6 drop-shadow">
+              {program.name}
+            </h1>
+            <p className="text-xl md:text-2xl text-khff-cream/95 font-medium drop-shadow">
+              {program.description}
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20">
+      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 -mt-12">
         <div className="container mx-auto max-w-7xl">
           <div className="flex justify-between items-end mb-10 border-b border-khff-cream/10 pb-6">
              <h2 className="text-3xl font-serif font-black text-white">Menampilkan {program.films.length} Karya</h2>

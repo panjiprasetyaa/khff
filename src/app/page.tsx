@@ -57,34 +57,37 @@ export default function Home() {
   return (
     <div className="bg-khff-yellow text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-[85vh] w-full flex items-center justify-center overflow-hidden bg-khff-yellow pt-28 pb-20">
+      {/* 1. HERO SECTION (CINEMATIC GREEN-TO-YELLOW GRADIENT) */}
+      <section className="relative min-h-[92vh] w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow pt-36 pb-24">
         
-        {/* Floating Assets as Subtle Background Watermarks */}
-        <div className="absolute top-12 right-12 w-48 h-48 opacity-30 animate-pulse pointer-events-none z-0">
+        {/* Glowing Ambient Light Asset in Sky */}
+        <div className="absolute top-12 right-12 w-64 h-64 opacity-50 animate-pulse pointer-events-none z-0 mix-blend-screen">
           <img src="/assets/karakter/cahaya.png" alt="" className="w-full h-full object-contain" />
         </div>
-        <div className="absolute top-1/3 -left-10 md:left-6 w-44 md:w-64 h-auto opacity-20 pointer-events-none z-0">
+        
+        {/* Solid & Dignified Character Assets on Extreme Flanks */}
+        <div className="absolute bottom-4 -left-6 md:left-8 w-52 md:w-80 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
           <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto" />
         </div>
-        <div className="absolute bottom-10 -right-10 md:right-6 w-52 md:w-72 h-auto opacity-20 pointer-events-none z-0">
-          <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto" />
+        <div className="absolute bottom-4 -right-6 md:right-8 w-48 md:w-72 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
+          <img src="/assets/karakter/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
         </div>
-        <div className="absolute -bottom-10 left-16 w-44 md:w-64 h-auto opacity-15 pointer-events-none z-0 -rotate-12">
+        <div className="absolute top-28 left-16 w-32 md:w-48 h-auto opacity-20 pointer-events-none z-0 -rotate-12">
           <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <span className="inline-block px-5 py-2 rounded-full bg-khff-navy text-khff-yellow text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-md">
+        {/* Center Text Container with High Contrast Gold/Cream Typography */}
+        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+          <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-xl border border-khff-navy/20">
             Kine Klub UMY Presents
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-navy mb-6 leading-[0.9] tracking-tight drop-shadow-sm">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
             KHFF <br /> 2026.
           </h1>
-          <p className="text-lg md:text-3xl text-khff-navy font-mono mb-6 tracking-widest font-black py-2 inline-block">
+          <p className="text-lg md:text-3xl font-mono mb-6 tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
             <span className="text-khff-pink drop-shadow">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
-          <p className="text-lg md:text-2xl text-khff-navy/90 max-w-3xl mx-auto font-medium leading-relaxed">
+          <p className="text-lg md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
             Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
         </div>
