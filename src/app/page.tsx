@@ -55,75 +55,100 @@ export default function Home() {
   }, [isVideoOpen]);
 
   return (
-    <div className="bg-khff-navy text-khff-cream min-h-screen font-sans overflow-x-hidden w-full relative">
+    <div className="bg-khff-yellow text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-khff-navy pt-20">
+      <section className="relative min-h-[95vh] w-full flex items-center justify-center overflow-hidden bg-khff-yellow pt-24 pb-12">
         
         {/* Floating Assets */}
-        <div className="absolute top-10 right-10 w-48 h-48 opacity-40 animate-pulse mix-blend-screen pointer-events-none z-0">
+        <div className="absolute top-12 right-12 w-48 h-48 opacity-40 animate-pulse pointer-events-none z-0">
           <img src="/assets/karakter/cahaya.png" alt="" className="w-full h-full object-contain" />
         </div>
-        <div className="absolute top-32 left-10 w-32 md:w-56 h-auto opacity-80 pointer-events-none z-10 hover:-translate-y-4 transition-transform duration-700">
+        <div className="absolute top-32 left-10 w-36 md:w-64 h-auto opacity-90 pointer-events-none z-10 hover:-translate-y-4 transition-transform duration-700">
           <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto drop-shadow-2xl" />
         </div>
-        <div className="absolute bottom-10 right-10 w-40 md:w-64 h-auto opacity-80 pointer-events-none z-10">
+        <div className="absolute bottom-8 right-10 w-44 md:w-72 h-auto opacity-90 pointer-events-none z-10 hover:-translate-y-4 transition-transform duration-700">
           <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto drop-shadow-2xl" />
         </div>
+        <div className="absolute bottom-20 left-20 w-32 md:w-56 h-auto opacity-30 pointer-events-none z-0 -rotate-12">
+          <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
+        </div>
 
-        <div className="relative z-20 text-center px-4 max-w-5xl mx-auto">
-          <h2 className="text-sm md:text-base uppercase tracking-[0.3em] text-khff-yellow mb-4 font-mono font-bold">
+        <div className="relative z-20 text-center px-6 max-w-5xl mx-auto">
+          <span className="inline-block px-5 py-2 rounded-full bg-khff-navy text-khff-yellow text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-lg">
             Kine Klub UMY Presents
-          </h2>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-extrabold text-khff-cream mb-6 leading-[0.9] drop-shadow-2xl tracking-tighter">
-            KHFF <br /> 2026
+          </span>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-navy mb-6 leading-[0.9] tracking-tight drop-shadow-sm">
+            KHFF <br /> 2026.
           </h1>
-          <p className="text-lg md:text-2xl text-khff-cream font-mono mb-6 tracking-widest drop-shadow-md py-2 inline-block">
-            <span className="text-khff-pink font-bold">17-19 September 2026</span> | Yogyakarta
+          <p className="text-xl md:text-3xl text-khff-navy font-mono mb-6 tracking-widest font-black py-2 inline-block">
+            <span className="text-khff-pink drop-shadow">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
-          <p className="text-base md:text-xl text-khff-cream/80 mb-8 max-w-2xl mx-auto font-medium">
-            Kotabaru Heritage Film Festival. Merayakan persilangan sinema dan sejarah di jantung Yogyakarta.
+          <p className="text-lg md:text-2xl text-khff-navy/90 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
+            Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
+          
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link href="/program" className="bg-khff-navy text-khff-yellow px-10 py-5 rounded-2xl text-lg md:text-xl font-mono font-black hover:bg-khff-pink hover:text-white transition-all shadow-2xl hover:scale-105 inline-flex items-center gap-3">
+              <span>JELAJAHI PROGRAM</span>
+              <ArrowRight size={22} />
+            </Link>
+            <Link href="/jadwal" className="bg-white/40 backdrop-blur-md border-2 border-khff-navy/30 text-khff-navy px-8 py-5 rounded-2xl text-lg md:text-xl font-mono font-bold hover:bg-khff-navy hover:text-white hover:border-transparent transition-all shadow-lg inline-flex items-center gap-2">
+              <span>JADWAL ACARA</span>
+              <CalendarDays size={20} />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* 2. PRA-EVENT PANORAMA */}
-      <section className="py-20 bg-khff-navy border-t border-khff-cream/10 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-12 mb-10 text-center">
-           <h2 className="text-4xl md:text-5xl font-serif font-bold text-khff-cream mb-4">
-            Pra Event KHFF 2026 Panorama
+      <section className="py-20 bg-khff-yellow border-t border-khff-navy/10 relative overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12 mb-12 text-center">
+           <span className="text-xs uppercase font-mono tracking-[0.25em] font-black text-khff-navy/60 block mb-2">Road To KHFF</span>
+           <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-navy mb-4">
+            Pra-Event Panorama.
           </h2>
-          <p className="text-khff-yellow text-lg font-mono">
-            Periode: 1 September - 15 September 2026
+          <p className="text-khff-navy text-lg md:text-xl font-mono font-bold">
+            Periode Penayangan: 1 September - 15 September 2026
           </p>
-          <a href="https://youtube.com/@KineKlubUMY" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-khff-pink hover:text-khff-cream font-bold transition-colors">
-            Tonton selengkapnya di YouTube <PlayCircle size={20} />
+          <a href="https://youtube.com/@KineKlubUMY" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
+            <span>Tonton seluruh arsip di YouTube</span> <PlayCircle size={20} />
           </a>
         </div>
 
         {/* Horizontal Scroll Posters */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-10 snap-x hide-scrollbar">
+        <div className="flex overflow-x-auto gap-8 px-6 lg:px-12 pb-10 snap-x hide-scrollbar">
           {[1,2,3,4,5,6,7,8,9,10].map((num) => (
-            <div key={num} className="snap-center shrink-0 w-[280px] h-[400px] rounded-2xl overflow-hidden relative group border-2 border-khff-yellow/20 bg-black">
-              <div className="absolute inset-0 bg-khff-navy/50 flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-khff-cream/30 m-4 rounded-xl group-hover:bg-khff-navy/20 transition-all">
-                <span className="text-4xl mb-4">🎥</span>
-                <p className="text-khff-cream font-bold font-mono">Poster {num}</p>
-                <p className="text-xs text-khff-cream/50 mt-2">Dummy / Placeholder</p>
+            <div key={num} className="snap-center shrink-0 w-[280px] h-[400px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-xl bg-khff-navy text-khff-cream border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
+              <div className="absolute inset-0 bg-khff-navy flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-khff-cream/20 m-4 rounded-2xl group-hover:bg-khff-navy/90 transition-all">
+                <span className="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🎥</span>
+                <p className="text-khff-yellow font-black font-mono text-xl">Poster #{num}</p>
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-khff-cream/50 mt-3 px-3 py-1 bg-white/5 rounded-full">Coming Soon / Placeholder</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 3. PROGRAM UTAMA (3 KOLOM) */}
-      <section className="py-24 bg-khff-navy border-t border-khff-cream/10 relative">
+      {/* 3. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
+      <section className="py-28 bg-khff-navy text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
-        <div className="absolute top-0 right-0 w-64 h-auto opacity-30 pointer-events-none z-0 rotate-12">
+        <div className="absolute top-0 right-0 w-80 h-auto opacity-10 pointer-events-none z-0 rotate-12">
           <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="text-center mb-20 max-w-3xl mx-auto">
+            <span className="text-xs font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-3">Festival Pillars</span>
+            <h2 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight">
+              Tiga Pilar Utama.
+            </h2>
+            <p className="text-khff-cream/80 text-lg md:text-xl font-medium leading-relaxed">
+              Jelajahi kompetisi sineas nusantara, kurasi penayangan warisan budaya, dan lokakarya edukatif dalam satu nafas perayaan.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             
             {/* Kolom 1: Program Kompetisi */}
             <Link href="/program/kompetisi" className="block group">

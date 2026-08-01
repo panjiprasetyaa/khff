@@ -1,69 +1,95 @@
 import Link from "next/link";
-import { AtSign, Mail, MapPin } from "lucide-react";
+import { AtSign, Mail, MapPin, Film, Sparkles } from "lucide-react";
 
 export default function Footer() {
   const sponsors = [
-    { id: 1, name: "Sponsor 1" },
-    { id: 2, name: "Sponsor 2" },
-    { id: 3, name: "Sponsor 3" },
-    { id: 4, name: "Media Partner 1" },
-    { id: 5, name: "Media Partner 2" },
+    { id: 1, name: "Dinas Kebudayaan DIY" },
+    { id: 2, name: "Kemenparekraf RI" },
+    { id: 3, name: "Jogja Film Academy" },
+    { id: 4, name: "Komunitas Sinema Kotabaru" },
+    { id: 5, name: "Media Partner Heritage" },
   ];
 
   return (
-    <footer className="bg-black text-gray-400 py-16 border-t border-white/10">
-      <div className="container mx-auto px-6 md:px-12">
+    <footer className="bg-khff-navy text-khff-cream py-20 border-t border-khff-cream/20 font-sans relative overflow-hidden">
+      {/* Decorative asset overlay */}
+      <div className="absolute -bottom-10 -right-10 opacity-10 pointer-events-none w-80">
+        <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
+      </div>
+      <div className="absolute top-10 left-10 opacity-10 pointer-events-none w-64">
+        <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto" />
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
         {/* Sponsors & Partners */}
-        <div className="mb-16 text-center">
-          <h3 className="text-sm tracking-widest uppercase text-white/50 mb-8 font-semibold">
-            Supported By & Media Partners
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div className="mb-20 text-center border-b border-khff-cream/10 pb-16">
+          <span className="text-xs font-mono tracking-[0.3em] uppercase text-khff-yellow mb-8 block font-black">
+            Supported By & Official Media Partners
+          </span>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
             {sponsors.map((sponsor) => (
               <div
                 key={sponsor.id}
-                className="w-32 h-16 bg-white/5 rounded flex items-center justify-center transition-all duration-500 filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 hover:bg-white/10 hover:-translate-y-1 cursor-pointer"
+                className="px-6 py-4 bg-white/5 border border-khff-cream/20 rounded-2xl flex items-center justify-center transition-all duration-300 hover:bg-khff-yellow hover:text-khff-navy hover:-translate-y-1 hover:border-transparent cursor-pointer shadow-md group"
               >
-                <span className="text-xs font-bold text-white/70">{sponsor.name}</span>
+                <span className="text-sm font-mono font-bold tracking-wide text-khff-cream/80 group-hover:text-khff-navy transition-colors">
+                  {sponsor.name}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Footer Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-white tracking-wider">KHFF.</h2>
-            <p className="text-sm text-gray-500 max-w-xs mx-auto md:mx-0">
-              Kotabaru Heritage Film Festival. Merayakan sinema dan sejarah di jantung Yogyakarta.
-            </p>
-          </div>
-
-          <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h4 className="text-white font-medium mb-2 uppercase tracking-wider text-sm">Contact Us</h4>
-            <a href="mailto:info@khff.id" className="flex items-center gap-2 hover:text-white transition-colors">
-              <Mail size={16} /> info@khff.id
-            </a>
-            <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
-              <AtSign size={16} /> @khff.jogja
-            </a>
-          </div>
-
-          <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h4 className="text-white font-medium mb-2 uppercase tracking-wider text-sm">Location</h4>
-            <p className="flex items-start gap-2 text-sm text-left">
-              <MapPin size={18} className="shrink-0 mt-0.5" />
-              <span>
-                Kawasan Kotabaru,<br />
-                Gondokusuman, Kota Yogyakarta,<br />
-                Daerah Istimewa Yogyakarta 55224
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 text-center md:text-left mb-16">
+          <div className="md:col-span-5 space-y-6">
+            <div className="inline-block">
+              <h2 className="text-4xl font-serif font-black text-khff-yellow tracking-tight">
+                KHFF 2026.
+              </h2>
+              <span className="text-xs font-mono tracking-widest text-khff-pink uppercase font-bold block mt-1">
+                Kotabaru Heritage Film Festival
               </span>
+            </div>
+            <p className="text-base text-khff-cream/80 max-w-sm mx-auto md:mx-0 font-medium leading-relaxed">
+              Merayakan persilangan sinema dan sejarah di jantung Yogyakarta. Wadah apresiasi karya sineas nusantara, pengarsipan budaya, dan hiburan rakyat.
             </p>
+          </div>
+
+          <div className="md:col-span-3 space-y-4 flex flex-col items-center md:items-start">
+            <h4 className="text-khff-yellow font-mono font-black mb-2 uppercase tracking-widest text-sm">
+              Connect & Inquiries
+            </h4>
+            <a href="mailto:info@khff.id" className="flex items-center gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium">
+              <Mail size={18} className="text-khff-pink" /> info@khff.id
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium">
+              <AtSign size={18} className="text-khff-yellow" /> @khff.jogja
+            </a>
+          </div>
+
+          <div className="md:col-span-4 space-y-4 flex flex-col items-center md:items-start">
+            <h4 className="text-khff-yellow font-mono font-black mb-2 uppercase tracking-widest text-sm">
+              Festival Ground & Secretariat
+            </h4>
+            <div className="flex items-start gap-3 text-sm text-center md:text-left text-khff-cream/90 font-medium leading-relaxed">
+              <MapPin size={20} className="shrink-0 mt-1 text-khff-pink" />
+              <div>
+                <p className="font-bold text-white">Kawasan Cagar Budaya Kotabaru</p>
+                <p className="opacity-80">Gondokusuman, Kota Yogyakarta,<br />Daerah Istimewa Yogyakarta 55224</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 text-center text-xs text-gray-600">
-          <p>&copy; {new Date().getFullYear()} Kotabaru Heritage Film Festival. All rights reserved.</p>
+        {/* Copyright */}
+        <div className="pt-8 border-t border-khff-cream/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-khff-cream/60">
+          <p>© 2026 Kotabaru Heritage Film Festival. All rights reserved.</p>
+          <div className="flex space-x-6">
+            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Privacy Policy</a>
+            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Terms of Festival</a>
+            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Press Kit</a>
+          </div>
         </div>
       </div>
     </footer>
