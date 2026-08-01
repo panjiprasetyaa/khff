@@ -58,46 +58,35 @@ export default function Home() {
     <div className="bg-khff-yellow text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[95vh] w-full flex items-center justify-center overflow-hidden bg-khff-yellow pt-24 pb-12">
+      <section className="relative min-h-[85vh] w-full flex items-center justify-center overflow-hidden bg-khff-yellow pt-28 pb-20">
         
-        {/* Floating Assets */}
-        <div className="absolute top-12 right-12 w-48 h-48 opacity-40 animate-pulse pointer-events-none z-0">
+        {/* Floating Assets as Subtle Background Watermarks */}
+        <div className="absolute top-12 right-12 w-48 h-48 opacity-30 animate-pulse pointer-events-none z-0">
           <img src="/assets/karakter/cahaya.png" alt="" className="w-full h-full object-contain" />
         </div>
-        <div className="absolute top-32 left-10 w-36 md:w-64 h-auto opacity-90 pointer-events-none z-10 hover:-translate-y-4 transition-transform duration-700">
-          <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto drop-shadow-2xl" />
+        <div className="absolute top-1/3 -left-10 md:left-6 w-44 md:w-64 h-auto opacity-20 pointer-events-none z-0">
+          <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto" />
         </div>
-        <div className="absolute bottom-8 right-10 w-44 md:w-72 h-auto opacity-90 pointer-events-none z-10 hover:-translate-y-4 transition-transform duration-700">
-          <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto drop-shadow-2xl" />
+        <div className="absolute bottom-10 -right-10 md:right-6 w-52 md:w-72 h-auto opacity-20 pointer-events-none z-0">
+          <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto" />
         </div>
-        <div className="absolute bottom-20 left-20 w-32 md:w-56 h-auto opacity-30 pointer-events-none z-0 -rotate-12">
+        <div className="absolute -bottom-10 left-16 w-44 md:w-64 h-auto opacity-15 pointer-events-none z-0 -rotate-12">
           <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
         </div>
 
-        <div className="relative z-20 text-center px-6 max-w-5xl mx-auto">
-          <span className="inline-block px-5 py-2 rounded-full bg-khff-navy text-khff-yellow text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-lg">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <span className="inline-block px-5 py-2 rounded-full bg-khff-navy text-khff-yellow text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-md">
             Kine Klub UMY Presents
           </span>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-navy mb-6 leading-[0.9] tracking-tight drop-shadow-sm">
             KHFF <br /> 2026.
           </h1>
-          <p className="text-xl md:text-3xl text-khff-navy font-mono mb-6 tracking-widest font-black py-2 inline-block">
+          <p className="text-lg md:text-3xl text-khff-navy font-mono mb-6 tracking-widest font-black py-2 inline-block">
             <span className="text-khff-pink drop-shadow">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
-          <p className="text-lg md:text-2xl text-khff-navy/90 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
+          <p className="text-lg md:text-2xl text-khff-navy/90 max-w-3xl mx-auto font-medium leading-relaxed">
             Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
-          
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/program" className="bg-khff-navy text-khff-yellow px-10 py-5 rounded-2xl text-lg md:text-xl font-mono font-black hover:bg-khff-pink hover:text-white transition-all shadow-2xl hover:scale-105 inline-flex items-center gap-3">
-              <span>JELAJAHI PROGRAM</span>
-              <ArrowRight size={22} />
-            </Link>
-            <Link href="/jadwal" className="bg-white/40 backdrop-blur-md border-2 border-khff-navy/30 text-khff-navy px-8 py-5 rounded-2xl text-lg md:text-xl font-mono font-bold hover:bg-khff-navy hover:text-white hover:border-transparent transition-all shadow-lg inline-flex items-center gap-2">
-              <span>JADWAL ACARA</span>
-              <CalendarDays size={20} />
-            </Link>
-          </div>
         </div>
       </section>
 
