@@ -126,77 +126,64 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Kolom 1: Program Kompetisi */}
-            <div className="bg-khff-yellow rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
-               <div className="absolute -right-10 -bottom-10 opacity-20 w-48">
-                 <img src="/assets/karakter/terompet.png" alt="" className="w-full" />
-               </div>
-               <div className="relative z-10">
-                 <h3 className="text-4xl font-serif font-black mb-6 leading-tight">Program<br/>Kompetisi</h3>
-                 <ul className="space-y-4 font-bold text-lg">
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-khff-navy" /> Mahaditya</li>
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-khff-navy" /> Purwaseswa</li>
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-khff-navy" /> Karyanagri</li>
-                 </ul>
-                 <p className="mt-8 text-khff-navy/80 font-medium">Menampilkan karya terbaik dari sineas muda berbakat di seluruh nusantara.</p>
-               </div>
-               <div className="mt-12 pt-6 border-t border-khff-navy/20 font-bold font-mono text-sm">
-                 15 FILMS SELECTED →
-               </div>
-            </div>
+            <Link href="/program/kompetisi" className="block group">
+              <div className="bg-khff-yellow rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
+                 <div className="absolute -right-6 -bottom-6 opacity-30 w-52 group-hover:scale-110 transition-transform duration-500">
+                   <img src="/assets/karakter/terompet.png" alt="" className="w-full" />
+                 </div>
+                 <div className="relative z-10">
+                   <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-navy text-khff-yellow rounded-full inline-block mb-6">Competition</span>
+                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">Program<br/>Kompetisi</h3>
+                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
+                     Ajang apresiasi sinema pendek pilihan dari seluruh Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
+                   </p>
+                 </div>
+                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
+                   <span>LIHAT DAFTAR KARYA</span>
+                   <span className="text-2xl">→</span>
+                 </div>
+              </div>
+            </Link>
 
             {/* Kolom 2: Program Non Kompetisi */}
-            <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
-               <div className="absolute top-10 right-10 opacity-30 w-32 mix-blend-screen">
-                 <img src="/assets/karakter/genigeni.png" alt="" className="w-full" />
-               </div>
-               <div className="relative z-10">
-                 <h3 className="text-4xl font-serif font-black mb-6 leading-tight">Program Non<br/>Kompetisi</h3>
-                 <ul className="space-y-4 font-bold text-lg">
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-white" /> Opening Film</li>
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-white" /> International Heritage (1)</li>
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-white" /> National Heritage (1)</li>
-                   <li className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-white" /> Closing Film</li>
-                 </ul>
-               </div>
-               <div className="mt-12 pt-6 border-t border-white/30 font-bold font-mono text-sm">
-                 SPECIAL SCREENINGS →
-               </div>
-            </div>
+            <Link href="/program/non-kompetisi" className="block group">
+              <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
+                 <div className="absolute top-10 right-6 opacity-30 w-36 mix-blend-screen group-hover:scale-110 transition-transform duration-500">
+                   <img src="/assets/karakter/genigeni.png" alt="" className="w-full" />
+                 </div>
+                 <div className="relative z-10">
+                   <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-white text-khff-pink rounded-full inline-block mb-6">Screenings</span>
+                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">Program Non<br/>Kompetisi</h3>
+                   <p className="text-white/90 font-medium text-lg max-w-sm">
+                     Kurasi penayangan istimewa mulai dari Opening Film, International & National Heritage, hingga Closing Film.
+                   </p>
+                 </div>
+                 <div className="mt-12 pt-6 border-t border-white/30 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
+                   <span>JELAJAHI PENAYANGAN</span>
+                   <span className="text-2xl">→</span>
+                 </div>
+              </div>
+            </Link>
 
             {/* Kolom 3: Program Non Pemutaran (Workshop & Lecture) */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-               <div>
-                 <h3 className="text-4xl font-serif font-black mb-6 leading-tight">Program Non<br/>Pemutaran</h3>
-                 
-                 <div className="space-y-6 mt-8">
-                    {/* Blok Workshop */}
-                    <div className="flex gap-4 items-center bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 shrink-0 flex items-center justify-center">
-                        <span className="text-xs text-gray-500">Dummy</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-lg leading-tight">Workshop</h4>
-                        <p className="text-xs text-gray-500 mt-1 font-mono">13 Sept | 13.00 WIB</p>
-                      </div>
-                    </div>
-
-                    {/* Blok Public Lecture */}
-                    <div className="flex gap-4 items-center bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 shrink-0 flex items-center justify-center">
-                        <span className="text-xs text-gray-500">Dummy</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-lg leading-tight">Public Lecture</h4>
-                        <p className="text-xs text-gray-500 mt-1 font-mono">12 Sept | 10.00 WIB</p>
-                      </div>
-                    </div>
+            <Link href="/program/non-pemutaran" className="block group">
+              <div className="bg-white rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-khff-pink/40">
+                 <div className="absolute -bottom-10 -left-6 opacity-15 w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+                   <img src="/assets/karakter/kendhang.png" alt="" className="w-full" />
                  </div>
-               </div>
-               
-               <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="mt-8 block text-center bg-khff-navy text-khff-cream font-bold py-4 rounded-xl hover:bg-khff-navy/90 transition-colors shadow-md">
-                 Daftar Sekarang
-               </a>
-            </div>
+                 <div className="relative z-10">
+                   <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-pink text-white rounded-full inline-block mb-6">Education & Forum</span>
+                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">Program Non<br/>Pemutaran</h3>
+                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
+                     Ruang lokakarya edukatif dan kuliah terbuka (Workshop & Public Lecture) bersama praktisi film nusantara.
+                   </p>
+                 </div>
+                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
+                   <span>DETAIL & PENDAFTARAN</span>
+                   <span className="text-2xl">→</span>
+                 </div>
+              </div>
+            </Link>
 
           </div>
         </div>

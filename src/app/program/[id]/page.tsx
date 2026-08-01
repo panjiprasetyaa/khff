@@ -1,60 +1,364 @@
 "use client";
 
 import { use, useState } from "react";
-import { programs } from "@/data/dummy";
+import { programs, specialPrograms } from "@/data/dummy";
 import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
 import Link from "next/link";
-import { ArrowLeft, Filter } from "lucide-react";
+import { ArrowLeft, Filter, CalendarDays, Clock, MapPin, User, ArrowRight, Sparkles, Trophy, BookOpen, ExternalLink } from "lucide-react";
 
 export default function ProgramDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const program = programs.find((p) => p.id === id);
-  const [selectedDirector, setSelectedDirector] = useState<string | null>(null);
   
+  // Tab States untuk 3 kategori utama
+  const [activeKompetisiTab, setActiveKompetisiTab] = useState("mahaditya");
+  const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("opening-film");
+  const [activeNonPemutaranTab, setActiveNonPemutaranTab] = useState("workshop");
+
+  const gFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor";
+
+  // 1. TAMPILAN KHUSUS: PROGRAM KOMPETISI
+  if (id === "kompetisi") {
+    const tabs = [
+      { id: "mahaditya", label: "Mahaditya", desc: "Kompetisi utama untuk film pendek dengan penceritaan kuat dan penyutradaraan matang." },
+      { id: "purwaseswa", label: "Purwaseswa", desc: "Menyoroti inovasi visual, eksperimen gaya naratif, dan keberanian sutradara baru." },
+      { id: "karyanagri", label: "Karyanagri", desc: "Mengangkat kearifan lokal, sejarah, serta refleksi mendalam atas isu sosial Nusantara." },
+    ];
+    const currentProgram = programs.find((p) => p.id === activeKompetisiTab);
+    const activeTabInfo = tabs.find((t) => t.id === activeKompetisiTab);
+
+    return (
+      <main className="min-h-screen pt-32 pb-24 bg-khff-navy text-khff-cream relative overflow-hidden font-sans">
+        <div className="absolute top-10 right-10 opacity-15 pointer-events-none w-72">
+          <img src="/assets/karakter/terompet.png" alt="Terompet" className="w-full h-auto" />
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <Link href="/program" className="inline-flex items-center gap-2 text-khff-yellow font-mono hover:underline mb-8 transition-colors text-sm font-bold">
+            <ArrowLeft size={18} /> KEMBALI KE DAFTAR PROGRAM
+          </Link>
+          
+          <div className="mb-12 border-b border-khff-cream/10 pb-10">
+            <div className="flex items-center gap-3 mb-4 text-khff-yellow">
+              <Trophy size={28} />
+              <span className="text-xs uppercase font-mono font-bold tracking-[0.2em]">Festival Competition 2026</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-cream mb-6">
+              Program Kompetisi.
+            </h1>
+            <p className="text-xl text-khff-cream/80 max-w-3xl font-medium">
+              Menampilkan karya terbaik dari sineas muda berbakat di seluruh nusantara. Silakan pilih kategori program di bawah untuk menjelajahi daftar karya yang terkurasi.
+            </p>
+          </div>
+
+          {/* TAB BUTTONS */}
+          <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-6">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveKompetisiTab(tab.id)}
+                className={`px-8 py-4 rounded-2xl font-serif font-black text-xl transition-all duration-300 shadow-md ${
+                  activeKompetisiTab === tab.id
+                    ? "bg-khff-yellow text-khff-navy scale-105 shadow-[0_0_20px_rgba(236,172,45,0.3)]"
+                    : "bg-white/5 text-khff-cream/70 hover:bg-white/10 hover:text-khff-cream"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* ACTIVE TAB DESCRIPTION */}
+          {activeTabInfo && (
+            <div className="bg-white/5 border-l-4 border-khff-yellow p-6 rounded-r-2xl mb-12 backdrop-blur-sm max-w-4xl">
+              <h2 className="text-2xl font-serif font-bold text-khff-yellow mb-2">Program {activeTabInfo.label}</h2>
+              <p className="text-khff-cream/80 text-lg font-medium">{activeTabInfo.desc}</p>
+            </div>
+          )}
+
+          {/* FILM LIST GRID */}
+          <div>
+            <div className="flex justify-between items-center mb-8">
+               <h3 className="text-2xl font-serif font-bold text-white">Daftar Karya Seleksi ({currentProgram?.films.length || 0} Film)</h3>
+            </div>
+            
+            {currentProgram && currentProgram.films.length > 0 ? (
+               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+                 {currentProgram.films.map((film) => (
+                   <FilmCard key={film.id} film={film} />
+                 ))}
+               </div>
+            ) : (
+               <div className="py-20 text-center bg-white/5 rounded-3xl border border-khff-cream/10">
+                 <p className="text-khff-cream/50 text-lg font-mono">Daftar film untuk program ini akan segera diumumkan.</p>
+               </div>
+            )}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // 2. TAMPILAN KHUSUS: PROGRAM NON-KOMPETISI
+  if (id === "non-kompetisi") {
+    const tabs = [
+      { id: "opening-film", label: "Opening Film", badge: "Special Screening" },
+      { id: "international-heritage", label: "International Heritage", badge: "1 Film Terpilih" },
+      { id: "national-heritage", label: "National Heritage", badge: "1 Film Terpilih" },
+      { id: "closing-film", label: "Closing Film", badge: "Special Screening" },
+    ];
+    const currentProgram = programs.find((p) => p.id === activeNonKompetisiTab);
+
+    return (
+      <main className="min-h-screen pt-32 pb-24 bg-khff-navy text-khff-cream relative overflow-hidden font-sans">
+        <div className="absolute top-10 right-10 opacity-20 pointer-events-none w-72 mix-blend-screen">
+          <img src="/assets/karakter/genigeni.png" alt="Geni" className="w-full h-auto" />
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <Link href="/program" className="inline-flex items-center gap-2 text-khff-pink font-mono hover:underline mb-8 transition-colors text-sm font-bold">
+            <ArrowLeft size={18} /> KEMBALI KE DAFTAR PROGRAM
+          </Link>
+          
+          <div className="mb-12 border-b border-khff-cream/10 pb-10">
+            <div className="flex items-center gap-3 mb-4 text-khff-pink">
+              <Sparkles size={28} />
+              <span className="text-xs uppercase font-mono font-bold tracking-[0.2em]">Heritage & Special Screenings</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-cream mb-6">
+              Program Non-Kompetisi.
+            </h1>
+            <p className="text-xl text-khff-cream/80 max-w-3xl font-medium">
+              Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari opening hingga pemutaran restorasi arsip budaya lokal dan global.
+            </p>
+          </div>
+
+          {/* TAB BUTTONS */}
+          <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-6">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveNonKompetisiTab(tab.id)}
+                className={`px-7 py-4 rounded-2xl text-left transition-all duration-300 shadow-md ${
+                  activeNonKompetisiTab === tab.id
+                    ? "bg-khff-pink text-white scale-105 shadow-[0_0_20px_rgba(235,93,121,0.4)]"
+                    : "bg-white/5 text-khff-cream/70 hover:bg-white/10 hover:text-khff-cream"
+                }`}
+              >
+                <span className="block text-xs font-mono uppercase opacity-80 mb-1 font-bold">{tab.badge}</span>
+                <span className="font-serif font-black text-xl block">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* FILM LIST FOR SELECTED NON-KOMPETISI TAB */}
+          <div>
+            <div className="flex justify-between items-center mb-8">
+               <h3 className="text-2xl font-serif font-bold text-white">
+                 Penayangan untuk {tabs.find(t => t.id === activeNonKompetisiTab)?.label}
+               </h3>
+            </div>
+            
+            {currentProgram && currentProgram.films.length > 0 ? (
+               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+                 {currentProgram.films.map((film) => (
+                   <FilmCard key={film.id} film={film} />
+                 ))}
+               </div>
+            ) : (
+               <div className="py-20 text-center bg-white/5 rounded-3xl border border-khff-cream/10">
+                 <p className="text-khff-cream/50 text-lg font-mono">Informasi penayangan film untuk sesi ini segera diumumkan.</p>
+               </div>
+            )}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // 3. TAMPILAN KHUSUS: PROGRAM NON-PEMUTARAN (Workshop & Public Lecture)
+  if (id === "non-pemutaran") {
+    const events = [
+      {
+        id: "workshop",
+        type: "Workshop",
+        title: "Penulisan Naskah Film Pendek & Eksperimental",
+        speaker: "Wregas Bhanuteja",
+        role: "Sutradara & Penulis Skenario (Budi Pekerti, Penyalin Cahaya)",
+        date: "Minggu, 13 September 2026",
+        time: "13:00 - 16:00 WIB",
+        location: "Ruang Seminar 2, PDIN",
+        desc: "Lokakarya intensif yang membedah anatomi struktur cerita film pendek, teknik eksplorasi ide lokal yang berdaya saing global, serta kiat-kiat pitching naskah di festival film internasional.",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600"
+      },
+      {
+        id: "lecture",
+        type: "Public Lecture",
+        title: "Masa Depan Sinema Independen & Pengarsipan Sejarah",
+        speaker: "Garin Nugroho",
+        role: "Sutradara Senior & Budayawan Nusantara",
+        date: "Sabtu, 12 September 2026",
+        time: "10:00 - 12:00 WIB",
+        location: "Aula Kotabaru / Balkon PDIN",
+        desc: "Kuliah terbuka dan forum pemikiran tentang peran sinema independen dalam melaburi ruang arsip sejarah kota, revitalisasi kebudayaan, serta navigasi ekosistem perfilman modern.",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600"
+      }
+    ];
+
+    const currentEvent = events.find((e) => e.id === activeNonPemutaranTab) || events[0];
+
+    return (
+      <main className="min-h-screen pt-32 pb-24 bg-khff-navy text-khff-cream relative overflow-hidden font-sans">
+        <div className="absolute top-10 right-10 opacity-15 pointer-events-none w-72">
+          <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto" />
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <Link href="/program" className="inline-flex items-center gap-2 text-khff-cream/80 hover:text-white mb-8 font-mono transition-colors text-sm font-bold">
+            <ArrowLeft size={18} /> KEMBALI KE DAFTAR PROGRAM
+          </Link>
+          
+          <div className="mb-12 border-b border-khff-cream/10 pb-10">
+            <div className="flex items-center gap-3 mb-4 text-white">
+              <BookOpen size={28} />
+              <span className="text-xs uppercase font-mono font-bold tracking-[0.2em]">Forum & Educational Programs</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-cream mb-6">
+              Program Non-Pemutaran.
+            </h1>
+            <p className="text-xl text-khff-cream/80 max-w-3xl font-medium">
+              Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi film terkemuka. Wadah pertukaran wawasan, diskusi kerajinan sinema, serta jejaring kolaborasi.
+            </p>
+          </div>
+
+          {/* TAB SELECTOR: WORKSHOP vs PUBLIC LECTURE */}
+          <div className="flex gap-4 mb-12">
+            {events.map((ev) => (
+              <button
+                key={ev.id}
+                onClick={() => setActiveNonPemutaranTab(ev.id)}
+                className={`px-10 py-5 rounded-2xl font-serif font-black text-2xl transition-all duration-300 shadow-xl ${
+                  activeNonPemutaranTab === ev.id
+                    ? "bg-white text-khff-navy scale-105 shadow-[0_0_30px_rgba(255,255,255,0.25)]"
+                    : "bg-white/5 text-khff-cream/60 hover:bg-white/10 hover:text-khff-cream"
+                }`}
+              >
+                {ev.type}
+              </button>
+            ))}
+          </div>
+
+          {/* DETAIL CARD (TIDAK MENONJOL KE DEPAN SEMUA, TAMPIL RAPI DI SINI) */}
+          <div className="bg-white/5 border-2 border-khff-cream/20 rounded-3xl p-8 md:p-14 shadow-2xl backdrop-blur-md relative overflow-hidden mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Foto Narasumber Besar di Kiri */}
+              <div className="lg:col-span-5 flex flex-col items-center">
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow relative group">
+                  <img 
+                    src={currentEvent.image} 
+                    alt={currentEvent.speaker} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-khff-navy via-transparent to-transparent opacity-80" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <span className="text-xs font-mono uppercase font-black bg-khff-pink text-white px-3 py-1 rounded-full mb-2 inline-block">
+                      Narasumber
+                    </span>
+                    <h3 className="text-2xl font-serif font-black text-white">{currentEvent.speaker}</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* Detail Jadwal & Materi di Kanan */}
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <span className="text-sm font-mono uppercase font-black text-khff-yellow tracking-widest block mb-3">
+                    {currentEvent.type} Session
+                  </span>
+                  <h2 className="text-3xl md:text-5xl font-serif font-black text-white mb-4 leading-tight">
+                    {currentEvent.title}
+                  </h2>
+                  <p className="text-khff-pink font-bold text-lg mb-6">
+                    {currentEvent.role}
+                  </p>
+                  <p className="text-khff-cream/90 text-lg md:text-xl font-medium leading-relaxed mb-8">
+                    {currentEvent.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-4 font-mono font-bold text-base mb-10">
+                    <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
+                      <CalendarDays size={20} className="text-khff-yellow"/> {currentEvent.date}
+                    </span>
+                    <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
+                      <Clock size={20} className="text-khff-pink"/> {currentEvent.time}
+                    </span>
+                    <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
+                      <MapPin size={20} className="text-white"/> {currentEvent.location}
+                    </span>
+                  </div>
+                </div>
+
+                {/* TOMBOL DAFTAR SEKARANG -> LINK GOOGLE FORM */}
+                <div className="pt-8 border-t border-khff-cream/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div>
+                    <span className="text-sm text-khff-cream/70 font-mono block">Biaya pendaftaran: <strong className="text-white uppercase font-bold">Gratis (Tempat Terbatas)</strong></span>
+                    <span className="text-xs text-khff-cream/50 font-mono">Registrasi dibuka melalui platform Google Form</span>
+                  </div>
+                  <a
+                    href={gFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 bg-khff-pink text-white px-10 py-5 rounded-2xl text-xl font-black font-mono hover:bg-khff-yellow hover:text-khff-navy hover:scale-105 transition-all duration-300 shadow-2xl shrink-0"
+                  >
+                    Daftar Sekarang <ExternalLink size={24} />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // 4. FALLBACK: UNTUK ID PROGRAM LAWAS LAINNYA (Jika ada yang langsung mengakses /program/mahaditya, dll.)
+  const program = programs.find((p) => p.id === id);
   if (!program) notFound();
 
-  // Get unique directors for the filter
-  const directors = Array.from(new Set(program.films.map(f => f.director)));
-
-  // Filter films
-  const filteredFilms = selectedDirector 
-    ? program.films.filter(f => f.director === selectedDirector)
-    : program.films;
-
   return (
-    <main className="min-h-screen pt-32 pb-24 bg-black">
+    <main className="min-h-screen pt-32 pb-24 bg-khff-navy text-khff-cream font-sans">
       <div className="container mx-auto px-6 max-w-7xl">
-        <Link href="/program" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors">
-          <ArrowLeft size={20} /> Kembali ke Daftar Program
+        <Link href="/program" className="inline-flex items-center gap-2 text-khff-yellow hover:underline font-mono mb-8 transition-colors font-bold text-sm">
+          <ArrowLeft size={18} /> KEMBALI KE DAFTAR PROGRAM
         </Link>
         
-        <div className="mb-16 border-b border-white/10 pb-12">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
+        <div className="mb-16 border-b border-khff-cream/10 pb-12">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-khff-cream mb-6">
             {program.name}
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl">
+          <p className="text-xl text-khff-cream/80 max-w-3xl font-medium">
             {program.description}
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Panel Daftar Lengkap (Film) */}
           <div className="w-full">
-             <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
-                <h2 className="text-2xl font-serif font-bold text-white">Menampilkan {filteredFilms.length} Karya</h2>
-                <span className="text-gray-500 text-sm font-mono">15 Film</span>
+             <div className="flex justify-between items-end mb-8 border-b border-khff-cream/10 pb-4">
+                <h2 className="text-2xl font-serif font-bold text-white">Menampilkan {program.films.length} Karya</h2>
+                <span className="text-khff-cream/60 text-sm font-mono font-bold">KHFF 2026 Selection</span>
              </div>
              
-             {filteredFilms.length > 0 ? (
+             {program.films.length > 0 ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                  {filteredFilms.map((film) => (
+                  {program.films.map((film) => (
                     <FilmCard key={film.id} film={film} />
                   ))}
                 </div>
              ) : (
                 <div className="py-20 text-center">
-                  <p className="text-gray-500">Tidak ada film yang cocok dengan filter yang dipilih.</p>
+                  <p className="text-khff-cream/50 font-mono">Belum ada film di program ini.</p>
                 </div>
              )}
           </div>
