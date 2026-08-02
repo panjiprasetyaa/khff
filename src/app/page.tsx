@@ -106,10 +106,14 @@ export default function Home() {
           <a href="http://www.youtube.com/@kebudayaanjogjakota" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
             <span>Tonton seluruh arsip di YouTube</span> <PlayCircle size={20} />
           </a>
+          
+          <div className="mt-8 font-mono text-xs md:text-sm font-black text-khff-navy/70 uppercase tracking-[0.2em]">
+            <span>[ ← GESER UNTUK MENJELAJAHI 10 POSTER → ]</span>
+          </div>
         </div>
 
-        {/* Horizontal Scroll Posters */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-10 snap-x hide-scrollbar">
+        {/* Horizontal Seamless Scroll Posters */}
+        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-4 snap-x hide-scrollbar no-scrollbar scroll-smooth">
           {[1,2,3,4,5,6,7,8,9,10].map((num) => (
             <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
               <img
