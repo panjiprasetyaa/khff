@@ -1,23 +1,54 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function GuidePage() {
+  const router = useRouter();
+
   return (
-    <main className="min-h-screen pt-32 pb-24 bg-black flex items-center justify-center">
-      <div className="container mx-auto px-6 text-center">
-        <BookOpen size={64} className="text-white/20 mx-auto mb-6" />
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
-          Festival Guide
-        </h1>
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-          Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 sedang dalam tahap penyusunan. Nantikan panduan lengkapnya di sini.
-        </p>
-        <Link href="/" className="inline-flex items-center gap-2 text-white border border-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all">
-          <ArrowLeft size={20} /> Kembali ke Beranda
-        </Link>
-      </div>
+    <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
+      
+      {/* HERO SECTION */}
+      <section className="pt-36 pb-32 px-6 bg-gradient-to-b from-khff-navy via-[#1f4a4d] to-khff-pink/20 relative z-10 w-full min-h-[85vh] flex items-center justify-center">
+        
+        {/* Floating Decorative Characters */}
+        <div className="absolute right-10 top-1/4 opacity-30 w-64 pointer-events-none hidden md:block mix-blend-screen animate-pulse">
+          <img src="/assets/karakter/cahaya.png" alt="Cahaya KHFF" className="w-full h-auto" />
+        </div>
+        <div className="absolute left-8 bottom-12 opacity-20 w-52 pointer-events-none hidden md:block rotate-12">
+          <img src="/assets/karakter/tebu.png" alt="Tebu" className="w-full h-auto" />
+        </div>
+
+        <div className="container mx-auto max-w-4xl text-center relative z-20">
+          <button 
+            onClick={() => router.back()} 
+            className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy font-mono text-sm font-black px-6 py-2.5 rounded-full hover:bg-white transition-all shadow-xl mb-12 cursor-pointer uppercase tracking-widest"
+          >
+            <ArrowLeft size={16} /> KEMBALI
+          </button>
+
+          <span className="block text-xs md:text-sm font-mono font-black uppercase tracking-[0.3em] text-khff-yellow mb-4">
+            Official Visitor Companion
+          </span>
+
+          <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
+            Festival Guide.
+          </h1>
+
+          <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
+            <h3 className="text-2xl md:text-4xl font-serif font-black text-khff-yellow mb-6">
+              Panduan Menjelajahi Sinema & Warisan
+            </h3>
+            <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed mb-8">
+              Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 berisi direktori venue, peta rute becak Drive-In, jadwal penayangan lengkap, dan catatan kurator festival.
+            </p>
+            <div className="inline-block bg-khff-pink text-white px-8 py-4 rounded-2xl font-mono text-sm md:text-base font-black tracking-widest uppercase shadow-xl">
+              [ e-Book PDF Segera Tersedia ]
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

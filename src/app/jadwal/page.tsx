@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Building2, Info, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import dataJson from "@/data/data.json";
 import Link from "next/link";
 
@@ -119,8 +119,7 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                 {ev.time}
               </td>
               <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
-                <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl border border-khff-cream/10">
-                  <MapPin size={14} className="text-khff-pink shrink-0" />
+                <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-yellow font-bold">
                   {ev.location}
                 </span>
               </td>
@@ -191,8 +190,8 @@ function RoomActivationSection({ rooms }: { rooms: RoomActivation[] }) {
   if (!rooms || rooms.length === 0) return null;
   return (
     <div className="mt-10 pt-8 border-t border-khff-cream/10">
-      <h4 className="text-sm font-mono font-black uppercase tracking-widest text-khff-pink mb-6 flex items-center gap-2">
-        <Building2 size={18} /> Aktivasi Ruang & Area Pendukung Festival
+      <h4 className="text-xs font-mono font-black uppercase tracking-[0.25em] text-khff-pink mb-6 border-l-4 border-khff-pink pl-3">
+        Aktivasi Ruang & Area Pendukung Festival
       </h4>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {rooms.map((r, i) => (
@@ -278,9 +277,8 @@ export default function Jadwal() {
                 </h2>
               </div>
               {currentDay.venue && (
-                <span className="inline-flex items-center gap-3 text-base text-khff-cream font-mono font-bold bg-khff-navy px-6 py-3 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0">
-                  <MapPin size={18} className="text-khff-yellow" />
-                  {currentDay.venue}
+                <span className="inline-flex items-center gap-3 text-sm md:text-base text-khff-cream font-mono font-black bg-khff-navy px-6 py-3.5 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0 uppercase tracking-wider">
+                  VENUE : <span className="text-khff-yellow">{currentDay.venue}</span>
                 </span>
               )}
             </div>
@@ -308,8 +306,8 @@ export default function Jadwal() {
                   <div key={ti} className="bg-white/5 p-8 rounded-3xl border border-khff-cream/10">
                     {/* Track header badge */}
                     <div className="flex flex-wrap items-center gap-4 mb-8">
-                      <span className="text-sm font-mono font-black uppercase tracking-widest px-5 py-2 rounded-full bg-khff-pink text-white shadow-md">
-                        📍 Venue: {track.venue}
+                      <span className="text-xs md:text-sm font-mono font-black uppercase tracking-widest px-5 py-2 rounded-full bg-khff-pink text-white shadow-md border border-white/20">
+                        VENUE : {track.venue}
                       </span>
                       <span className="text-khff-yellow font-serif font-black text-xl md:text-2xl">{track.label}</span>
                     </div>
@@ -335,14 +333,14 @@ export default function Jadwal() {
               </div>
 
               <div className="relative z-10 max-w-4xl">
-                <div className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full text-xs font-mono font-black uppercase tracking-widest mb-4 shadow">
-                  <Info size={16} /> Detail Lokasi & Penyelenggaraan
+                <div className="inline-block bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full text-xs font-mono font-black uppercase tracking-[0.2em] mb-4 shadow">
+                  Detail Lokasi & Penyelenggaraan
                 </div>
                 <h3 className="text-3xl md:text-5xl font-serif font-black text-white mb-4 leading-tight">
                   {currentSummary.title}
                 </h3>
-                <p className="text-khff-pink font-mono font-bold text-lg mb-6">
-                  📍 Lokasi Utama: <span className="text-khff-yellow">{currentSummary.venue}</span>
+                <p className="text-khff-pink font-mono font-bold text-lg mb-6 uppercase tracking-wider">
+                  Lokasi Utama : <span className="text-khff-yellow">{currentSummary.venue}</span>
                 </p>
                 <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-8">
                   {currentSummary.description}
@@ -352,8 +350,8 @@ export default function Jadwal() {
                   <span className="text-xs font-mono font-black uppercase tracking-widest text-khff-cream/60 block mb-3">Fokus Kegiatan pada Hari Ini:</span>
                   <div className="flex flex-wrap gap-3">
                     {currentSummary.highlights.map((item, idx) => (
-                      <span key={idx} className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow">
-                        ✓ {item}
+                      <span key={idx} className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors">
+                        — {item}
                       </span>
                     ))}
                   </div>

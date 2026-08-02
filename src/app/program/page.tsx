@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Film, Calendar, Users, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function ProgramList() {
   const mainCategories = [
@@ -10,7 +10,7 @@ export default function ProgramList() {
       description: "Ajang apresiasi karya sinema pendek pilihan dari seluruh Nusantara. Menampilkan film-film fiksi maupun dokumenter dengan penceritaan kuat, inovasi visual, serta kearifan lokal yang mendalam.",
       bgClass: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tagClass: "bg-khff-navy text-khff-yellow",
-      asset: "/assets/karakter/SINGA.png",
+      asset: "/assets/karakter/terompet.png",
       cta: "Lihat Daftar Karya Kompetisi",
     },
     {
@@ -30,7 +30,7 @@ export default function ProgramList() {
       description: "Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi serta pakar film terkemuka Nusantara. Wadah pertukaran ilmu dan jejaring kolaborasi sineas masa depan.",
       bgClass: "bg-white text-khff-navy border-white",
       tagClass: "bg-khff-navy text-white",
-      asset: "/assets/karakter/butotumpuk.png",
+      asset: "/assets/karakter/kendhang.png",
       cta: "Lihat Detail & Pendaftaran",
     }
   ];

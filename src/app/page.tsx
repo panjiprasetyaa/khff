@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Clock, MapPin, PlayCircle, Play, Calendar, X, ExternalLink } from "lucide-react";
+import { ArrowRight, PlayCircle, Play, X, ExternalLink } from "lucide-react";
 import { programs, specialPrograms } from "@/data/dummy";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -217,8 +217,8 @@ export default function Home() {
             </h2>
             <div className="max-w-6xl mx-auto group cursor-pointer relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/20 bg-khff-navy" onClick={() => openVideo("https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1")}>
               <div className="w-full h-full flex flex-col items-center justify-center">
-                <span className="text-4xl mb-4">🎬</span>
-                <p className="text-khff-cream font-mono">Teaser Video Area (Dummy)</p>
+                <span className="px-4 py-1 rounded-full bg-khff-yellow/20 text-khff-yellow font-mono text-xs uppercase tracking-[0.2em] font-bold mb-3 border border-khff-yellow/40">Official Video</span>
+                <p className="text-khff-cream font-serif text-2xl md:text-3xl font-bold">Teaser KHFF 2026</p>
               </div>
               <div className="absolute inset-0 bg-khff-navy/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                 <div className="w-24 h-24 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.5)] group-hover:scale-110 transition-transform">
@@ -239,10 +239,6 @@ export default function Home() {
               <img src="/assets/sponsor/becak.jpg" alt="Drive In Cinema Becak" className="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 transition-transform duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/85 to-transparent z-10" />
             </div>
-            
-            <div className="absolute top-10 right-10 opacity-40 pointer-events-none w-48 z-10 mix-blend-screen">
-              <img src="/assets/karakter/cahaya.png" alt="Cahaya" className="w-full h-auto animate-pulse" />
-            </div>
 
             <div className="relative z-20 p-8 md:p-20 max-w-3xl">
               <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">Special Program</span>
@@ -250,9 +246,9 @@ export default function Home() {
               <p className="text-khff-cream text-lg md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
                 Special program drive in cinema by Mayora. Keliling Kota Baru naik becak sambil menikmati sinema. Film pembuka: Paraprashub.
               </p>
-              <div className="flex flex-wrap items-center gap-4 text-white font-mono text-sm font-bold">
-                <span className="flex items-center gap-2 bg-khff-pink px-6 py-3 rounded-xl shadow-lg"><CalendarDays size={18}/> 16 September 2026</span>
-                <span className="flex items-center gap-2 bg-khff-yellow text-khff-navy px-6 py-3 rounded-xl shadow-lg"><Clock size={18}/> 12.00 - 16.00 WIB</span>
+              <div className="flex flex-wrap items-center gap-4 font-mono text-sm font-black uppercase tracking-wider">
+                <span className="bg-khff-pink text-white px-6 py-3 rounded-xl shadow-lg border border-white/20">16 September 2026</span>
+                <span className="bg-khff-yellow text-khff-navy px-6 py-3 rounded-xl shadow-lg border border-khff-navy/20">12.00 - 16.00 WIB</span>
               </div>
             </div>
           </div>
@@ -273,12 +269,9 @@ export default function Home() {
             {homepageSchedule.map((day, idx) => (
               <div key={idx} className="bg-white/5 border-2 border-khff-cream/10 rounded-3xl p-8 hover:border-khff-yellow hover:-translate-y-2 transition-all shadow-xl backdrop-blur-sm">
                 
-                <div className="mb-8 border-b border-khff-cream/10 pb-6 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs font-bold tracking-widest uppercase text-khff-pink">{day.day}</span>
-                    <h4 className="text-xl font-serif font-bold text-white mt-2">{day.date}</h4>
-                  </div>
-                  <Calendar className="text-khff-yellow opacity-50" size={32} />
+                <div className="mb-8 border-b border-khff-cream/10 pb-6">
+                  <span className="text-xs font-bold tracking-widest uppercase text-khff-pink">{day.day}</span>
+                  <h4 className="text-2xl font-serif font-black text-white mt-2">{day.date}</h4>
                 </div>
                 
                 <div className="space-y-6">
@@ -287,11 +280,11 @@ export default function Home() {
                       <div className="absolute -left-12 top-0 bottom-0 border-l border-khff-cream/20 hidden md:block">
                         <div className="w-3 h-3 rounded-full bg-khff-yellow absolute -left-[6px] top-1" />
                       </div>
-                      <span className="text-khff-cream/50 font-mono text-sm shrink-0 font-bold">{ev.time}</span>
+                      <span className="text-khff-yellow font-mono text-sm shrink-0 font-black tracking-wider">{ev.time} WIB</span>
                       <div>
-                        <p className="text-white font-bold text-lg leading-snug mb-1">{ev.name}</p>
-                        <p className="text-khff-cream/60 text-sm flex items-center gap-2">
-                          <MapPin size={14} /> {ev.location}
+                        <p className="text-white font-serif font-bold text-lg leading-snug mb-1">{ev.name}</p>
+                        <p className="text-khff-cream/80 text-xs font-mono font-bold tracking-wider uppercase mt-1 bg-white/10 px-3 py-1 rounded-lg inline-block border border-white/5">
+                          LOKASI : {ev.location}
                         </p>
                       </div>
                     </div>
