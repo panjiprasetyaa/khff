@@ -108,8 +108,8 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Horizontal Seamless Scroll Posters */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-4 snap-x hide-scrollbar no-scrollbar scroll-smooth">
+        {/* Horizontal Scroll Posters with Sleek Mini Custom Scrollbar Indicator */}
+        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-6 snap-x custom-mini-scrollbar scroll-smooth">
           {[1,2,3,4,5,6,7,8,9,10].map((num) => (
             <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
               <img
