@@ -3,6 +3,7 @@ import { Outfit, Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RefreshRedirect from "@/components/RefreshRedirect";
 
 const fontOutfit = Outfit({
   variable: "--font-outfit",
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${fontOutfit.variable} ${fontBricolage.variable} ${fontMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-khff-yellow text-khff-navy overflow-x-hidden w-full relative font-sans">
+        <RefreshRedirect />
         <Navbar />
         <main className="flex-grow overflow-x-hidden w-full">{children}</main>
         <Footer />
