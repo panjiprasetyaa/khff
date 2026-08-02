@@ -106,10 +106,6 @@ export default function Home() {
           <a href="http://www.youtube.com/@kebudayaanjogjakota" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
             <span>Tonton seluruh arsip di YouTube</span> <PlayCircle size={20} />
           </a>
-          
-          <div className="mt-8 font-mono text-xs md:text-sm font-black text-khff-navy/70 uppercase tracking-[0.2em]">
-            <span>[ ← GESER UNTUK MENJELAJAHI 10 POSTER → ]</span>
-          </div>
         </div>
 
         {/* Horizontal Seamless Scroll Posters */}
