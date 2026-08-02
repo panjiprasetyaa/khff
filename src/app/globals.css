@@ -39,24 +39,29 @@ html, body {
 /* Custom Mini Scrollbar (Sleek Heritage & Minimalist Indicator) */
 .custom-mini-scrollbar {
   scrollbar-width: thin !important;                         /* Firefox: thin scrollbar */
-  scrollbar-color: var(--color-khff-navy) rgba(29, 77, 79, 0.15) !important; /* Firefox */
+  scrollbar-color: var(--color-khff-navy) rgba(29, 77, 79, 0.1) !important; /* Firefox */
 }
 
 .custom-mini-scrollbar::-webkit-scrollbar {
   display: block !important;
-  height: 6px !important;                                   /* Ukuran kecil nan elegan */
+  height: 4px !important;                                   /* Ditipiskan menjadi 4px agar lebih halus dan minimalis */
+}
+
+.custom-mini-scrollbar::-webkit-scrollbar-button {
+  display: none !important;                                 /* Menghapus tombol panah hitam di kiri-kanan yang kaku */
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .custom-mini-scrollbar::-webkit-scrollbar-track {
-  background: rgba(29, 77, 79, 0.15) !important;            /* Latar track transparan lembut */
+  background: rgba(29, 77, 79, 0.1) !important;             /* Latar track transparan lembut */
   border-radius: 9999px !important;                         /* Membulat penuh layaknya kapsul */
-  margin: 0 48px;                                           /* Jarak estetik dari ujung layar di desktop */
+  margin: 0 96px !important;                                /* Memberi margin lebih luas agar track tampil ringkas di tengah */
 }
 
 .custom-mini-scrollbar::-webkit-scrollbar-thumb {
   background: var(--color-khff-navy) !important;            /* Warna default Navy Green berwibawa */
   border-radius: 9999px !important;                         /* Bentuk kapsul mulus */
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;    /* Sentuhan kilau tipis */
   transition: all 0.3s ease;
 }
 
