@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, FileText } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function KatalogPage() {
@@ -82,13 +82,10 @@ export default function KatalogPage() {
                   </div>
 
                   <div className="relative z-10">
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex items-center mb-6">
                       <span className={`text-xs font-mono font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm ${cat.tag}`}>
-                        Edisi {cat.year}
+                        {cat.year}
                       </span>
-                      <div className="flex items-center gap-2 bg-black/15 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider">
-                        <FileText size={14} /> {cat.fileSize}
-                      </div>
                     </div>
 
                     <p className="text-sm font-mono font-bold opacity-90 mb-2 tracking-wider uppercase">{cat.edition}</p>
