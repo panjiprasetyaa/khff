@@ -28,13 +28,12 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center max-w-7xl">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-3xl font-serif font-black tracking-tight transition-transform group-hover:scale-105">
-            KHFF<span className="text-khff-pink">.</span>
-          </span>
-          <span className="hidden sm:inline-block text-[10px] font-mono font-bold leading-tight tracking-widest uppercase opacity-80 pl-2 border-l border-current">
-            Kotabaru Heritage<br/>Film Festival
-          </span>
+        <Link href="/" className="flex items-center group">
+          <img
+            src="/assets/logo-khff-slanted.png"
+            alt="Kotabaru Heritage Film Festival Logo"
+            className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Menu */}

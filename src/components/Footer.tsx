@@ -44,12 +44,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 text-left mb-16">
           <div className="md:col-span-4 space-y-6">
             <div className="inline-block">
-              <h2 className="text-4xl font-serif font-black text-khff-yellow tracking-tight">
-                KHFF 2026.
-              </h2>
-              <span className="text-xs font-mono tracking-widest text-khff-pink uppercase font-bold block mt-1">
-                Kotabaru Heritage Film Festival
-              </span>
+              <img
+                src="/assets/logo-khff-slanted.png"
+                alt="Kotabaru Heritage Film Festival Logo"
+                className="h-20 sm:h-24 w-auto object-contain drop-shadow-md mb-2"
+              />
             </div>
             <p className="text-base text-khff-cream/80 max-w-sm font-medium leading-relaxed">
               Merayakan persilangan sinema dan sejarah di jantung Yogyakarta. Wadah apresiasi karya sineas nusantara, pengarsipan budaya, dan hiburan rakyat.
