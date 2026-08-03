@@ -57,24 +57,19 @@ export default function Home() {
   return (
     <div className="bg-khff-yellow text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       
-      {/* 1. HERO SECTION (CINEMATIC GREEN-TO-YELLOW GRADIENT) */}
-      <section className="relative min-h-[92vh] w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow pt-36 pb-24">
-        
-        {/* Glowing Ambient Light Asset in Sky */}
-        <div className="absolute top-12 right-12 w-64 h-64 opacity-50 animate-pulse pointer-events-none z-0 mix-blend-screen">
-          <img src="/assets/karakter/cahaya.png" alt="" className="w-full h-full object-contain" />
+      {/* 1. HERO SECTION (FULL ARTWORK BACKGROUND WITH READABILITY OVERLAY) */}
+      <section className="relative min-h-[92vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-khff-navy pt-36 pb-24">
+        {/* Full Artwork Background with Aspect Ratio Preservation (No Stretched / Gepeng Distortion) */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          <img
+            src="/assets/jathilan_background.jpg"
+            alt="KHFF 2026 Artwork Jathilan"
+            className="w-full h-full object-cover object-[center_70%]"
+          />
         </div>
-        
-        {/* Solid & Dignified Character Assets on Extreme Flanks */}
-        <div className="hidden md:block absolute bottom-4 -left-6 md:left-8 w-52 md:w-80 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
-          <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto" />
-        </div>
-        <div className="hidden md:block absolute bottom-4 -right-6 md:right-8 w-48 md:w-72 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
-          <img src="/assets/karakter/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
-        </div>
-        <div className="absolute top-28 left-16 w-32 md:w-48 h-auto opacity-20 pointer-events-none z-0 -rotate-12">
-          <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
-        </div>
+
+        {/* Editorial Readability Gradient Overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-khff-navy/85 via-khff-navy/60 to-khff-navy/90 md:from-khff-navy/75 md:via-khff-navy/50 md:to-khff-navy/85 pointer-events-none" />
 
         {/* Center Text Container with High Contrast Gold/Cream Typography */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
