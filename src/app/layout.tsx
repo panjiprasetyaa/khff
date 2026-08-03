@@ -24,9 +24,13 @@ export const metadata: Metadata = {
   title: "Kotabaru Heritage Film Festival 2026",
   description: "Kotabaru Heritage Film Festival. Merayakan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.",
   icons: {
-    icon: "/assets/logo-khff-slanted.png",
-    shortcut: "/assets/logo-khff-slanted.png",
-    apple: "/assets/logo-khff-slanted.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+      { url: "/assets/logo-khff-slanted.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
