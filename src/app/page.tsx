@@ -66,10 +66,10 @@ export default function Home() {
         </div>
         
         {/* Solid & Dignified Character Assets on Extreme Flanks */}
-        <div className="absolute bottom-4 -left-6 md:left-8 w-52 md:w-80 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
+        <div className="hidden md:block absolute bottom-4 -left-6 md:left-8 w-52 md:w-80 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
           <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto" />
         </div>
-        <div className="absolute bottom-4 -right-6 md:right-8 w-48 md:w-72 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
+        <div className="hidden md:block absolute bottom-4 -right-6 md:right-8 w-48 md:w-72 h-auto opacity-85 pointer-events-none z-10 hover:scale-105 transition-all duration-700 drop-shadow-2xl">
           <img src="/assets/karakter/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
         </div>
         <div className="absolute top-28 left-16 w-32 md:w-48 h-auto opacity-20 pointer-events-none z-0 -rotate-12">
