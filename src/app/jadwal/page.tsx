@@ -104,10 +104,6 @@ const activeTabAccent: Record<string, string> = {
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   return (
     <div className="w-full">
-      <div className="md:hidden text-xs font-mono font-bold text-khff-yellow uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-khff-pink"></span>
-        [ GESER KE KANAN UNTUK LIHAT SELURUH KOLOM ]
-      </div>
       <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
         <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[680px]">
           <table className="w-full text-sm md:text-base">
@@ -152,10 +148,6 @@ function MultiTrackTable({
 
   return (
     <div className="w-full">
-      <div className="md:hidden text-xs font-mono font-bold text-khff-yellow uppercase tracking-widest mb-3 flex items-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-khff-pink"></span>
-        [ GESER KE KANAN UNTUK LIHAT RUANG LAIN ]
-      </div>
       <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
         <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[750px]">
           <table className="w-full text-sm md:text-base">
