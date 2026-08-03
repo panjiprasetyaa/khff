@@ -88,25 +88,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PRA-EVENT PANORAMA */}
-      <section className="py-20 bg-khff-yellow border-t border-khff-navy/10 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-12 mb-12 text-center">
-           <span className="text-xs uppercase font-mono tracking-[0.25em] font-black text-khff-navy/60 block mb-2">Road To KHFF</span>
-           <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-navy mb-4">
+      {/* 2. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
+      <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
+           <span className="text-xs uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-5 py-1.5 rounded-full inline-block mb-6 shadow-md">
+             Road To KHFF
+           </span>
+           <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">
             Pra-Event Panorama.
           </h2>
-          <p className="text-khff-navy text-lg md:text-xl font-mono font-bold">
+          <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow">
             Periode Penayangan: 1 September - 15 September 2026
           </p>
-          <a href="http://www.youtube.com/@kebudayaanjogjakota" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-khff-pink hover:text-khff-navy font-mono font-black text-base transition-colors bg-white/50 px-6 py-2 rounded-full shadow-sm">
-            <span>Tonton seluruh arsip di YouTube</span> <PlayCircle size={20} />
+          <a 
+            href="http://www.youtube.com/@kebudayaanjogjakota" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-base transition-all duration-300 px-8 py-4 rounded-full shadow-2xl hover:scale-105"
+          >
+            <span>Tonton Seluruh Arsip di YouTube</span> <PlayCircle size={22} className="shrink-0" />
           </a>
         </div>
 
         {/* Horizontal Scroll Posters with Sleek Mini Custom Scrollbar Indicator */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-6 snap-x custom-mini-scrollbar scroll-smooth">
+        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-8 snap-x custom-mini-scrollbar scroll-smooth relative z-10">
           {[1,2,3,4,5,6,7,8,9,10].map((num) => (
-            <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-2 transition-all duration-500">
+            <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500">
               <img
                 src={`/assets/pra-event/${num}.png`}
                 alt={`Poster Pra-Event #${num}`}
