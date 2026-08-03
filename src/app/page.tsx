@@ -76,13 +76,13 @@ export default function Home() {
           <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-xl border border-khff-navy/20">
             FESTIVAL SINEMA & ARSITEKTUR SEJARAH 2026
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
             KHFF <br /> 2026.
           </h1>
-          <p className="text-lg md:text-3xl font-mono mb-6 tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+          <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
             <span className="text-khff-pink drop-shadow">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
-          <p className="text-lg md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+          <p className="text-base md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
             Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
         </div>
@@ -123,7 +123,7 @@ export default function Home() {
       {/* 3. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
       <section className="py-28 bg-khff-navy text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
-        <div className="absolute top-0 right-0 w-80 h-auto opacity-10 pointer-events-none z-0 rotate-12">
+        <div className="hidden md:block absolute top-0 right-0 w-80 h-auto opacity-10 pointer-events-none z-0 rotate-12">
           <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
         </div>
 
@@ -143,7 +143,7 @@ export default function Home() {
             {/* Kolom 1: Program Kompetisi */}
             <Link href="/program/kompetisi" className="block group">
               <div className="bg-khff-yellow rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
-                 <div className="absolute -right-6 -bottom-6 opacity-30 w-52 group-hover:scale-110 transition-transform duration-500">
+                 <div className="hidden sm:block absolute -right-6 -bottom-6 opacity-30 w-52 group-hover:scale-110 transition-transform duration-500">
                    <img src="/assets/karakter/terompet.png" alt="" className="w-full" />
                  </div>
                  <div className="relative z-10">
@@ -163,7 +163,7 @@ export default function Home() {
             {/* Kolom 2: Program Non Kompetisi */}
             <Link href="/program/non-kompetisi" className="block group">
               <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
-                 <div className="absolute top-6 right-4 opacity-40 w-48 mix-blend-screen group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                 <div className="hidden sm:block absolute top-6 right-4 opacity-40 w-48 mix-blend-screen group-hover:scale-110 transition-transform duration-500 pointer-events-none">
                    <img src="/assets/karakter/bendera.png" alt="Bendera KHFF" className="w-full h-auto drop-shadow-lg" />
                  </div>
                  <div className="relative z-10">
@@ -183,7 +183,7 @@ export default function Home() {
             {/* Kolom 3: Program Non Pemutaran (Workshop & Lecture) */}
             <Link href="/program/non-pemutaran" className="block group">
               <div className="bg-white rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-khff-pink/40">
-                 <div className="absolute -bottom-10 -left-6 opacity-15 w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+                 <div className="hidden sm:block absolute -bottom-10 -left-6 opacity-15 w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                    <img src="/assets/karakter/kendhang.png" alt="" className="w-full" />
                  </div>
                  <div className="relative z-10">
@@ -237,8 +237,8 @@ export default function Home() {
 
             <div className="relative z-20 p-8 md:p-20 max-w-3xl">
               <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">Special Program</span>
-              <h3 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">Drive In<br/>Cinema</h3>
-              <p className="text-khff-cream text-lg md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
+              <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">Drive In<br/>Cinema</h3>
+              <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
                 Special program drive in cinema by Mayora. Keliling Kota Baru naik becak sambil menikmati sinema. Film pembuka: Paraprashub.
               </p>
               <div className="flex flex-wrap items-center gap-4 font-mono text-sm font-black uppercase tracking-wider">
@@ -252,7 +252,7 @@ export default function Home() {
 
       {/* 6. JADWAL SELEKSI */}
       <section className="py-24 bg-[#143638] border-t border-khff-cream/10 relative overflow-hidden">
-        <div className="absolute top-20 right-0 opacity-20 pointer-events-none w-64 translate-x-1/4">
+        <div className="hidden md:block absolute top-20 right-0 opacity-20 pointer-events-none w-64 translate-x-1/4">
           <img src="/assets/karakter/buto2.png" alt="Buto" className="w-full h-auto" />
         </div>
         <div className="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
@@ -300,27 +300,27 @@ export default function Home() {
 
       {/* 8. REGISTRASI G-FORM */}
       <section className="py-32 bg-khff-pink text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 opacity-20 rotate-180 pointer-events-none">
+        <div className="hidden md:block absolute top-0 right-0 w-64 opacity-20 rotate-180 pointer-events-none">
           <img src="/assets/karakter/gedang.png" alt="" className="w-full" />
         </div>
-        <div className="absolute bottom-0 left-0 w-48 opacity-20 pointer-events-none">
+        <div className="hidden md:block absolute bottom-0 left-0 w-48 opacity-20 pointer-events-none">
           <img src="/assets/karakter/kendhang.png" alt="" className="w-full" />
         </div>
         
         <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-5xl md:text-8xl font-serif font-black mb-6 drop-shadow-xl text-khff-navy">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-serif font-black mb-6 drop-shadow-xl text-khff-navy">
             Registrasi
           </h2>
-          <p className="text-white font-medium max-w-2xl mx-auto mb-12 text-xl md:text-2xl drop-shadow-sm">
+          <p className="text-white font-medium max-w-2xl mx-auto mb-12 text-base sm:text-xl md:text-2xl drop-shadow-sm">
             Amankan kursimu secara gratis. Akses seluruh penayangan film dan pameran karya via Google Form.
           </p>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-4 bg-khff-navy text-khff-cream px-10 py-5 rounded-2xl text-xl font-black hover:bg-white hover:text-khff-navy hover:scale-105 transition-all duration-300 shadow-2xl"
+            className="inline-flex items-center gap-3 sm:gap-4 bg-khff-navy text-khff-cream px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-xl font-black hover:bg-white hover:text-khff-navy hover:scale-105 transition-all duration-300 shadow-2xl"
           >
-            Isi Formulir Pendaftaran <ArrowRight size={24} />
+            Isi Formulir Pendaftaran <ArrowRight size={22} className="shrink-0" />
           </a>
         </div>
       </section>
