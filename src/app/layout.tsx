@@ -21,7 +21,7 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KHFFEST",
+  title: "Kotabaru Heritage Film Festival 2026",
   description: "Kotabaru Heritage Film Festival. Merayakan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.",
   icons: {
     icon: "/assets/logo-khff-slanted.png",
