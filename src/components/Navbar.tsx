@@ -37,7 +37,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 text-sm font-mono font-bold tracking-wider items-center">
+        <div className="hidden md:flex space-x-5 lg:space-x-8 text-sm font-mono font-bold tracking-wider items-center">
           <Link href="/" className="hover:text-khff-yellow transition-colors">
             HOME
           </Link>
@@ -49,6 +49,9 @@ export default function Navbar() {
           </a>
           <Link href="/galeri" className="hover:text-khff-yellow transition-colors">
             GALERI
+          </Link>
+          <Link href="/katalog" className="hover:text-khff-yellow transition-colors">
+            KATALOG
           </Link>
           <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
@@ -104,6 +107,13 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             GALERI
+          </Link>
+          <Link
+            href="/katalog"
+            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            KATALOG
           </Link>
           <Link
             href="/jadwal"
