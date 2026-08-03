@@ -103,31 +103,39 @@ const activeTabAccent: Record<string, string> = {
 // Render table for single-track (rows: time, location, program)
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   return (
-    <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20">
-      <table className="w-full text-sm md:text-base">
-        <thead>
-          <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
-            <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-40">Waktu</th>
-            <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-64">Lokasi / Ruang</th>
-            <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">Materi Program & Keterangan</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-khff-cream/10">
-          {events.map((ev, i) => (
-            <tr key={i} className="group hover:bg-white/10 transition-all duration-300">
-              <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
-                {ev.time}
-              </td>
-              <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
-                <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-yellow font-bold">
-                  {ev.location}
-                </span>
-              </td>
-              <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">{ev.program}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-full">
+      <div className="md:hidden text-xs font-mono font-bold text-khff-yellow uppercase tracking-widest mb-3 flex items-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-khff-pink"></span>
+        [ GESER KE KANAN UNTUK LIHAT SELURUH KOLOM ]
+      </div>
+      <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
+        <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[680px]">
+          <table className="w-full text-sm md:text-base">
+            <thead>
+              <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
+                <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-40">Waktu</th>
+                <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-64">Lokasi / Ruang</th>
+                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">Materi Program & Keterangan</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-khff-cream/10">
+              {events.map((ev, i) => (
+                <tr key={i} className="group hover:bg-white/10 transition-all duration-300">
+                  <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
+                    {ev.time}
+                  </td>
+                  <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
+                    <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-yellow font-bold">
+                      {ev.location}
+                    </span>
+                  </td>
+                  <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">{ev.program}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
@@ -143,43 +151,49 @@ function MultiTrackTable({
   const colKeys = ["ruangSeminar", "ruangAudiovisual", "balkonRumput", "hallPDIN"];
 
   return (
-    <div className="overflow-x-auto">
-      <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[750px]">
-        <table className="w-full text-sm md:text-base">
-          <thead>
-            <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
-              {columns.map((col, i) => (
-                <th
-                  key={i}
-                  className={`px-5 py-4 font-mono uppercase tracking-widest text-xs font-black ${i === 0 ? 'text-khff-yellow w-36' : 'text-khff-cream'}`}
-                >
-                  {col}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-khff-cream/10">
-            {events.map((ev, i) => (
-              <tr key={i} className="hover:bg-white/10 transition-all duration-300">
-                <td className="px-5 py-5 font-mono font-bold text-khff-yellow whitespace-nowrap align-top">{ev.time}</td>
-                {colKeys.slice(0, columns.length - 1).map((key, j) => {
-                  const val = ev[key as keyof MultiTrackEvent] as string | undefined;
-                  return (
-                    <td key={j} className="px-5 py-5 align-top">
-                      {val && val !== "—" ? (
-                        <span className="inline-block bg-khff-yellow/20 text-white font-serif font-bold text-base px-4 py-2.5 rounded-xl border border-khff-yellow/40 leading-relaxed shadow">
-                          {val}
-                        </span>
-                      ) : (
-                        <span className="text-khff-cream/30 text-xs font-mono font-bold">— Kosong —</span>
-                      )}
-                    </td>
-                  );
-                })}
+    <div className="w-full">
+      <div className="md:hidden text-xs font-mono font-bold text-khff-yellow uppercase tracking-widest mb-3 flex items-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-khff-pink"></span>
+        [ GESER KE KANAN UNTUK LIHAT RUANG LAIN ]
+      </div>
+      <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
+        <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[750px]">
+          <table className="w-full text-sm md:text-base">
+            <thead>
+              <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
+                {columns.map((col, i) => (
+                  <th
+                    key={i}
+                    className={`px-5 py-4 font-mono uppercase tracking-widest text-xs font-black ${i === 0 ? 'text-khff-yellow w-36' : 'text-khff-cream'}`}
+                  >
+                    {col}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-khff-cream/10">
+              {events.map((ev, i) => (
+                <tr key={i} className="hover:bg-white/10 transition-all duration-300">
+                  <td className="px-5 py-5 font-mono font-bold text-khff-yellow whitespace-nowrap align-top">{ev.time}</td>
+                  {colKeys.slice(0, columns.length - 1).map((key, j) => {
+                    const val = ev[key as keyof MultiTrackEvent] as string | undefined;
+                    return (
+                      <td key={j} className="px-5 py-5 align-top">
+                        {val && val !== "—" ? (
+                          <span className="inline-block bg-khff-yellow/20 text-white font-serif font-bold text-base px-4 py-2.5 rounded-xl border border-khff-yellow/40 leading-relaxed shadow">
+                            {val}
+                          </span>
+                        ) : (
+                          <span className="text-khff-cream/30 text-xs font-mono font-bold">— Kosong —</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
@@ -227,7 +241,7 @@ export default function Jadwal() {
             <div className="absolute right-0 top-0 opacity-25 w-56 pointer-events-none hidden md:block">
               <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto drop-shadow-2xl" />
             </div>
-            <h1 className="text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
               Jadwal Festival.
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
