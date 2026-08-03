@@ -21,8 +21,13 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KHFF - Kotabaru Heritage Film Festival",
-  description: "Merayakan sinema dan sejarah di jantung Yogyakarta.",
+  title: "KHFFEST",
+  description: "Kotabaru Heritage Film Festival. Merayakan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.",
+  icons: {
+    icon: "/assets/logo-khff-slanted.png",
+    shortcut: "/assets/logo-khff-slanted.png",
+    apple: "/assets/logo-khff-slanted.png",
+  },
 };
 
 export default function RootLayout({
