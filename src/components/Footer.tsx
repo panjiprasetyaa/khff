@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { AtSign, Mail, MapPin, Film, Sparkles } from "lucide-react";
+import { AtSign, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   const sponsors = [
