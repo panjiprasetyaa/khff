@@ -78,14 +78,14 @@ export default function Footer() {
                 <MapPin size={20} className="shrink-0 mt-1 text-khff-pink" />
                 <div>
                   <p className="font-bold text-white">Pasar Terban</p>
-                  <p className="opacity-80">Jl. C. Simanjuntak No.21, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
+                  <p className="opacity-80">Jl. C. Simanjuntak No. 21, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={20} className="shrink-0 mt-1 text-khff-pink" />
                 <div>
                   <p className="font-bold text-white">PDIN Kotabaru</p>
-                  <p className="opacity-80">Jl. C. Simanjuntak No.19, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
+                  <p className="opacity-80">Jl. C. Simanjuntak No. 19, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
                 </div>
               </div>
             </div>

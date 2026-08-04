@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, PlayCircle, Play, X, ExternalLink } from "lucide-react";
-import { programs, specialPrograms } from "@/data/dummy";
+import { programs, specialPrograms, praEvents } from "@/data/dummy";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -73,9 +73,6 @@ export default function Home() {
 
         {/* Center Text Container with High Contrast Gold/Cream Typography */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-          <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] mb-8 font-mono font-black shadow-xl border border-khff-navy/20">
-            FESTIVAL SINEMA & ARSITEKTUR SEJARAH 2026
-          </span>
           <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
             KHFF <br /> 2026.
           </h1>
@@ -111,16 +108,17 @@ export default function Home() {
         </div>
 
         {/* Horizontal Scroll Posters with Sleek Mini Custom Scrollbar Indicator */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pb-8 snap-x custom-mini-scrollbar scroll-smooth relative z-10">
-          {[1,2,3,4,5,6,7,8,9,10].map((num) => (
-            <div key={num} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500">
+        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pt-6 pb-8 snap-x custom-mini-scrollbar scroll-smooth relative z-10">
+          {praEvents.map((event) => (
+            <div key={event.id} className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500">
               <img
-                src={`/assets/pra-event/${num}.png`}
-                alt={`Poster Pra-Event #${num}`}
+                src={event.image}
+                alt={event.judul}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
-                <p className="text-khff-yellow font-black font-mono text-sm uppercase tracking-wider text-center">Panorama #{num}</p>
+                <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1">Panorama #{event.id}</p>
+                <p className="text-white font-serif font-black text-base text-center leading-snug">{event.judul}</p>
               </div>
             </div>
           ))}
@@ -246,7 +244,7 @@ export default function Home() {
               <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">Special Program</span>
               <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">Drive In<br/>Cinema</h3>
               <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
-                Special program drive in cinema by Mayora. Keliling Kota Baru naik becak sambil menikmati sinema. Film pembuka: Paraprashub.
+                Special program drive in cinema by Mayora. Keliling Kota Baru naik becak sambil menikmati sinema. Film pembuka: Para Perasuk.
               </p>
               <div className="flex flex-wrap items-center gap-4 font-mono text-sm font-black uppercase tracking-wider">
                 <span className="bg-khff-pink text-white px-6 py-3 rounded-xl shadow-lg border border-white/20">16 September 2026</span>
@@ -286,7 +284,7 @@ export default function Home() {
                       <div>
                         <p className="text-white font-serif font-bold text-lg leading-snug mb-1">{ev.name}</p>
                         <p className="text-khff-cream/80 text-xs font-mono font-bold tracking-wider uppercase mt-1 bg-white/10 px-3 py-1 rounded-lg inline-block border border-white/5">
-                          LOKASI : {ev.location}
+                          LOKASI: {ev.location}
                         </p>
                       </div>
                     </div>

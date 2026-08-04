@@ -44,6 +44,9 @@ export default function Navbar() {
           <Link href="/program" className="hover:text-khff-yellow transition-colors">
             PROGRAMS
           </Link>
+          <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
+            JADWAL
+          </Link>
           <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
           </a>
@@ -52,9 +55,6 @@ export default function Navbar() {
           </Link>
           <Link href="/katalog" className="hover:text-khff-yellow transition-colors">
             KATALOG
-          </Link>
-          <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
-            JADWAL
           </Link>
           <a 
             href={gFormUrl}
@@ -93,6 +93,13 @@ export default function Navbar() {
           >
             PROGRAMS
           </Link>
+          <Link
+            href="/jadwal"
+            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            JADWAL
+          </Link>
           <a
             href="/festival-guide.pdf"
             target="_blank" rel="noopener noreferrer"
@@ -114,13 +121,6 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             KATALOG
-          </Link>
-          <Link
-            href="/jadwal"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            JADWAL
           </Link>
           <a
             href={gFormUrl}

@@ -41,9 +41,6 @@ export default function ProgramList() {
       {/* HEADER SECTION (CINEMATIC GREEN TO YELLOW GRADIENT) */}
       <section className="pt-36 pb-28 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
         <div className="container mx-auto max-w-6xl text-center md:text-left">
-          <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-xl">
-            Kotabaru Heritage Film Festival 2026
-          </span>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-8 tracking-tight drop-shadow-lg">
             Programs.
           </h1>

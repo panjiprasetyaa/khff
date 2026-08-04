@@ -210,6 +210,18 @@
         { "area": "Ruang Meeting", "function": "Sekretariat Panitia" }
       ]
     }
+  ],
+  "praEvents": [
+    { "id": 1, "image": "/assets/pra-event/tumbas.jpg", "judul": "Tumbas" },
+    { "id": 2, "image": "/assets/pra-event/zuhud.jpeg", "judul": "Zuhud" },
+    { "id": 3, "image": "/assets/pra-event/benderaputih.jpg", "judul": "Bendera Putih (White Flag)" },
+    { "id": 4, "image": "/assets/pra-event/lunggah.jpg", "judul": "Lunggah Lungguh" },
+    { "id": 5, "image": "/assets/pra-event/njangkar.png", "judul": "Njangkar" },
+    { "id": 6, "image": "/assets/pra-event/pungra.png", "judul": "Pung Ra Rampung, Nembung (A Tale of Permission)" },
+    { "id": 7, "image": "/assets/pra-event/pungra.png", "judul": "HOMPIMPA ALIUM GAMBRENG" },
+    { "id": 8, "image": "/assets/pra-event/pungra.png", "judul": "DUA MEJA" },
+    { "id": 9, "image": "/assets/pra-event/pungra.png", "judul": "Unggah Suguh" },
+    { "id": 10, "image": "/assets/pra-event/gnd.jpg", "judul": "GND" }
   ]
 }
 

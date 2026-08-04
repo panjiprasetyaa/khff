@@ -227,9 +227,6 @@ export default function Jadwal() {
           </Link>
           
           <div className="max-w-4xl relative">
-            <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-xl">
-              Official Schedule & Program Timetable
-            </span>
             <div className="absolute right-0 top-0 opacity-25 w-56 pointer-events-none hidden md:block">
               <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto drop-shadow-2xl" />
             </div>
@@ -283,8 +280,8 @@ export default function Jadwal() {
                 </h2>
               </div>
               {currentDay.venue && (
-                <span className="inline-flex items-center gap-3 text-sm md:text-base text-khff-cream font-mono font-black bg-khff-navy px-6 py-3.5 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0 uppercase tracking-wider">
-                  VENUE : <span className="text-khff-yellow">{currentDay.venue}</span>
+                <span className="inline-flex items-center gap-1 text-sm md:text-base text-khff-cream font-mono font-black bg-khff-navy px-6 py-3.5 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0 uppercase tracking-wider">
+                  VENUE: <span className="text-khff-yellow">{currentDay.venue}</span>
                 </span>
               )}
             </div>
@@ -313,7 +310,7 @@ export default function Jadwal() {
                     {/* Track header badge */}
                     <div className="flex flex-wrap items-center gap-4 mb-8">
                       <span className="text-xs md:text-sm font-mono font-black uppercase tracking-widest px-5 py-2 rounded-full bg-khff-pink text-white shadow-md border border-white/20">
-                        VENUE : {track.venue}
+                        VENUE: {track.venue}
                       </span>
                       <span className="text-khff-yellow font-serif font-black text-xl md:text-2xl">{track.label}</span>
                     </div>
@@ -346,7 +343,7 @@ export default function Jadwal() {
                   {currentSummary.title}
                 </h3>
                 <p className="text-khff-pink font-mono font-bold text-lg mb-6 uppercase tracking-wider">
-                  Lokasi Utama : <span className="text-khff-yellow">{currentSummary.venue}</span>
+                  Lokasi Utama: <span className="text-khff-yellow">{currentSummary.venue}</span>
                 </p>
                 <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-8">
                   {currentSummary.description}
@@ -357,7 +354,7 @@ export default function Jadwal() {
                   <div className="flex flex-wrap gap-3">
                     {currentSummary.highlights.map((item, idx) => (
                       <span key={idx} className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors">
-                        — {item}
+                        {item}
                       </span>
                     ))}
                   </div>

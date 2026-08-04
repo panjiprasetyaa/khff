@@ -45,9 +45,6 @@ export default function KatalogPage() {
           </button>
           
           <div className="max-w-4xl">
-            <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-xl border border-khff-navy/20">
-              Official Festival Catalogs & Documentation
-            </span>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
               Arsip Katalog.
             </h1>

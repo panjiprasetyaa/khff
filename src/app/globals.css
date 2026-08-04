@@ -12,7 +12,7 @@
   --color-khff-cream: #f9ea88;
   --font-sans: var(--font-outfit);
   --font-serif: var(--font-bricolage);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-outfit);
 }
 
 html, body {

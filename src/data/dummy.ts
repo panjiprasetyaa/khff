@@ -31,3 +31,11 @@ export const programs: Program[] = data.programs.map((program) => ({
 
 export const specialPrograms = data.specialPrograms;
 export const schedule = data.schedule;
+
+export interface PraEvent {
+  id: number;
+  image: string;
+  judul: string;
+}
+
+export const praEvents: PraEvent[] = data.praEvents;

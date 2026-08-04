@@ -53,9 +53,6 @@ export default function GaleriPage() {
           </button>
           
           <div className="max-w-4xl">
-            <span className="inline-block px-5 py-2 rounded-full bg-khff-yellow text-khff-navy text-xs md:text-sm uppercase tracking-[0.3em] font-mono font-black mb-6 shadow-xl">
-              Official Documentation Archives
-            </span>
             <h1 className="text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
               Galeri Festival.
             </h1>
