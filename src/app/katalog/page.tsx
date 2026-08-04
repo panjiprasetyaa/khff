@@ -97,9 +97,8 @@ export default function KatalogPage() {
                     </p>
                   </div>
 
-                  <div className="relative z-10 pt-6 border-t border-current/20 flex items-center justify-between font-mono font-black text-sm sm:text-base tracking-wider uppercase">
-                    <span>BACA / UNDUH PDF</span>
-                    <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform shrink-0" />
+                  <div className="relative z-10 pt-6 border-t border-current/20 flex items-center justify-end">
+                    <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform shrink-0" />
                   </div>
 
                 </div>
