@@ -126,7 +126,7 @@ export default function Home() {
             Periode Penayangan: 1 September - 15 September 2026
           </p>
           <a
-            href="http://www.youtube.com/@kebudayaanjogjakota"
+            href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-base transition-all duration-300 px-8 py-4 rounded-full shadow-2xl hover:scale-105"
