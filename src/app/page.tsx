@@ -101,14 +101,14 @@ export default function Home() {
 
         {/* Center Text Container with High Contrast Typography & Subtle Glass Staging */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-black text-white mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
-            KHFF <br /> 2026.
+          <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-white mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
+            Kotabaru Heritage <br /> Film Festival <br /> 2026.
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
             <span className="text-khff-pink drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
           <p className="text-base md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)] bg-khff-navy/35 backdrop-blur-[3px] p-4 sm:p-6 rounded-2xl border border-white/15 shadow-2xl">
-            Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
+            Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
         </div>
       </section>

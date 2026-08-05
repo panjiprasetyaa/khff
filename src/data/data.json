@@ -294,13 +294,13 @@
     },
     {
       "id": 7,
-      "image": "/assets/pra-event/pungra.png",
-      "judul": "HOMPIMPA ALIUM GAMBRENG"
+      "image": "/assets/pra-event/hompimpa.jpeg",
+      "judul": "HOMPIMPA ALAIUM GAMBRENG"
     },
     { "id": 8, "image": "/assets/pra-event/pungra.png", "judul": "DUA MEJA" },
     {
       "id": 9,
-      "image": "/assets/pra-event/pungra.png",
+      "image": "/assets/pra-event/unggah.png",
       "judul": "Unggah Suguh"
     },
     { "id": 10, "image": "/assets/pra-event/gnd.jpg", "judul": "GND" }
