@@ -78,55 +78,57 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-khff-navy/95 text-khff-cream backdrop-blur-xl border-b border-khff-cream/20 flex flex-col p-8 space-y-6 text-center shadow-2xl min-h-screen">
-          <Link
-            href="/"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            HOME
-          </Link>
-          <Link
-            href="/program"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            PROGRAMS
-          </Link>
-          <Link
-            href="/jadwal"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            JADWAL
-          </Link>
-          <a
-            href="/festival-guide.pdf"
-            target="_blank" rel="noopener noreferrer"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            FESTIVAL GUIDE
-          </a>
-          <Link
-            href="/galeri"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            GALERI
-          </Link>
-          <Link
-            href="/katalog"
-            className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            KATALOG
-          </Link>
+        <div className="md:hidden absolute top-full left-0 right-0 bg-khff-navy text-khff-cream flex flex-col p-8 text-center shadow-2xl min-h-screen overflow-y-auto">
+          <div className="flex flex-col divide-y divide-khff-cream/10 border-b border-khff-cream/10">
+            <Link
+              href="/"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              HOME
+            </Link>
+            <Link
+              href="/program"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              PROGRAMS
+            </Link>
+            <Link
+              href="/jadwal"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              JADWAL
+            </Link>
+            <a
+              href="/festival-guide.pdf"
+              target="_blank" rel="noopener noreferrer"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              FESTIVAL GUIDE
+            </a>
+            <Link
+              href="/galeri"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              GALERI
+            </Link>
+            <Link
+              href="/katalog"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              KATALOG
+            </Link>
+          </div>
           <a
             href={gFormUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl font-mono font-black text-khff-navy bg-khff-yellow px-8 py-4 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-4 shadow-xl"
+            className="text-xl font-mono font-black text-khff-navy bg-khff-yellow px-8 py-4 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-8 shadow-xl"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <span>REGISTRASI</span>

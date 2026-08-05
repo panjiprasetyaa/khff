@@ -10,6 +10,7 @@ interface SingleEvent {
   time: string;
   location: string;
   program: string;
+  note?: string;
 }
 
 interface MultiTrackEvent {
@@ -18,6 +19,7 @@ interface MultiTrackEvent {
   ruangAudiovisual?: string;
   balkonRumput?: string;
   hallPDIN?: string;
+  note?: string;
 }
 
 interface RoomActivation {
@@ -38,6 +40,7 @@ interface MultiTrack {
   label: string;
   type: "multi-track";
   columns: string[];
+  keys: string[];
   events: MultiTrackEvent[];
   roomActivation?: RoomActivation[];
 }
@@ -52,6 +55,7 @@ interface ScheduleDay {
   venue?: string;
   events?: SingleEvent[] | MultiTrackEvent[];
   columns?: string[];
+  keys?: string[];
   tracks?: Track[];
   roomActivation?: RoomActivation[];
 }
@@ -59,45 +63,76 @@ interface ScheduleDay {
 const schedule = dataJson.schedule as unknown as ScheduleDay[];
 
 // Venue summary descriptions per tab ID
-const venueSummaries: Record<string, { title: string; venue: string; description: string; highlights: string[] }> = {
+const venueSummaries: Record<
+  string,
+  { title: string; venue: string; description: string; highlights: string[] }
+> = {
   "pre-festival": {
     title: "Ringkasan Venue Pra-Festival",
     venue: "Pusat Desain Industri Nasional (PDIN)",
-    description: "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Mahaditya, Purwaseswa, dan Karyanagri.",
-    highlights: ["Sekretariat & Hospitality", "Ruang Penjurian Resmi", "Pusat Koordinasi Tenant & Sineas"]
+    description:
+      "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Mahaditya, Purwaseswa, dan Karyanagri.",
+    highlights: [
+      "Sekretariat & Hospitality",
+      "Ruang Penjurian Resmi",
+      "Pusat Koordinasi Tenant & Sineas",
+    ],
   },
   "day-1": {
     title: "Ringkasan Venue Hari Pertama",
     venue: "Pasar Terban (Kawasan Heritage)",
-    description: "Panggung utama pembuka festival dengan transformasi ruang pasar tradisional menjadi arena sinematik terbuka. Dilengkapi sarana registrasi becak untuk Drive-In Cinema, bazar kuliner nusantara, dan layar penayangan Opening Film.",
-    highlights: ["Opening Ceremony & Pawai Budaya", "Aktivasi Kuliner & Kriya Lokal", "Layar Tancap & Registrasi Drive-In Becak"]
+    description:
+      "Panggung utama pembuka festival dengan transformasi ruang pasar tradisional menjadi arena sinematik terbuka. Dilengkapi sarana registrasi becak untuk Drive-In Cinema, bazar kuliner nusantara, dan layar penayangan Opening Film.",
+    highlights: [
+      "Opening Ceremony & Pawai Budaya",
+      "Aktivasi Kuliner & Kriya Lokal",
+      "Layar Tancap & Registrasi Drive-In Becak",
+    ],
   },
   "day-2": {
     title: "Ringkasan Venue Hari Kedua",
-    venue: "Pasar Terban & Pusat Desain Industri Nasional (PDIN)",
-    description: "Aktivasi dua kawasan sekaligus: PDIN berfungsi sebagai pusat diskusi, workshop eksklusif, serta ruang penayangan kompetisi dalam ruangan, sementara Pasar Terban menjadi pusat screening terbuka dan ruang temu komunitas film.",
-    highlights: ["Public Lecture & Workshop Sineas", "Penayangan Paralel Kompetisi", "Panggung Diskusi Komunitas Nonton"]
+    venue: "Pusat Desain Industri Nasional (PDIN)",
+    description:
+      "PDIN menjadi pusat kegiatan hari kedua secara penuh, dengan tiga ruang beraktivitas paralel: Ruang Seminar untuk pengumuman Awards, Ruang Audiovisual untuk screening kompetisi dan heritage, serta Balkon Rumput Lantai 2 untuk forum dan sesi bincang bersama sineas.",
+    highlights: [
+      "Mahaditya, Purwaseswa & Karyanagri Awards",
+      "Screening National & International Heritage",
+      "Heritage Talks & Directors Talks",
+    ],
   },
   "day-3": {
     title: "Ringkasan Venue Hari Ketiga (Penutupan)",
     venue: "Hall Utama & Balkon PDIN",
-    description: "Puncak perhelatan Kotabaru Heritage Film Festival 2026. Menghadirkan sesi penayangan eksklusif Closing Film, paparan kesimpulan dewan juri, serta Malam Penganugerahan (Awarding Ceremony) bagi para jawara sinema nusantara.",
-    highlights: ["Awarding Ceremony (Malam Penganugerahan)", "Screening Closing Film & Layar Kobar", "Resepsi Penutup Sineas & Publik"]
-  }
+    description:
+      "Puncak perhelatan Kotabaru Heritage Film Festival 2026. Menghadirkan sesi National Heritage #2, KHFF Rewind #2, forum komunitas, serta Malam Penganugerahan (Awarding Ceremony) dan Closing Film bagi para jawara sinema nusantara.",
+    highlights: [
+      "National Heritage #2 & KHFF Rewind #2",
+      "KHFF Audience & Community Forum",
+      "Awarding Ceremony & Closing Film",
+    ],
+  },
 };
 
 const tabAccent: Record<string, string> = {
-  "pre-festival": "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
-  "day-1": "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
-  "day-2": "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
-  "day-3": "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
+  "pre-festival":
+    "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
+  "day-1":
+    "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
+  "day-2":
+    "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
+  "day-3":
+    "bg-white/5 text-khff-cream/70 border border-khff-cream/20 hover:bg-white/10 hover:text-khff-cream",
 };
 
 const activeTabAccent: Record<string, string> = {
-  "pre-festival": "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
-  "day-1": "bg-khff-pink text-white border border-khff-pink font-black shadow-[0_0_20px_rgba(235,93,121,0.5)] scale-105",
-  "day-2": "bg-white text-khff-navy border border-white font-black shadow-[0_0_20px_rgba(255,255,255,0.5)] scale-105",
-  "day-3": "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
+  "pre-festival":
+    "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
+  "day-1":
+    "bg-khff-pink text-white border border-khff-pink font-black shadow-[0_0_20px_rgba(235,93,121,0.5)] scale-105",
+  "day-2":
+    "bg-white text-khff-navy border border-white font-black shadow-[0_0_20px_rgba(255,255,255,0.5)] scale-105",
+  "day-3":
+    "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
 };
 
 // Render table for single-track (rows: time, location, program)
@@ -109,14 +144,23 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
           <table className="w-full text-sm md:text-base">
             <thead>
               <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
-                <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-40">Waktu</th>
-                <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-64">Lokasi / Ruang</th>
-                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">Materi Program & Keterangan</th>
+                <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-40">
+                  Waktu
+                </th>
+                <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-64">
+                  Lokasi / Ruang
+                </th>
+                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
+                  Materi Program & Keterangan
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-khff-cream/10">
               {events.map((ev, i) => (
-                <tr key={i} className="group hover:bg-white/10 transition-all duration-300">
+                <tr
+                  key={i}
+                  className="group hover:bg-white/10 transition-all duration-300"
+                >
                   <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
                     {ev.time}
                   </td>
@@ -125,7 +169,14 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                       {ev.location}
                     </span>
                   </td>
-                  <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">{ev.program}</td>
+                  <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">
+                    {ev.program}
+                    {ev.note && (
+                      <span className="block text-khff-pink font-mono font-bold text-xs md:text-sm mt-1.5 uppercase tracking-wide">
+                        Catatan: {ev.note}
+                      </span>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -139,13 +190,13 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
 // Render table for multi-track
 function MultiTrackTable({
   columns,
+  keys,
   events,
 }: {
   columns: string[];
+  keys: string[];
   events: MultiTrackEvent[];
 }) {
-  const colKeys = ["ruangSeminar", "ruangAudiovisual", "balkonRumput", "hallPDIN"];
-
   return (
     <div className="w-full">
       <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
@@ -156,7 +207,7 @@ function MultiTrackTable({
                 {columns.map((col, i) => (
                   <th
                     key={i}
-                    className={`px-5 py-4 font-mono uppercase tracking-widest text-xs font-black ${i === 0 ? 'text-khff-yellow w-36' : 'text-khff-cream'}`}
+                    className={`px-5 py-4 font-mono uppercase tracking-widest text-xs font-black ${i === 0 ? "text-khff-yellow w-36" : "text-khff-cream"}`}
                   >
                     {col}
                   </th>
@@ -165,18 +216,32 @@ function MultiTrackTable({
             </thead>
             <tbody className="divide-y divide-khff-cream/10">
               {events.map((ev, i) => (
-                <tr key={i} className="hover:bg-white/10 transition-all duration-300">
-                  <td className="px-5 py-5 font-mono font-bold text-khff-yellow whitespace-nowrap align-top">{ev.time}</td>
-                  {colKeys.slice(0, columns.length - 1).map((key, j) => {
-                    const val = ev[key as keyof MultiTrackEvent] as string | undefined;
+                <tr
+                  key={i}
+                  className="hover:bg-white/10 transition-all duration-300"
+                >
+                  <td className="px-5 py-5 font-mono font-bold text-khff-yellow whitespace-nowrap align-top">
+                    {ev.time}
+                    {ev.note && (
+                      <span className="block text-khff-pink font-mono font-bold text-[10px] mt-1.5 uppercase tracking-wide normal-case">
+                        {ev.note}
+                      </span>
+                    )}
+                  </td>
+                  {keys.map((key, j) => {
+                    const val = ev[key as keyof MultiTrackEvent] as
+                      | string
+                      | undefined;
                     return (
                       <td key={j} className="px-5 py-5 align-top">
-                        {val && val !== "—" ? (
+                        {val && val !== "-" ? (
                           <span className="inline-block bg-khff-yellow/20 text-white font-serif font-bold text-base px-4 py-2.5 rounded-xl border border-khff-yellow/40 leading-relaxed shadow">
                             {val}
                           </span>
                         ) : (
-                          <span className="text-khff-cream/30 text-xs font-mono font-bold">— Kosong —</span>
+                          <span className="text-khff-cream/30 text-xs font-mono font-bold">
+                            - Kosong -
+                          </span>
                         )}
                       </td>
                     );
@@ -201,9 +266,16 @@ function RoomActivationSection({ rooms }: { rooms: RoomActivation[] }) {
       </h4>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {rooms.map((r, i) => (
-          <div key={i} className="bg-white/5 border border-khff-cream/20 rounded-2xl p-5 hover:bg-white/10 transition-all shadow-md">
-            <p className="text-khff-yellow font-serif font-black text-lg mb-1">{r.area}</p>
-            <p className="text-khff-cream/80 text-sm font-medium leading-relaxed">{r.function}</p>
+          <div
+            key={i}
+            className="bg-white/5 border border-khff-cream/20 rounded-2xl p-5 hover:bg-white/10 transition-all shadow-md"
+          >
+            <p className="text-khff-yellow font-serif font-black text-lg mb-1">
+              {r.area}
+            </p>
+            <p className="text-khff-cream/80 text-sm font-medium leading-relaxed">
+              {r.function}
+            </p>
           </div>
         ))}
       </div>
@@ -218,23 +290,30 @@ export default function Jadwal() {
 
   return (
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
-      
       {/* HEADER SECTION (CINEMATIC GREEN TO YELLOW GRADIENT) */}
       <section className="pt-36 pb-28 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
         <div className="container mx-auto max-w-6xl">
-          <Link href="/" className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-8 transition-all text-sm font-black shadow-lg"
+          >
             <ArrowLeft size={16} /> KEMBALI KE BERANDA
           </Link>
-          
+
           <div className="max-w-4xl relative">
             <div className="absolute right-0 top-0 opacity-25 w-56 pointer-events-none hidden md:block">
-              <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto drop-shadow-2xl" />
+              <img
+                src="/assets/karakter/kendhang.png"
+                alt="Kendhang"
+                className="w-full h-auto drop-shadow-2xl"
+              />
             </div>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
               Jadwal Festival.
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
-              Rangkaian penayangan film terkurasi, forum wawasan, bazar kuliner, dan malam penganugerahan Kotabaru Heritage Film Festival 2026.
+              Rangkaian penayangan film terkurasi, forum wawasan, bazar kuliner,
+              dan malam penganugerahan Kotabaru Heritage Film Festival 2026.
             </p>
           </div>
         </div>
@@ -244,11 +323,14 @@ export default function Jadwal() {
       <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-20 px-6 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         {/* Floating Gong Illustration in background */}
         <div className="absolute top-40 -right-20 opacity-10 pointer-events-none w-96 z-0">
-          <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
+          <img
+            src="/assets/karakter/gong.png"
+            alt="Gong"
+            className="w-full h-auto"
+          />
         </div>
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          
           {/* Tab Navigation */}
           <div className="flex flex-wrap gap-3 md:gap-4 mb-16 pb-8 border-b border-khff-cream/20">
             {schedule.map((day) => (
@@ -261,19 +343,22 @@ export default function Jadwal() {
                     : tabAccent[day.id]
                 }`}
               >
-                {day.id === "pre-festival" ? "Pre-Festival" : day.day.split(" — ")[0]}
+                {day.id === "pre-festival"
+                  ? "Pre-Festival"
+                  : day.day.split(" - ")[0]}
               </button>
             ))}
           </div>
 
           {/* Day Content Box */}
           <div key={activeDay} className="animate-in fade-in duration-300">
-            
             {/* Day Title Banner */}
             <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-white/5 p-8 rounded-3xl border border-khff-cream/20 shadow-xl backdrop-blur-sm">
               <div>
                 <span className="text-xs font-mono font-black uppercase tracking-[0.25em] text-khff-yellow block mb-2">
-                  {currentDay.id === "pre-festival" ? "Sesi Persiapan & Penjurian" : currentDay.day}
+                  {currentDay.id === "pre-festival"
+                    ? "Sesi Persiapan & Penjurian"
+                    : currentDay.day}
                 </span>
                 <h2 className="text-4xl md:text-6xl font-serif font-black text-white tracking-tight">
                   {currentDay.date}
@@ -281,7 +366,8 @@ export default function Jadwal() {
               </div>
               {currentDay.venue && (
                 <span className="inline-flex items-center gap-1 text-sm md:text-base text-khff-cream font-mono font-black bg-khff-navy px-6 py-3.5 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0 uppercase tracking-wider">
-                  VENUE: <span className="text-khff-yellow">{currentDay.venue}</span>
+                  VENUE:{" "}
+                  <span className="text-khff-yellow">{currentDay.venue}</span>
                 </span>
               )}
             </div>
@@ -290,38 +376,61 @@ export default function Jadwal() {
             {currentDay.type === "single" && currentDay.events && (
               <div className="space-y-12">
                 <SingleTrackTable events={currentDay.events as SingleEvent[]} />
-                <RoomActivationSection rooms={currentDay.roomActivation ?? []} />
+                <RoomActivationSection
+                  rooms={currentDay.roomActivation ?? []}
+                />
               </div>
             )}
 
             {/* Multi-track day (Day 3) */}
-            {currentDay.type === "multi-track" && currentDay.events && currentDay.columns && (
-              <div className="space-y-12">
-                <MultiTrackTable columns={currentDay.columns} events={currentDay.events as MultiTrackEvent[]} />
-                <RoomActivationSection rooms={currentDay.roomActivation ?? []} />
-              </div>
-            )}
+            {currentDay.type === "multi-track" &&
+              currentDay.events &&
+              currentDay.columns && (
+                <div className="space-y-12">
+                  <MultiTrackTable
+                    columns={currentDay.columns}
+                    keys={currentDay.keys ?? []}
+                    events={currentDay.events as MultiTrackEvent[]}
+                  />
+                  <RoomActivationSection
+                    rooms={currentDay.roomActivation ?? []}
+                  />
+                </div>
+              )}
 
             {/* Split-track day (Day 2) */}
             {currentDay.type === "split" && currentDay.tracks && (
               <div className="space-y-16">
                 {currentDay.tracks.map((track, ti) => (
-                  <div key={ti} className="bg-white/5 p-8 rounded-3xl border border-khff-cream/10">
+                  <div
+                    key={ti}
+                    className="bg-white/5 p-8 rounded-3xl border border-khff-cream/10"
+                  >
                     {/* Track header badge */}
                     <div className="flex flex-wrap items-center gap-4 mb-8">
                       <span className="text-xs md:text-sm font-mono font-black uppercase tracking-widest px-5 py-2 rounded-full bg-khff-pink text-white shadow-md border border-white/20">
                         VENUE: {track.venue}
                       </span>
-                      <span className="text-khff-yellow font-serif font-black text-xl md:text-2xl">{track.label}</span>
+                      <span className="text-khff-yellow font-serif font-black text-xl md:text-2xl">
+                        {track.label}
+                      </span>
                     </div>
 
                     {track.type === "single" && (
-                      <SingleTrackTable events={track.events as SingleEvent[]} />
+                      <SingleTrackTable
+                        events={track.events as SingleEvent[]}
+                      />
                     )}
                     {track.type === "multi-track" && (
                       <>
-                        <MultiTrackTable columns={track.columns!} events={track.events as MultiTrackEvent[]} />
-                        <RoomActivationSection rooms={track.roomActivation ?? []} />
+                        <MultiTrackTable
+                          columns={track.columns!}
+                          keys={track.keys ?? []}
+                          events={track.events as MultiTrackEvent[]}
+                        />
+                        <RoomActivationSection
+                          rooms={track.roomActivation ?? []}
+                        />
                       </>
                     )}
                   </div>
@@ -332,7 +441,11 @@ export default function Jadwal() {
             {/* INTEGRATED VENUE SUMMARY PER TAB */}
             <div className="mt-16 bg-gradient-to-br from-[#23585a] to-khff-navy border-4 border-khff-yellow rounded-3xl p-8 md:p-14 shadow-2xl relative overflow-hidden">
               <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-25 w-64 pointer-events-none hidden lg:block">
-                <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
+                <img
+                  src="/assets/karakter/gong.png"
+                  alt="Gong"
+                  className="w-full h-auto"
+                />
               </div>
 
               <div className="relative z-10 max-w-4xl">
@@ -343,17 +456,25 @@ export default function Jadwal() {
                   {currentSummary.title}
                 </h3>
                 <p className="text-khff-pink font-mono font-bold text-lg mb-6 uppercase tracking-wider">
-                  Lokasi Utama: <span className="text-khff-yellow">{currentSummary.venue}</span>
+                  Lokasi Utama:{" "}
+                  <span className="text-khff-yellow">
+                    {currentSummary.venue}
+                  </span>
                 </p>
                 <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-8">
                   {currentSummary.description}
                 </p>
 
                 <div>
-                  <span className="text-xs font-mono font-black uppercase tracking-widest text-khff-cream/60 block mb-3">Fokus Kegiatan pada Hari Ini:</span>
+                  <span className="text-xs font-mono font-black uppercase tracking-widest text-khff-cream/60 block mb-3">
+                    Fokus Kegiatan pada Hari Ini:
+                  </span>
                   <div className="flex flex-wrap gap-3">
                     {currentSummary.highlights.map((item, idx) => (
-                      <span key={idx} className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors">
+                      <span
+                        key={idx}
+                        className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors"
+                      >
                         {item}
                       </span>
                     ))}
@@ -361,9 +482,7 @@ export default function Jadwal() {
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
       </section>
     </main>

@@ -253,12 +253,12 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           <div className="container mx-auto max-w-7xl">
             
             {/* TAB SELECTOR: WORKSHOP vs PUBLIC LECTURE */}
-            <div className="flex gap-4 mb-12">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mb-12">
               {events.map((ev) => (
                 <button
                   key={ev.id}
                   onClick={() => setActiveNonPemutaranTab(ev.id)}
-                  className={`px-10 py-5 rounded-2xl font-serif font-black text-2xl transition-all duration-300 shadow-xl ${
+                  className={`px-6 py-3.5 sm:px-10 sm:py-5 rounded-2xl font-serif font-black text-base sm:text-2xl transition-all duration-300 shadow-xl ${
                     activeNonPemutaranTab === ev.id
                       ? "bg-white text-khff-navy scale-105 shadow-[0_0_30px_rgba(255,255,255,0.25)]"
                       : "bg-white/5 text-khff-cream/60 hover:bg-white/10 hover:text-khff-cream"

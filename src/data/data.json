@@ -131,81 +131,143 @@
       "type": "single",
       "venue": "PDIN",
       "events": [
-        { "time": "09.00–17.00", "location": "Ruang Meeting (Sekat Kecil)", "program": "Penjurian Kompetisi" },
-        { "time": "09.00–17.00", "location": "Ruang Meeting (Sekat Besar)", "program": "Penataan Ruang Sekretariat Panitia" }
+        {
+          "time": "09.00 – 17.00",
+          "location": "Ruang Meeting (Sekat Kecil)",
+          "program": "Penjurian Kompetisi"
+        },
+        {
+          "time": "09.00 – 17.00",
+          "location": "Ruang Meeting (Sekat Besar)",
+          "program": "Penataan Ruang Sekretariat Panitia"
+        }
       ],
       "roomActivation": []
     },
     {
       "id": "day-1",
-      "day": "Day 1 — Opening",
+      "day": "Day 1 - Opening",
       "date": "Kamis, 17 September 2026",
       "type": "single",
       "venue": "Pasar Terban",
       "events": [
-        { "time": "16.00–18.30", "location": "Area Tenant", "program": "Aktivasi Tenant & Kuliner" },
-        { "time": "17.30–18.45", "location": "Halaman Pasar Terban", "program": "Registrasi Peserta & Becak Drive-In Cinema" },
-        { "time": "19.15–20.00", "location": "Hall Tengah Pasar", "program": "Opening Ceremony" },
-        { "time": "20.00–20.30", "location": "Hall Tengah Pasar → Halaman Pasar", "program": "Move to Opening Film" },
-        { "time": "20.30–22.00", "location": "Halaman Pasar Terban", "program": "Opening Film with Becak Drive-In Cinema & Public Gathering" }
+        {
+          "time": "16.00 – 18.30",
+          "location": "Area Tenant",
+          "program": "Aktivasi Tenant & Kuliner"
+        },
+        {
+          "time": "17.30 – 18.45",
+          "location": "Halaman Pasar Terban",
+          "program": "Registrasi Peserta & Becak Drive-In Cinema"
+        },
+        {
+          "time": "19.15 – 20.00",
+          "location": "Lobby Pasar Terban",
+          "program": "Opening Ceremony"
+        },
+        {
+          "time": "20.00 – 20.30",
+          "location": "Lobby Pasar Terban → Halaman Pasar Terban",
+          "program": "Move to Opening Film"
+        },
+        {
+          "time": "20.30 – 22.00",
+          "location": "Halaman Pasar Terban",
+          "program": "Opening Film with Becak Drive-In Cinema & Public Gathering",
+          "note": "Film \"Para Perasuk\""
+        }
       ],
       "roomActivation": [
-        { "area": "Hall Tengah Pasar", "function": "Panggung Seremoni & Entertainment" },
+        {
+          "area": "Lobby Pasar Terban",
+          "function": "Panggung Seremoni & Entertainment"
+        },
         { "area": "Halaman Pasar Terban", "function": "Becak Drive-In Cinema" },
         { "area": "Area Tenant", "function": "Tenant & Konsumsi" },
         { "area": "Ruang Transit", "function": "Transit Penampil" },
-        { "area": "Area Parkir", "function": "Parkir dan Jalur Masuk–Keluar Becak" }
+        {
+          "area": "Area Parkir",
+          "function": "Parkir dan Jalur Masuk–Keluar Becak"
+        }
       ]
     },
     {
       "id": "day-2",
-      "day": "Day 2 — Public Screening & Festival",
+      "day": "Day 2 - Festival",
       "date": "Jumat, 18 September 2026",
-      "type": "split",
-      "tracks": [
+      "type": "multi-track",
+      "venue": "PDIN",
+      "columns": [
+        "Waktu",
+        "Ruang Seminar",
+        "Ruang Audiovisual",
+        "Balkon Rumput Lantai 2"
+      ],
+      "keys": ["ruangSeminar", "ruangAudiovisual", "balkonRumput"],
+      "events": [
         {
-          "venue": "Pasar Terban",
-          "label": "Public Screening",
-          "type": "single",
-          "events": [
-            { "time": "16.00–18.30", "location": "Area Tenant", "program": "Aktivasi Tenant & Kuliner" },
-            { "time": "17.30–18.45", "location": "Halaman Pasar Terban", "program": "Registrasi Peserta & Becak Drive-In Cinema" },
-            { "time": "19.15–20.00", "location": "Hall Tengah Pasar", "program": "Entertainment" },
-            { "time": "20.00–20.30", "location": "Hall Tengah Pasar → Halaman Pasar", "program": "Move to Public Screening" },
-            { "time": "20.30–22.00", "location": "Halaman Pasar Terban", "program": "Public Screening with Becak Drive-In Cinema & Public Gathering" }
-          ]
+          "time": "13.15",
+          "ruangSeminar": "Mahaditya Awards",
+          "ruangAudiovisual": "KHFF Rewind #1",
+          "balkonRumput": "-"
         },
         {
-          "venue": "PDIN",
-          "label": "Festival",
-          "type": "multi-track",
-          "columns": ["Waktu", "Ruang Seminar", "Ruang Audiovisual", "Balkon Rumput Lantai 2"],
-          "events": [
-            { "time": "13.15", "ruangSeminar": "Mahaditya Awards", "ruangAudiovisual": "Jogja Heritage Shorts #1", "balkonRumput": "—" },
-            { "time": "15.15", "ruangSeminar": "National Heritage", "ruangAudiovisual": "Purwaseswa Awards", "balkonRumput": "Public Lecture" },
-            { "time": "19.15", "ruangSeminar": "Karyanagri Awards", "ruangAudiovisual": "International Heritage", "balkonRumput": "Heritage Talk / Artist Talk / Community Forum" }
-          ],
-          "roomActivation": [
-            { "area": "Ruang Meeting", "function": "Sekretariat Panitia" },
-            { "area": "Balkon Rumput Lantai 2", "function": "Area Istirahat & Networking" }
-          ]
+          "time": "15.15",
+          "ruangSeminar": "National Heritage #1",
+          "ruangAudiovisual": "Purwaseswa Awards",
+          "balkonRumput": "Heritage Talks: Siska Raharja, Sekar Sari, Zaki Habibi, Yetti Martanti",
+          "note": "Film \"Kantata Takwa\""
+        },
+        {
+          "time": "19.15",
+          "ruangSeminar": "Karyanagri Awards",
+          "ruangAudiovisual": "International Heritage (Collab with Asian Film Archive)",
+          "balkonRumput": "Directors Talks: Hanung Bramantyo & Wregas Bhanuteja"
+        }
+      ],
+      "roomActivation": [
+        { "area": "Ruang Meeting", "function": "Sekretariat Panitia" },
+        {
+          "area": "Balkon Rumput Lantai 2",
+          "function": "Area Istirahat & Networking"
         }
       ]
     },
     {
       "id": "day-3",
-      "day": "Day 3 — Festival & Closing",
+      "day": "Day 3 - Festival & Closing",
       "date": "Sabtu, 19 September 2026",
       "type": "multi-track",
       "venue": "PDIN",
-      "columns": ["Waktu", "Ruang Seminar", "Balkon Rumput", "Hall PDIN"],
+      "columns": ["Waktu", "Ruang Seminar", "Balkon Rumput", "Lobby PDIN"],
+      "keys": ["ruangSeminar", "balkonRumput", "hallPDIN"],
       "events": [
-        { "time": "13.15", "ruangSeminar": "Layar Kobar", "balkonRumput": "—", "hallPDIN": "—" },
-        { "time": "15.15", "ruangSeminar": "Jogja Heritage Shorts #2", "balkonRumput": "Workshop", "hallPDIN": "—" },
-        { "time": "19.15–22.00", "ruangSeminar": "—", "balkonRumput": "—", "hallPDIN": "Closing Awarding Ceremony & Closing Film" }
+        {
+          "time": "13.15",
+          "ruangSeminar": "National Heritage #2",
+          "balkonRumput": "-",
+          "hallPDIN": "-",
+          "note": "Film \"November 1928\""
+        },
+        {
+          "time": "15.15",
+          "ruangSeminar": "KHFF Rewind #2",
+          "balkonRumput": "KHFF Audience Forum / KHFF Community Forum (Facilitated by Non-Screening Programmer Team)",
+          "hallPDIN": "-"
+        },
+        {
+          "time": "19.15 – 22.00",
+          "ruangSeminar": "-",
+          "balkonRumput": "-",
+          "hallPDIN": "Closing Awarding Ceremony & Closing Film"
+        }
       ],
       "roomActivation": [
-        { "area": "Hall Tengah Depan Kantin", "function": "Closing Awarding Ceremony" },
+        {
+          "area": "Lobby PDIN",
+          "function": "Kantin & Closing Awarding Ceremony"
+        },
         { "area": "Balkon Rumput", "function": "Area Gathering" },
         { "area": "Ruang Meeting", "function": "Sekretariat Panitia" }
       ]
@@ -214,14 +276,33 @@
   "praEvents": [
     { "id": 1, "image": "/assets/pra-event/tumbas.jpg", "judul": "Tumbas" },
     { "id": 2, "image": "/assets/pra-event/zuhud.jpeg", "judul": "Zuhud" },
-    { "id": 3, "image": "/assets/pra-event/benderaputih.jpg", "judul": "Bendera Putih (White Flag)" },
-    { "id": 4, "image": "/assets/pra-event/lunggah.jpg", "judul": "Lunggah Lungguh" },
+    {
+      "id": 3,
+      "image": "/assets/pra-event/benderaputih.jpg",
+      "judul": "Bendera Putih (White Flag)"
+    },
+    {
+      "id": 4,
+      "image": "/assets/pra-event/lunggah.jpg",
+      "judul": "Lunggah Lungguh"
+    },
     { "id": 5, "image": "/assets/pra-event/njangkar.png", "judul": "Njangkar" },
-    { "id": 6, "image": "/assets/pra-event/pungra.png", "judul": "Pung Ra Rampung, Nembung (A Tale of Permission)" },
-    { "id": 7, "image": "/assets/pra-event/pungra.png", "judul": "HOMPIMPA ALIUM GAMBRENG" },
+    {
+      "id": 6,
+      "image": "/assets/pra-event/pungra.png",
+      "judul": "Pung Ra Rampung, Nembung (A Tale of Permission)"
+    },
+    {
+      "id": 7,
+      "image": "/assets/pra-event/pungra.png",
+      "judul": "HOMPIMPA ALIUM GAMBRENG"
+    },
     { "id": 8, "image": "/assets/pra-event/pungra.png", "judul": "DUA MEJA" },
-    { "id": 9, "image": "/assets/pra-event/pungra.png", "judul": "Unggah Suguh" },
+    {
+      "id": 9,
+      "image": "/assets/pra-event/pungra.png",
+      "judul": "Unggah Suguh"
+    },
     { "id": 10, "image": "/assets/pra-event/gnd.jpg", "judul": "GND" }
   ]
 }
-

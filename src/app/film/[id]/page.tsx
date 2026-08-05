@@ -70,18 +70,18 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
               </h1>
 
               {/* Editorial Ticket-Style Spec Box */}
-              <div className="grid grid-cols-3 gap-4 border-y border-khff-cream/20 py-6 mb-10 font-mono text-sm bg-white/5 px-6 rounded-2xl shadow-inner">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 border-y border-khff-cream/20 py-6 mb-10 font-mono text-sm bg-white/5 px-4 sm:px-6 rounded-2xl shadow-inner">
                 <div>
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Tahun Rilis</span>
-                  <span className="text-khff-yellow font-bold text-lg">{film.year}</span>
+                  <span className="text-khff-yellow font-bold text-base sm:text-lg">{film.year}</span>
                 </div>
-                <div className="border-l border-khff-cream/20 pl-4">
+                <div className="border-l border-khff-cream/20 pl-3 sm:pl-4">
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Durasi Film</span>
-                  <span className="text-white font-bold text-lg">{film.duration} Menit</span>
+                  <span className="text-white font-bold text-base sm:text-lg">{film.duration} Menit</span>
                 </div>
-                <div className="border-l border-khff-cream/20 pl-4">
+                <div className="border-l border-khff-cream/20 pl-3 sm:pl-4">
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Sutradara</span>
-                  <span className="text-khff-pink font-bold text-lg truncate block">{film.director}</span>
+                  <span className="text-khff-pink font-bold text-base sm:text-lg truncate block">{film.director}</span>
                 </div>
               </div>
 
