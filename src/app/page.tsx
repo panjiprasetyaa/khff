@@ -101,7 +101,7 @@ export default function Home() {
 
         {/* Center Text Container with High Contrast Typography & Subtle Glass Staging */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-white mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
+          <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
             Kotabaru Heritage <br /> Film Festival <br /> 2026.
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
@@ -141,12 +141,14 @@ export default function Home() {
           {praEvents.map((event) => (
             <div
               key={event.id}
-              className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500"
+              className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform"
             >
               <img
                 src={event.image}
                 alt={event.judul}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
                 <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1">
