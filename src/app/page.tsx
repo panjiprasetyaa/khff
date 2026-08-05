@@ -90,30 +90,25 @@ export default function Home() {
         {/* Full Artwork Background with Aspect Ratio Preservation (No Stretched / Gepeng Distortion) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <img
-            src="/assets/jathilan_background.jpg"
-            alt="KHFF 2026 Artwork Jathilan"
-            className="w-full h-full object-cover object-[center_70%]"
+            src="/assets/background-baru.jpeg"
+            alt="KHFF 2026 Artwork Parade & Cinema Strip"
+            className="w-full h-full object-cover object-[center_bottom] sm:object-[center_85%]"
           />
         </div>
 
-        {/* Editorial Readability Gradient Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-khff-navy/85 via-khff-navy/60 to-khff-navy/90 md:from-khff-navy/75 md:via-khff-navy/50 md:to-khff-navy/85 pointer-events-none" />
+        {/* Editorial Readability Gradient Overlay - Lighter center to let sunset glow, dark bottom to seamlessly melt into Section 2 */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-khff-navy/70 via-khff-navy/30 to-khff-navy/95 pointer-events-none" />
 
-        {/* Center Text Container with High Contrast Gold/Cream Typography */}
+        {/* Center Text Container with High Contrast Typography & Subtle Glass Staging */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-black text-white mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
             KHFF <br /> 2026.
           </h1>
-          <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
-            <span className="text-khff-pink drop-shadow">
-              17-19 SEPTEMBER 2026
-            </span>{" "}
-            | YOGYAKARTA
+          <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
+            <span className="text-khff-pink drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
           </p>
-          <p className="text-base md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-            Kotabaru Heritage Film Festival. Merayakan persilangan sinema,
-            arsitektur masa lampau, dan pengarsipan sejarah di jantung
-            Yogyakarta.
+          <p className="text-base md:text-2xl text-khff-cream/95 max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)] bg-khff-navy/35 backdrop-blur-[3px] p-4 sm:p-6 rounded-2xl border border-white/15 shadow-2xl">
+            Kotabaru Heritage Film Festival. Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
           </p>
         </div>
       </section>
