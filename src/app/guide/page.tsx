@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export default function GuidePage() {
@@ -21,12 +22,12 @@ export default function GuidePage() {
         </div>
 
         <div className="container mx-auto max-w-4xl text-center relative z-20">
-          <button 
-            onClick={() => router.back()} 
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg bg-khff-yellow text-khff-navy font-black hover:bg-white mb-12 cursor-pointer"
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-12 transition-all text-sm font-black shadow-lg"
           >
-            <ArrowLeft size={16} /> <span>KEMBALI</span>
-          </button>
+            <ArrowLeft size={16} /> <span>KEMBALI KE BERANDA</span>
+          </Link>
 
 
 
