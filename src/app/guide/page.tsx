@@ -23,14 +23,12 @@ export default function GuidePage() {
         <div className="container mx-auto max-w-4xl text-center relative z-20">
           <button 
             onClick={() => router.back()} 
-            className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy font-mono text-sm font-black px-6 py-2.5 rounded-full hover:bg-white transition-all shadow-xl mb-12 cursor-pointer uppercase tracking-widest"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg bg-khff-yellow text-khff-navy font-black hover:bg-white mb-12 cursor-pointer"
           >
-            <ArrowLeft size={16} /> KEMBALI
+            <ArrowLeft size={16} /> <span>KEMBALI</span>
           </button>
 
-          <span className="block text-xs md:text-sm font-mono font-black uppercase tracking-[0.3em] text-khff-yellow mb-4">
-            Official Visitor Companion
-          </span>
+
 
           <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
             Festival Guide.
