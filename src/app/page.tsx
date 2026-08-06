@@ -422,7 +422,7 @@ export default function Home() {
       {/* 7. GALERI DOKUMENTASI REMOVED FROM HOME (MOVED TO NAVBAR /galeri) */}
 
       {/* 8. REGISTRASI G-FORM */}
-      <section className="py-32 bg-khff-pink text-white relative overflow-hidden">
+      <section className="py-32 bg-[#f07495] text-white relative overflow-hidden">
         <div className="hidden md:block absolute top-0 right-0 w-64 opacity-20 rotate-180 pointer-events-none">
           <img src="/assets/karakter/gedang.png" alt="" className="w-full" />
         </div>
@@ -431,7 +431,7 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-8xl font-serif font-black mb-6 drop-shadow-xl text-khff-navy">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-serif font-black mb-6 drop-shadow-xl text-[#1d4d4f]">
             Registrasi
           </h2>
           <p className="text-white font-medium max-w-2xl mx-auto mb-12 text-base sm:text-xl md:text-2xl drop-shadow-sm">
@@ -442,7 +442,7 @@ export default function Home() {
             href="https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 sm:gap-4 bg-khff-navy text-khff-cream px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-xl font-black hover:bg-white hover:text-khff-navy hover:scale-105 transition-all duration-300 shadow-2xl"
+            className="inline-flex items-center gap-3 sm:gap-4 bg-[#1d4d4f] text-[#f9ea88] px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-xl font-black hover:bg-white hover:text-[#1d4d4f] hover:scale-105 transition-all duration-300 shadow-2xl"
           >
             Isi Formulir Pendaftaran{" "}
             <ArrowRight size={22} className="shrink-0" />
