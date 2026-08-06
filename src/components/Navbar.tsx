@@ -47,9 +47,9 @@ export default function Navbar() {
           <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
           </Link>
-          <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
+          <Link href="/guide" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
-          </a>
+          </Link>
           <Link href="/galeri" className="hover:text-khff-yellow transition-colors">
             GALERI
           </Link>
@@ -101,14 +101,13 @@ export default function Navbar() {
             >
               JADWAL
             </Link>
-            <a
-              href="/festival-guide.pdf"
-              target="_blank" rel="noopener noreferrer"
+            <Link
+              href="/guide"
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               FESTIVAL GUIDE
-            </a>
+            </Link>
             <Link
               href="/galeri"
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
