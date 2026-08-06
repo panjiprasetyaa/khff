@@ -164,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* 3. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
-      <section className="py-28 bg-khff-navy text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
+      <section className="py-28 bg-gradient-to-br from-khff-navy to-khff-teal text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
         <div className="hidden md:block absolute top-0 right-0 w-80 h-auto opacity-10 pointer-events-none z-0 rotate-12">
           <img
@@ -316,8 +316,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. DRIVE IN CINEMA (SPECIAL PROGRAM) */}
-      <section className="py-24 bg-khff-navy border-t border-khff-cream/10 relative">
+      {/* 5. FESTIVAL GUIDE KICKER */}
+      <section className="py-24 bg-gradient-to-tr from-khff-teal to-khff-navy border-t border-khff-cream/10 relative">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="relative w-full min-h-[65vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
             {/* Foto Becak Asli Ngawi Background */}

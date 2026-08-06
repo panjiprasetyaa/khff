@@ -6,10 +6,11 @@
 }
 
 @theme {
-  --color-khff-navy: #1d4d4f;
-  --color-khff-yellow: #ecac2d;
-  --color-khff-pink: #f07495;
-  --color-khff-cream: #f9ea88;
+  --color-khff-navy: #1d404f;    /* Blue Navy (from PDF #1d404f) */
+  --color-khff-teal: #34685a;    /* Teal/Green (from PDF #34685a) */
+  --color-khff-yellow: #eead2f;  /* Mustard Yellow (from PDF #eead2f) */
+  --color-khff-pink: #e14c71;    /* Pink (from PDF #e14c71) */
+  --color-khff-cream: #f8ea98;   /* Cream (from PDF #f8ea98) */
   --font-sans: var(--font-outfit);
   --font-serif: var(--font-bricolage);
   --font-mono: var(--font-outfit);

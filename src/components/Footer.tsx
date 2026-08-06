@@ -1,12 +1,7 @@
 import { AtSign, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
-  const sponsors = [
-    { id: 1, name: "Jogja Istimewa", logo: "/assets/sponsor/jogja_istimewa-removebg-preview.png" },
-    { id: 2, name: "Kotabaru Heritage", logo: "/assets/sponsor/logo kotabaru.png" },
-    { id: 3, name: "Dinas Pendidikan YK", logo: "/assets/sponsor/logo_sponsor_dinas_pendidikan_yk-removebg-preview.png" },
-    { id: 4, name: "Official Partner", logo: "/assets/sponsor/Screenshot_2026-08-02_000140-removebg-preview.png" },
-  ];
+  const sponsorBanner = "/assets/sponsor-revisi.png";
 
   return (
     <footer className="bg-khff-navy text-khff-cream py-20 border-t border-khff-cream/20 font-sans relative overflow-hidden">
@@ -24,19 +19,12 @@ export default function Footer() {
           <span className="text-xs font-mono tracking-[0.3em] uppercase text-khff-yellow mb-8 block font-black">
             Supported By & Official Media Partners
           </span>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {sponsors.map((sponsor) => (
-              <div
-                key={sponsor.id}
-                className="p-4 bg-white/5 border border-khff-cream/15 rounded-2xl flex items-center justify-center transition-all duration-300 hover:bg-white/10 hover:-translate-y-1.5 hover:border-khff-yellow/50 shadow-lg group min-w-[140px] md:min-w-[180px] h-24 md:h-28"
-              >
-                <img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  className="h-12 md:h-16 max-w-[85%] w-auto object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
+          <div className="flex justify-center items-center px-4 w-full">
+            <img
+              src={sponsorBanner}
+              alt="Supported By & Official Media Partners"
+              className="w-full max-w-4xl h-auto object-contain filter drop-shadow-md hover:scale-[1.02] transition-transform duration-500"
+            />
           </div>
         </div>
 
@@ -45,7 +33,7 @@ export default function Footer() {
           <div className="md:col-span-4 space-y-6">
             <div className="inline-block">
               <img
-                src="/assets/logo-khff-slanted.png"
+                src="/assets/logo-orange.png"
                 alt="Kotabaru Heritage Film Festival Logo"
                 className="h-20 sm:h-24 w-auto object-contain drop-shadow-md mb-2"
               />

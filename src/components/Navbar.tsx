@@ -30,7 +30,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <img
-            src="/assets/logo-khff-slanted.png"
+            src="/assets/logo-orange.png"
             alt="Kotabaru Heritage Film Festival Logo"
             className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
