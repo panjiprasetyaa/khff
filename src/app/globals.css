@@ -6,7 +6,8 @@
 }
 
 @theme {
-  --color-khff-navy: #1d404f;    /* Blue Navy (from PDF #1d404f) */
+  --color-khff-navy: #1d4d4f;    /* Original Dark Green/Teal (Main Background) */
+  --color-khff-blue: #1d404f;    /* Blue Navy (from PDF for subtle gradient) */
   --color-khff-teal: #34685a;    /* Teal/Green (from PDF #34685a) */
   --color-khff-yellow: #eead2f;  /* Mustard Yellow (from PDF #eead2f) */
   --color-khff-pink: #e14c71;    /* Pink (from PDF #e14c71) */
