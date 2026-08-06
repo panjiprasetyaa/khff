@@ -262,7 +262,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-pink text-white rounded-full inline-block mb-6">
+                  <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-navy text-white rounded-full inline-block mb-6">
                     Education & Forum
                   </span>
                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">
