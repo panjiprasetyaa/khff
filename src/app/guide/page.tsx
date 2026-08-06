@@ -21,7 +21,7 @@ export default function GuidePage() {
           <img src="/assets/karakter/tebu.png" alt="Tebu" className="w-full h-auto" />
         </div>
 
-        <div className="container mx-auto max-w-4xl text-center relative z-20">
+        <div className="container mx-auto max-w-4xl relative z-20">
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-12 transition-all text-sm font-black shadow-lg"
@@ -29,21 +29,21 @@ export default function GuidePage() {
             <ArrowLeft size={16} /> <span>KEMBALI KE BERANDA</span>
           </Link>
 
+          <div className="text-center">
+            <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
+              Festival Guide.
+            </h1>
 
-
-          <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
-            Festival Guide.
-          </h1>
-
-          <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
-            <h3 className="text-2xl md:text-4xl font-serif font-black text-khff-yellow mb-6">
-              Panduan Menjelajahi Sinema & Warisan
-            </h3>
-            <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed mb-8">
-              Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 berisi direktori venue, peta rute becak Drive-In, jadwal penayangan lengkap, dan catatan kurator festival.
-            </p>
-            <div className="inline-block bg-khff-pink text-white px-8 py-4 rounded-2xl font-mono text-sm md:text-base font-black tracking-widest uppercase shadow-xl">
-              [ e-Book PDF Segera Tersedia ]
+            <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
+              <h3 className="text-2xl md:text-4xl font-serif font-black text-khff-yellow mb-6">
+                Panduan Menjelajahi Sinema & Warisan
+              </h3>
+              <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed mb-8">
+                Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 berisi direktori venue, peta rute becak Drive-In, jadwal penayangan lengkap, dan catatan kurator festival.
+              </p>
+              <div className="inline-block bg-khff-pink text-white px-8 py-4 rounded-2xl font-mono text-sm md:text-base font-black tracking-widest uppercase shadow-xl">
+                [ e-Book PDF Segera Tersedia ]
+              </div>
             </div>
           </div>
         </div>
