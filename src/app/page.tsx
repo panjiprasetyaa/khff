@@ -140,24 +140,21 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Swiper Slider for Posters with Transparent Arrows */}
-        <div className="px-6 lg:px-12 pt-6 pb-8 relative z-10 w-full group/swiper-container">
+        {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
+        <div className="relative z-10 w-full group/slider overflow-hidden">
           <Swiper
             modules={[Navigation]}
-            navigation={true}
+            navigation={{
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
+            }}
             spaceBetween={24}
             slidesPerView="auto"
-            className="w-full px-2 py-4 !overflow-visible"
-            style={{
-              "--swiper-navigation-color": "rgba(255, 255, 255, 0.7)",
-              "--swiper-navigation-size": "30px",
-            } as React.CSSProperties}
+            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
           >
             {praEvents.map((event) => (
               <SwiperSlide key={event.id} className="!w-auto !h-auto">
-                <div
-                  className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform"
-                >
+                <div className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform">
                   <img
                     src={event.image}
                     alt={event.judul}
@@ -177,6 +174,20 @@ export default function Home() {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Left Navigation Overlay (Netflix Style) */}
+          <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 lg:pl-6 cursor-pointer opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </div>
+          </div>
+
+          {/* Right Navigation Overlay (Netflix Style) */}
+          <div className="swiper-button-next-custom absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 lg:pr-6 cursor-pointer opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
         </div>
       </section>
 
