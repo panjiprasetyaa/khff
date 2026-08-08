@@ -173,7 +173,7 @@ export default function Home() {
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-24 pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-10 pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
                     <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
                       Panorama #{event.id}
                     </p>
