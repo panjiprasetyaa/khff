@@ -6,7 +6,7 @@ import { programs, specialPrograms, praEvents } from "@/data/dummy";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar } from "swiper/modules";
+import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
@@ -142,21 +142,25 @@ export default function Home() {
         </div>
 
         {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
-        <div className="relative z-10 w-full group/slider overflow-hidden">
+        <div className="relative z-10 w-full group/slider overflow-hidden pb-10">
           <Swiper
-            modules={[Navigation, Scrollbar]}
+            modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
             navigation={{
               nextEl: ".swiper-button-next-custom",
               prevEl: ".swiper-button-prev-custom",
             }}
             scrollbar={{ draggable: true, hide: false }}
+            freeMode={true}
+            mousewheel={{ forceToAxis: true }}
+            grabCursor={true}
             spaceBetween={24}
             slidesPerView="auto"
-            className="w-full px-6 lg:px-12 py-4 pb-16 !overflow-visible"
+            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
             style={{
-              "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.9)",
-              "--swiper-scrollbar-bg-color": "rgba(0, 0, 0, 0.2)",
-              "--swiper-scrollbar-bottom": "0px",
+              "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
+              "--swiper-scrollbar-bg-color": "transparent",
+              "--swiper-scrollbar-bottom": "-20px",
+              "--swiper-scrollbar-size": "5px",
             } as React.CSSProperties}
           >
             {praEvents.map((event) => (
