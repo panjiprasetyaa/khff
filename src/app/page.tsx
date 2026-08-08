@@ -6,9 +6,10 @@ import { programs, specialPrograms, praEvents } from "@/data/dummy";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 const homepageSchedule = [
   {
@@ -143,14 +144,20 @@ export default function Home() {
         {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
         <div className="relative z-10 w-full group/slider overflow-hidden">
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Scrollbar]}
             navigation={{
               nextEl: ".swiper-button-next-custom",
               prevEl: ".swiper-button-prev-custom",
             }}
+            scrollbar={{ draggable: true, hide: false }}
             spaceBetween={24}
             slidesPerView="auto"
-            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
+            className="w-full px-6 lg:px-12 py-4 pb-16 !overflow-visible"
+            style={{
+              "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.9)",
+              "--swiper-scrollbar-bg-color": "rgba(0, 0, 0, 0.2)",
+              "--swiper-scrollbar-bottom": "0px",
+            } as React.CSSProperties}
           >
             {praEvents.map((event) => (
               <SwiperSlide key={event.id} className="!w-auto !h-auto">
