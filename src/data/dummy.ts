@@ -18,6 +18,9 @@ export interface Program {
   films: Film[];
 }
 
+// Menentukan apakah proses kurasi sedang berlangsung (menampilkan placeholder)
+export const IS_CURATION_ONGOING = true;
+
 // Mengekspor data film langsung dari JSON
 export const films: Record<string, Film> = data.films;
 

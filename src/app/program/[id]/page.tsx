@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useState } from "react";
-import { programs, specialPrograms } from "@/data/dummy";
+import { programs, specialPrograms, IS_CURATION_ONGOING } from "@/data/dummy";
 import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
 import Link from "next/link";
@@ -277,8 +277,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 <div className="lg:col-span-5 flex flex-col items-center">
                   <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow relative group">
                     <img 
-                      src={currentEvent.image} 
-                      alt={currentEvent.speaker} 
+                      src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : currentEvent.image} 
+                      alt={IS_CURATION_ONGOING ? currentEvent.type : currentEvent.speaker} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-khff-navy via-transparent to-transparent opacity-80" />
@@ -298,29 +298,30 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                       {currentEvent.type} Session
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-black text-white mb-4 leading-tight">
-                      {currentEvent.title}
+                      {IS_CURATION_ONGOING ? currentEvent.type : currentEvent.title}
                     </h2>
                     <p className="text-khff-pink font-bold text-lg mb-6">
-                      {currentEvent.role}
+                      {IS_CURATION_ONGOING ? "—" : currentEvent.role}
                     </p>
                     <p className="text-khff-cream/90 text-lg md:text-xl font-medium leading-relaxed mb-8">
-                      {currentEvent.desc}
+                      {IS_CURATION_ONGOING ? "Proses kurasi program sedang berlangsung. Informasi detail akan segera diumumkan." : currentEvent.desc}
                     </p>
 
                     <div className="flex flex-wrap gap-4 font-mono font-bold text-base mb-10">
                       <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <CalendarDays size={20} className="text-khff-yellow"/> {currentEvent.date}
+                        <CalendarDays size={20} className="text-khff-yellow"/> {IS_CURATION_ONGOING ? "—" : currentEvent.date}
                       </span>
                       <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <Clock size={20} className="text-khff-pink"/> {currentEvent.time}
+                        <Clock size={20} className="text-khff-pink"/> {IS_CURATION_ONGOING ? "—" : currentEvent.time}
                       </span>
                       <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <MapPin size={20} className="text-white"/> {currentEvent.location}
+                        <MapPin size={20} className="text-white"/> {IS_CURATION_ONGOING ? "—" : currentEvent.location}
                       </span>
                     </div>
                   </div>
 
                   {/* TOMBOL DAFTAR SEKARANG -> LINK GOOGLE FORM */}
+                  {!IS_CURATION_ONGOING && (
                   <div className="pt-8 border-t border-khff-cream/10 flex flex-col sm:flex-row items-center justify-between gap-6">
                     <div>
                       <span className="text-sm text-khff-cream/70 font-mono block">Biaya pendaftaran: <strong className="text-white uppercase font-bold">Gratis (Tempat Terbatas)</strong></span>
@@ -335,8 +336,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                       Daftar Sekarang <ExternalLink size={24} />
                     </a>
                   </div>
+                  )}
                 </div>
-
               </div>
             </div>
           </div>

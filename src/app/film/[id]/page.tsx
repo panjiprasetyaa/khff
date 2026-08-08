@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, use, useEffect } from "react";
-import { films } from "@/data/dummy";
+import { films, programs, IS_CURATION_ONGOING } from "@/data/dummy";
 import { Play, X, ArrowLeft } from "lucide-react";
 import { notFound, useRouter } from "next/navigation";
 
@@ -9,6 +9,15 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
   const unwrappedParams = use(params);
   const router = useRouter();
   const film = films[unwrappedParams.id];
+  const program = programs.find(p => p.films.some(f => f.id === film.id));
+
+  const displayTitle = IS_CURATION_ONGOING ? (program?.name.replace('Program ', '') || "Karya Terpilih") : film.title;
+  const displayYear = IS_CURATION_ONGOING ? "—" : film.year;
+  const displayDuration = IS_CURATION_ONGOING ? "—" : `${film.duration} Menit`;
+  const displayDirector = IS_CURATION_ONGOING ? "—" : film.director;
+  const displaySynopsis = IS_CURATION_ONGOING 
+    ? "Proses kurasi film tengah berlangsung. Nantikan daftar film terpilih yang akan hadir di Kotabaru Heritage Film Festival 2026." 
+    : film.synopsis;
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
@@ -50,7 +59,8 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
           {/* Poster Section */}
           <div className="md:col-span-5 lg:col-span-4">
             <div className="relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/40 group cursor-pointer" onClick={() => setIsVideoOpen(true)}>
-              <img src={film.posterUrl} alt={film.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : film.posterUrl} alt={displayTitle} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
               <div className="absolute inset-0 bg-khff-navy/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-20 h-20 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.6)] group-hover:scale-110 transition-transform">
                   <Play size={32} fill="currentColor" className="ml-1" />
@@ -66,22 +76,22 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
                 Official Festival Selection
               </span>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white mb-8 leading-tight drop-shadow-lg">
-                {film.title}
+                {displayTitle}
               </h1>
 
               {/* Editorial Ticket-Style Spec Box */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 border-y border-khff-cream/20 py-6 mb-10 font-mono text-sm bg-white/5 px-4 sm:px-6 rounded-2xl shadow-inner">
                 <div>
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Tahun Rilis</span>
-                  <span className="text-khff-yellow font-bold text-base sm:text-lg">{film.year}</span>
+                  <span className="text-khff-yellow font-bold text-base sm:text-lg">{displayYear}</span>
                 </div>
                 <div className="border-l border-khff-cream/20 pl-3 sm:pl-4">
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Durasi Film</span>
-                  <span className="text-white font-bold text-base sm:text-lg">{film.duration} Menit</span>
+                  <span className="text-white font-bold text-base sm:text-lg">{displayDuration}</span>
                 </div>
                 <div className="border-l border-khff-cream/20 pl-3 sm:pl-4">
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Sutradara</span>
-                  <span className="text-khff-pink font-bold text-base sm:text-lg truncate block">{film.director}</span>
+                  <span className="text-khff-pink font-bold text-base sm:text-lg truncate block">{displayDirector}</span>
                 </div>
               </div>
 
@@ -90,7 +100,7 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
                   <span className="w-8 h-1 bg-khff-pink rounded-full"></span> Sinopsis Cerita
                 </h3>
                 <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-12">
-                  {film.synopsis}
+                  {displaySynopsis}
                 </p>
               </div>
             </div>

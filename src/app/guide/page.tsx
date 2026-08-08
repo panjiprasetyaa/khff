@@ -21,14 +21,9 @@ export default function GuidePage() {
           <img src="/assets/karakter/tebu.png" alt="Tebu" className="w-full h-auto" />
         </div>
 
-        <div className="container mx-auto max-w-4xl relative z-20">
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-2 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-12 transition-all text-sm font-black shadow-lg"
-          >
-            <ArrowLeft size={16} /> <span>KEMBALI KE BERANDA</span>
-          </Link>
 
+
+        <div className="container mx-auto max-w-4xl relative z-20">
           <div className="text-center">
             <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
               Festival Guide.
