@@ -110,7 +110,9 @@ export default function Home() {
             Kotabaru Heritage <br /> Film Festival <br /> 2026.
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
-            <span className="text-khff-pink drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 SEPTEMBER 2026</span> | YOGYAKARTA
+            <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 SEPTEMBER 2026</span>
+            <br></br>
+            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
           </p>
           <p className="text-base md:text-2xl text-khff-cream max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)]">
             Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
@@ -362,11 +364,11 @@ export default function Home() {
             {/* Foto Becak Asli Ngawi Background */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img
-                src="/assets/sponsor/becak.jpg"
+                src="/assets/sponsor/becakk.jpg"
                 alt="Drive In Cinema Becak"
-                className="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 transition-transform duration-1000"
+                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-1000"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/85 to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/40 to-transparent z-10" />
             </div>
 
             <div className="relative z-20 p-8 md:p-20 max-w-3xl">
