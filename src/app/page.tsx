@@ -5,6 +5,10 @@ import { ArrowRight, PlayCircle, Play, X, ExternalLink } from "lucide-react";
 import { programs, specialPrograms, praEvents } from "@/data/dummy";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const homepageSchedule = [
   {
@@ -136,30 +140,43 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Horizontal Scroll Posters with Sleek Mini Custom Scrollbar Indicator */}
-        <div className="flex overflow-x-auto gap-6 px-6 lg:px-12 pt-6 pb-8 snap-x custom-mini-scrollbar scroll-smooth relative z-10">
-          {praEvents.map((event) => (
-            <div
-              key={event.id}
-              className="snap-center shrink-0 w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform"
-            >
-              <img
-                src={event.image}
-                alt={event.judul}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
-                <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1">
-                  Panorama #{event.id}
-                </p>
-                <p className="text-white font-serif font-black text-base text-center leading-snug">
-                  {event.judul}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Swiper Slider for Posters with Transparent Arrows */}
+        <div className="px-6 lg:px-12 pt-6 pb-8 relative z-10 w-full group/swiper-container">
+          <Swiper
+            modules={[Navigation]}
+            navigation={true}
+            spaceBetween={24}
+            slidesPerView="auto"
+            className="w-full px-2 py-4 !overflow-visible"
+            style={{
+              "--swiper-navigation-color": "rgba(255, 255, 255, 0.7)",
+              "--swiper-navigation-size": "30px",
+            } as React.CSSProperties}
+          >
+            {praEvents.map((event) => (
+              <SwiperSlide key={event.id} className="!w-auto !h-auto">
+                <div
+                  className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform"
+                >
+                  <img
+                    src={event.image}
+                    alt={event.judul}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
+                    <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1">
+                      Panorama #{event.id}
+                    </p>
+                    <p className="text-white font-serif font-black text-base text-center leading-snug">
+                      {event.judul}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 
