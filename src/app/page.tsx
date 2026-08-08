@@ -173,11 +173,11 @@ export default function Home() {
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/60 to-transparent p-4 translate-y-2 group-hover:translate-y-0 opacity-90 transition-all">
-                    <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy/95 via-khff-navy/80 to-transparent pt-16 pb-6 px-4 translate-y-2 group-hover:translate-y-0 opacity-100 transition-all backdrop-blur-md">
+                    <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
                       Panorama #{event.id}
                     </p>
-                    <p className="text-white font-serif font-black text-base text-center leading-snug">
+                    <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
                       {event.judul}
                     </p>
                   </div>
