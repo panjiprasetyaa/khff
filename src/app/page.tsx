@@ -116,10 +116,10 @@ export default function Home() {
           <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
             Kotabaru Heritage <br /> Film Festival <br /> 2026
           </h1>
-          <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
+          <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-bold py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
             <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 September 2026</span>
             <br></br>
-            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">- Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
+            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
           </p>
           <p className="text-base md:text-2xl text-khff-cream max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)]">
             Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
