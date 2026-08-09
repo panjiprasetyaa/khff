@@ -144,7 +144,7 @@ export default function Home() {
         </div>
 
         {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
-        <div className="relative z-10 w-full group/slider overflow-hidden pb-10">
+        <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-10">
           <Swiper
             modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
             navigation={{
@@ -167,15 +167,15 @@ export default function Home() {
           >
             {praEvents.map((event) => (
               <SwiperSlide key={event.id} className="!w-auto !h-auto">
-                <div className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 transition-all duration-500 transform-gpu will-change-transform">
+                <div className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03] transition-all duration-500 transform-gpu will-change-transform cursor-pointer">
                   <img
                     src={event.image}
                     alt={event.judul}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 transform-gpu"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-10 pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
                     <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
                       Panorama #{event.id}
                     </p>
