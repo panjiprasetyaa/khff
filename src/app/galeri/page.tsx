@@ -98,20 +98,20 @@ export default function GaleriPage() {
                 </div>
               </SwiperSlide>
             ))}
+            
+            {/* Navigation Arrows */}
+            <button className={`swiper-prev-${slug} absolute left-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+              <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button className={`swiper-next-${slug} absolute right-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+              <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+            </button>
+            
+            {/* Custom Scrollbar */}
+            <div className="container mx-auto max-w-6xl px-6 relative mt-8">
+              <div className={`swiper-scrollbar-${slug} !relative !h-1.5 !bg-white/10 rounded-full overflow-hidden`} style={{ '--swiper-scrollbar-drag-bg-color': '#f2e8d3' } as React.CSSProperties}></div>
+            </div>
           </Swiper>
-
-          {/* Navigation Arrows */}
-          <button className={`swiper-prev-${slug} absolute left-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
-            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
-          </button>
-          <button className={`swiper-next-${slug} absolute right-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
-            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-          </button>
-          
-          {/* Custom Scrollbar */}
-          <div className="container mx-auto max-w-6xl px-6 relative mt-8">
-            <div className={`swiper-scrollbar-${slug} !relative !h-1.5 !bg-white/10 rounded-full overflow-hidden`} style={{ '--swiper-scrollbar-drag-bg-color': '#f2e8d3' } as React.CSSProperties}></div>
-          </div>
         </div>
       </div>
     );
