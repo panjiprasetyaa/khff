@@ -58,19 +58,22 @@ export default function GaleriPage() {
     "/assets/galeri/2023/Salinan dari TUP02338.JPG"
   ];
 
-  const renderGallerySlider = (year: string, photos: string[]) => {
+  const renderGallerySlider = (year: string, photos: string[], colorTheme: { border: string, line: string, bg: string }) => {
     const slug = year.replace(/\s+/g, '-').toLowerCase();
-    
-    return (
-      <div className="mb-24">
-        <div className="container mx-auto px-6 max-w-6xl relative z-10 mb-8">
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-cream drop-shadow-md">
-            {year}
-          </h2>
-          <div className="w-24 h-2 bg-khff-pink mt-4"></div>
-        </div>
 
-        <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-12">
+    return (
+      <div className="mb-24 container mx-auto px-6 max-w-7xl">
+        {/* Title placed OUTSIDE and ABOVE the card */}
+        <div className="mb-6 flex flex-col items-center md:items-start">
+          <h3 className="text-4xl md:text-5xl font-serif font-black text-khff-cream mb-3 drop-shadow-md">
+            {year}
+          </h3>
+          <div className={`w-24 h-2 ${colorTheme.line} rounded-full`}></div>
+        </div>
+        
+        {/* The Card Container that wraps ONLY the photos */}
+        <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg} p-6 md:p-10 lg:p-12`}>
+          
           <Swiper
             modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
             navigation={{
@@ -83,33 +86,33 @@ export default function GaleriPage() {
             slidesPerView="auto"
             spaceBetween={24}
             grabCursor={true}
-            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
+            className="w-full !overflow-visible"
           >
             {photos.map((photo, index) => (
               <SwiperSlide key={index} className="!w-auto !h-auto">
-                <div className="relative w-[300px] md:w-[480px] aspect-[3/2] rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-khff-cream/10 transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.03] bg-black/20">
+                <div className="relative w-[280px] md:w-[450px] aspect-[3/2] rounded-2xl overflow-hidden shadow-2xl group/card cursor-pointer border-2 border-white/10 transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.03] bg-black/40">
                   <img
                     src={photo}
                     alt={`Highlight ${year} - ${index + 1}`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover/card:brightness-110 transition-all duration-500"
                   />
                 </div>
               </SwiperSlide>
             ))}
             
-            {/* Navigation Arrows */}
-            <button className={`swiper-prev-${slug} absolute left-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+            {/* Navigation Arrows inside the Card */}
+            <button className={`swiper-prev-${slug} absolute left-2 md:left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <button className={`swiper-next-${slug} absolute right-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+            <button className={`swiper-next-${slug} absolute right-2 md:right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
             </button>
             
-            {/* Custom Scrollbar */}
-            <div className="container mx-auto max-w-6xl px-6 relative mt-8">
-              <div className={`swiper-scrollbar-${slug} !relative !h-1.5 !bg-white/10 rounded-full overflow-hidden`} style={{ '--swiper-scrollbar-drag-bg-color': '#f2e8d3' } as React.CSSProperties}></div>
+            {/* Custom Scrollbar inside the Card */}
+            <div className="relative mt-10 w-full px-4">
+              <div className={`swiper-scrollbar-${slug} !relative !h-2 !bg-black/30 rounded-full overflow-hidden shadow-inner`} style={{ '--swiper-scrollbar-drag-bg-color': 'rgba(255,255,255,0.7)' } as React.CSSProperties}></div>
             </div>
           </Swiper>
         </div>
@@ -147,9 +150,9 @@ export default function GaleriPage() {
           <img src="/assets/karakter/gong.png" alt="" className="w-full h-auto" />
         </div>
 
-        {renderGallerySlider("KHFF 2025", galeri2025)}
-        {renderGallerySlider("KHFF 2024", galeri2024)}
-        {renderGallerySlider("KHFF 2023", galeri2023)}
+        {renderGallerySlider("KHFF 2025", galeri2025, { border: "border-khff-pink", line: "bg-khff-pink", bg: "bg-[#143638]" })}
+        {renderGallerySlider("KHFF 2024", galeri2024, { border: "border-khff-yellow", line: "bg-khff-yellow", bg: "bg-khff-navy" })}
+        {renderGallerySlider("KHFF 2023", galeri2023, { border: "border-white/40", line: "bg-white/70", bg: "bg-[#1f4a4c]" })}
 
       </section>
     </main>
