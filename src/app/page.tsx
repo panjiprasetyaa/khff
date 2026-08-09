@@ -114,12 +114,12 @@ export default function Home() {
         {/* Center Text Container with High Contrast Typography & Subtle Glass Staging */}
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
           <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
-            Kotabaru Heritage <br /> Film Festival <br /> 2026.
+            Kotabaru Heritage <br /> Film Festival <br /> 2026
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
-            <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 SEPTEMBER 2026</span>
+            <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 September 2026</span>
             <br></br>
-            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
+            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">- Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
           </p>
           <p className="text-base md:text-2xl text-khff-cream max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)]">
             Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
@@ -131,13 +131,16 @@ export default function Home() {
       <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
           <span className="text-xs uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-5 py-1.5 rounded-full inline-block mb-6 shadow-md">
-            Road To KHFF
+            Pra Event KHFF 2026
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">
-            Pra-Event Panorama.
+            Panorama
           </h2>
-          <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow">
-            Periode Penayangan: 1 September - 15 September 2026
+          <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow mb-6">
+            Periode Penayangan : 19 Juli - 12 September 2026
+          </p>
+          <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
+            PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival (KHFF) 2026 yang menghadirkan kembali sepuluh film pendek Program Panorama KHFF 2024 melalui kanal YouTube @kebudayaanjogjakota. Didukung oleh Dinas Kebudayaan Kota Yogyakarta, satu film akan tayang setiap minggu sebagai bagian dari perjalanan menuju KHFF 2026.
           </p>
           <a
             href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
@@ -223,16 +226,15 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="text-center mb-20 max-w-3xl mx-auto">
+          <div className="text-center mb-20 max-w-4xl mx-auto">
             <span className="text-xs font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-3">
-              Festival Pillars
+              Program Festival
             </span>
             <h2 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight">
-              Tiga Pilar Utama.
+              Tiga Program Utama
             </h2>
             <p className="text-khff-cream/80 text-lg md:text-xl font-medium leading-relaxed">
-              Jelajahi kompetisi sineas nusantara, kurasi penayangan warisan
-              budaya, dan lokakarya edukatif dalam satu nafas perayaan.
+              Kotabaru Heritage Film Festival 2026 menghadirkan tiga program utama yang mengajak setiap pengunjung untuk menikmati film, berbagi cerita, dan membangun koneksi dalam pengalaman festival yang merayakan warisan budaya bersama.
             </p>
           </div>
 

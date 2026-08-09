@@ -64,20 +64,20 @@
   "programs": [
     {
       "id": "mahaditya",
-      "name": "Program Mahaditya",
-      "description": "Program Pemutaran Kompetisi utama untuk film-film pendek dengan penceritaan yang kuat dan penyutradaraan yang matang.",
+      "name": "Mahaditya Awards",
+      "description": "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan.",
       "filmIds": ["budi-pekerti", "autobiography"]
     },
     {
       "id": "purwaseswa",
-      "name": "Program Purwaseswa",
-      "description": "Program Pemutaran Kompetisi yang menyoroti inovasi visual, eksperimen gaya, dan sutradara pendatang baru.",
+      "name": "Purwaseswa Awards",
+      "description": "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia.",
       "filmIds": ["yuni", "27-steps-of-may"]
     },
     {
       "id": "karyanagri",
-      "name": "Program Karyanagri",
-      "description": "Program Pemutaran Kompetisi untuk film-film yang mengangkat kearifan lokal, sejarah, dan isu sosial Nusantara.",
+      "name": "Karyanagri Awards",
+      "description": "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional.",
       "filmIds": ["penyalin-cahaya", "kucumbu-tubuh-indahku"]
     },
     {
