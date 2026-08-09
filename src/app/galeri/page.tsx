@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Navigation, Mousewheel, Pagination } from "swiper/modules";
+import { Navigation, Mousewheel, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -78,12 +78,17 @@ export default function GaleriPage() {
         <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg}`}>
           
           <Swiper
-            modules={[Navigation, Mousewheel, Pagination]}
+            modules={[Navigation, Mousewheel, Pagination, Autoplay]}
             navigation={{
               nextEl: `.swiper-next-${slug}`,
               prevEl: `.swiper-prev-${slug}`,
             }}
             pagination={{ clickable: true }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             mousewheel={{ forceToAxis: true }}
             slidesPerView="auto"
             centeredSlides={true}
