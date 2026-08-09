@@ -88,15 +88,26 @@ export default function GaleriPage() {
           >
             {photos.map((photo, index) => (
               <SwiperSlide key={index} className="w-full h-full">
-                <div className="relative w-full h-full bg-black flex items-center justify-center">
+                <div className="relative w-full h-full bg-khff-navy flex items-center justify-center overflow-hidden">
+                  {/* Blurred Background to fill empty spaces */}
+                  <div className="absolute inset-0 z-0">
+                    <img 
+                      src={photo} 
+                      alt="" 
+                      className="w-full h-full object-cover blur-2xl opacity-60 scale-110"
+                    />
+                    <div className="absolute inset-0 bg-khff-navy/30"></div>
+                  </div>
+                  
+                  {/* Main Photo (Uncropped) */}
                   <img
                     src={photo}
                     alt={`Highlight ${year} - ${index + 1}`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain transition-transform duration-1000 group-hover/slider:scale-105"
+                    className="relative z-10 w-full h-full object-contain transition-transform duration-1000 group-hover/slider:scale-[1.02] drop-shadow-2xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                  <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
               </SwiperSlide>
             ))}
