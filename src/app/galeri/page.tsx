@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ExternalLink, FolderOpen } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
@@ -12,39 +12,7 @@ import "swiper/css/free-mode";
 export default function GaleriPage() {
   const router = useRouter();
 
-  // 2026 Albums (HIDDEN FOR NOW PER INSTRUCTION)
-  const albums = [
-    {
-      day: "Day 1",
-      title: "Opening Ceremony & Kuliner",
-      date: "17 September 2026",
-      desc: "Foto suasana Aktivasi Tenant, Registrasi Drive-In Becak, Upacara Pembukaan, dan Screening Film Pembuka di Pasar Terban.",
-      driveUrl: "https://drive.google.com",
-      asset: "/assets/karakter/gedang.png",
-      bg: "bg-khff-yellow text-khff-navy border-khff-yellow",
-      tag: "bg-khff-navy text-khff-yellow"
-    },
-    {
-      day: "Day 2",
-      title: "Public Screening & Awards",
-      date: "18 September 2026",
-      desc: "Dokumentasi Mahaditya, Purwaseswa & Karyanagri Awards, screening Heritage, Directors Talks, serta antusiasme penonton di PDIN.",
-      driveUrl: "https://drive.google.com",
-      asset: "/assets/karakter/tebu.png",
-      bg: "bg-khff-pink text-white border-khff-pink",
-      tag: "bg-white text-khff-pink"
-    },
-    {
-      day: "Day 3",
-      title: "Festival & Closing Ceremony",
-      date: "19 September 2026",
-      desc: "Arsip visual penayangan National Heritage #2, KHFF Rewind #2, Malam Penganugerahan (Awarding Ceremony), dan penutupan festival di Lobby PDIN.",
-      driveUrl: "https://drive.google.com",
-      asset: "/assets/karakter/terompet.png",
-      bg: "bg-white text-khff-navy border-white",
-      tag: "bg-khff-navy text-white"
-    }
-  ];
+  // 2026 Albums (REMOVED UNTUK SEMENTARA, ADA DI GIT HISTORY)
 
   const galeri2025 = [
     "/assets/galeri/2025/KHFF DAY 1-1.jpg",
@@ -183,55 +151,6 @@ export default function GaleriPage() {
         {renderGallerySlider("KHFF 2024", galeri2024)}
         {renderGallerySlider("KHFF 2023", galeri2023)}
 
-        {/* 2026 ALBUMS GRID SECTION (HIDDEN FOR NOW) */}
-        {/* 
-        <div className="container mx-auto px-6 max-w-6xl relative z-10 mb-8 mt-12">
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-cream drop-shadow-md">
-            Arsip 2026
-          </h2>
-          <div className="w-24 h-2 bg-khff-yellow mt-4 mb-12"></div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {albums.map((album, idx) => (
-              <a 
-                key={idx} 
-                href={album.driveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="block group h-full"
-              >
-                <div className={\`rounded-3xl p-8 md:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[440px] \${album.bg}\`}>
-                  
-                  <div className="absolute right-4 bottom-4 opacity-35 w-40 pointer-events-none group-hover:scale-110 group-hover:opacity-60 transition-all duration-700">
-                    <img src={album.asset} alt="" className="w-full h-auto object-contain drop-shadow-md" />
-                  </div>
-
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-center mb-6">
-                      <span className={\`text-xs font-mono font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm \${album.tag}\`}>
-                        {album.day}
-                      </span>
-                      <FolderOpen size={24} className="opacity-70 group-hover:scale-110 transition-transform" />
-                    </div>
-
-                    <p className="text-sm font-mono font-bold opacity-80 mb-2">{album.date}</p>
-                    <h3 className="text-3xl font-serif font-black mb-4 leading-tight">
-                      {album.title}
-                    </h3>
-                    <p className="text-base font-medium opacity-90 leading-relaxed mb-8">
-                      {album.desc}
-                    </p>
-                  </div>
-
-                  <div className="relative z-10 pt-6 border-t border-black/20 font-mono font-black text-base flex items-center justify-between group-hover:translate-x-1 transition-transform">
-                    <span className="flex items-center gap-2">Buka Folder GDrive <ExternalLink size={18} /></span>
-                    <span className="text-2xl">→</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-        */}
       </section>
     </main>
   );
