@@ -94,10 +94,17 @@ export default function Home() {
       <section className="relative min-h-[92vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-khff-navy pt-36 pb-24">
         {/* Full Artwork Background with Aspect Ratio Preservation (No Stretched / Gepeng Distortion) */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          {/* Portrait Image for Mobile */}
+          <img
+            src="/assets/cover-web-potrait.png"
+            alt="KHFF 2026 Artwork Parade & Cinema Strip (Portrait)"
+            className="block sm:hidden w-full h-full object-cover object-center"
+          />
+          {/* Landscape Image for Desktop */}
           <img
             src="/assets/background-baru.jpeg"
             alt="KHFF 2026 Artwork Parade & Cinema Strip"
-            className="w-full h-full object-cover object-[center_bottom] sm:object-[center_85%]"
+            className="hidden sm:block w-full h-full object-cover object-[center_bottom] sm:object-[center_85%]"
           />
         </div>
 
