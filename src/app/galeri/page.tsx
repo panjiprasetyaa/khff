@@ -94,7 +94,7 @@ export default function GaleriPage() {
             centeredSlides={true}
             spaceBetween={0}
             grabCursor={true}
-            className={`w-full h-auto md:h-[70vh] !pb-12 ${slug}-swiper`}
+            className={`w-full h-auto md:h-[70vh] !pt-8 !pb-14 ${slug}-swiper`}
           >
             {photos.map((photo, index) => (
               <SwiperSlide key={index} className="w-full md:!w-auto h-auto md:h-full px-0 md:px-2 transition-all duration-500 flex items-center justify-center">
