@@ -91,15 +91,15 @@ export default function GaleriPage() {
             className={`w-full h-[50vh] md:h-[70vh] !pb-12 ${slug}-swiper`}
           >
             {photos.map((photo, index) => (
-              <SwiperSlide key={index} className="w-[85%] md:w-[70%] h-full transition-all duration-500">
+              <SwiperSlide key={index} className="!w-auto h-full px-1 md:px-2 transition-all duration-500">
                 {({ isActive }) => (
-                  <div className={`relative w-full h-full bg-black flex items-center justify-center overflow-hidden transition-all duration-500 ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}>
+                  <div className={`relative h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-60 scale-95 blur-[3px] z-0'}`}>
                     <img
                       src={photo}
                       alt={`Highlight ${year} - ${index + 1}`}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-contain transition-transform duration-1000 group-hover/slider:scale-[1.02]"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/slider:scale-[1.02]"
                     />
                     <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                   </div>
