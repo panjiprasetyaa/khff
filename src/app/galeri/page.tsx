@@ -3,9 +3,11 @@
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Mousewheel } from "swiper/modules";
+
+import { Navigation, Mousewheel, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
 
@@ -75,40 +77,33 @@ export default function GaleriPage() {
         <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg}`}>
           
           <Swiper
-            modules={[Navigation, Mousewheel]}
+            modules={[Navigation, Mousewheel, Pagination]}
             navigation={{
               nextEl: `.swiper-next-${slug}`,
               prevEl: `.swiper-prev-${slug}`,
             }}
+            pagination={{ clickable: true }}
             mousewheel={{ forceToAxis: true }}
-            slidesPerView={1}
+            slidesPerView="auto"
+            centeredSlides={true}
             spaceBetween={0}
             grabCursor={true}
-            className="w-full h-[50vh] md:h-[70vh] !overflow-hidden"
+            className={`w-full h-[50vh] md:h-[70vh] !pb-12 ${slug}-swiper`}
           >
             {photos.map((photo, index) => (
-              <SwiperSlide key={index} className="w-full h-full">
-                <div className="relative w-full h-full bg-khff-navy flex items-center justify-center overflow-hidden">
-                  {/* Blurred Background to fill empty spaces */}
-                  <div className="absolute inset-0 z-0">
-                    <img 
-                      src={photo} 
-                      alt="" 
-                      className="w-full h-full object-cover blur-2xl opacity-60 scale-110"
+              <SwiperSlide key={index} className="w-[85%] md:w-[70%] h-full transition-all duration-500">
+                {({ isActive }) => (
+                  <div className={`relative w-full h-full bg-black flex items-center justify-center overflow-hidden transition-all duration-500 ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}>
+                    <img
+                      src={photo}
+                      alt={`Highlight ${year} - ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/slider:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 bg-khff-navy/30"></div>
+                    <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                   </div>
-                  
-                  {/* Main Photo (Uncropped) */}
-                  <img
-                    src={photo}
-                    alt={`Highlight ${year} - ${index + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="relative z-10 w-full h-full object-contain transition-transform duration-1000 group-hover/slider:scale-[1.02] drop-shadow-2xl"
-                  />
-                  <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                </div>
+                )}
               </SwiperSlide>
             ))}
             
