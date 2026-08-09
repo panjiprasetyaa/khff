@@ -72,48 +72,42 @@ export default function GaleriPage() {
         </div>
         
         {/* The Card Container that wraps ONLY the photos */}
-        <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg} p-6 md:p-10 lg:p-12`}>
+        <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg}`}>
           
           <Swiper
-            modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
+            modules={[Navigation, FreeMode, Mousewheel]}
             navigation={{
               nextEl: `.swiper-next-${slug}`,
               prevEl: `.swiper-prev-${slug}`,
             }}
-            scrollbar={{ draggable: true, hide: false, el: `.swiper-scrollbar-${slug}` }}
-            freeMode={true}
             mousewheel={{ forceToAxis: true }}
-            slidesPerView="auto"
-            spaceBetween={24}
+            slidesPerView={1}
+            spaceBetween={0}
             grabCursor={true}
-            className="w-full !overflow-visible"
+            className="w-full h-[50vh] md:h-[70vh] !overflow-hidden"
           >
             {photos.map((photo, index) => (
-              <SwiperSlide key={index} className="!w-auto !h-auto">
-                <div className="relative w-[280px] md:w-[450px] aspect-[3/2] rounded-2xl overflow-hidden shadow-2xl group/card cursor-pointer border-2 border-white/10 transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.03] bg-black/40">
+              <SwiperSlide key={index} className="w-full h-full">
+                <div className="relative w-full h-full bg-black">
                   <img
                     src={photo}
                     alt={`Highlight ${year} - ${index + 1}`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover group-hover/card:brightness-110 transition-all duration-500"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/slider:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
               </SwiperSlide>
             ))}
             
             {/* Navigation Arrows inside the Card */}
-            <button className={`swiper-prev-${slug} absolute left-2 md:left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
+            <button className={`swiper-prev-${slug} absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <button className={`swiper-next-${slug} absolute right-2 md:right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
+            <button className={`swiper-next-${slug} absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 hover:bg-khff-yellow hover:text-khff-navy hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-xl`}>
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
             </button>
-            
-            {/* Custom Scrollbar inside the Card */}
-            <div className="relative mt-10 w-full px-4">
-              <div className={`swiper-scrollbar-${slug} !relative !h-2 !bg-black/30 rounded-full overflow-hidden shadow-inner`} style={{ '--swiper-scrollbar-drag-bg-color': 'rgba(255,255,255,0.7)' } as React.CSSProperties}></div>
-            </div>
           </Swiper>
         </div>
       </div>
