@@ -2,6 +2,7 @@
 
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Navigation, Mousewheel, Pagination } from "swiper/modules";
@@ -94,12 +95,13 @@ export default function GaleriPage() {
               <SwiperSlide key={index} className="!w-auto h-full px-1 md:px-2 transition-all duration-500">
                 {({ isActive }) => (
                   <div className={`relative h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-60 scale-95 blur-[3px] z-0'}`}>
-                    <img
+                    <Image
                       src={photo}
                       alt={`Highlight ${year} - ${index + 1}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/slider:scale-[1.02]"
+                      fill
+                      sizes="(max-width: 768px) 85vw, 70vw"
+                      quality={75}
+                      className="object-cover transition-transform duration-1000 group-hover/slider:scale-[1.02]"
                     />
                     <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                   </div>
