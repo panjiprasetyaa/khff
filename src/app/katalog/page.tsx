@@ -8,6 +8,17 @@ export default function KatalogPage() {
 
   const catalogArchives = [
     {
+      year: "2025",
+      title: "E-Katalog KHFF 2025",
+      edition: "Edisi Ketiga - Arsip Lengkap",
+      desc: "Dokumentasi kuratorial program festival, kurasi sinema nusantara, forum kuliah terbuka, dan catatan penghargaan karya tahun 2025.",
+      pdfUrl: "#", // Add the PDF url here when available
+      fileSize: "Coming Soon",
+      bg: "bg-white/10 text-khff-cream border-white/20",
+      tag: "bg-white text-khff-navy",
+      asset: "/assets/karakter/gong.png"
+    },
+    {
       year: "2024",
       title: "E-Katalog KHFF 2024",
       edition: "Edisi Kedua - Arsip Lengkap",

@@ -185,7 +185,6 @@
         },
         { "area": "Halaman Pasar Terban", "function": "Becak Drive-In Cinema" },
         { "area": "Area Tenant", "function": "Tenant & Konsumsi" },
-        { "area": "Ruang Transit", "function": "Transit Penampil" },
         {
           "area": "Area Parkir",
           "function": "Parkir dan Jalur Masuk–Keluar Becak"
@@ -227,7 +226,6 @@
         }
       ],
       "roomActivation": [
-        { "area": "Ruang Meeting", "function": "Sekretariat Panitia" },
         {
           "area": "Balkon Rumput Lantai 2",
           "function": "Area Istirahat & Networking"
@@ -268,8 +266,7 @@
           "area": "Lobby PDIN",
           "function": "Kantin & Closing Awarding Ceremony"
         },
-        { "area": "Balkon Rumput", "function": "Area Gathering" },
-        { "area": "Ruang Meeting", "function": "Sekretariat Panitia" }
+        { "area": "Balkon Rumput", "function": "Area Gathering" }
       ]
     }
   ],
