@@ -44,7 +44,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto drop-shadow-2xl" />
               </div>
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-                Program Kompetisi.
+                Program Kompetisi
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
                 Menampilkan karya terbaik dari sineas muda nusantara. Pilih kategori program di bawah untuk menjelajahi daftar karya terkurasi.
@@ -133,7 +133,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 <img src="/assets/karakter/bendera.png" alt="Bendera KHFF" className="w-full h-auto drop-shadow-xl" />
               </div>
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-                Program Non-Kompetisi.
+                Program Non-Kompetisi
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
                 Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari opening hingga pemutaran restorasi arsip budaya lokal dan global.
@@ -239,7 +239,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 <img src="/assets/karakter/buto2.png" alt="Buto" className="w-full h-auto drop-shadow-2xl" />
               </div>
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-                Program Non-Pemutaran.
+                Program Non-Pemutaran
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
                 Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi film terkemuka. Wadah pertukaran wawasan, diskusi kerajinan sinema, serta jejaring kolaborasi.

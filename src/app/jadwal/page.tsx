@@ -309,7 +309,7 @@ export default function Jadwal() {
               />
             </div>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-              Jadwal Festival.
+              Jadwal Festival
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
               Rangkaian penayangan film terkurasi, forum wawasan, bazar kuliner,

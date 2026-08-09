@@ -142,7 +142,7 @@ export default function GaleriPage() {
           
           <div className="max-w-4xl">
             <h1 className="text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-              Arsip Galeri.
+              Arsip Galeri
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
               Telusuri kilas balik momen, rekaman visual, dan dokumentasi kemeriahan Kotabaru Heritage Film Festival dari tahun ke tahun.

@@ -33,7 +33,7 @@ export default function PameranPage() {
           </span>
 
           <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
-            Pameran Karya.
+            Pameran Karya
           </h1>
 
           <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-12 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">

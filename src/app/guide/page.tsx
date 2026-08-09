@@ -26,7 +26,7 @@ export default function GuidePage() {
         <div className="container mx-auto max-w-4xl relative z-20">
           <div className="text-center">
             <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
-              Festival Guide.
+              Festival Guide
             </h1>
 
             <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">

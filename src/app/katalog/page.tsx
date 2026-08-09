@@ -46,7 +46,7 @@ export default function KatalogPage() {
           
           <div className="max-w-4xl">
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-              Arsip Katalog.
+              Arsip Katalog
             </h1>
             <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
               Jelajahi dan unduh catatan kuratorial, profil sineas nusantara, esai pemikiran, serta arsip karya sinematik dari edisi Kotabaru Heritage Film Festival tahun-tahun sebelumnya.
