@@ -3,7 +3,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
+import { Navigation, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
@@ -75,7 +75,7 @@ export default function GaleriPage() {
         <div className={`relative w-full rounded-3xl overflow-hidden group/slider border-4 ${colorTheme.border} shadow-[0_15px_40px_rgba(0,0,0,0.4)] ${colorTheme.bg}`}>
           
           <Swiper
-            modules={[Navigation, FreeMode, Mousewheel]}
+            modules={[Navigation, Mousewheel]}
             navigation={{
               nextEl: `.swiper-next-${slug}`,
               prevEl: `.swiper-prev-${slug}`,
@@ -88,13 +88,13 @@ export default function GaleriPage() {
           >
             {photos.map((photo, index) => (
               <SwiperSlide key={index} className="w-full h-full">
-                <div className="relative w-full h-full bg-black">
+                <div className="relative w-full h-full bg-black flex items-center justify-center">
                   <img
                     src={photo}
                     alt={`Highlight ${year} - ${index + 1}`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/slider:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-1000 group-hover/slider:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
