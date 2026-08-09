@@ -87,8 +87,8 @@ export default function GaleriPage() {
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true,
             }}
+            loop={true}
             mousewheel={{ forceToAxis: true }}
             slidesPerView="auto"
             centeredSlides={true}
