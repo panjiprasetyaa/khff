@@ -20,9 +20,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // 1. PROGRAM KOMPETISI
   if (id === "kompetisi") {
     const tabs = [
-      { id: "mahaditya", label: "Mahaditya", desc: "Kompetisi utama untuk film pendek dengan penceritaan kuat dan penyutradaraan matang." },
-      { id: "purwaseswa", label: "Purwaseswa", desc: "Menyoroti inovasi visual, eksperimen gaya naratif, dan keberanian sutradara baru." },
-      { id: "karyanagri", label: "Karyanagri", desc: "Mengangkat kearifan lokal, sejarah, serta refleksi mendalam atas isu sosial Nusantara." },
+      { id: "mahaditya", label: "Mahaditya", desc: "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan." },
+      { id: "purwaseswa", label: "Purwaseswa", desc: "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia." },
+      { id: "karyanagri", label: "Karyanagri", desc: "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional." },
     ];
     const currentProgram = programs.find((p) => p.id === activeKompetisiTab);
     const activeTabInfo = tabs.find((t) => t.id === activeKompetisiTab);
