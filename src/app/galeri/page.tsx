@@ -97,9 +97,9 @@ export default function GaleriPage() {
             className={`w-full h-[50vh] md:h-[70vh] !pb-12 ${slug}-swiper`}
           >
             {photos.map((photo, index) => (
-              <SwiperSlide key={index} className="!w-auto h-full px-1 md:px-2 transition-all duration-500">
+              <SwiperSlide key={index} className="!w-auto h-full px-1 md:px-2 transition-all duration-500 flex items-center justify-center">
                 {({ isActive }) => (
-                  <div className={`relative h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-60 scale-95 blur-[3px] z-0'}`}>
+                  <div className={`relative w-[85vw] md:w-auto md:h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-60 scale-95 blur-[3px] z-0'}`}>
                     <Image
                       src={photo}
                       alt={`Highlight ${year} - ${index + 1}`}
