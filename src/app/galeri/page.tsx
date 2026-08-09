@@ -2,10 +2,17 @@
 
 import { ArrowLeft, ExternalLink, FolderOpen } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+import "swiper/css/free-mode";
 
 export default function GaleriPage() {
   const router = useRouter();
 
+  // 2026 Albums (HIDDEN FOR NOW PER INSTRUCTION)
   const albums = [
     {
       day: "Day 1",
@@ -39,6 +46,109 @@ export default function GaleriPage() {
     }
   ];
 
+  const galeri2025 = [
+    "/assets/galeri/2025/KHFF DAY 1-1.jpg",
+    "/assets/galeri/2025/KHFF DAY 1-4.jpg",
+    "/assets/galeri/2025/Salinan dari DAY 3 Foto Bareng-3.jpg",
+    "/assets/galeri/2025/Salinan dari DAY 3 Layar Kobar-23.jpg",
+    "/assets/galeri/2025/Salinan dari DAY 3 Layar Kobar-9.jpg",
+    "/assets/galeri/2025/Salinan dari DAY 3 Pameran-1.jpg",
+    "/assets/galeri/2025/Salinan dari DAY 5  LT 5 INDO HERITAGE-16.jpg",
+    "/assets/galeri/2025/Salinan dari KHFF DAY 1-77.jpg",
+    "/assets/galeri/2025/Salinan dari Pasar Sepakbola-1.jpg",
+    "/assets/galeri/2025/Salinan dari Public Letcture-4.jpg",
+    "/assets/galeri/2025/Salinan dari Workshop KHFF-10.jpg"
+  ];
+
+  const galeri2024 = [
+    "/assets/galeri/2024/Salinan dari Salinan _Opening Pameran-1.jpg",
+    "/assets/galeri/2024/Salinan dari Salinan _Public Lecture-3.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Layar Kobar-1.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Layar Kobar-5.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Lokakarya-2.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Mahaditya.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Penjurian-2.jpg",
+    "/assets/galeri/2024/Salinan dari Salinan_Penjurian-3.jpg",
+    "/assets/galeri/2024/Salinan dari Salinan_Public Lecture-2.JPG",
+    "/assets/galeri/2024/Salinan dari Salinan_Purwaseswa-2.JPG"
+  ];
+
+  const galeri2023 = [
+    "/assets/galeri/2023/Salinan dari 1688631654735.JPG",
+    "/assets/galeri/2023/Salinan dari 1688662658392.JPG",
+    "/assets/galeri/2023/Salinan dari 5.jpg",
+    "/assets/galeri/2023/Salinan dari DSC02300.JPG",
+    "/assets/galeri/2023/Salinan dari DSC02766.JPG",
+    "/assets/galeri/2023/Salinan dari DSC02939.JPG",
+    "/assets/galeri/2023/Salinan dari DSC02990.JPG",
+    "/assets/galeri/2023/Salinan dari DSC06487.JPG",
+    "/assets/galeri/2023/Salinan dari DSCF4152.jpg",
+    "/assets/galeri/2023/Salinan dari IMG_3787.JPG",
+    "/assets/galeri/2023/Salinan dari rab-khf-2.jpg",
+    "/assets/galeri/2023/Salinan dari rab-khf-4.jpg",
+    "/assets/galeri/2023/Salinan dari rab-khf-5.jpg",
+    "/assets/galeri/2023/Salinan dari TUP02338.JPG"
+  ];
+
+  const renderGallerySlider = (year: string, photos: string[]) => {
+    const slug = year.replace(/\s+/g, '-').toLowerCase();
+    
+    return (
+      <div className="mb-24">
+        <div className="container mx-auto px-6 max-w-6xl relative z-10 mb-8">
+          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-cream drop-shadow-md">
+            {year}
+          </h2>
+          <div className="w-24 h-2 bg-khff-pink mt-4"></div>
+        </div>
+
+        <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-12">
+          <Swiper
+            modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
+            navigation={{
+              nextEl: `.swiper-next-${slug}`,
+              prevEl: `.swiper-prev-${slug}`,
+            }}
+            scrollbar={{ draggable: true, hide: false, el: `.swiper-scrollbar-${slug}` }}
+            freeMode={true}
+            mousewheel={{ forceToAxis: true }}
+            slidesPerView="auto"
+            spaceBetween={24}
+            grabCursor={true}
+            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
+          >
+            {photos.map((photo, index) => (
+              <SwiperSlide key={index} className="!w-auto !h-auto">
+                <div className="relative w-[300px] md:w-[480px] aspect-[3/2] rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-khff-cream/10 transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.03] bg-black/20">
+                  <img
+                    src={photo}
+                    alt={`Highlight ${year} - ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Navigation Arrows */}
+          <button className={`swiper-prev-${slug} absolute left-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button className={`swiper-next-${slug} absolute right-4 top-[40%] -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 hover:bg-black/70 hover:scale-110 transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed border border-white/20 shadow-lg`}>
+            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          </button>
+          
+          {/* Custom Scrollbar */}
+          <div className="container mx-auto max-w-6xl px-6 relative mt-8">
+            <div className={`swiper-scrollbar-${slug} !relative !h-1.5 !bg-white/10 rounded-full overflow-hidden`} style={{ '--swiper-scrollbar-drag-bg-color': '#f2e8d3' } as React.CSSProperties}></div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
       
@@ -54,22 +164,32 @@ export default function GaleriPage() {
           
           <div className="max-w-4xl">
             <h1 className="text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
-              Galeri Festival.
+              Arsip Galeri.
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
-              Akses dan unduh seluruh arsip foto, dokumentasi suasana, dan potret kegiatan harian Kotabaru Heritage Film Festival langsung via Google Drive resmi.
+              Telusuri kilas balik momen, rekaman visual, dan dokumentasi kemeriahan Kotabaru Heritage Film Festival dari tahun ke tahun.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ALBUMS GRID SECTION (NAVY GREEN THEATER) */}
-      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
+      {/* HIGHLIGHT PHOTOS SECTION (2025, 2024, 2023) */}
+      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] pt-24 pb-12 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         <div className="absolute -bottom-10 right-0 opacity-10 pointer-events-none w-96">
           <img src="/assets/karakter/gong.png" alt="" className="w-full h-auto" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        {renderGallerySlider("KHFF 2025", galeri2025)}
+        {renderGallerySlider("KHFF 2024", galeri2024)}
+        {renderGallerySlider("KHFF 2023", galeri2023)}
+
+        {/* 2026 ALBUMS GRID SECTION (HIDDEN FOR NOW) */}
+        {/* 
+        <div className="container mx-auto px-6 max-w-6xl relative z-10 mb-8 mt-12">
+          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-cream drop-shadow-md">
+            Arsip 2026
+          </h2>
+          <div className="w-24 h-2 bg-khff-yellow mt-4 mb-12"></div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {albums.map((album, idx) => (
               <a 
@@ -79,16 +199,15 @@ export default function GaleriPage() {
                 rel="noopener noreferrer" 
                 className="block group h-full"
               >
-                <div className={`rounded-3xl p-8 md:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[440px] ${album.bg}`}>
+                <div className={\`rounded-3xl p-8 md:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[440px] \${album.bg}\`}>
                   
-                  {/* Decorative Heritage Artwork on bottom corner */}
                   <div className="absolute right-4 bottom-4 opacity-35 w-40 pointer-events-none group-hover:scale-110 group-hover:opacity-60 transition-all duration-700">
                     <img src={album.asset} alt="" className="w-full h-auto object-contain drop-shadow-md" />
                   </div>
 
                   <div className="relative z-10">
                     <div className="flex justify-between items-center mb-6">
-                      <span className={`text-xs font-mono font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm ${album.tag}`}>
+                      <span className={\`text-xs font-mono font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm \${album.tag}\`}>
                         {album.day}
                       </span>
                       <FolderOpen size={24} className="opacity-70 group-hover:scale-110 transition-transform" />
@@ -112,6 +231,7 @@ export default function GaleriPage() {
             ))}
           </div>
         </div>
+        */}
       </section>
     </main>
   );
