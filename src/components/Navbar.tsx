@@ -42,7 +42,7 @@ export default function Navbar() {
             HOME
           </Link>
           <Link href="/program" className="hover:text-khff-yellow transition-colors">
-            PROGRAMS
+            PROGRAM
           </Link>
           <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
@@ -92,7 +92,7 @@ export default function Navbar() {
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              PROGRAMS
+              PROGRAM
             </Link>
             <Link
               href="/jadwal"

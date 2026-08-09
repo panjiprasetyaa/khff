@@ -42,7 +42,7 @@ export default function ProgramList() {
       <section className="pt-36 pb-28 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
         <div className="container mx-auto max-w-6xl text-center md:text-left">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-8 tracking-tight drop-shadow-lg">
-            Programs.
+            Program
           </h1>
           <p className="text-khff-cream/95 text-lg md:text-2xl max-w-3xl font-medium leading-relaxed drop-shadow">
             Eksplorasi tiga pilar utama festival kami: kompetisi karya sineas muda Nusantara, kurasi penayangan warisan budaya, serta ruang kolaborasi edukatif.
