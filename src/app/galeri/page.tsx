@@ -94,12 +94,12 @@ export default function GaleriPage() {
             centeredSlides={true}
             spaceBetween={0}
             grabCursor={true}
-            className={`w-full h-[50vh] md:h-[70vh] !pb-12 ${slug}-swiper`}
+            className={`w-full h-auto md:h-[70vh] !pb-12 ${slug}-swiper`}
           >
             {photos.map((photo, index) => (
-              <SwiperSlide key={index} className="!w-auto h-full px-1 md:px-2 transition-all duration-500 flex items-center justify-center">
+              <SwiperSlide key={index} className="w-full md:!w-auto h-auto md:h-full px-0 md:px-2 transition-all duration-500 flex items-center justify-center">
                 {({ isActive }) => (
-                  <div className={`relative w-[85vw] md:w-auto md:h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-60 scale-95 blur-[3px] z-0'}`}>
+                  <div className={`relative w-full md:w-auto h-full aspect-[3/2] bg-black flex items-center justify-center overflow-hidden transition-all duration-700 ease-out md:rounded-2xl ${isActive ? 'opacity-100 scale-100 blur-none z-10 drop-shadow-2xl' : 'opacity-100 md:opacity-60 scale-100 md:scale-95 blur-none md:blur-[3px] z-0'}`}>
                     <Image
                       src={photo}
                       alt={`Highlight ${year} - ${index + 1}`}
