@@ -11,7 +11,15 @@ export default function GuidePage() {
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
       
       {/* HERO SECTION */}
-      <section className="pt-36 pb-32 px-6 bg-gradient-to-b from-khff-navy via-[#3b2a45] to-khff-navy relative z-10 w-full min-h-[85vh] flex items-center justify-center">
+      <section className="pt-36 pb-32 px-6 bg-gradient-to-b from-khff-navy via-[#1f4a4d] to-khff-pink/20 relative z-10 w-full min-h-[85vh] flex items-center justify-center">
+        
+        {/* Floating Decorative Characters */}
+        <div className="absolute right-10 top-1/4 opacity-30 w-64 pointer-events-none hidden md:block mix-blend-screen animate-pulse">
+          <img src="/assets/karakter/cahaya.png" alt="Cahaya KHFF" className="w-full h-auto" />
+        </div>
+        <div className="absolute left-8 bottom-12 opacity-20 w-52 pointer-events-none hidden md:block rotate-12">
+          <img src="/assets/karakter/tebu.png" alt="Tebu" className="w-full h-auto" />
+        </div>
 
 
 

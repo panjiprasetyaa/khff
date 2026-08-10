@@ -12,6 +12,14 @@ export default function SubmissionPage() {
       
       {/* HERO SECTION */}
       <section className="pt-36 pb-32 px-6 bg-gradient-to-b from-khff-navy via-[#284f52] to-khff-navy relative z-10 w-full min-h-[85vh] flex items-center justify-center">
+        
+        {/* Floating Decorative Characters */}
+        <div className="absolute right-8 bottom-10 opacity-35 w-72 pointer-events-none hidden md:block mix-blend-screen animate-pulse">
+          <img src="/assets/karakter/genigeni.png" alt="Geni" className="w-full h-auto drop-shadow-xl" />
+        </div>
+        <div className="absolute left-6 top-1/3 opacity-20 w-60 pointer-events-none hidden lg:block">
+          <img src="/assets/karakter/buto2.png" alt="Buto" className="w-full h-auto" />
+        </div>
 
         <div className="container mx-auto max-w-4xl text-center relative z-20">
           <button 

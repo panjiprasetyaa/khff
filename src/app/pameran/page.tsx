@@ -11,6 +11,14 @@ export default function PameranPage() {
       
       {/* HERO SECTION */}
       <section className="pt-36 pb-32 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-navy relative z-10 w-full min-h-[85vh] flex items-center justify-center">
+        
+        {/* Floating Decorative Characters */}
+        <div className="absolute right-6 top-1/4 opacity-25 w-72 pointer-events-none hidden md:block animate-pulse">
+          <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto drop-shadow-2xl" />
+        </div>
+        <div className="absolute left-6 -bottom-10 opacity-15 w-80 pointer-events-none hidden lg:block">
+          <img src="/assets/karakter/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
+        </div>
 
         <div className="container mx-auto max-w-4xl text-center relative z-20">
           <button 

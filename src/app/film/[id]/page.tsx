@@ -37,7 +37,15 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
     <main className="min-h-screen pt-36 pb-28 bg-khff-navy text-khff-cream relative font-sans overflow-hidden">
       {/* Background ambient lighting and poster blur */}
       <div className="absolute inset-0 z-0 opacity-15 bg-cover bg-center blur-3xl mix-blend-screen" style={{ backgroundImage: `url(${film.posterUrl})` }}></div>
-
+      
+      {/* Decorative Character Artworks */}
+      <div className="absolute top-20 right-10 opacity-30 w-48 pointer-events-none z-0 mix-blend-screen">
+        <img src="/assets/karakter/geni2.png" alt="Geni" className="w-full h-auto" />
+      </div>
+      <div className="absolute bottom-10 right-20 opacity-25 w-72 pointer-events-none z-0">
+        <img src="/assets/karakter/cahaya.png" alt="Cahaya" className="w-full h-auto" />
+      </div>
+      
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Smart Navigation Back Button */}
         <button 
