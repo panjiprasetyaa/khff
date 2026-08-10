@@ -354,18 +354,15 @@ export default function Home() {
       </section>
 
       {/* 4. VIDEO TEASER */}
-      <section className="py-24 bg-[#143638] relative overflow-hidden">
-        {/* Floating Visual Asset */}
-        <div className="absolute top-10 right-10 opacity-5 w-64 pointer-events-none -rotate-12 hidden md:block">
-          <img src="/assets/karakter/JATHILANwarna.png" alt="" className="w-full h-auto" />
-        </div>
+      <section className="py-24 relative overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/jathilan_background.jpg')" }}>
+        <div className="absolute inset-0 bg-[#143638]/80 mix-blend-multiply z-0"></div>
 
         <div className="container mx-auto px-6 lg:px-12 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-yellow mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-yellow mb-12 drop-shadow-lg">
             Teaser KHFF 2026
           </h2>
           <div
-            className="max-w-6xl mx-auto group cursor-pointer relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/20 bg-khff-navy"
+            className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-khff-yellow group cursor-pointer"
             onClick={() =>
               openVideo(
                 "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
