@@ -40,9 +40,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               <div className="inline-block bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
                 Festival Competition 2026
               </div>
-              <div className="absolute right-8 top-28 opacity-25 w-64 pointer-events-none hidden md:block">
-                <img src="/assets/karakter/JATHILANwarna.png" alt="Jathilan" className="w-full h-auto drop-shadow-2xl" />
-              </div>
+
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Kompetisi
               </h1>
@@ -129,9 +127,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               <div className="inline-block bg-khff-pink text-white px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
                 Heritage & Special Screenings
               </div>
-              <div className="absolute right-4 top-0 opacity-35 w-56 pointer-events-none hidden md:block">
-                <img src="/assets/karakter/bendera.png" alt="Bendera KHFF" className="w-full h-auto drop-shadow-xl" />
-              </div>
+
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Non-Kompetisi
               </h1>
@@ -235,9 +231,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               <div className="inline-block bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full mb-6 font-mono font-black text-xs uppercase tracking-[0.2em] shadow-xl">
                 Forum & Educational Programs
               </div>
-              <div className="absolute right-8 top-0 opacity-25 w-48 pointer-events-none hidden md:block">
-                <img src="/assets/karakter/buto2.png" alt="Buto" className="w-full h-auto drop-shadow-2xl" />
-              </div>
+
               <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Non-Pemutaran
               </h1>

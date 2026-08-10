@@ -1,7 +1,6 @@
 import { AtSign, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
-  const sponsorBanner = "/assets/sponsor-revisi.png";
 
   return (
     <footer className="bg-khff-navy text-khff-cream py-20 border-t border-khff-cream/20 font-sans relative overflow-hidden">
@@ -19,12 +18,18 @@ export default function Footer() {
           <span className="text-xs font-mono tracking-[0.3em] uppercase text-khff-yellow mb-8 block font-black">
             Supported By & Official Media Partners
           </span>
-          <div className="flex justify-center items-center px-4 w-full">
-            <img
-              src={sponsorBanner}
-              alt="Supported By & Official Media Partners"
-              className="w-full max-w-4xl h-auto object-contain filter drop-shadow-md hover:scale-[1.02] transition-transform duration-500"
-            />
+          <div className="flex flex-col items-center justify-center gap-8 md:gap-12 px-4 w-full max-w-4xl mx-auto">
+            {/* Top Row */}
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              <img src="/assets/sponsors/dana-keistimewaan.png" alt="Dana Keistimewaan" className="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/jogja-istimewa.png" alt="Jogja Istimewa" className="h-12 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/yk-kota.png" alt="Kota Yogyakarta" className="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform" />
+            </div>
+            {/* Bottom Row */}
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              <img src="/assets/sponsors/dinas-pendidikan.png" alt="Dinas Pendidikan" className="h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/kotabaru.png" alt="Kotabaru" className="h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform bg-khff-cream/10 rounded-lg p-2" />
+            </div>
           </div>
         </div>
 

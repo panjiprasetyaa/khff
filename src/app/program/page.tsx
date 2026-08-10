@@ -6,7 +6,7 @@ export default function ProgramList() {
     {
       id: "kompetisi",
       title: "Program Kompetisi",
-      subtitle: "Mahaditya • Purwaseswa • Karyanagri",
+      subtitle: ["Mahaditya", "Purwaseswa", "Karyanagri"],
       description: "Ajang apresiasi karya sinema pendek pilihan dari seluruh Nusantara. Menampilkan film-film fiksi maupun dokumenter dengan penceritaan kuat, inovasi visual, serta kearifan lokal yang mendalam.",
       bgClass: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tagClass: "bg-khff-navy text-khff-yellow",
@@ -16,7 +16,7 @@ export default function ProgramList() {
     {
       id: "non-kompetisi",
       title: "Program Non-Kompetisi",
-      subtitle: "Opening Film • International Heritage • National Heritage • Closing Film",
+      subtitle: ["Opening Film", "International Heritage", "National Heritage", "Closing Film"],
       description: "Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari film pembuka dan penutup festival, hingga screening restorasi arsip sinema nasional dan internasional.",
       bgClass: "bg-khff-pink text-white border-khff-pink",
       tagClass: "bg-white text-khff-pink",
@@ -26,7 +26,7 @@ export default function ProgramList() {
     {
       id: "non-pemutaran",
       title: "Program Non-Pemutaran",
-      subtitle: "Workshop • Public Lecture",
+      subtitle: ["Workshop", "Public Lecture"],
       description: "Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi serta pakar film terkemuka Nusantara. Wadah pertukaran ilmu dan jejaring kolaborasi sineas masa depan.",
       bgClass: "bg-white text-khff-navy border-white",
       tagClass: "bg-khff-navy text-white",
@@ -41,7 +41,7 @@ export default function ProgramList() {
       {/* HEADER SECTION (CINEMATIC GREEN TO YELLOW GRADIENT) */}
       <section className="pt-36 pb-28 px-6 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative z-10 w-full">
         <div className="container mx-auto max-w-6xl text-center md:text-left">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-black text-khff-cream mb-8 tracking-tight drop-shadow-lg">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-8 tracking-tight drop-shadow-lg">
             Program
           </h1>
           <p className="text-khff-cream/95 text-lg md:text-2xl max-w-3xl font-medium leading-relaxed drop-shadow">
@@ -68,10 +68,12 @@ export default function ProgramList() {
                   </div>
 
                   <div className="relative z-10 max-w-4xl">
-                    <div className="flex flex-wrap items-center gap-4 mb-6">
-                      <span className={`text-xs font-mono font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-sm ${category.tagClass}`}>
-                        {category.subtitle}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-6">
+                      {category.subtitle.map((item, idx) => (
+                        <span key={idx} className={`text-[10px] md:text-xs font-mono font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-sm ${category.tagClass}`}>
+                          {item}
+                        </span>
+                      ))}
                     </div>
 
                     <h2 className="text-4xl md:text-6xl font-serif font-black mb-6 leading-tight">

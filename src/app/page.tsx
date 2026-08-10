@@ -129,6 +129,14 @@ export default function Home() {
 
       {/* 2. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
       <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
+        {/* Floating Visual Assets */}
+        <div className="absolute top-10 left-10 opacity-5 w-72 pointer-events-none mix-blend-multiply -rotate-12 hidden md:block">
+          <img src="/assets/karakter/bendera.png" alt="" className="w-full h-auto" />
+        </div>
+        <div className="absolute bottom-10 right-10 opacity-10 w-96 pointer-events-none mix-blend-multiply rotate-12 hidden lg:block">
+          <img src="/assets/karakter/terompet.png" alt="" className="w-full h-auto" />
+        </div>
+
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
           <span className="text-xs uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-5 py-1.5 rounded-full inline-block mb-6 shadow-md">
             Pra Event KHFF 2026
@@ -223,6 +231,16 @@ export default function Home() {
             alt="Gong"
             className="w-full h-auto"
           />
+        </div>
+        <div className="hidden md:block absolute bottom-20 left-0 w-96 h-auto opacity-5 pointer-events-none z-0 -rotate-12">
+          <img
+            src="/assets/karakter/kendhang.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-auto opacity-[0.03] pointer-events-none z-0">
+          <img src="/assets/karakter/buto2.png" alt="" className="w-full h-auto" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -337,7 +355,12 @@ export default function Home() {
 
       {/* 4. VIDEO TEASER */}
       <section className="py-24 bg-[#143638] relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
+        {/* Floating Visual Asset */}
+        <div className="absolute top-10 right-10 opacity-5 w-64 pointer-events-none -rotate-12 hidden md:block">
+          <img src="/assets/karakter/JATHILANwarna.png" alt="" className="w-full h-auto" />
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-12 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-yellow mb-12">
             Teaser KHFF 2026
           </h2>
