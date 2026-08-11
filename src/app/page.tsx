@@ -497,12 +497,14 @@ export default function Home() {
             Kilas Balik KHFF 2025
           </h2>
           <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/20 bg-black">
-            <CustomVideoPlayer
-              src="/videos/teaser.mp4"
-              poster="/assets/background-baru.jpeg"
-              className="aspect-video"
-              videoClassName="w-full h-full object-cover"
-            />
+              <iframe
+                className="w-full h-full aspect-video"
+                src="https://www.youtube.com/embed/7Aqg74Rsuds"
+                title="KHFF 2025 - After Movie Kotabaru Heritage Film Festival 2025"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
           </div>
         </div>
       </section>
