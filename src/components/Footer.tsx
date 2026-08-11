@@ -135,26 +135,6 @@ export default function Footer() {
         {/* Copyright */}
         <div className="pt-8 border-t border-khff-cream/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-khff-cream/60">
           <p>© 2026 Kotabaru Heritage Film Festival. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <a
-              href="#"
-              className="hover:text-khff-yellow transition-colors font-bold"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="hover:text-khff-yellow transition-colors font-bold"
-            >
-              Terms of Festival
-            </a>
-            <a
-              href="#"
-              className="hover:text-khff-yellow transition-colors font-bold"
-            >
-              Press Kit
-            </a>
-          </div>
         </div>
       </div>
     </footer>

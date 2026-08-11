@@ -144,7 +144,8 @@ export default function Home() {
             Panorama
           </h2>
           <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow mb-6">
-            Periode Penayangan :<br className="sm:hidden" /> 19 Juli - 12 September 2026
+            Periode Penayangan :<br className="sm:hidden" /> 19 Juli - 12
+            September 2026
           </p>
           <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
             PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival
@@ -183,15 +184,21 @@ export default function Home() {
               spaceBetween={24}
               slidesPerView="auto"
               className="w-full px-6 py-4 !overflow-visible"
-              style={{
-                "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
-                "--swiper-scrollbar-bg-color": "transparent",
-                "--swiper-scrollbar-bottom": "-20px",
-                "--swiper-scrollbar-size": "5px",
-              } as React.CSSProperties}
+              style={
+                {
+                  "--swiper-scrollbar-drag-bg-color":
+                    "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties
+              }
             >
               {praEvents.map((event) => (
-                <SwiperSlide key={`mobile-${event.id}`} className="!w-auto !h-auto">
+                <SwiperSlide
+                  key={`mobile-${event.id}`}
+                  className="!w-auto !h-auto"
+                >
                   <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu will-change-transform cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
                     <img
                       src={event.image}
@@ -215,13 +222,35 @@ export default function Home() {
             {/* Left Navigation Overlay (Mobile) */}
             <div className="swiper-button-prev-mobile absolute top-0 bottom-0 left-0 z-20 w-16 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
               <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
               </div>
             </div>
             {/* Right Navigation Overlay (Mobile) */}
             <div className="swiper-button-next-mobile absolute top-0 bottom-0 right-0 z-20 w-16 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
               <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               </div>
             </div>
           </div>
@@ -241,15 +270,21 @@ export default function Home() {
               spaceBetween={24}
               slidesPerView="auto"
               className="w-full px-12 py-4 !overflow-visible"
-              style={{
-                "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
-                "--swiper-scrollbar-bg-color": "transparent",
-                "--swiper-scrollbar-bottom": "-20px",
-                "--swiper-scrollbar-size": "5px",
-              } as React.CSSProperties}
+              style={
+                {
+                  "--swiper-scrollbar-drag-bg-color":
+                    "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties
+              }
             >
               {praEvents.map((event) => (
-                <SwiperSlide key={`desktop-${event.id}`} className="!w-auto !h-auto group">
+                <SwiperSlide
+                  key={`desktop-${event.id}`}
+                  className="!w-auto !h-auto group"
+                >
                   <div className="w-[300px] h-[440px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03]">
                     <img
                       src={event.image}
@@ -273,13 +308,35 @@ export default function Home() {
             {/* Left Navigation Overlay (Desktop) */}
             <div className="swiper-button-prev-desktop absolute top-0 bottom-0 left-0 z-20 w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
               <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
               </div>
             </div>
             {/* Right Navigation Overlay (Desktop) */}
             <div className="swiper-button-next-desktop absolute top-0 bottom-0 right-0 z-20 w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
               <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               </div>
             </div>
           </div>
@@ -346,8 +403,9 @@ export default function Home() {
                     Kompetisi
                   </h3>
                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
-                    Ajang apresiasi sinema pendek pilihan dari seluruh
-                    Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
+                    Pemutaran film hasil submisi terbuka yang telah melalui
+                    proses kurasi, sekaligus menjadi ruang kompetisi bagi sineas
+                    untuk memperebutkan penghargaan dalam berbagai kategori.
                   </p>
                 </div>
                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
@@ -377,8 +435,8 @@ export default function Home() {
                     Kompetisi
                   </h3>
                   <p className="text-white/90 font-medium text-lg max-w-sm">
-                    Kurasi penayangan istimewa mulai dari Opening Film,
-                    International & National Heritage, hingga Closing Film.
+                    Pemutaran film pilihan yang mengeksplorasi cerita, tradisi,
+                    dan kehidupan yang membentuk warisan budaya.
                   </p>
                 </div>
                 <div className="mt-12 pt-6 border-t border-white/30 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
@@ -408,8 +466,9 @@ export default function Home() {
                     Pemutaran
                   </h3>
                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
-                    Ruang lokakarya edukatif dan kuliah terbuka (Workshop &
-                    Public Lecture) bersama praktisi film nusantara.
+                    Ruang interaksi yang menghadirkan berbagai kegiatan untuk
+                    belajar, berdiskusi, dan merayakan keberagaman budaya
+                    melalui film.
                   </p>
                 </div>
                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
