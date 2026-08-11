@@ -18,47 +18,47 @@ export default function GaleriPage() {
   // 2026 Albums (REMOVED UNTUK SEMENTARA, ADA DI GIT HISTORY)
 
   const galeri2025 = [
-    "/assets/galeri/2025/KHFF DAY 1-1.jpg",
-    "/assets/galeri/2025/KHFF DAY 1-4.jpg",
-    "/assets/galeri/2025/Salinan dari DAY 3 Foto Bareng-3.jpg",
-    "/assets/galeri/2025/Salinan dari DAY 3 Layar Kobar-23.jpg",
-    "/assets/galeri/2025/Salinan dari DAY 3 Layar Kobar-9.jpg",
-    "/assets/galeri/2025/Salinan dari DAY 3 Pameran-1.jpg",
-    "/assets/galeri/2025/Salinan dari DAY 5  LT 5 INDO HERITAGE-16.jpg",
-    "/assets/galeri/2025/Salinan dari KHFF DAY 1-77.jpg",
-    "/assets/galeri/2025/Salinan dari Pasar Sepakbola-1.jpg",
-    "/assets/galeri/2025/Salinan dari Public Letcture-4.jpg",
-    "/assets/galeri/2025/Salinan dari Workshop KHFF-10.jpg"
+    "/assets/gallery/2025/KHFF DAY 1-1.jpg",
+    "/assets/gallery/2025/KHFF DAY 1-4.jpg",
+    "/assets/gallery/2025/Salinan dari DAY 3 Foto Bareng-3.jpg",
+    "/assets/gallery/2025/Salinan dari DAY 3 Layar Kobar-23.jpg",
+    "/assets/gallery/2025/Salinan dari DAY 3 Layar Kobar-9.jpg",
+    "/assets/gallery/2025/Salinan dari DAY 3 Pameran-1.jpg",
+    "/assets/gallery/2025/Salinan dari DAY 5  LT 5 INDO HERITAGE-16.jpg",
+    "/assets/gallery/2025/Salinan dari KHFF DAY 1-77.jpg",
+    "/assets/gallery/2025/Salinan dari Pasar Sepakbola-1.jpg",
+    "/assets/gallery/2025/Salinan dari Public Letcture-4.jpg",
+    "/assets/gallery/2025/Salinan dari Workshop KHFF-10.jpg"
   ];
 
   const galeri2024 = [
-    "/assets/galeri/2024/Salinan dari Salinan _Opening Pameran-1.jpg",
-    "/assets/galeri/2024/Salinan dari Salinan _Public Lecture-3.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Layar Kobar-1.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Layar Kobar-5.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Lokakarya-2.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Mahaditya.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Penjurian-2.jpg",
-    "/assets/galeri/2024/Salinan dari Salinan_Penjurian-3.jpg",
-    "/assets/galeri/2024/Salinan dari Salinan_Public Lecture-2.JPG",
-    "/assets/galeri/2024/Salinan dari Salinan_Purwaseswa-2.JPG"
+    "/assets/gallery/2024/Salinan dari Salinan _Opening Pameran-1.jpg",
+    "/assets/gallery/2024/Salinan dari Salinan _Public Lecture-3.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Layar Kobar-1.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Layar Kobar-5.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Lokakarya-2.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Mahaditya.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Penjurian-2.jpg",
+    "/assets/gallery/2024/Salinan dari Salinan_Penjurian-3.jpg",
+    "/assets/gallery/2024/Salinan dari Salinan_Public Lecture-2.JPG",
+    "/assets/gallery/2024/Salinan dari Salinan_Purwaseswa-2.JPG"
   ];
 
   const galeri2023 = [
-    "/assets/galeri/2023/Salinan dari 1688631654735.JPG",
-    "/assets/galeri/2023/Salinan dari 1688662658392.JPG",
-    "/assets/galeri/2023/Salinan dari 5.jpg",
-    "/assets/galeri/2023/Salinan dari DSC02300.JPG",
-    "/assets/galeri/2023/Salinan dari DSC02766.JPG",
-    "/assets/galeri/2023/Salinan dari DSC02939.JPG",
-    "/assets/galeri/2023/Salinan dari DSC02990.JPG",
-    "/assets/galeri/2023/Salinan dari DSC06487.JPG",
-    "/assets/galeri/2023/Salinan dari DSCF4152.jpg",
-    "/assets/galeri/2023/Salinan dari IMG_3787.JPG",
-    "/assets/galeri/2023/Salinan dari rab-khf-2.jpg",
-    "/assets/galeri/2023/Salinan dari rab-khf-4.jpg",
-    "/assets/galeri/2023/Salinan dari rab-khf-5.jpg",
-    "/assets/galeri/2023/Salinan dari TUP02338.JPG"
+    "/assets/gallery/2023/Salinan dari 1688631654735.JPG",
+    "/assets/gallery/2023/Salinan dari 1688662658392.JPG",
+    "/assets/gallery/2023/Salinan dari 5.jpg",
+    "/assets/gallery/2023/Salinan dari DSC02300.JPG",
+    "/assets/gallery/2023/Salinan dari DSC02766.JPG",
+    "/assets/gallery/2023/Salinan dari DSC02939.JPG",
+    "/assets/gallery/2023/Salinan dari DSC02990.JPG",
+    "/assets/gallery/2023/Salinan dari DSC06487.JPG",
+    "/assets/gallery/2023/Salinan dari DSCF4152.jpg",
+    "/assets/gallery/2023/Salinan dari IMG_3787.JPG",
+    "/assets/gallery/2023/Salinan dari rab-khf-2.jpg",
+    "/assets/gallery/2023/Salinan dari rab-khf-4.jpg",
+    "/assets/gallery/2023/Salinan dari rab-khf-5.jpg",
+    "/assets/gallery/2023/Salinan dari TUP02338.JPG"
   ];
 
   const renderGallerySlider = (year: string, photos: string[], colorTheme: { border: string, line: string, bg: string }) => {
@@ -154,7 +154,7 @@ export default function GaleriPage() {
       {/* HIGHLIGHT PHOTOS SECTION (2025, 2024, 2023) */}
       <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] pt-24 pb-12 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         <div className="absolute -bottom-10 right-0 opacity-10 pointer-events-none w-96">
-          <img src="/assets/karakter/gong.png" alt="" className="w-full h-auto" />
+          <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto" />
         </div>
 
         {renderGallerySlider("KHFF 2025", galeri2025, { border: "border-khff-pink", line: "bg-khff-pink", bg: "bg-[#143638]" })}

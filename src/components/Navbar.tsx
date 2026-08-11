@@ -47,15 +47,18 @@ export default function Navbar() {
           <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
           </Link>
+          {/* 
           <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
-          </a>
+          </a> 
+          */}
           <Link href="/galeri" className="hover:text-khff-yellow transition-colors">
             GALERI
           </Link>
           <Link href="/katalog" className="hover:text-khff-yellow transition-colors">
             KATALOG
           </Link>
+          {/* 
           <a 
             href={gFormUrl}
             target="_blank"
@@ -65,6 +68,7 @@ export default function Navbar() {
             <span>REGISTRASI</span>
             <ExternalLink size={14} />
           </a>
+          */}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -101,6 +105,7 @@ export default function Navbar() {
             >
               JADWAL
             </Link>
+            {/*
             <a
               href="/festival-guide.pdf"
               target="_blank"
@@ -110,6 +115,7 @@ export default function Navbar() {
             >
               FESTIVAL GUIDE
             </a>
+            */}
             <Link
               href="/galeri"
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
@@ -125,6 +131,7 @@ export default function Navbar() {
               KATALOG
             </Link>
           </div>
+          {/*
           <a
             href={gFormUrl}
             target="_blank"
@@ -135,6 +142,7 @@ export default function Navbar() {
             <span>REGISTRASI</span>
             <ExternalLink size={18} />
           </a>
+          */}
         </div>
       )}
     </nav>

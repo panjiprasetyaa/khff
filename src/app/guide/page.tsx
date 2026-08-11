@@ -15,10 +15,10 @@ export default function GuidePage() {
         
         {/* Floating Decorative Characters */}
         <div className="absolute right-10 top-1/4 opacity-30 w-64 pointer-events-none hidden md:block mix-blend-screen animate-pulse">
-          <img src="/assets/karakter/cahaya.png" alt="Cahaya KHFF" className="w-full h-auto" />
+          <img src="/assets/illustrations/cahaya.png" alt="Cahaya KHFF" className="w-full h-auto" />
         </div>
         <div className="absolute left-8 bottom-12 opacity-20 w-52 pointer-events-none hidden md:block rotate-12">
-          <img src="/assets/karakter/tebu.png" alt="Tebu" className="w-full h-auto" />
+          <img src="/assets/illustrations/tebu.png" alt="Tebu" className="w-full h-auto" />
         </div>
 
 

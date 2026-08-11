@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, PlayCircle, Play, X, ExternalLink } from "lucide-react";
 import { programs, specialPrograms, praEvents } from "@/data/dummy";
 import { useState, useEffect } from "react";
+import CustomVideoPlayer from "@/components/CustomVideoPlayer";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
@@ -11,6 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 
+/*
 const homepageSchedule = [
   {
     day: "Day 1 - Opening",
@@ -70,6 +72,7 @@ const homepageSchedule = [
     ],
   },
 ];
+*/
 
 export default function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -129,16 +132,9 @@ export default function Home() {
 
       {/* 2. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
       <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
-        {/* Floating Visual Assets */}
-        <div className="absolute top-10 left-10 opacity-5 w-72 pointer-events-none mix-blend-multiply -rotate-12 hidden md:block">
-          <img src="/assets/karakter/bendera.png" alt="" className="w-full h-auto" />
-        </div>
-        <div className="absolute bottom-10 right-10 opacity-10 w-96 pointer-events-none mix-blend-multiply rotate-12 hidden lg:block">
-          <img src="/assets/karakter/terompet.png" alt="" className="w-full h-auto" />
-        </div>
 
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
-          <span className="text-xs uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-5 py-1.5 rounded-full inline-block mb-6 shadow-md">
+          <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
             Pra Event KHFF 2026
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">
@@ -225,34 +221,34 @@ export default function Home() {
       {/* 3. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
       <section className="py-28 bg-gradient-to-br from-khff-navy to-khff-blue text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
-        <div className="hidden md:block absolute top-0 right-0 w-80 h-auto opacity-10 pointer-events-none z-0 rotate-12">
+        <div className="absolute top-0 right-0 w-40 md:w-80 h-auto opacity-[0.05] md:opacity-10 pointer-events-none z-0 rotate-12">
           <img
-            src="/assets/karakter/gong.png"
+            src="/assets/illustrations/gong.png"
             alt="Gong"
             className="w-full h-auto"
           />
         </div>
-        <div className="hidden md:block absolute bottom-20 left-0 w-96 h-auto opacity-5 pointer-events-none z-0 -rotate-12">
+        <div className="absolute bottom-40 left-0 w-48 md:w-96 h-auto opacity-[0.03] md:opacity-5 pointer-events-none z-0 -rotate-12">
           <img
-            src="/assets/karakter/kendhang.png"
+            src="/assets/illustrations/kendhang.png"
             alt=""
             className="w-full h-auto"
           />
         </div>
-        <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-auto opacity-[0.03] pointer-events-none z-0">
-          <img src="/assets/karakter/buto2.png" alt="" className="w-full h-auto" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 md:w-[600px] h-auto opacity-[0.01] md:opacity-[0.03] pointer-events-none z-0">
+          <img src="/assets/illustrations/buto2.png" alt="" className="w-full h-auto" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <div className="text-center mb-20 max-w-4xl mx-auto">
-            <span className="text-xs font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-3">
+            <span className="text-sm md:text-base font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-3 drop-shadow-md">
               Program Festival
             </span>
             <h2 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight">
               Tiga Program Utama
             </h2>
             <p className="text-khff-cream/80 text-lg md:text-xl font-medium leading-relaxed">
-              Kotabaru Heritage Film Festival 2026 menghadirkan tiga program utama yang mengajak setiap pengunjung untuk menikmati film, berbagi cerita, dan membangun koneksi dalam pengalaman festival yang merayakan warisan budaya bersama.
+              menikmati film, berbagi cerita, dan membangun koneksi dalam pengalaman festival yang merayakan warisan budaya bersama.
             </p>
           </div>
 
@@ -260,9 +256,9 @@ export default function Home() {
             {/* Kolom 1: Program Kompetisi */}
             <Link href="/program/kompetisi" className="block group">
               <div className="bg-khff-yellow rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
-                <div className="hidden sm:block absolute -right-6 -bottom-6 opacity-30 w-52 group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute right-0 md:-right-6 bottom-0 md:-bottom-6 opacity-10 md:opacity-20 w-32 md:w-52 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
-                    src="/assets/karakter/terompet.png"
+                    src="/assets/illustrations/terompet.png"
                     alt=""
                     className="w-full"
                   />
@@ -277,8 +273,7 @@ export default function Home() {
                     Kompetisi
                   </h3>
                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
-                    Ajang apresiasi sinema pendek pilihan dari seluruh
-                    Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
+                    Ajang apresiasi sinema pendek pilihan dari seluruh Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
                   </p>
                 </div>
                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
@@ -291,9 +286,9 @@ export default function Home() {
             {/* Kolom 2: Program Non Kompetisi */}
             <Link href="/program/non-kompetisi" className="block group">
               <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
-                <div className="hidden sm:block absolute top-6 right-4 opacity-40 w-48 mix-blend-screen group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                <div className="absolute right-0 md:-right-10 bottom-0 md:-bottom-10 opacity-10 md:opacity-20 w-32 md:w-64 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
-                    src="/assets/karakter/bendera.png"
+                    src="/assets/illustrations/bendera.png"
                     alt="Bendera KHFF"
                     className="w-full h-auto drop-shadow-lg"
                   />
@@ -322,9 +317,9 @@ export default function Home() {
             {/* Kolom 3: Program Non Pemutaran (Workshop & Lecture) */}
             <Link href="/program/non-pemutaran" className="block group">
               <div className="bg-white rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-khff-pink/40">
-                <div className="hidden sm:block absolute -bottom-10 -left-6 opacity-15 w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute bottom-0 md:-bottom-10 right-0 md:-right-6 opacity-10 md:opacity-20 w-28 md:w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
-                    src="/assets/karakter/kendhang.png"
+                    src="/assets/illustrations/kendhang.png"
                     alt=""
                     className="w-full"
                   />
@@ -353,39 +348,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. VIDEO TEASER */}
+      {/* 4. KILAS BALIK KHFF 2026 */}
       <section className="py-24 bg-[#143638] relative overflow-hidden">
         {/* Floating Visual Asset (New Character) */}
-        <div className="absolute top-0 -right-16 md:right-0 opacity-10 w-64 md:w-[28rem] pointer-events-none">
-          <img src="/assets/karakter/butotumpuk.png" alt="" className="w-full h-auto drop-shadow-2xl" />
+        <div className="absolute top-0 right-0 opacity-10 w-48 md:w-[28rem] pointer-events-none">
+          <img src="/assets/illustrations/butotumpuk.png" alt="" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-serif font-black text-khff-yellow mb-12">
-            Teaser KHFF 2026
+            Kilas Balik KHFF 2025
           </h2>
-          <div
-            className="max-w-6xl mx-auto group cursor-pointer relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/20 bg-khff-navy"
-
-            onClick={() =>
-              openVideo(
-                "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-              )
-            }
-          >
-            <div className="w-full h-full flex flex-col items-center justify-center">
-              <span className="px-4 py-1 rounded-full bg-khff-yellow/20 text-khff-yellow font-mono text-xs uppercase tracking-[0.2em] font-bold mb-3 border border-khff-yellow/40">
-                Official Video
-              </span>
-              <p className="text-khff-cream font-serif text-2xl md:text-3xl font-bold">
-                Teaser KHFF 2026
-              </p>
-            </div>
-            <div className="absolute inset-0 bg-khff-navy/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
-              <div className="w-24 h-24 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.5)] group-hover:scale-110 transition-transform">
-                <Play size={40} className="ml-2" />
-              </div>
-            </div>
+          <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/20 bg-black">
+            <CustomVideoPlayer
+              src="/videos/teaser.mp4"
+              poster="/assets/background-baru.jpeg"
+              className="aspect-video"
+              videoClassName="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -393,11 +373,11 @@ export default function Home() {
       {/* 5. FESTIVAL GUIDE KICKER */}
       <section className="py-24 bg-gradient-to-tr from-khff-blue to-khff-navy border-t border-khff-cream/10 relative">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="relative w-full min-h-[65vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
+          <div className="relative w-full min-h-[50vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
             {/* Foto Becak Asli Ngawi Background */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img
-                src="/assets/sponsor/becakk.jpg"
+                src="/assets/sponsors/becakk.jpg"
                 alt="Drive In Cinema Becak"
                 className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-1000"
               />
@@ -417,64 +397,36 @@ export default function Home() {
                 Special program drive in cinema by Mayora. Keliling Kota Baru
                 naik becak sambil menikmati sinema. Film pembuka: Para Perasuk.
               </p>
-              <div className="flex flex-wrap items-center gap-4 font-mono text-sm font-black uppercase tracking-wider">
-                <span className="bg-khff-pink text-white px-6 py-3 rounded-xl shadow-lg border border-white/20">
-                  16 September 2026
-                </span>
-                <span className="bg-khff-yellow text-khff-navy px-6 py-3 rounded-xl shadow-lg border border-khff-navy/20">
-                  12.00 - 16.00 WIB
-                </span>
-              </div>
+              {/* Waktu dan Tempat Drive-in Di Takeout untuk rilis */}
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. JADWAL SELEKSI */}
+      {/* 6. JADWAL SELEKSI (TAKEOUT SEMENTARA UNTUK RILIS) */}
+      {/*
       <section className="py-24 bg-[#143638] border-t border-khff-cream/10 relative overflow-hidden">
-        <div className="hidden md:block absolute top-20 right-0 opacity-20 pointer-events-none w-64 translate-x-1/4">
-          <img
-            src="/assets/karakter/buto2.png"
-            alt="Buto"
-            className="w-full h-auto"
-          />
-        </div>
-        <div className="container mx-auto px-6 lg:px-12 max-w-6xl relative z-10">
-          <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-16 text-center">
-            Jadwal Festival
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-4">
-            {homepageSchedule.map((day, idx) => (
-              <div
-                key={idx}
-                className="bg-white/5 border-2 border-khff-cream/10 rounded-3xl p-8 hover:border-khff-yellow hover:-translate-y-2 transition-all shadow-xl backdrop-blur-sm"
-              >
-                <div className="mb-8 border-b border-khff-cream/10 pb-6">
-                  <span className="text-xs font-bold tracking-widest uppercase text-khff-pink">
-                    {day.day}
-                  </span>
-                  <h4 className="text-2xl font-serif font-black text-white mt-2">
-                    {day.date}
-                  </h4>
-                </div>
-
+        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-6">Jadwal Festival</h2>
+            <p className="text-khff-cream/80 text-lg md:text-xl">
+              Jelajahi rangkaian festival dengan melihat jadwal lengkap setiap program, kegiatan, dan ruang pertemuan di Kotabaru Heritage Film Festival 2026.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {homepageSchedule.map((schedule, index) => (
+              <div key={index} className="bg-khff-navy rounded-3xl p-8 shadow-xl text-left border border-white/10 hover:border-khff-pink transition-colors">
+                <h3 className="text-3xl font-serif font-black text-white mb-2">{schedule.day}</h3>
+                <p className="text-khff-yellow font-mono text-sm font-bold mb-8 tracking-wide uppercase">{schedule.date}</p>
+                
                 <div className="space-y-6">
-                  {day.events.map((ev, i) => (
-                    <div key={i} className="flex flex-col gap-2 relative">
-                      <div className="absolute -left-12 top-0 bottom-0 border-l border-khff-cream/20 hidden md:block">
-                        <div className="w-3 h-3 rounded-full bg-khff-yellow absolute -left-[6px] top-1" />
-                      </div>
-                      <span className="text-khff-yellow font-mono text-sm shrink-0 font-black tracking-wider">
-                        {ev.time} WIB
-                      </span>
+                  {schedule.events.map((ev, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="text-khff-pink font-mono font-black shrink-0 w-16">{ev.time}</div>
                       <div>
-                        <p className="text-white font-serif font-bold text-lg leading-snug mb-1">
-                          {ev.name}
-                        </p>
-                        <p className="text-khff-cream/80 text-xs font-mono font-bold tracking-wider uppercase mt-1 bg-white/10 px-3 py-1 rounded-lg inline-block border border-white/5">
-                          LOKASI: {ev.location}
-                        </p>
+                        <h4 className="text-white font-bold mb-1 leading-tight">{ev.name}</h4>
+                        <p className="text-khff-cream/60 text-xs font-mono uppercase">{ev.location}</p>
                       </div>
                     </div>
                   ))}
@@ -482,47 +434,23 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-16">
-            <Link
-              href="/jadwal"
-              className="inline-flex items-center gap-3 bg-khff-yellow text-khff-navy px-8 py-4 rounded-xl font-black hover:bg-white transition-all text-lg shadow-xl hover:scale-105"
-            >
-              Lihat Jadwal Keseluruhan <ArrowRight size={20} />
-            </Link>
+          <div className="text-center">
+             <Link href="/jadwal" className="inline-flex items-center gap-3 bg-khff-yellow text-khff-navy px-8 py-4 rounded-xl font-black hover:bg-white transition-all text-lg shadow-xl hover:scale-105">
+                Lihat Jadwal Keseluruhan <ArrowRight size={20} />
+             </Link>
           </div>
         </div>
       </section>
+      */}
 
       {/* 7. GALERI DOKUMENTASI REMOVED FROM HOME (MOVED TO NAVBAR /galeri) */}
 
-      {/* 8. REGISTRASI G-FORM */}
+      {/* 8. REGISTRASI G-FORM (TAKEOUT SEMENTARA UNTUK RILIS) */}
+      {/* 
       <section className="py-32 bg-[#f07495] text-white relative overflow-hidden">
-        <div className="hidden md:block absolute top-0 right-0 w-64 opacity-20 rotate-180 pointer-events-none">
-          <img src="/assets/karakter/gedang.png" alt="" className="w-full" />
-        </div>
-        <div className="hidden md:block absolute bottom-0 left-0 w-48 opacity-20 pointer-events-none">
-          <img src="/assets/karakter/kendhang.png" alt="" className="w-full" />
-        </div>
-
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-8xl font-serif font-black mb-6 drop-shadow-xl text-[#1d4d4f]">
-            Registrasi
-          </h2>
-          <p className="text-white font-medium max-w-2xl mx-auto mb-12 text-base sm:text-xl md:text-2xl drop-shadow-sm">
-            Amankan kursimu secara gratis. Akses seluruh penayangan film dan
-            pameran karya via Google Form.
-          </p>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 sm:gap-4 bg-[#1d4d4f] text-[#f9ea88] px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-xl font-black hover:bg-white hover:text-[#1d4d4f] hover:scale-105 transition-all duration-300 shadow-2xl"
-          >
-            Isi Formulir Pendaftaran{" "}
-            <ArrowRight size={22} className="shrink-0" />
-          </a>
-        </div>
-      </section>
+        ...
+      </section> 
+      */}
 
       {/* Video Modal Popup */}
       {isVideoOpen && (
@@ -543,11 +471,11 @@ export default function Home() {
                 allowFullScreen
               ></iframe>
             ) : (
-              <video
-                className="w-full h-full"
+              <CustomVideoPlayer
                 src={activeVideoTrailer}
-                autoPlay
-                controls
+                autoPlay={true}
+                className="w-full h-full"
+                videoClassName="w-full h-full object-contain"
               />
             )}
           </div>

@@ -3,14 +3,16 @@ import { Film, programs, IS_CURATION_ONGOING } from "@/data/dummy";
 
 interface FilmCardProps {
   film: Film;
+  overrideTitle?: string;
+  programId?: string;
 }
 
-export default function FilmCard({ film }: FilmCardProps) {
+export default function FilmCard({ film, overrideTitle, programId }: FilmCardProps) {
   const program = programs.find(p => p.films.some(f => f.id === film.id));
-  const displayTitle = IS_CURATION_ONGOING ? (program?.name.replace('Program ', '') || "Karya Terpilih") : film.title;
-  const displayDirector = IS_CURATION_ONGOING ? "—" : film.director;
+  const displayTitle = overrideTitle ? overrideTitle : (IS_CURATION_ONGOING ? (program?.name.replace('Program ', '') || "Karya Terpilih") : film.title);
+  const displayDirector = IS_CURATION_ONGOING ? "Nantikan informasi selanjutnya" : film.director;
   return (
-    <Link href={`/film/${film.id}`} className="block group cursor-pointer">
+    <Link href={`/film/${film.id}${programId ? `?p=${programId}` : ''}`} className="block group cursor-pointer">
       <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-white/5 mb-4 shadow-lg border border-white/10 transition-all duration-500 group-hover:border-white/40 group-hover:shadow-2xl">
         <img
           src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : film.posterUrl}
@@ -31,7 +33,7 @@ export default function FilmCard({ film }: FilmCardProps) {
           {displayTitle}
         </h3>
         <p className="text-xs md:text-sm text-gray-500 font-sans tracking-widest uppercase">
-          DIR. {displayDirector}
+          {displayDirector}
         </p>
       </div>
     </Link>

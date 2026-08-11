@@ -12,22 +12,22 @@ export default function KatalogPage() {
       title: "E-Katalog KHFF 2024",
       edition: "Edisi Kedua - Arsip Lengkap",
       desc: "Dokumentasi kuratorial program festival, kurasi sinema nusantara, forum kuliah terbuka, dan catatan penghargaan karya tahun 2024.",
-      pdfUrl: "/assets/katalog/e-katalog-khff-2024.pdf",
+      pdfUrl: "/assets/catalog/e-katalog-khff-2024.pdf",
       fileSize: "42.5 MB",
       bg: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tag: "bg-khff-navy text-khff-yellow",
-      asset: "/assets/karakter/bendera.png"
+      asset: "/assets/illustrations/bendera.png"
     },
     {
       year: "2023",
       title: "E-Katalog KHFF 2023",
       edition: "Edisi Perdana - Arsip Lengkap",
       desc: "Rekam jejak edisi perdana Kotabaru Heritage Film Festival. Catatan kurator, daftar seleksi karya film pendek, dan jejak langkah pengarsipan sejarah.",
-      pdfUrl: "/assets/katalog/e-katalog-khff-2023.pdf",
+      pdfUrl: "/assets/catalog/e-katalog-khff-2023.pdf",
       fileSize: "8.9 MB",
       bg: "bg-khff-pink text-white border-khff-pink",
       tag: "bg-white text-khff-pink",
-      asset: "/assets/karakter/terompet.png"
+      asset: "/assets/illustrations/terompet.png"
     }
   ];
 
@@ -58,7 +58,7 @@ export default function KatalogPage() {
       {/* CATALOG GRID SECTION (NAVY GREEN THEATER) */}
       <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         <div className="absolute -bottom-10 right-0 opacity-10 pointer-events-none w-96 hidden md:block">
-          <img src="/assets/karakter/gong.png" alt="" className="w-full h-auto" />
+          <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto" />
         </div>
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10">

@@ -60,7 +60,7 @@ interface ScheduleDay {
   roomActivation?: RoomActivation[];
 }
 
-const schedule = dataJson.schedule as unknown as ScheduleDay[];
+const schedule = (dataJson.schedule as unknown as ScheduleDay[]).filter(d => d.id !== "pre-festival");
 
 // Venue summary descriptions per tab ID
 const venueSummaries: Record<
@@ -68,7 +68,7 @@ const venueSummaries: Record<
   { title: string; venue: string; description: string; highlights: string[] }
 > = {
   "pre-festival": {
-    title: "Ringkasan Venue Pra-Festival",
+    title: "Sesi Persiapan & Penjurian",
     venue: "Pusat Desain Industri Nasional (PDIN)",
     description:
       "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Mahaditya, Purwaseswa, dan Karyanagri.",
@@ -79,7 +79,7 @@ const venueSummaries: Record<
     ],
   },
   "day-1": {
-    title: "Ringkasan Venue Hari Pertama",
+    title: "Pembukaan & Layar Tancap Terbuka",
     venue: "Pasar Terban (Kawasan Heritage)",
     description:
       "Panggung utama pembuka festival dengan transformasi ruang pasar tradisional menjadi arena sinematik terbuka. Dilengkapi sarana registrasi becak untuk Drive-In Cinema, bazar kuliner nusantara, dan layar penayangan Opening Film.",
@@ -90,7 +90,7 @@ const venueSummaries: Record<
     ],
   },
   "day-2": {
-    title: "Ringkasan Venue Hari Kedua",
+    title: "Eksplorasi Ruang & Pemutaran Heritage",
     venue: "Pusat Desain Industri Nasional (PDIN)",
     description:
       "PDIN menjadi pusat kegiatan hari kedua secara penuh, dengan tiga ruang beraktivitas paralel: Ruang Seminar untuk pengumuman Awards, Ruang Audiovisual untuk screening kompetisi dan heritage, serta Balkon Rumput Lantai 2 untuk forum dan sesi bincang bersama sineas.",
@@ -101,7 +101,7 @@ const venueSummaries: Record<
     ],
   },
   "day-3": {
-    title: "Ringkasan Venue Hari Ketiga (Penutupan)",
+    title: "Malam Puncak Penganugerahan KHFF",
     venue: "Hall Utama & Balkon PDIN",
     description:
       "Puncak perhelatan Kotabaru Heritage Film Festival 2026. Menghadirkan sesi National Heritage #2, KHFF Rewind #2, forum komunitas, serta Malam Penganugerahan (Awarding Ceremony) dan Closing Film bagi para jawara sinema nusantara.",
@@ -171,11 +171,12 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                   </td>
                   <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">
                     {ev.program}
-                    {ev.note && (
+                    {/* ev.note disembunyikan sementara hingga film dikonfirmasi */}
+                    {/* {ev.note && (
                       <span className="block text-khff-pink font-mono font-bold text-xs md:text-sm mt-1.5 uppercase tracking-wide">
                         Catatan: {ev.note}
                       </span>
-                    )}
+                    )} */}
                   </td>
                 </tr>
               ))}
@@ -222,11 +223,12 @@ function MultiTrackTable({
                 >
                   <td className="px-5 py-5 font-mono font-bold text-khff-yellow whitespace-nowrap align-top">
                     {ev.time}
-                    {ev.note && (
+                    {/* ev.note disembunyikan sementara hingga film dikonfirmasi */}
+                    {/* {ev.note && (
                       <span className="block text-khff-pink font-mono font-bold text-[10px] mt-1.5 uppercase tracking-wide normal-case">
                         {ev.note}
                       </span>
-                    )}
+                    )} */}
                   </td>
                   {keys.map((key, j) => {
                     const val = ev[key as keyof MultiTrackEvent] as
@@ -284,9 +286,12 @@ function RoomActivationSection({ rooms }: { rooms: RoomActivation[] }) {
 }
 
 export default function Jadwal() {
-  const [activeDay, setActiveDay] = useState(schedule[0].id);
-  const currentDay = schedule.find((d) => d.id === activeDay)!;
+  const defaultDay = schedule.length > 0 ? schedule[0].id : "day-1";
+  const [activeDay, setActiveDay] = useState(defaultDay);
+  const currentDay = schedule.find((d) => d.id === activeDay) || schedule[0];
   const currentSummary = venueSummaries[activeDay] || venueSummaries["day-1"];
+
+  if (!currentDay) return null;
 
   return (
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
@@ -301,13 +306,6 @@ export default function Jadwal() {
           </Link>
 
           <div className="max-w-4xl relative">
-            <div className="absolute right-0 top-0 opacity-25 w-56 pointer-events-none hidden md:block">
-              <img
-                src="/assets/karakter/kendhang.png"
-                alt="Kendhang"
-                className="w-full h-auto drop-shadow-2xl"
-              />
-            </div>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
               Jadwal Festival
             </h1>
@@ -324,7 +322,7 @@ export default function Jadwal() {
         {/* Floating Gong Illustration in background */}
         <div className="absolute top-40 -right-20 opacity-10 pointer-events-none w-96 z-0">
           <img
-            src="/assets/karakter/gong.png"
+            src="/assets/illustrations/gong.png"
             alt="Gong"
             className="w-full h-auto"
           />
@@ -352,24 +350,63 @@ export default function Jadwal() {
 
           {/* Day Content Box */}
           <div key={activeDay} className="animate-in fade-in duration-300">
-            {/* Day Title Banner */}
-            <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 bg-white/5 p-8 rounded-3xl border border-khff-cream/20 shadow-xl backdrop-blur-sm">
-              <div>
-                <span className="text-xs font-mono font-black uppercase tracking-[0.25em] text-khff-yellow block mb-2">
-                  {currentDay.id === "pre-festival"
-                    ? "Sesi Persiapan & Penjurian"
-                    : currentDay.day}
-                </span>
-                <h2 className="text-4xl md:text-6xl font-serif font-black text-white tracking-tight">
-                  {currentDay.date}
-                </h2>
+            {/* Integrated Day Hero Banner & Summary */}
+            <div className="mb-14 bg-gradient-to-br from-[#23585a] to-khff-navy border-4 border-khff-yellow rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-25 w-64 pointer-events-none hidden lg:block z-0">
+                <img
+                  src="/assets/illustrations/gong.png"
+                  alt="Gong"
+                  className="w-full h-auto"
+                />
               </div>
-              {currentDay.venue && (
-                <span className="inline-flex items-center gap-1 text-sm md:text-base text-khff-cream font-mono font-black bg-khff-navy px-6 py-3.5 rounded-2xl border-2 border-khff-pink shadow-lg shrink-0 uppercase tracking-wider">
-                  VENUE:{" "}
-                  <span className="text-khff-yellow">{currentDay.venue}</span>
-                </span>
-              )}
+
+              <div className="relative z-10 max-w-4xl">
+                <div className="inline-flex w-fit max-w-full items-center bg-khff-yellow text-khff-navy px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-mono font-black uppercase tracking-[0.2em] mb-5 shadow-lg border border-khff-yellow/50 whitespace-nowrap overflow-hidden text-ellipsis">
+                  {currentDay.id === "pre-festival"
+                    ? "Sesi Persiapan"
+                    : currentDay.day}
+                </div>
+                
+                <div className="mb-6 flex flex-col gap-4 border-b border-khff-cream/20 pb-6">
+                  <div>
+                    <h2 className="text-4xl md:text-5xl font-serif font-black text-white tracking-tight leading-tight mt-2">
+                      {currentDay.date}
+                    </h2>
+                  </div>
+                  {currentSummary.venue && (
+                    <div className="w-fit">
+                      <span className="inline-flex items-center gap-1 text-xs md:text-sm text-khff-cream font-mono font-black bg-khff-navy/80 px-5 py-3 rounded-2xl border-2 border-khff-pink shadow-lg uppercase tracking-wider backdrop-blur-md">
+                        VENUE:{" "}
+                        <span className="text-khff-yellow">{currentSummary.venue}</span>
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <h3 className="text-2xl md:text-4xl font-serif font-black text-white mb-4 leading-tight">
+                  {currentSummary.title}
+                </h3>
+                
+                <p className="text-khff-cream/95 text-base md:text-xl font-medium leading-relaxed mb-8 max-w-3xl">
+                  {currentSummary.description}
+                </p>
+
+                <div>
+                  <span className="text-xs font-mono font-black uppercase tracking-widest text-khff-cream/60 block mb-3">
+                    Agenda Utama:
+                  </span>
+                  <div className="flex flex-wrap gap-3">
+                    {currentSummary.highlights.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Single-track day */}
@@ -438,50 +475,7 @@ export default function Jadwal() {
               </div>
             )}
 
-            {/* INTEGRATED VENUE SUMMARY PER TAB */}
-            <div className="mt-16 bg-gradient-to-br from-[#23585a] to-khff-navy border-4 border-khff-yellow rounded-3xl p-8 md:p-14 shadow-2xl relative overflow-hidden">
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-25 w-64 pointer-events-none hidden lg:block">
-                <img
-                  src="/assets/karakter/gong.png"
-                  alt="Gong"
-                  className="w-full h-auto"
-                />
-              </div>
-
-              <div className="relative z-10 max-w-4xl">
-                <div className="inline-block bg-khff-yellow text-khff-navy px-4 py-1.5 rounded-full text-xs font-mono font-black uppercase tracking-[0.2em] mb-4 shadow">
-                  Detail Lokasi & Penyelenggaraan
-                </div>
-                <h3 className="text-3xl md:text-5xl font-serif font-black text-white mb-4 leading-tight">
-                  {currentSummary.title}
-                </h3>
-                <p className="text-khff-pink font-mono font-bold text-lg mb-6 uppercase tracking-wider">
-                  Lokasi Utama:{" "}
-                  <span className="text-khff-yellow">
-                    {currentSummary.venue}
-                  </span>
-                </p>
-                <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-8">
-                  {currentSummary.description}
-                </p>
-
-                <div>
-                  <span className="text-xs font-mono font-black uppercase tracking-widest text-khff-cream/60 block mb-3">
-                    Fokus Kegiatan pada Hari Ini:
-                  </span>
-                  <div className="flex flex-wrap gap-3">
-                    {currentSummary.highlights.map((item, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-white/10 border border-khff-cream/30 text-white font-mono font-bold px-4 py-2 rounded-xl text-sm shadow-md hover:border-khff-yellow transition-colors"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* SCHEDULE CONTENT ENDS HERE */}
           </div>
         </div>
       </section>

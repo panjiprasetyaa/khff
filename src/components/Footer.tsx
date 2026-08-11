@@ -6,10 +6,10 @@ export default function Footer() {
     <footer className="bg-khff-navy text-khff-cream py-20 border-t border-khff-cream/20 font-sans relative overflow-hidden">
       {/* Decorative asset overlay */}
       <div className="hidden md:block absolute -bottom-10 -right-10 opacity-10 pointer-events-none w-80">
-        <img src="/assets/karakter/gong.png" alt="Gong" className="w-full h-auto" />
+        <img src="/assets/illustrations/gong.png" alt="Gong" className="w-full h-auto" />
       </div>
       <div className="hidden md:block absolute top-10 left-10 opacity-10 pointer-events-none w-64">
-        <img src="/assets/karakter/kendhang.png" alt="Kendhang" className="w-full h-auto" />
+        <img src="/assets/illustrations/kendhang.png" alt="Kendhang" className="w-full h-auto" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -19,16 +19,16 @@ export default function Footer() {
             Supported By & Official Media Partners
           </span>
           <div className="flex flex-col items-center justify-center gap-8 md:gap-12 px-4 w-full max-w-4xl mx-auto">
-            {/* Top Row */}
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              <img src="/assets/sponsors/dana-keistimewaan.png" alt="Dana Keistimewaan" className="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/jogja-istimewa.png" alt="Jogja Istimewa" className="h-12 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/yk-kota.png" alt="Kota Yogyakarta" className="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform" />
+            {/* Top Row: 3 Logos */}
+            <div className="flex justify-center items-center gap-6 sm:gap-10 md:gap-16 w-full">
+              <img src="/assets/sponsors/dinas-pendidikan.png" alt="Dinas Pendidikan" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/yk-kota.png" alt="Kota Yogyakarta" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/jogja-istimewa.png" alt="Jogja Istimewa" className="h-7 sm:h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform" />
             </div>
-            {/* Bottom Row */}
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              <img src="/assets/sponsors/dinas-pendidikan.png" alt="Dinas Pendidikan" className="h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/kotabaru.png" alt="Kotabaru" className="h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform bg-khff-cream/10 rounded-lg p-2" />
+            {/* Bottom Row: 2 Logos */}
+            <div className="flex justify-center items-center gap-8 sm:gap-16 md:gap-24 w-full">
+              <img src="/assets/sponsors/dana-keistimewaan.png" alt="Dana Keistimewaan" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
+              <img src="/assets/sponsors/kotabaru.png" alt="Kotabaru" className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform" />
             </div>
           </div>
         </div>

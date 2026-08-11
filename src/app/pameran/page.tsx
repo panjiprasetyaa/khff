@@ -14,10 +14,10 @@ export default function PameranPage() {
         
         {/* Floating Decorative Characters */}
         <div className="absolute right-6 top-1/4 opacity-25 w-72 pointer-events-none hidden md:block animate-pulse">
-          <img src="/assets/karakter/SINGA.png" alt="Singa" className="w-full h-auto drop-shadow-2xl" />
+          <img src="/assets/illustrations/SINGA.png" alt="Singa" className="w-full h-auto drop-shadow-2xl" />
         </div>
         <div className="absolute left-6 -bottom-10 opacity-15 w-80 pointer-events-none hidden lg:block">
-          <img src="/assets/karakter/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
+          <img src="/assets/illustrations/butotumpuk.png" alt="Buto Tumpuk" className="w-full h-auto" />
         </div>
 
         <div className="container mx-auto max-w-4xl text-center relative z-20">

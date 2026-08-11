@@ -5,7 +5,13 @@ import { programs, specialPrograms, IS_CURATION_ONGOING } from "@/data/dummy";
 import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Filter, CalendarDays, Clock, MapPin, User, ArrowRight, Sparkles, Trophy, BookOpen, ExternalLink } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 export default function ProgramDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -20,9 +26,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // 1. PROGRAM KOMPETISI
   if (id === "kompetisi") {
     const tabs = [
-      { id: "mahaditya", label: "Mahaditya", desc: "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan." },
-      { id: "purwaseswa", label: "Purwaseswa", desc: "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia." },
-      { id: "karyanagri", label: "Karyanagri", desc: "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional." },
+      { id: "mahaditya", label: "Mahaditya Awards", desc: "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan." },
+      { id: "purwaseswa", label: "Purwaseswa Awards", desc: "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia." },
+      { id: "karyanagri", label: "Karyanagri Awards", desc: "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional." },
     ];
     const currentProgram = programs.find((p) => p.id === activeKompetisiTab);
     const activeTabInfo = tabs.find((t) => t.id === activeKompetisiTab);
@@ -41,19 +47,24 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 Festival Competition 2026
               </div>
 
-              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Kompetisi
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
-                Menampilkan karya terbaik dari sineas muda nusantara. Pilih kategori program di bawah untuk menjelajahi daftar karya terkurasi.
+                Pemutaran film hasil submisi terbuka yang telah melalui proses kurasi, sekaligus menjadi ruang kompetisi bagi sineas untuk memperebutkan penghargaan dalam berbagai kategori.
               </p>
             </div>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
-          <div className="container mx-auto max-w-7xl">
+        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+          {/* Floating Background Assets */}
+          <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
+            <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
+          </div>
+          
+          <div className="container mx-auto max-w-7xl relative z-10">
             {/* TAB BUTTONS */}
             <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-8">
               {tabs.map((tab) => (
@@ -82,13 +93,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             {/* FILM LIST GRID */}
             <div>
               <div className="flex justify-between items-center mb-8">
-                 <h3 className="text-2xl font-serif font-black text-white">Daftar Karya Seleksi ({currentProgram?.films.length || 0} Film)</h3>
+                 <h3 className="text-2xl font-serif font-black text-white">Daftar Karya Seleksi ({currentProgram?.films.slice(0, 1).length || 0} Film)</h3>
               </div>
               
               {currentProgram && currentProgram.films.length > 0 ? (
                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                   {currentProgram.films.map((film) => (
-                     <FilmCard key={film.id} film={film} />
+                   {currentProgram.films.slice(0, 1).map((film) => (
+                     <FilmCard key={film.id} film={film} overrideTitle={activeTabInfo?.label} programId={activeKompetisiTab} />
                    ))}
                  </div>
               ) : (
@@ -128,19 +139,24 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 Heritage & Special Screenings
               </div>
 
-              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Non-Kompetisi
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
-                Kurasi penayangan eksklusif yang merayakan persilangan sinema dan sejarah. Dari opening hingga pemutaran restorasi arsip budaya lokal dan global.
+                Pemutaran film pilihan yang mengeksplorasi cerita, tradisi, dan kehidupan yang membentuk warisan budaya.
               </p>
             </div>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
-          <div className="container mx-auto max-w-7xl">
+        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+          {/* Floating Background Assets */}
+          <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
+            <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
+          </div>
+          
+          <div className="container mx-auto max-w-7xl relative z-10">
             
             {/* TAB BUTTONS */}
             <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-8">
@@ -170,8 +186,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               
               {currentProgram && currentProgram.films.length > 0 ? (
                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                   {currentProgram.films.map((film) => (
-                     <FilmCard key={film.id} film={film} />
+                   {currentProgram.films.slice(0, 1).map((film) => (
+                     <FilmCard key={film.id} film={film} overrideTitle={tabs.find(t => t.id === activeNonKompetisiTab)?.label} programId={activeNonKompetisiTab} />
                    ))}
                  </div>
               ) : (
@@ -186,36 +202,28 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
     );
   }
 
-  // 3. PROGRAM NON-PEMUTARAN (Workshop & Public Lecture)
+  // 3. PROGRAM NON-PEMUTARAN (Workshop & Public Lecture dll)
   if (id === "non-pemutaran") {
-    const events = [
+    const nonPemutaranEvents = [
       {
-        id: "workshop",
-        type: "Workshop",
-        title: "Penulisan Naskah Film Pendek & Eksperimental",
-        speaker: "Wregas Bhanuteja",
-        role: "Sutradara & Penulis Skenario (Budi Pekerti, Penyalin Cahaya)",
-        date: "Minggu, 13 September 2026",
-        time: "13:00 - 16:00 WIB",
-        location: "Ruang Seminar 2, PDIN",
-        desc: "Lokakarya intensif yang membedah anatomi struktur cerita film pendek, teknik eksplorasi ide lokal yang berdaya saing global, serta kiat-kiat pitching naskah di festival film internasional.",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600"
+        id: "drive-in",
+        title: "Drive In Cinema",
+        desc: "Menghadirkan cara baru menikmati film lokal dari atas becak kayuh, memadukan pengalaman sinema dengan transportasi tradisional Yogyakarta yang ramah lingkungan.",
+        image: "/assets/sponsors/becakk.jpg",
       },
       {
-        id: "lecture",
-        type: "Public Lecture",
-        title: "Masa Depan Sinema Independen & Pengarsipan Sejarah",
-        speaker: "Garin Nugroho",
-        role: "Sutradara Senior & Budayawan Nusantara",
-        date: "Sabtu, 12 September 2026",
-        time: "10:00 - 12:00 WIB",
-        location: "Aula Kotabaru / Balkon PDIN",
-        desc: "Kuliah terbuka dan forum pemikiran tentang peran sinema independen dalam melaburi ruang arsip sejarah kota, revitalisasi kebudayaan, serta navigasi ekosistem perfilman modern.",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600"
+        id: "public-lecture",
+        title: "Public Lecture",
+        desc: "Sesi pengetahuan dan diskusi yang mengajak peserta melihat film dan warisan budaya dari berbagai perspektif.",
+        image: "/assets/gallery/2025/Day 2 Public Lecture-4.jpg",
+      },
+      {
+        id: "pasar-kobar",
+        title: "Pasar Kobar",
+        desc: "Temukan beragam produk lokal, kuliner, dan karya kreatif di Pasar Kobar selama festival berlangsung.",
+        image: "/assets/gallery/2025/Pasar Sepakbola-1.jpg",
       }
     ];
-
-    const currentEvent = events.find((e) => e.id === activeNonPemutaranTab) || events[0];
 
     return (
       <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
@@ -232,108 +240,83 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 Forum & Educational Programs
               </div>
 
-              <h1 className="text-5xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
                 Program Non-Pemutaran
               </h1>
               <p className="text-xl md:text-2xl text-khff-cream/95 font-medium leading-relaxed drop-shadow">
-                Ruang temu, lokakarya edukatif, dan kuliah terbuka bersama praktisi film terkemuka. Wadah pertukaran wawasan, diskusi kerajinan sinema, serta jejaring kolaborasi.
+                Ruang interaksi yang menghadirkan berbagai kegiatan untuk belajar, berdiskusi, dan merayakan keberagaman budaya melalui film.
               </p>
             </div>
           </div>
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
-          <div className="container mx-auto max-w-7xl">
-            
-            {/* TAB SELECTOR: WORKSHOP vs PUBLIC LECTURE */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 mb-12">
-              {events.map((ev) => (
-                <button
-                  key={ev.id}
-                  onClick={() => setActiveNonPemutaranTab(ev.id)}
-                  className={`px-6 py-3.5 sm:px-10 sm:py-5 rounded-2xl font-serif font-black text-base sm:text-2xl transition-all duration-300 shadow-xl ${
-                    activeNonPemutaranTab === ev.id
-                      ? "bg-white text-khff-navy scale-105 shadow-[0_0_30px_rgba(255,255,255,0.25)]"
-                      : "bg-white/5 text-khff-cream/60 hover:bg-white/10 hover:text-khff-cream"
-                  }`}
-                >
-                  {ev.type}
-                </button>
-              ))}
-            </div>
-
-            {/* DETAIL CARD */}
-            <div className="bg-white/5 border-2 border-khff-cream/20 rounded-3xl p-8 md:p-16 shadow-2xl backdrop-blur-md relative overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                {/* Foto Narasumber */}
-                <div className="lg:col-span-5 flex flex-col items-center">
-                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow relative group">
-                    <img 
-                      src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : currentEvent.image} 
-                      alt={IS_CURATION_ONGOING ? currentEvent.type : currentEvent.speaker} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-khff-navy via-transparent to-transparent opacity-80" />
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <span className="text-xs font-mono uppercase font-black bg-khff-pink text-white px-3 py-1 rounded-full mb-2 inline-block shadow">
-                        Narasumber
-                      </span>
-                      <h3 className="text-2xl font-serif font-black text-white">{currentEvent.speaker}</h3>
+        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+          {/* Floating Background Assets */}
+          <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
+            <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
+          </div>
+          
+          <div className="container mx-auto max-w-7xl relative z-10 w-full group/slider overflow-visible">
+             <Swiper
+                modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
+                navigation={{
+                  nextEl: ".swiper-button-next-custom",
+                  prevEl: ".swiper-button-prev-custom",
+                }}
+                scrollbar={{ draggable: true, hide: false }}
+                freeMode={true}
+                mousewheel={{ forceToAxis: true }}
+                grabCursor={true}
+                spaceBetween={24}
+                slidesPerView="auto"
+                className="w-full py-4 !overflow-visible"
+                style={{
+                  "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties}
+              >
+                {nonPemutaranEvents.map((event, idx) => (
+                  <SwiperSlide key={event.id} className="!w-auto !h-auto">
+                    <div className="w-[300px] h-[450px] md:w-[350px] md:h-[500px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03] transition-all duration-500 transform-gpu cursor-pointer">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        sizes="(max-width: 768px) 300px, 350px"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 md:p-8 flex flex-col justify-end">
+                        <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-widest mb-2 drop-shadow-md">
+                          Program {idx + 1}
+                        </p>
+                        <h3 className="text-white font-serif font-black text-2xl md:text-3xl leading-snug drop-shadow-md mb-3">
+                          {event.title}
+                        </h3>
+                        <p className="text-white/80 font-medium text-sm md:text-base drop-shadow-md line-clamp-4">
+                          {event.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
 
-                {/* Detail Jadwal & Materi */}
-                <div className="lg:col-span-7 flex flex-col justify-between">
-                  <div>
-                    <span className="text-sm font-mono uppercase font-black text-khff-yellow tracking-widest block mb-3">
-                      {currentEvent.type} Session
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-serif font-black text-white mb-4 leading-tight">
-                      {IS_CURATION_ONGOING ? currentEvent.type : currentEvent.title}
-                    </h2>
-                    <p className="text-khff-pink font-bold text-lg mb-6">
-                      {IS_CURATION_ONGOING ? "—" : currentEvent.role}
-                    </p>
-                    <p className="text-khff-cream/90 text-lg md:text-xl font-medium leading-relaxed mb-8">
-                      {IS_CURATION_ONGOING ? "Proses kurasi program sedang berlangsung. Informasi detail akan segera diumumkan." : currentEvent.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-4 font-mono font-bold text-base mb-10">
-                      <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <CalendarDays size={20} className="text-khff-yellow"/> {IS_CURATION_ONGOING ? "—" : currentEvent.date}
-                      </span>
-                      <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <Clock size={20} className="text-khff-pink"/> {IS_CURATION_ONGOING ? "—" : currentEvent.time}
-                      </span>
-                      <span className="flex items-center gap-2 bg-khff-navy/80 border border-khff-cream/20 px-5 py-3 rounded-xl text-white shadow-md">
-                        <MapPin size={20} className="text-white"/> {IS_CURATION_ONGOING ? "—" : currentEvent.location}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* TOMBOL DAFTAR SEKARANG -> LINK GOOGLE FORM */}
-                  {!IS_CURATION_ONGOING && (
-                  <div className="pt-8 border-t border-khff-cream/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <div>
-                      <span className="text-sm text-khff-cream/70 font-mono block">Biaya pendaftaran: <strong className="text-white uppercase font-bold">Gratis (Tempat Terbatas)</strong></span>
-                      <span className="text-xs text-khff-cream/50 font-mono">Registrasi dibuka melalui platform Google Form</span>
-                    </div>
-                    <a
-                      href={gFormUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 bg-khff-pink text-white px-10 py-5 rounded-2xl text-xl font-black font-mono hover:bg-khff-yellow hover:text-khff-navy hover:scale-105 transition-all duration-300 shadow-2xl shrink-0"
-                    >
-                      Daftar Sekarang <ExternalLink size={24} />
-                    </a>
-                  </div>
-                  )}
+              {/* Left Navigation Overlay */}
+              <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-navy/80 to-transparent hidden md:flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
+                <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-xl">
+                  <ArrowLeft size={24} />
                 </div>
               </div>
-            </div>
+
+              {/* Right Navigation Overlay */}
+              <div className="swiper-button-next-custom absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-navy/80 to-transparent hidden md:flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
+                <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-xl">
+                  <ArrowRight size={24} />
+                </div>
+              </div>
           </div>
         </section>
       </main>
@@ -353,7 +336,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           </Link>
           
           <div className="max-w-4xl mb-8">
-            <h1 className="text-5xl md:text-7xl font-serif font-black text-khff-cream mb-6 drop-shadow">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-khff-cream mb-6 drop-shadow">
               {program.name}
             </h1>
             <p className="text-xl md:text-2xl text-khff-cream/95 font-medium drop-shadow">
@@ -363,8 +346,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
         </div>
       </section>
 
-      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 -mt-12">
-        <div className="container mx-auto max-w-7xl">
+      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+        {/* Floating Background Assets */}
+        <div className="absolute top-20 right-0 w-48 md:w-96 opacity-5 md:opacity-[0.07] pointer-events-none -scale-x-100">
+          <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto" />
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <div className="flex justify-between items-end mb-10 border-b border-khff-cream/10 pb-6">
              <h2 className="text-3xl font-serif font-black text-white">Menampilkan {program.films.length} Karya</h2>
              <span className="text-khff-cream/60 text-sm font-mono font-bold">KHFF 2026 Selection</span>

@@ -5,11 +5,21 @@ import { films, programs, IS_CURATION_ONGOING } from "@/data/dummy";
 import { Play, X, ArrowLeft } from "lucide-react";
 import { notFound, useRouter } from "next/navigation";
 
-export default function FilmDetail({ params }: { params: Promise<{ id: string }> }) {
+export default function FilmDetail({ 
+  params,
+  searchParams 
+}: { 
+  params: Promise<{ id: string }>,
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const unwrappedParams = use(params);
+  const unwrappedSearchParams = use(searchParams);
   const router = useRouter();
   const film = films[unwrappedParams.id];
-  const program = programs.find(p => p.films.some(f => f.id === film.id));
+  const programIdQuery = unwrappedSearchParams.p as string | undefined;
+  const program = programIdQuery 
+    ? programs.find(p => p.id === programIdQuery) 
+    : programs.find(p => p.films.some(f => f.id === film.id));
 
   const displayTitle = IS_CURATION_ONGOING ? (program?.name.replace('Program ', '') || "Karya Terpilih") : film.title;
   const displayYear = IS_CURATION_ONGOING ? "—" : film.year;
@@ -39,11 +49,8 @@ export default function FilmDetail({ params }: { params: Promise<{ id: string }>
       <div className="absolute inset-0 z-0 opacity-15 bg-cover bg-center blur-3xl mix-blend-screen" style={{ backgroundImage: `url(${film.posterUrl})` }}></div>
       
       {/* Decorative Character Artworks */}
-      <div className="absolute top-20 right-10 opacity-30 w-48 pointer-events-none z-0 mix-blend-screen">
-        <img src="/assets/karakter/geni2.png" alt="Geni" className="w-full h-auto" />
-      </div>
       <div className="absolute bottom-10 right-20 opacity-25 w-72 pointer-events-none z-0">
-        <img src="/assets/karakter/cahaya.png" alt="Cahaya" className="w-full h-auto" />
+        <img src="/assets/illustrations/cahaya.png" alt="Cahaya" className="w-full h-auto" />
       </div>
       
       <div className="container mx-auto px-6 max-w-6xl relative z-10">

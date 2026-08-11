@@ -271,35 +271,35 @@
     }
   ],
   "praEvents": [
-    { "id": 1, "image": "/assets/pra-event/tumbas.jpg", "judul": "Tumbas" },
-    { "id": 2, "image": "/assets/pra-event/zuhud.jpeg", "judul": "Zuhud" },
+    { "id": 1, "image": "/assets/pre-event/tumbas.jpg", "judul": "Tumbas" },
+    { "id": 2, "image": "/assets/pre-event/zuhud.jpeg", "judul": "Zuhud" },
     {
       "id": 3,
-      "image": "/assets/pra-event/benderaputih.jpg",
+      "image": "/assets/pre-event/benderaputih.jpg",
       "judul": "Bendera Putih (White Flag)"
     },
     {
       "id": 4,
-      "image": "/assets/pra-event/lunggah.jpg",
+      "image": "/assets/pre-event/lunggah.jpg",
       "judul": "Lunggah Lungguh"
     },
-    { "id": 5, "image": "/assets/pra-event/njangkar.png", "judul": "Njangkar" },
+    { "id": 5, "image": "/assets/pre-event/njangkar.png", "judul": "Njangkar" },
     {
       "id": 6,
-      "image": "/assets/pra-event/pungra.png",
+      "image": "/assets/pre-event/pungra.png",
       "judul": "Pung Ra Rampung, Nembung (A Tale of Permission)"
     },
     {
       "id": 7,
-      "image": "/assets/pra-event/hompimpa.jpeg",
+      "image": "/assets/pre-event/hompimpa.jpeg",
       "judul": "HOMPIMPA ALAIUM GAMBRENG"
     },
-    { "id": 8, "image": "/assets/pra-event/pungra.png", "judul": "DUA MEJA" },
+    { "id": 8, "image": "/assets/pre-event/pungra.png", "judul": "DUA MEJA" },
     {
       "id": 9,
-      "image": "/assets/pra-event/unggah.png",
+      "image": "/assets/pre-event/unggah.png",
       "judul": "Unggah Suguh"
     },
-    { "id": 10, "image": "/assets/pra-event/gnd.jpg", "judul": "GND" }
+    { "id": 10, "image": "/assets/pre-event/gnd.jpg", "judul": "GND" }
   ]
 }
