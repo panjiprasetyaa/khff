@@ -60,7 +60,9 @@ interface ScheduleDay {
   roomActivation?: RoomActivation[];
 }
 
-const schedule = (dataJson.schedule as unknown as ScheduleDay[]).filter(d => d.id !== "pre-festival");
+const schedule = (dataJson.schedule as unknown as ScheduleDay[]).filter(
+  (d) => d.id !== "pre-festival",
+);
 
 // Venue summary descriptions per tab ID
 const venueSummaries: Record<
@@ -310,8 +312,9 @@ export default function Jadwal() {
               Jadwal Festival
             </h1>
             <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
-              Rangkaian penayangan film terkurasi, forum wawasan, bazar kuliner,
-              dan malam penganugerahan Kotabaru Heritage Film Festival 2026.
+              Jelajahi rangkaian festival dengan melihat jadwal lengkap setiap
+              program, kegiatan, dan ruang pertemuan di Kotabaru Heritage Film
+              Festival 2026.
             </p>
           </div>
         </div>
@@ -366,7 +369,7 @@ export default function Jadwal() {
                     ? "Sesi Persiapan"
                     : currentDay.day}
                 </div>
-                
+
                 <div className="mb-6 flex flex-col gap-4 border-b border-khff-cream/20 pb-6">
                   <div>
                     <h2 className="text-4xl md:text-5xl font-serif font-black text-white tracking-tight leading-tight mt-2">
@@ -377,7 +380,9 @@ export default function Jadwal() {
                     <div className="w-fit">
                       <span className="inline-flex items-center gap-1 text-xs md:text-sm text-khff-cream font-mono font-black bg-khff-navy/80 px-5 py-3 rounded-2xl border-2 border-khff-pink shadow-lg uppercase tracking-wider backdrop-blur-md">
                         VENUE:{" "}
-                        <span className="text-khff-yellow">{currentSummary.venue}</span>
+                        <span className="text-khff-yellow">
+                          {currentSummary.venue}
+                        </span>
                       </span>
                     </div>
                   )}
@@ -386,7 +391,7 @@ export default function Jadwal() {
                 <h3 className="text-2xl md:text-4xl font-serif font-black text-white mb-4 leading-tight">
                   {currentSummary.title}
                 </h3>
-                
+
                 <p className="text-khff-cream/95 text-base md:text-xl font-medium leading-relaxed mb-8 max-w-3xl">
                   {currentSummary.description}
                 </p>
