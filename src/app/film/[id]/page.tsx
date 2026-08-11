@@ -6,17 +6,20 @@ import { Play, X, ArrowLeft } from "lucide-react";
 import { notFound, useRouter } from "next/navigation";
 
 export default function FilmDetail({ 
-  params,
-  searchParams 
+  params
 }: { 
-  params: Promise<{ id: string }>,
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  params: Promise<{ id: string }>
 }) {
   const unwrappedParams = use(params);
-  const unwrappedSearchParams = use(searchParams);
   const router = useRouter();
   const film = films[unwrappedParams.id];
-  const programIdQuery = unwrappedSearchParams.p as string | undefined;
+  const [programIdQuery, setProgramIdQuery] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setProgramIdQuery(searchParams.get('p'));
+  }, []);
+
   const program = programIdQuery 
     ? programs.find(p => p.id === programIdQuery) 
     : programs.find(p => p.films.some(f => f.id === film.id));
