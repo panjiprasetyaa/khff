@@ -144,7 +144,7 @@ export default function Home() {
             Panorama
           </h2>
           <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow mb-6">
-            Periode Penayangan : 19 Juli - 12 September 2026
+            Periode Penayangan :<br className="sm:hidden" /> 19 Juli - 12 September 2026
           </p>
           <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
             PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival

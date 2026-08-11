@@ -1,15 +1,22 @@
 import { AtSign, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
-
   return (
     <footer className="bg-khff-navy text-khff-cream py-20 border-t border-khff-cream/20 font-sans relative overflow-hidden">
       {/* Decorative asset overlay */}
       <div className="hidden md:block absolute -bottom-10 -right-10 opacity-10 pointer-events-none w-80">
-        <img src="/assets/illustrations/gong.png" alt="Gong" className="w-full h-auto" />
+        <img
+          src="/assets/illustrations/gong.png"
+          alt="Gong"
+          className="w-full h-auto"
+        />
       </div>
       <div className="hidden md:block absolute top-10 left-10 opacity-10 pointer-events-none w-64">
-        <img src="/assets/illustrations/kendhang.png" alt="Kendhang" className="w-full h-auto" />
+        <img
+          src="/assets/illustrations/kendhang.png"
+          alt="Kendhang"
+          className="w-full h-auto"
+        />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -21,14 +28,34 @@ export default function Footer() {
           <div className="flex flex-col items-center justify-center gap-8 md:gap-12 px-4 w-full max-w-4xl mx-auto">
             {/* Top Row: 3 Logos */}
             <div className="flex justify-center items-center gap-6 sm:gap-10 md:gap-16 w-full">
-              <img src="/assets/sponsors/dinas-pendidikan.png" alt="Dinas Pendidikan" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/yk-kota.png" alt="Kota Yogyakarta" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/jogja-istimewa.png" alt="Jogja Istimewa" className="h-7 sm:h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform" />
+              <img
+                src="/assets/sponsors/dinas-pendidikan.png"
+                alt="Dinas Pendidikan"
+                className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform"
+              />
+              <img
+                src="/assets/sponsors/yk-kota.png"
+                alt="Kota Yogyakarta"
+                className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform"
+              />
+              <img
+                src="/assets/sponsors/jogja-istimewa.png"
+                alt="Jogja Istimewa"
+                className="h-7 sm:h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform"
+              />
             </div>
             {/* Bottom Row: 2 Logos */}
             <div className="flex justify-center items-center gap-8 sm:gap-16 md:gap-24 w-full">
-              <img src="/assets/sponsors/dana-keistimewaan.png" alt="Dana Keistimewaan" className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform" />
-              <img src="/assets/sponsors/kotabaru.png" alt="Kotabaru" className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform" />
+              <img
+                src="/assets/sponsors/dana-keistimewaan.png"
+                alt="Dana Keistimewaan"
+                className="h-10 sm:h-14 md:h-20 w-auto object-contain hover:scale-105 transition-transform"
+              />
+              <img
+                src="/assets/sponsors/kotabaru.png"
+                alt="Kotabaru"
+                className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform"
+              />
             </div>
           </div>
         </div>
@@ -44,7 +71,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-base text-khff-cream/80 max-w-sm font-medium leading-relaxed">
-              Merayakan persilangan sinema dan sejarah di jantung Yogyakarta. Wadah apresiasi karya sineas nusantara, pengarsipan budaya, dan hiburan rakyat.
+              “Menjaga Warisan, Merayakan Imajinasi”
             </p>
           </div>
 
@@ -52,13 +79,25 @@ export default function Footer() {
             <h4 className="text-khff-yellow font-mono font-black mb-2 uppercase tracking-widest text-sm">
               Contact
             </h4>
-            <a href="mailto:kotabaruheritagefilmfestival@gmail.com" className="flex items-start gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium w-full">
+            <a
+              href="mailto:kotabaruheritagefilmfestival@gmail.com"
+              className="flex items-start gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium w-full"
+            >
               <Mail size={18} className="text-khff-pink shrink-0 mt-1" />
-              <span className="break-all sm:break-normal text-left">kotabaruheritagefilmfestival@gmail.com</span>
+              <span className="break-all sm:break-normal text-left">
+                kotabaruheritagefilmfestival@gmail.com
+              </span>
             </a>
-            <a href="https://instagram.com/kotabaruheritagefilmfestival" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium w-full">
+            <a
+              href="https://instagram.com/kotabaruheritagefilmfestival"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 text-khff-cream/90 hover:text-khff-pink transition-colors font-medium w-full"
+            >
               <AtSign size={18} className="text-khff-yellow shrink-0 mt-1" />
-              <span className="break-all sm:break-normal text-left">@kotabaruheritagefilmfestival</span>
+              <span className="break-all sm:break-normal text-left">
+                @kotabaruheritagefilmfestival
+              </span>
             </a>
           </div>
 
@@ -71,14 +110,22 @@ export default function Footer() {
                 <MapPin size={20} className="shrink-0 mt-1 text-khff-pink" />
                 <div>
                   <p className="font-bold text-white">Pasar Terban</p>
-                  <p className="opacity-80">Jl. C. Simanjuntak No. 21, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
+                  <p className="opacity-80">
+                    Jl. C. Simanjuntak No. 21, Terban, Gondokusuman,
+                    <br />
+                    Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={20} className="shrink-0 mt-1 text-khff-pink" />
                 <div>
                   <p className="font-bold text-white">PDIN Kotabaru</p>
-                  <p className="opacity-80">Jl. C. Simanjuntak No. 19, Terban, Gondokusuman,<br />Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223</p>
+                  <p className="opacity-80">
+                    Jl. C. Simanjuntak No. 19, Terban, Gondokusuman,
+                    <br />
+                    Kota Yogyakarta, Daerah Istimewa Yogyakarta 55223
+                  </p>
                 </div>
               </div>
             </div>
@@ -89,9 +136,24 @@ export default function Footer() {
         <div className="pt-8 border-t border-khff-cream/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-khff-cream/60">
           <p>© 2026 Kotabaru Heritage Film Festival. All rights reserved.</p>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Privacy Policy</a>
-            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Terms of Festival</a>
-            <a href="#" className="hover:text-khff-yellow transition-colors font-bold">Press Kit</a>
+            <a
+              href="#"
+              className="hover:text-khff-yellow transition-colors font-bold"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="hover:text-khff-yellow transition-colors font-bold"
+            >
+              Terms of Festival
+            </a>
+            <a
+              href="#"
+              className="hover:text-khff-yellow transition-colors font-bold"
+            >
+              Press Kit
+            </a>
           </div>
         </div>
       </div>
