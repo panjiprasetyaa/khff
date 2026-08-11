@@ -37,7 +37,21 @@ export default function CustomVideoPlayer({
   };
 
   useEffect(() => {
-    handleWakeUp();
+    if (isPlaying) {
+      setTimeout(() => setShowVideoOverlay(true), 0);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setShowVideoOverlay(false);
+      }, 2500);
+    } else {
+      setTimeout(() => setShowVideoOverlay(true), 0);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    }
+
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };

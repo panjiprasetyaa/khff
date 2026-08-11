@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Program",
+};
 
 export default function ProgramList() {
   const mainCategories = [
