@@ -21,7 +21,11 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kotabaru Heritage Film Festival 2026",
+
+  title: {
+    template: '%s - Kotabaru Heritage Film Festival 2026',
+    default: 'Kotabaru Heritage Film Festival 2026', // a default title for pages that don't have a title
+  },
   description: "Kotabaru Heritage Film Festival. Merayakan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.",
   icons: {
     icon: [

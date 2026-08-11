@@ -120,19 +120,22 @@ export default function Home() {
             Kotabaru Heritage <br /> Film Festival <br /> 2026
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
-            <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">17-19 September 2026</span>
+            <span className="text-khff-cream drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
+              17-19 September 2026
+            </span>
             <br></br>
-            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">Pasar Terban & PDIN Kotabaru, Yogyakarta</span>
+            <span className="text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
+              Pasar Terban & PDIN Kotabaru, Yogyakarta
+            </span>
           </p>
           <p className="text-base md:text-2xl text-khff-cream max-w-3xl mx-auto font-semibold leading-relaxed drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)]">
-            Merayakan persilangan sinema, arsitektur masa lampau, dan pengarsipan sejarah di jantung Yogyakarta.
+            “Menjaga Warisan, Merayakan Imajinasi”
           </p>
         </div>
       </section>
 
       {/* 2. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
       <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
-
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
           <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
             Pra Event KHFF 2026
@@ -144,7 +147,12 @@ export default function Home() {
             Periode Penayangan : 19 Juli - 12 September 2026
           </p>
           <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
-            PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival (KHFF) 2026 yang menghadirkan kembali sepuluh film pendek Program Panorama KHFF 2024 melalui kanal YouTube @kebudayaanjogjakota. Didukung oleh Dinas Kebudayaan Kota Yogyakarta, satu film akan tayang setiap minggu sebagai bagian dari perjalanan menuju KHFF 2026.
+            PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival
+            (KHFF) 2026 yang menghadirkan kembali sepuluh film pendek Program
+            Panorama KHFF 2024 melalui kanal YouTube @kebudayaanjogjakota.
+            Didukung oleh Dinas Kebudayaan Kota Yogyakarta, satu film akan
+            tayang setiap minggu sebagai bagian dari perjalanan menuju KHFF
+            2026.
           </p>
           <a
             href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
@@ -184,7 +192,7 @@ export default function Home() {
             >
               {praEvents.map((event) => (
                 <SwiperSlide key={`mobile-${event.id}`} className="!w-auto !h-auto">
-                  <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
+                  <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu will-change-transform cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
                     <img
                       src={event.image}
                       alt={event.judul}
@@ -255,14 +263,36 @@ export default function Home() {
           {/* Left Navigation Overlay (Netflix Style) */}
           <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 lg:pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
             <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
             </div>
           </div>
 
           {/* Right Navigation Overlay (Netflix Style) */}
           <div className="swiper-button-next-custom absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 lg:pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
             <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
             </div>
           </div>
         </div>
@@ -286,7 +316,11 @@ export default function Home() {
           />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 md:w-[600px] h-auto opacity-[0.01] md:opacity-[0.03] pointer-events-none z-0">
-          <img src="/assets/illustrations/buto2.png" alt="" className="w-full h-auto" />
+          <img
+            src="/assets/illustrations/buto2.png"
+            alt=""
+            className="w-full h-auto"
+          />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -298,7 +332,8 @@ export default function Home() {
               Tiga Program Utama
             </h2>
             <p className="text-khff-cream/80 text-lg md:text-xl font-medium leading-relaxed">
-              menikmati film, berbagi cerita, dan membangun koneksi dalam pengalaman festival yang merayakan warisan budaya bersama.
+              Menikmati film, berbagi cerita, dan membangun koneksi dalam
+              pengalaman festival yang merayakan warisan budaya bersama.
             </p>
           </div>
 
@@ -323,7 +358,8 @@ export default function Home() {
                     Kompetisi
                   </h3>
                   <p className="text-khff-navy/80 font-medium text-lg max-w-sm">
-                    Ajang apresiasi sinema pendek pilihan dari seluruh Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
+                    Ajang apresiasi sinema pendek pilihan dari seluruh
+                    Nusantara: Mahaditya, Purwaseswa, dan Karyanagri.
                   </p>
                 </div>
                 <div className="mt-12 pt-6 border-t border-khff-navy/20 font-black font-mono text-base flex items-center justify-between group-hover:translate-x-2 transition-transform">
@@ -402,7 +438,11 @@ export default function Home() {
       <section className="py-24 bg-[#143638] relative overflow-hidden">
         {/* Floating Visual Asset (New Character) */}
         <div className="absolute top-0 right-0 opacity-10 w-48 md:w-[28rem] pointer-events-none">
-          <img src="/assets/illustrations/butotumpuk.png" alt="" className="w-full h-auto drop-shadow-2xl" />
+          <img
+            src="/assets/illustrations/butotumpuk.png"
+            alt=""
+            className="w-full h-auto drop-shadow-2xl"
+          />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 text-center relative z-10">
@@ -444,11 +484,11 @@ export default function Home() {
                 Cinema
               </h3>
               <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
-                Special program drive in cinema by Mayora. Keliling Kota Baru
-                naik becak sambil menikmati sinema. Film pembuka: Para Perasuk.
+                Menghadirkan cara baru menikmati film lokal dari atas becak,
+                memadukan pengalaman sinema dengan transportasi tradisional
+                Yogyakarta yang ramah lingkungan.
               </p>
               {/* Waktu dan Tempat Drive-in Di Takeout untuk rilis */}
-
             </div>
           </div>
         </div>
