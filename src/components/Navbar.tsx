@@ -44,9 +44,11 @@ export default function Navbar() {
           <Link href="/program" className="hover:text-khff-yellow transition-colors">
             PROGRAM
           </Link>
+          {/*
           <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
             JADWAL
           </Link>
+          */}
           {/* 
           <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
@@ -98,6 +100,7 @@ export default function Navbar() {
             >
               PROGRAM
             </Link>
+            {/*
             <Link
               href="/jadwal"
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
@@ -105,6 +108,7 @@ export default function Navbar() {
             >
               JADWAL
             </Link>
+            */}
             {/*
             <a
               href="/festival-guide.pdf"
