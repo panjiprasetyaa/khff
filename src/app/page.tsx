@@ -168,12 +168,12 @@ export default function Home() {
         {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
         <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-10">
           {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
-          <div className="block md:hidden">
+          <div className="block md:hidden relative">
             <Swiper
               modules={[Navigation, Scrollbar, Mousewheel]}
               navigation={{
-                nextEl: ".swiper-button-next-custom",
-                prevEl: ".swiper-button-prev-custom",
+                nextEl: ".swiper-button-next-mobile",
+                prevEl: ".swiper-button-prev-mobile",
               }}
               scrollbar={{ draggable: true, hide: false }}
               mousewheel={{ forceToAxis: true }}
@@ -212,15 +212,27 @@ export default function Home() {
                 </SwiperSlide>
               ))}
             </Swiper>
+            {/* Left Navigation Overlay (Mobile) */}
+            <div className="swiper-button-prev-mobile absolute top-0 bottom-0 left-0 z-20 w-16 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+              </div>
+            </div>
+            {/* Right Navigation Overlay (Mobile) */}
+            <div className="swiper-button-next-mobile absolute top-0 bottom-0 right-0 z-20 w-16 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+              </div>
+            </div>
           </div>
 
           {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
-          <div className="hidden md:block">
+          <div className="hidden md:block relative">
             <Swiper
               modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
               navigation={{
-                nextEl: ".swiper-button-next-custom",
-                prevEl: ".swiper-button-prev-custom",
+                nextEl: ".swiper-button-next-desktop",
+                prevEl: ".swiper-button-prev-desktop",
               }}
               scrollbar={{ draggable: true, hide: false }}
               mousewheel={{ forceToAxis: true }}
@@ -258,41 +270,17 @@ export default function Home() {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-
-          {/* Left Navigation Overlay (Netflix Style) */}
-          <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 lg:pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
+            {/* Left Navigation Overlay (Desktop) */}
+            <div className="swiper-button-prev-desktop absolute top-0 bottom-0 left-0 z-20 w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+              </div>
             </div>
-          </div>
-
-          {/* Right Navigation Overlay (Netflix Style) */}
-          <div className="swiper-button-next-custom absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 lg:pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
+            {/* Right Navigation Overlay (Desktop) */}
+            <div className="swiper-button-next-desktop absolute top-0 bottom-0 right-0 z-20 w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+              </div>
             </div>
           </div>
         </div>

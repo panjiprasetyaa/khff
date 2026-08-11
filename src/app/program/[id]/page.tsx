@@ -259,12 +259,12 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           
           <div className="container mx-auto max-w-7xl relative z-10 w-full group/slider overflow-visible">
             {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
-            <div className="block md:hidden">
+            <div className="block md:hidden relative">
               <Swiper
                 modules={[Navigation, Scrollbar, Mousewheel]}
                 navigation={{
-                  nextEl: ".swiper-button-next-custom",
-                  prevEl: ".swiper-button-prev-custom",
+                  nextEl: ".swiper-button-next-mobile",
+                  prevEl: ".swiper-button-prev-mobile",
                 }}
                 scrollbar={{ draggable: true, hide: false }}
                 mousewheel={{ forceToAxis: true }}
@@ -309,12 +309,12 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             </div>
 
             {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
-            <div className="hidden md:block">
+            <div className="hidden md:block relative">
               <Swiper
                 modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
                 navigation={{
-                  nextEl: ".swiper-button-next-custom",
-                  prevEl: ".swiper-button-prev-custom",
+                  nextEl: ".swiper-button-next-desktop",
+                  prevEl: ".swiper-button-prev-desktop",
                 }}
                 scrollbar={{ draggable: true, hide: false }}
                 freeMode={true}
@@ -355,22 +355,19 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
-
-              {/* Left Navigation Overlay */}
-              <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-navy/80 to-transparent hidden md:flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
+              {/* Left Navigation Overlay (Desktop) */}
+              <div className="swiper-button-prev-desktop absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-navy/80 to-transparent hidden md:flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
                 <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-xl">
                   <ArrowLeft size={24} />
                 </div>
               </div>
-
-              {/* Right Navigation Overlay */}
-              <div className="swiper-button-next-custom absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-navy/80 to-transparent hidden md:flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
+              {/* Right Navigation Overlay (Desktop) */}
+              <div className="swiper-button-next-desktop absolute top-0 bottom-0 right-0 z-20 w-16 lg:w-24 bg-gradient-to-l from-khff-navy/80 to-transparent hidden md:flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">
                 <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-xl">
                   <ArrowRight size={24} />
                 </div>
               </div>
-          </div>
+            </div>
         </section>
       </main>
     );
