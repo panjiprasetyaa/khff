@@ -258,7 +258,59 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           </div>
           
           <div className="container mx-auto max-w-7xl relative z-10 w-full group/slider overflow-visible">
-             <Swiper
+            {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
+            <div className="block md:hidden">
+              <Swiper
+                modules={[Navigation, Scrollbar, Mousewheel]}
+                navigation={{
+                  nextEl: ".swiper-button-next-custom",
+                  prevEl: ".swiper-button-prev-custom",
+                }}
+                scrollbar={{ draggable: true, hide: false }}
+                mousewheel={{ forceToAxis: true }}
+                grabCursor={true}
+                centeredSlides={true}
+                slideToClickedSlide={true}
+                spaceBetween={24}
+                slidesPerView="auto"
+                className="w-full py-4 !overflow-visible"
+                style={{
+                  "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties}
+              >
+                {nonPemutaranEvents.map((event, idx) => (
+                  <SwiperSlide key={`mobile-${event.id}`} className="!w-auto !h-auto">
+                    <div className="w-[300px] h-[450px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        sizes="300px"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-widest mb-2 drop-shadow-md">
+                          Program {idx + 1}
+                        </p>
+                        <h3 className="text-white font-serif font-black text-2xl leading-snug drop-shadow-md mb-3">
+                          {event.title}
+                        </h3>
+                        <p className="text-white/80 font-medium text-sm drop-shadow-md line-clamp-4">
+                          {event.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
+            {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
+            <div className="hidden md:block">
+              <Swiper
                 modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
                 navigation={{
                   nextEl: ".swiper-button-next-custom",
@@ -279,23 +331,23 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 } as React.CSSProperties}
               >
                 {nonPemutaranEvents.map((event, idx) => (
-                  <SwiperSlide key={event.id} className="!w-auto !h-auto">
-                    <div className="w-[300px] h-[450px] md:w-[350px] md:h-[500px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03] transition-all duration-500 transform-gpu cursor-pointer">
+                  <SwiperSlide key={`desktop-${event.id}`} className="!w-auto !h-auto">
+                    <div className="w-[350px] h-[500px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03] transition-all duration-500 transform-gpu cursor-pointer">
                       <Image
                         src={event.image}
                         alt={event.title}
                         fill
-                        sizes="(max-width: 768px) 300px, 350px"
+                        sizes="350px"
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 md:p-8 flex flex-col justify-end">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-8 flex flex-col justify-end">
                         <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-widest mb-2 drop-shadow-md">
                           Program {idx + 1}
                         </p>
-                        <h3 className="text-white font-serif font-black text-2xl md:text-3xl leading-snug drop-shadow-md mb-3">
+                        <h3 className="text-white font-serif font-black text-3xl leading-snug drop-shadow-md mb-3">
                           {event.title}
                         </h3>
-                        <p className="text-white/80 font-medium text-sm md:text-base drop-shadow-md line-clamp-4">
+                        <p className="text-white/80 font-medium text-base drop-shadow-md line-clamp-4">
                           {event.desc}
                         </p>
                       </div>
@@ -303,6 +355,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                   </SwiperSlide>
                 ))}
               </Swiper>
+            </div>
 
               {/* Left Navigation Overlay */}
               <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-navy/80 to-transparent hidden md:flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:opacity-0">

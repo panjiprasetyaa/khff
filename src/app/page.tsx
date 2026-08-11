@@ -159,48 +159,98 @@ export default function Home() {
 
         {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
         <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-10">
-          <Swiper
-            modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
-            navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
-            }}
-            scrollbar={{ draggable: true, hide: false }}
-            freeMode={true}
-            mousewheel={{ forceToAxis: true }}
-            grabCursor={true}
-            spaceBetween={24}
-            slidesPerView="auto"
-            className="w-full px-6 lg:px-12 py-4 !overflow-visible"
-            style={{
-              "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
-              "--swiper-scrollbar-bg-color": "transparent",
-              "--swiper-scrollbar-bottom": "-20px",
-              "--swiper-scrollbar-size": "5px",
-            } as React.CSSProperties}
-          >
-            {praEvents.map((event) => (
-              <SwiperSlide key={event.id} className="!w-auto !h-auto">
-                <div className="w-[260px] h-[380px] md:w-[300px] md:h-[440px] rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03] transition-all duration-500 transform-gpu will-change-transform cursor-pointer">
-                  <img
-                    src={event.image}
-                    alt={event.judul}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
-                    <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
-                      Panorama #{event.id}
-                    </p>
-                    <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
-                      {event.judul}
-                    </p>
+          {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
+          <div className="block md:hidden">
+            <Swiper
+              modules={[Navigation, Scrollbar, Mousewheel]}
+              navigation={{
+                nextEl: ".swiper-button-next-custom",
+                prevEl: ".swiper-button-prev-custom",
+              }}
+              scrollbar={{ draggable: true, hide: false }}
+              mousewheel={{ forceToAxis: true }}
+              grabCursor={true}
+              centeredSlides={true}
+              slideToClickedSlide={true}
+              spaceBetween={24}
+              slidesPerView="auto"
+              className="w-full px-6 py-4 !overflow-visible"
+              style={{
+                "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
+                "--swiper-scrollbar-bg-color": "transparent",
+                "--swiper-scrollbar-bottom": "-20px",
+                "--swiper-scrollbar-size": "5px",
+              } as React.CSSProperties}
+            >
+              {praEvents.map((event) => (
+                <SwiperSlide key={`mobile-${event.id}`} className="!w-auto !h-auto">
+                  <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
+                    <img
+                      src={event.image}
+                      alt={event.judul}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
+                        Panorama #{event.id}
+                      </p>
+                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
+                        {event.judul}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
+          <div className="hidden md:block">
+            <Swiper
+              modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
+              navigation={{
+                nextEl: ".swiper-button-next-custom",
+                prevEl: ".swiper-button-prev-custom",
+              }}
+              scrollbar={{ draggable: true, hide: false }}
+              mousewheel={{ forceToAxis: true }}
+              grabCursor={true}
+              freeMode={true}
+              spaceBetween={24}
+              slidesPerView="auto"
+              className="w-full px-12 py-4 !overflow-visible"
+              style={{
+                "--swiper-scrollbar-drag-bg-color": "rgba(255, 255, 255, 0.4)",
+                "--swiper-scrollbar-bg-color": "transparent",
+                "--swiper-scrollbar-bottom": "-20px",
+                "--swiper-scrollbar-size": "5px",
+              } as React.CSSProperties}
+            >
+              {praEvents.map((event) => (
+                <SwiperSlide key={`desktop-${event.id}`} className="!w-auto !h-auto group">
+                  <div className="w-[300px] h-[440px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03]">
+                    <img
+                      src={event.image}
+                      alt={event.judul}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
+                        Panorama #{event.id}
+                      </p>
+                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
+                        {event.judul}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
 
           {/* Left Navigation Overlay (Netflix Style) */}
           <div className="swiper-button-prev-custom absolute top-0 bottom-0 left-0 z-20 w-16 lg:w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 lg:pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
