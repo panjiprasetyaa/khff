@@ -16,7 +16,7 @@ export default function KatalogClientPage() {
       fileSize: "42.5 MB",
       bg: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tag: "bg-khff-navy text-khff-yellow",
-      asset: "/assets/illustrations/bendera.png"
+      asset: "/assets/illustrations/cahaya.png"
     },
     {
       year: "2023",
@@ -27,7 +27,7 @@ export default function KatalogClientPage() {
       fileSize: "8.9 MB",
       bg: "bg-khff-pink text-white border-khff-pink",
       tag: "bg-white text-khff-pink",
-      asset: "/assets/illustrations/terompet.png"
+      asset: "/assets/illustrations/buto2.png"
     }
   ];
 
@@ -57,8 +57,12 @@ export default function KatalogClientPage() {
 
       {/* CATALOG GRID SECTION (NAVY GREEN THEATER) */}
       <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
-        <div className="absolute -bottom-10 right-0 opacity-10 pointer-events-none w-96 hidden md:block">
-          <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto" />
+        {/* Background Characters */}
+        <div className="absolute top-20 -left-10 opacity-10 pointer-events-none w-64 md:w-96">
+          <img src="/assets/illustrations/SINGA.png" alt="" className="w-full h-auto drop-shadow-2xl" />
+        </div>
+        <div className="absolute -bottom-10 right-0 opacity-10 pointer-events-none w-64 md:w-96">
+          <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto drop-shadow-2xl" />
         </div>
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10">
@@ -74,7 +78,7 @@ export default function KatalogClientPage() {
                 <div className={`rounded-3xl p-8 sm:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[420px] ${cat.bg}`}>
                   
                   {/* Decorative Heritage Artwork on bottom corner */}
-                  <div className="absolute right-4 bottom-4 opacity-30 w-44 pointer-events-none group-hover:scale-110 group-hover:opacity-50 transition-all duration-700 hidden sm:block">
+                  <div className="absolute right-[-10px] bottom-[-10px] sm:right-4 sm:bottom-4 opacity-40 w-36 sm:w-44 pointer-events-none group-hover:scale-110 group-hover:opacity-50 transition-all duration-700">
                     <img src={cat.asset} alt="" className="w-full h-auto object-contain drop-shadow-md" />
                   </div>
 
