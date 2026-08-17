@@ -92,7 +92,7 @@ export default function Home() {
   }, [isVideoOpen]);
 
   return (
-    <div className="bg-khff-yellow text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
+    <div className="bg-khff-navy text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       {/* 1. HERO SECTION (FULL ARTWORK BACKGROUND WITH READABILITY OVERLAY) */}
       <section className="relative min-h-[92vh] sm:min-h-screen w-full flex items-center justify-center overflow-hidden bg-khff-navy pt-36 pb-24">
         {/* Full Artwork Background with Aspect Ratio Preservation (No Stretched / Gepeng Distortion) */}

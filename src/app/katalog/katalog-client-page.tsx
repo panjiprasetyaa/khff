@@ -13,7 +13,7 @@ export default function KatalogClientPage() {
       edition: "Edisi Kedua - Arsip Lengkap",
       desc: "Dokumentasi kuratorial program festival, kurasi sinema nusantara, forum kuliah terbuka, dan catatan penghargaan karya tahun 2024.",
       pdfUrl: "/assets/catalog/e-katalog-khff-2024.pdf",
-      fileSize: "42.5 MB",
+      fileSize: "15 MB",
       bg: "bg-khff-yellow text-khff-navy border-khff-yellow",
       tag: "bg-khff-navy text-khff-yellow",
       asset: "/assets/illustrations/cahaya.png"
@@ -24,7 +24,7 @@ export default function KatalogClientPage() {
       edition: "Edisi Perdana - Arsip Lengkap",
       desc: "Rekam jejak edisi perdana Kotabaru Heritage Film Festival. Catatan kurator, daftar seleksi karya film pendek, dan jejak langkah pengarsipan sejarah.",
       pdfUrl: "/assets/catalog/e-katalog-khff-2023.pdf",
-      fileSize: "8.9 MB",
+      fileSize: "4.8 MB",
       bg: "bg-khff-pink text-white border-khff-pink",
       tag: "bg-white text-khff-pink",
       asset: "/assets/illustrations/buto2.png"
