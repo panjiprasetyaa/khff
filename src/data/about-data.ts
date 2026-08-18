@@ -73,3 +73,221 @@ export const festivalBoard = [
     image: "/assets/about/board/IMG_7380.webp"
   }
 ];
+
+export const festivalJury = [
+  {
+    id: "jury-1",
+    name: "Zamzam Fauzanafi",
+    role: "Juri Festival",
+    image: "/assets/about/jury/zamzam_fauzanafi.webp"
+  },
+  {
+    id: "jury-2",
+    name: "BW Purbanegara",
+    role: "Juri Festival",
+    image: "/assets/about/jury/bw_purbanegara.webp"
+  },
+  {
+    id: "jury-3",
+    name: "DS Nugraheni",
+    role: "Juri Festival",
+    image: "/assets/about/jury/ds_nugraheni.webp"
+  },
+  {
+    id: "jury-4",
+    name: "Nissa Fijriani",
+    role: "Juri Festival",
+    image: "/assets/about/jury/nissa_fijriani.webp"
+  },
+  {
+    id: "jury-5",
+    name: "Imam Karyadi",
+    role: "Juri Festival",
+    image: "/assets/about/jury/imam_karyadi.webp"
+  }
+];
+
+export const festivalTeam = [
+  {
+    id: "team-1",
+    name: "Siska Raharja",
+    role: "Festival Director",
+    image: "/assets/about/team/siska_raharja.webp"
+  },
+  {
+    id: "team-2",
+    name: "Suluh Pamuji",
+    role: "Program Director",
+    image: "/assets/about/team/suluh_pamuji.webp"
+  },
+  {
+    id: "team-3",
+    name: "Michael Pantouw",
+    role: "Festival Manager",
+    image: "/assets/about/team/michael_pantouw.webp"
+  },
+  {
+    id: "team-4",
+    name: "Gerry Junus",
+    role: "Programmer",
+    image: "/assets/about/team/gerry_junus.webp"
+  },
+  {
+    id: "team-5",
+    name: "Wucha Wulandari",
+    role: "Programmer",
+    image: "/assets/about/team/wucha_wulandari.webp"
+  },
+  {
+    id: "team-6",
+    name: "Hardiwan Prayoga",
+    role: "Programmer",
+    image: "/assets/about/team/hardiwan_prayoga.webp"
+  }
+];
+
+export const creditGroups = [
+  {
+    category: "Dinas Kebudayaan (Kundha Kabudayan) Kota Yogyakarta",
+    roles: [
+      { role: "Kepala Dinas", names: ["Yetti Martanti, S.Sos., M.M."] },
+      { role: "Sekretaris Dinas", names: ["Tri Sotya Atmi, S.Sos."] },
+      { role: "Kepala Bidang Adat Tradisi Lembaga Budaya dan Seni", names: ["Retno Yuliani, S.E., M.Ec.Dev."] },
+      { role: "Kepala Seksi Seni", names: ["Yoseph Wawan Agus Suharyanto, A.Md."] },
+      {
+        role: "Staf Seksi Seni",
+        names: [
+          "Diah Putri Hardianti, S.Hum.",
+          "Galeh Eka Prasetya, S.Sn.",
+          "Abu 'Aniin Syu'Aisya', S.S.",
+          "Catur Cang Pamungkas, S.Sn.",
+          "Eksawada Wisang Agni Sweta, S.Pd.",
+          "Wahyudi Purnama, S.Sn."
+        ]
+      }
+    ]
+  },
+  {
+    category: "Media & Dokumentasi",
+    roles: [
+      { role: "Chief Media dan Komunikasi", names: ["Dara Asia Nashwa Aliela"] },
+      { role: "Koordinator Dokumentasi", names: ["Taufik Hidayat"] },
+      { role: "Koordinator Fotografer", names: ["Muhammad Ilham Yafi"] },
+      { role: "Koordinator Videografer", names: ["Yohanes Paskah Reint"] },
+      { role: "Koordinator Editor", names: ["Akhmad Abdan Mubarok"] },
+      { role: "Asisten Editor", names: ["Mashul Abdul Ghani"] },
+      {
+        role: "Staf Fotografer",
+        names: [
+          "Nayda Yasmine",
+          "Muhamad Anang Rivai",
+          "Anas Dawud Fathoni",
+          "Apriliandewi Indrisusanti"
+        ]
+      },
+      {
+        role: "Staf Videografer",
+        names: [
+          "Azizul Achmad Ali",
+          "Sultan Bahharudin Fadhilah",
+          "Gabryan Muhammad Rizky",
+          "Muhammad Andhika Zaafarani"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Web & Desain Grafis",
+    roles: [
+      { role: "Koordinator Web Development", names: ["Wildan Rifqi Prambudi"] },
+      {
+        role: "Staf Web Development",
+        names: ["Restu Hendra Pramono", "Muhammad Imam Panji Prasetya"]
+      },
+      { role: "Koordinator Desainer Grafis", names: ["Ryan Dwi Cahyadi"] },
+      {
+        role: "Staf Desainer Grafis",
+        names: [
+          "Muhammad Maulana Wirakrama",
+          "Fairuz Zabrina Aurellia Widodo",
+          "Afandy Nadhiful Fikri",
+          "Fakhrul Sahotman Siregar",
+          "Kholifah Nur Indah",
+          "Regita Hasna Aivissena"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Media Sosial & Publikasi",
+    roles: [
+      { role: "Koordinator Publikasi Media Sosial", names: ["Arina Manasikana"] },
+      {
+        role: "Administrator Media Sosial",
+        names: [
+          "Leli Amalia",
+          "Estu Purbaningrum",
+          "Zahra Khoirunnisa",
+          "Zacky Raya Aditya Bawono"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Hospitality & Liaison Officer",
+    roles: [
+      { role: "Chief Hospitality", names: ["Fatin Nisrina Muti"] },
+      { role: "Asisten Chief Hospitality", names: ["Baiq Khadija Azhar Baidha"] },
+      { role: "Koordinator Liaison Officer", names: ["Adellia Jeanief Anindita"] },
+      {
+        role: "Liaison Officer",
+        names: [
+          "D. Prasetyo Dwi Putranto",
+          "Manggala Vijja Loka",
+          "Rizmi Azizi Almi",
+          "Elyanta Qonita",
+          "Bintang Zaki Mubarok"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Logistik & Sponsor",
+    roles: [
+      { role: "Chief Sponsor", names: ["Uul Jihadan"] },
+      { role: "Staf Sponsor", names: ["Adinda Permata Nirwana"] },
+      { role: "Koordinator Logistik", names: ["Muh. Jendra Alfala H."] },
+      { role: "Staf Logistik", names: ["Bernando Randy Putra Menggilona"] }
+    ]
+  },
+  {
+    category: "Teknis & Acara",
+    roles: [
+      { role: "Chief Teknis & Acara", names: ["Rietfa Angga Prasanto"] },
+      { role: "Asisten Chief Teknis & Acara", names: ["Enggar Asfinsani"] },
+      {
+        role: "Staf Teknis & Acara",
+        names: [
+          "Nuraini Larasati",
+          "Angela Ayu Kartika",
+          "Chiara Devie Utami",
+          "Reswinda Harvionita",
+          "Adryan Ahmad Shidiq"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Artistik",
+    roles: [
+      { role: "Chief Artistik", names: ["Tyo"] },
+      { role: "Staf Artistik", names: ["Volunteer"] }
+    ]
+  },
+  {
+    category: "Volunteers",
+    roles: [
+      { role: "Relawan Festival", names: ["53 Dedicated Volunteers / Segenap Volunteer KHFF"] }
+    ]
+  }
+];

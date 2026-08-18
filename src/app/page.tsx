@@ -134,7 +134,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
+      {/* 2. SPECIAL PROGRAM - DRIVE IN CINEMA */}
+      <section className="py-24 bg-gradient-to-tr from-khff-blue to-khff-navy border-t border-khff-cream/10 relative">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="relative w-full min-h-[50vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
+            {/* Foto Becak Asli Ngawi Background */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <img
+                src="/assets/sponsors/becakk.jpg"
+                alt="Drive In Cinema Becak"
+                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-1000"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/40 to-transparent z-10" />
+            </div>
+
+            <div className="relative z-20 p-8 md:p-20 max-w-3xl">
+              <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">
+                Special Program
+              </span>
+              <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">
+                Drive In
+                <br />
+                Cinema
+              </h3>
+              <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
+                Menghadirkan cara baru menikmati film lokal dari atas becak,
+                memadukan pengalaman sinema dengan transportasi tradisional
+                Yogyakarta yang ramah lingkungan.
+              </p>
+              {/* Waktu dan Tempat Drive-in Di Takeout untuk rilis */}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
       <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
           <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
@@ -343,7 +377,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
+      {/* 4. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
       <section className="py-28 bg-gradient-to-br from-khff-navy to-khff-blue text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
         <div className="absolute top-0 right-0 w-40 md:w-80 h-auto opacity-[0.05] md:opacity-10 pointer-events-none z-0 rotate-12">
@@ -481,7 +515,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. KILAS BALIK KHFF 2026 */}
+      {/* 5. KILAS BALIK KHFF 2026 */}
       <section className="py-24 bg-[#143638] relative overflow-hidden">
         {/* Floating Visual Asset (New Character) */}
         <div className="absolute top-0 right-0 opacity-10 w-48 md:w-[28rem] pointer-events-none">
@@ -505,40 +539,6 @@ export default function Home() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. FESTIVAL GUIDE KICKER */}
-      <section className="py-24 bg-gradient-to-tr from-khff-blue to-khff-navy border-t border-khff-cream/10 relative">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="relative w-full min-h-[50vh] md:min-h-[70vh] rounded-3xl overflow-hidden group border-4 border-khff-pink shadow-2xl bg-khff-navy flex flex-col justify-center">
-            {/* Foto Becak Asli Ngawi Background */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <img
-                src="/assets/sponsors/becakk.jpg"
-                alt="Drive In Cinema Becak"
-                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-1000"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/40 to-transparent z-10" />
-            </div>
-
-            <div className="relative z-20 p-8 md:p-20 max-w-3xl">
-              <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">
-                Special Program
-              </span>
-              <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">
-                Drive In
-                <br />
-                Cinema
-              </h3>
-              <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
-                Menghadirkan cara baru menikmati film lokal dari atas becak,
-                memadukan pengalaman sinema dengan transportasi tradisional
-                Yogyakarta yang ramah lingkungan.
-              </p>
-              {/* Waktu dan Tempat Drive-in Di Takeout untuk rilis */}
-            </div>
           </div>
         </div>
       </section>

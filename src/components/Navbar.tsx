@@ -41,6 +41,9 @@ export default function Navbar() {
           <Link href="/" className="hover:text-khff-yellow transition-colors">
             HOME
           </Link>
+          <Link href="/about" className="hover:text-khff-yellow transition-colors">
+            ABOUT US
+          </Link>
           <Link href="/program" className="hover:text-khff-yellow transition-colors">
             PROGRAM
           </Link>
@@ -59,10 +62,7 @@ export default function Navbar() {
           </Link>
           <Link href="/katalog" className="hover:text-khff-yellow transition-colors">
             KATALOG
-          </Link>
-          <Link href="/about" className="hover:text-khff-yellow transition-colors">
-            ABOUT US
-          </Link>
+          </Link> 
           {/* 
           <a 
             href={gFormUrl}
@@ -95,6 +95,13 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               HOME
+            </Link>
+            <Link
+              href="/about"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ABOUT US
             </Link>
             <Link
               href="/program"
@@ -136,13 +143,6 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               KATALOG
-            </Link>
-            <Link
-              href="/about"
-              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ABOUT US
             </Link>
           </div>
           {/*
