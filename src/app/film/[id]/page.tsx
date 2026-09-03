@@ -17,7 +17,12 @@ export default function FilmDetail({
   
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    setProgramIdQuery(searchParams.get('p'));
+    const p = searchParams.get('p');
+    if (p) {
+      setTimeout(() => {
+        setProgramIdQuery(p);
+      }, 0);
+    }
   }, []);
 
   const program = programIdQuery 

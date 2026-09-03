@@ -1,17 +1,17 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import {
   aboutDescription,
   prakataKadis,
   pengantarDirektur,
-  catatanKuratorial,
-  festivalBoard,
-  festivalJury,
-  festivalTeam,
-  creditGroups
+  catatanKuratorial
 } from "@/data/about-data";
+
+export const metadata: Metadata = {
+  title: "Tentang Kami",
+  description: "Mengenal visi, sejarah, prakata, dan catatan kuratorial Kotabaru Heritage Film Festival 2026.",
+};
 
 export default function AboutUs() {
   return (
@@ -34,7 +34,7 @@ export default function AboutUs() {
             Kotabaru Heritage <br className="hidden md:block" /> Film Festival
           </h1>
           <p className="text-lg md:text-2xl text-khff-cream font-semibold font-serif italic drop-shadow-[0_3px_15px_rgba(0,0,0,0.85)]">
-            "Menjaga Warisan, Merayakan Imajinasi"
+            &ldquo;Menjaga Warisan, Merayakan Imajinasi&rdquo;
           </p>
         </div>
       </section>
@@ -48,161 +48,8 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* SECTION 3: FESTIVAL BOARD */}
-      <section className="py-20 md:py-24 bg-khff-blue relative overflow-hidden border-t border-khff-cream/10">
-        <div className="absolute top-10 left-10 opacity-5 w-64 pointer-events-none">
-          <img src="/assets/illustrations/gong.png" alt="" className="w-full" />
-        </div>
-        <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-16 drop-shadow-md">
-            Festival Board
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 justify-items-center max-w-5xl mx-auto">
-            {festivalBoard.map((person) => (
-              <div key={person.id} className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[220px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 text-left">
-                {/* Top part: Text */}
-                <div className="p-4 md:p-5 flex flex-col justify-end min-h-[100px] bg-white">
-                  <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
-                    {person.role}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
-                    {person.name}
-                  </h3>
-                </div>
-                {/* Bottom part: Image */}
-                <div className="w-full aspect-square relative bg-khff-navy overflow-hidden">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3.5: FESTIVAL JURY */}
-      <section className="pb-20 bg-khff-blue relative overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-16 drop-shadow-md">
-            Festival Juri
-          </h2>
-          
-          <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-4 md:gap-6 justify-items-center max-w-[740px] mx-auto">
-            {festivalJury.map((person) => (
-              <div key={person.id} className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[220px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 text-left">
-                {/* Top part: Text */}
-                <div className="p-4 md:p-5 flex flex-col justify-end min-h-[100px] bg-white">
-                  <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
-                    {person.role}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
-                    {person.name}
-                  </h3>
-                </div>
-                {/* Bottom part: Image */}
-                <div className="w-full aspect-square relative bg-khff-navy overflow-hidden">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3.6: FESTIVAL TEAM */}
-      <section className="pb-20 bg-khff-blue relative overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-16 drop-shadow-md">
-            Festival Team
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 justify-items-center max-w-5xl mx-auto">
-            {festivalTeam.map((person) => (
-              <div key={person.id} className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[220px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 text-left">
-                {/* Top part: Text */}
-                <div className="p-4 md:p-5 flex flex-col justify-end min-h-[100px] bg-white">
-                  <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
-                    {person.role}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
-                    {person.name}
-                  </h3>
-                </div>
-                {/* Bottom part: Image */}
-                <div className="w-full aspect-square relative bg-khff-navy overflow-hidden">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3.7: FESTIVAL CREW CREDITS */}
-      <section className="py-24 bg-khff-navy border-t border-khff-cream/10 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center select-none">
-          <span className="text-[8rem] md:text-[12rem] font-serif font-black tracking-widest text-khff-cream uppercase opacity-5">KHFF 2026</span>
-        </div>
-        
-        <div className="container mx-auto px-6 md:px-12 max-w-4xl relative z-10 text-center">
-          <div className="mb-20">
-            <h2 className="text-3xl md:text-4xl font-serif font-black text-khff-yellow mb-2 tracking-wider">
-              SEGENAP KERABAT KERJA
-            </h2>
-            <p className="text-xs md:text-sm font-mono text-khff-cream/60 uppercase tracking-widest">
-              Festival Crew & Support
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 max-w-6xl mx-auto w-full">
-            {creditGroups.map((group, groupIdx) => {
-              const isLast = groupIdx === creditGroups.length - 1;
-              return (
-                <div
-                  key={groupIdx}
-                  className={`space-y-8 flex flex-col items-center w-full ${
-                    isLast ? "md:col-span-2" : ""
-                  }`}
-                >
-                  <h3 className="text-base md:text-lg font-serif font-black text-khff-cream tracking-wider border-b border-khff-cream/15 pb-2 inline-block px-8 uppercase">
-                    {group.category}
-                  </h3>
-                  
-                  <div className="flex flex-col gap-y-6 w-full text-center">
-                    {group.roles.map((item, idx) => (
-                      <div key={idx} className="flex flex-col items-center space-y-1">
-                        <div className="text-khff-yellow/80 font-mono text-[10px] md:text-xs uppercase tracking-widest font-bold">
-                          {item.role}
-                        </div>
-                        <div className="text-white font-serif font-bold text-base md:text-lg tracking-wide leading-snug">
-                          {item.names.map((name, nIdx) => (
-                            <div key={nIdx}>{name}</div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: PRAKATA KEPALA DINAS */}
-      <section className="py-24 md:py-32 relative">
+      {/* SECTION 3: PRAKATA KEPALA DINAS */}
+      <section className="py-24 md:py-32 relative border-t border-khff-cream/10">
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
             <div className="w-full md:w-5/12 shrink-0 relative">
@@ -288,6 +135,31 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 6.5: DIRECT TO TIM FESTIVAL */}
+      <section className="py-20 md:py-24 bg-khff-blue border-t border-khff-cream/10 relative overflow-hidden text-center">
+        <div className="absolute top-10 right-10 opacity-5 w-64 pointer-events-none -rotate-12">
+          <img src="/assets/illustrations/gong.png" alt="" className="w-full" />
+        </div>
+        <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <p className="text-khff-yellow font-mono text-xs md:text-sm uppercase tracking-widest font-bold mb-3">
+            Di Balik Layar Festival
+          </p>
+          <h2 className="text-3xl md:text-5xl font-serif font-black mb-6 text-khff-cream">
+            Segenap Tim & Kerabat Kerja
+          </h2>
+          <p className="text-khff-cream/80 text-base md:text-xl font-medium mb-10 max-w-2xl mx-auto">
+            Temui dewan pengarah, kurator, dewan juri, programmer, dan seluruh kerabat kerja yang berkolaborasi mewujudkan KHFF 2026.
+          </p>
+          <Link
+            href="/festival-team"
+            className="inline-flex items-center gap-4 bg-khff-yellow text-khff-navy px-10 py-5 rounded-full font-black hover:bg-white transition-all duration-300 text-lg md:text-xl shadow-[0_10px_30px_rgba(238,173,47,0.3)] hover:scale-105 group"
+          >
+            <span>Kunjungi Halaman Tim Festival</span>
+            <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+          </Link>
         </div>
       </section>
 

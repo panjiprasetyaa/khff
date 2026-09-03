@@ -1,11 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, PlayCircle, Play, X, ExternalLink } from "lucide-react";
-import { programs, specialPrograms, praEvents } from "@/data/dummy";
-import { useState, useEffect } from "react";
-import CustomVideoPlayer from "@/components/CustomVideoPlayer";
-import Image from "next/image";
+import { PlayCircle } from "lucide-react";
+import { praEvents } from "@/data/dummy";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
@@ -75,22 +72,6 @@ const homepageSchedule = [
 */
 
 export default function Home() {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [activeVideoTrailer, setActiveVideoTrailer] = useState("");
-
-  const openVideo = (url: string) => {
-    setActiveVideoTrailer(url);
-    setIsVideoOpen(true);
-  };
-
-  useEffect(() => {
-    if (isVideoOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isVideoOpen]);
-
   return (
     <div className="bg-khff-navy text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       {/* 1. HERO SECTION (FULL ARTWORK BACKGROUND WITH READABILITY OVERLAY) */}
@@ -591,35 +572,7 @@ export default function Home() {
       </section> 
       */}
 
-      {/* Video Modal Popup */}
-      {isVideoOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-khff-navy/95 backdrop-blur-md p-4 animate-in fade-in duration-300">
-          <button
-            onClick={() => setIsVideoOpen(false)}
-            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-3 bg-white/10 rounded-full hover:bg-khff-pink"
-          >
-            <X size={28} />
-          </button>
-          <div className="w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/20 relative scale-in-95 duration-300">
-            {activeVideoTrailer.includes("youtube") ? (
-              <iframe
-                className="w-full h-full"
-                src={activeVideoTrailer}
-                title="Trailer"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <CustomVideoPlayer
-                src={activeVideoTrailer}
-                autoPlay={true}
-                className="w-full h-full"
-                videoClassName="w-full h-full object-contain"
-              />
-            )}
-          </div>
-        </div>
-      )}
+      {/* Video Modal Popup (Unused) */}
     </div>
   );
 }

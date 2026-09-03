@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ExternalLink } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const gFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor";
+  // const gFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +42,7 @@ export default function Navbar() {
             HOME
           </Link>
           <Link href="/about" className="hover:text-khff-yellow transition-colors">
-            ABOUT US
+            TENTANG KAMI
           </Link>
           <Link href="/program" className="hover:text-khff-yellow transition-colors">
             PROGRAM
@@ -62,6 +62,9 @@ export default function Navbar() {
           </Link>
           <Link href="/katalog" className="hover:text-khff-yellow transition-colors">
             KATALOG
+          </Link> 
+          <Link href="/festival-team" className="hover:text-khff-yellow transition-colors">
+            TIM FESTIVAL
           </Link> 
           {/* 
           <a 
@@ -101,7 +104,7 @@ export default function Navbar() {
               className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              ABOUT US
+              TENTANG KAMI
             </Link>
             <Link
               href="/program"
@@ -143,6 +146,13 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               KATALOG
+            </Link>
+            <Link
+              href="/festival-team"
+              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              TIM FESTIVAL
             </Link>
           </div>
           {/*

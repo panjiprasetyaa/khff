@@ -1,12 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-
 export default function GuidePage() {
-  const router = useRouter();
-
   return (
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
       

@@ -1,12 +1,12 @@
 "use client";
 
 import { use, useState } from "react";
-import { programs, specialPrograms, IS_CURATION_ONGOING } from "@/data/dummy";
+import { programs } from "@/data/dummy";
 import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Filter, CalendarDays, Clock, MapPin, User, ArrowRight, Sparkles, Trophy, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
@@ -19,9 +19,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // Tab States
   const [activeKompetisiTab, setActiveKompetisiTab] = useState("mahaditya");
   const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("opening-film");
-  const [activeNonPemutaranTab, setActiveNonPemutaranTab] = useState("workshop");
-
-  const gFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe5QTD0-Anc64hxcO5rcslJgYxc2HlhjGOUbXmv6Jig_PNQSA/viewform?usp=publish-editor";
 
   // 1. PROGRAM KOMPETISI
   if (id === "kompetisi") {
