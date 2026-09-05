@@ -110,7 +110,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-5 lg:space-x-8 text-sm font-mono font-bold tracking-wider items-center">
-          {/* HOME */}
+          {/* BERANDA */}
           <Link
             href="/"
             onClick={handleNavClick}
@@ -118,7 +118,18 @@ export default function Navbar() {
               isHomeActive ? "text-khff-yellow" : ""
             }`}
           >
-            HOME
+            BERANDA
+          </Link>
+
+          {/* PROGRAM */}
+          <Link
+            href="/program"
+            onClick={handleNavClick}
+            className={`hover:text-khff-yellow transition-colors ${
+              isProgramActive ? "text-khff-yellow" : ""
+            }`}
+          >
+            PROGRAM
           </Link>
 
           {/* TENTANG KAMI DROPDOWN */}
@@ -177,17 +188,6 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
-          {/* PROGRAM */}
-          <Link
-            href="/program"
-            onClick={handleNavClick}
-            className={`hover:text-khff-yellow transition-colors ${
-              isProgramActive ? "text-khff-yellow" : ""
-            }`}
-          >
-            PROGRAM
-          </Link>
 
           {/* ARSIP DROPDOWN (GALERI & KATALOG) */}
           <div
@@ -283,7 +283,7 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-khff-navy text-khff-cream flex flex-col p-8 text-center shadow-2xl min-h-screen overflow-y-auto animate-in fade-in duration-200">
           <div className="flex flex-col divide-y divide-khff-cream/10 border-b border-khff-cream/10">
-            {/* HOME */}
+            {/* BERANDA */}
             <Link
               href="/"
               className={`text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5 ${
@@ -291,7 +291,18 @@ export default function Navbar() {
               }`}
               onClick={handleNavClick}
             >
-              HOME
+              BERANDA
+            </Link>
+
+            {/* PROGRAM */}
+            <Link
+              href="/program"
+              className={`text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5 ${
+                isProgramActive ? "text-khff-yellow" : ""
+              }`}
+              onClick={handleNavClick}
+            >
+              PROGRAM
             </Link>
 
             {/* TENTANG KAMI ACCORDION */}
@@ -312,36 +323,25 @@ export default function Navbar() {
                 <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/about"
-                    className={`text-base font-mono font-bold tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
                       pathname === "/about" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
                   >
-                    Tentang Kami
+                    TENTANG KAMI
                   </Link>
                   <Link
                     href="/festival-team"
-                    className={`text-base font-mono font-bold tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
                       pathname === "/festival-team" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
                   >
-                    Tim Festival
+                    TIM FESTIVAL
                   </Link>
                 </div>
               )}
             </div>
-
-            {/* PROGRAM */}
-            <Link
-              href="/program"
-              className={`text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5 ${
-                isProgramActive ? "text-khff-yellow" : ""
-              }`}
-              onClick={handleNavClick}
-            >
-              PROGRAM
-            </Link>
 
             {/* ARSIP ACCORDION (GALERI & KATALOG) */}
             <div className="flex flex-col py-3">
@@ -361,21 +361,21 @@ export default function Navbar() {
                 <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/galeri"
-                    className={`text-base font-mono font-bold tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
                       pathname === "/galeri" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
                   >
-                    Galeri
+                    GALERI
                   </Link>
                   <Link
                     href="/katalog"
-                    className={`text-base font-mono font-bold tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
                       pathname === "/katalog" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
                   >
-                    Katalog
+                    KATALOG
                   </Link>
                 </div>
               )}
