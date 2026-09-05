@@ -1,0 +1,13 @@
+Link: https://drive.google.com/drive/folders/1QiFly_zI3sEBforr8QuaSIglwYcvem5I
+Error: Failed to retrieve file url:
+
+	Cannot retrieve the public link of the file. You may need to change
+	the permission to 'Anyone with the link', or have had many accesses.
+	Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=1akOfY_FZxyCcGYJi8tMMoRnn3GKjwEtz
+
+but Gdown can't. Please check connections and permissions.
+Kemungkinan file/folder ini private, download manual dari link di atas.

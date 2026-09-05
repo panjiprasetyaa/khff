@@ -59,6 +59,214 @@
       "synopsis": "Kisah perjalanan hidup Juno, seorang penari Lengger Lanang yang harus menghadapi berbagai trauma dan kekerasan di sekitarnya.",
       "posterUrl": "https://images.unsplash.com/photo-1585647347483-22b66260dfff?q=80&w=600&auto=format&fit=crop",
       "trailerUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
+    },
+    "serada": {
+      "id": "serada",
+      "title": "Serada",
+      "director": "Septiyani Putri",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film pendek terpilih dalam Program Kompetisi Purwaseswa Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/hasil_download/01_Serada/Poster_Film/Poster Film.png",
+      "trailerUrl": "",
+      "email": "nccstudio1@gmail.com",
+      "stills": [
+        "/assets/hasil_download/01_Serada/Gambar_Diam_Film/STIL PHOTO 1.jpg",
+        "/assets/hasil_download/01_Serada/Gambar_Diam_Film/STIL PHOTO 2.jpg",
+        "/assets/hasil_download/01_Serada/Gambar_Diam_Film/STIL PHOTO 3.jpg",
+        "/assets/hasil_download/01_Serada/Gambar_Diam_Film/STIL PHOTO 4.jpg",
+        "/assets/hasil_download/01_Serada/Gambar_Diam_Film/STIL PHOTO  5 .jpg"
+      ],
+      "directorPhoto": "/assets/hasil_download/01_Serada/Foto_Sutradara/Foto Sutradara.jpg",
+      "phLogo": "/assets/hasil_download/01_Serada/Logo_PH/Logo PH.png"
+    },
+    "nyanyi-di-angkringan": {
+      "id": "nyanyi-di-angkringan",
+      "title": "Nyanyi di angkringan",
+      "director": "Shafiyyah Aida",
+      "year": 2026,
+      "duration": 12,
+      "synopsis": "Karya film pendek terpilih dalam Program Kompetisi Purwaseswa Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/hasil_download/02_Nyanyi di angkringan/Poster_Film/Poster_Potrait_Nyanyian Di Angkringan.png",
+      "trailerUrl": "/assets/hasil_download/02_Nyanyi di angkringan/Trailer/TRAILER_Nyanyian di Angkringan.mp4",
+      "email": "samudrafest18@gmail.com",
+      "stills": [
+        "/assets/hasil_download/02_Nyanyi di angkringan/Gambar_Diam_Film/SH001.png",
+        "/assets/hasil_download/02_Nyanyi di angkringan/Gambar_Diam_Film/SH002.png",
+        "/assets/hasil_download/02_Nyanyi di angkringan/Gambar_Diam_Film/SH037.png",
+        "/assets/hasil_download/02_Nyanyi di angkringan/Gambar_Diam_Film/SH054.png",
+        "/assets/hasil_download/02_Nyanyi di angkringan/Gambar_Diam_Film/SH100.png"
+      ]
+    },
+    "waled": {
+      "id": "waled",
+      "title": "Waled",
+      "director": "Miftahul Huda",
+      "year": 2026,
+      "duration": 10,
+      "synopsis": "Film dokumenter karya pelajar SMKN 2 Bawang yang terpilih dalam Program Kompetisi Purwaseswa Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/hasil_download/03_Waled/Poster_Film/POSTER_WALED (SMKN 2 Bawang).png",
+      "trailerUrl": "/assets/hasil_download/03_Waled/Trailer/Trailer Film Waled.mp4",
+      "email": "b2filmskada25@gmail.com",
+      "stills": [
+        "/assets/hasil_download/03_Waled/Gambar_Diam_Film/STILLPHOTO (1).png",
+        "/assets/hasil_download/03_Waled/Gambar_Diam_Film/STILLPHOTO (3).png",
+        "/assets/hasil_download/03_Waled/Gambar_Diam_Film/STILLPHOTO (4).png"
+      ],
+      "directorPhoto": "/assets/hasil_download/03_Waled/Foto_Sutradara/FOTO SUTRADARA 1;1.jpeg",
+      "phLogo": "/assets/hasil_download/03_Waled/Logo_PH/LOGO-B2-FILM.png"
+    },
+    "anak-yang-bertumbuh": {
+      "id": "anak-yang-bertumbuh",
+      "title": "Anak yang bertumbuh",
+      "director": "Gede Dika Dheva Ariadi",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film pendek terpilih dalam Program Kompetisi Purwaseswa Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "phari0196@gmail.com"
+    },
+    "mupusti": {
+      "id": "mupusti",
+      "title": "Mupusti",
+      "director": "Ilya Fathimah Taqiyya",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film pendek terpilih dalam Program Kompetisi Purwaseswa Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "ayaprojecttt@gmail.com"
+    },
+    "nyanyian-pohon-lontar": {
+      "id": "nyanyian-pohon-lontar",
+      "title": "NYANYIAN POHON LONTAR",
+      "director": "Santirta Martandano",
+      "year": 2026,
+      "duration": 18,
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Gambar_Diam_Film/Still Photo 1.jpg",
+      "trailerUrl": "",
+      "email": "yusmita@afy.ac.id",
+      "stills": [
+        "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Gambar_Diam_Film/Still Photo 1.jpg",
+        "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Gambar_Diam_Film/Still Photo 2.jpg",
+        "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Gambar_Diam_Film/Still Photo 3.jpg",
+        "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Gambar_Diam_Film/Still Photo 4.jpg"
+      ]
+    },
+    "bong": {
+      "id": "bong",
+      "title": "BONG",
+      "director": "Destian Rendra",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "halonashiru@gmail.com"
+    },
+    "ruang-sesak": {
+      "id": "ruang-sesak",
+      "title": "RUANG SESAK",
+      "director": "Muhammad Jaya",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "jagatrayafilms@gmail.com"
+    },
+    "khatib-gantarang-lalang-bata": {
+      "id": "khatib-gantarang-lalang-bata",
+      "title": "KHATIB GANTARANG LALANG BATA",
+      "director": "Zhaddam A. Nurdin",
+      "year": 2026,
+      "duration": 20,
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "work.dienfi@gmail.com"
+    },
+    "mateos-anin": {
+      "id": "mateos-anin",
+      "title": "MATEOS ANIN",
+      "director": "Gilang Akbar",
+      "year": 2026,
+      "duration": 16,
+      "synopsis": "Karya sinematik produksi Balai Film Banyumas yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/Rough Cut 3.00_02_26_04.Still002.png",
+      "trailerUrl": "",
+      "email": "Balaifilmbanyumas@gmail.com",
+      "stills": [
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/Rough Cut 3.00_02_26_04.Still002.png",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0011T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0013T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0027T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0037T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0038T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0042T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0044T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/C0048T01.JPG",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/Rough Cut 3.00_09_50_21.Still003.png",
+        "/assets/hasil_download/10_MATEOS ANIN/Gambar_Diam_Film/Rough Cut 3.00_14_08_04.Still013.png"
+      ],
+      "phLogo": "/assets/hasil_download/10_MATEOS ANIN/Logo_PH/Merah.png"
+    },
+    "niat-ingsun-ngaji": {
+      "id": "niat-ingsun-ngaji",
+      "title": "NIAT INGSUN NGAJI",
+      "director": "Sri Rahmawati",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Di sebuah desa yang jauh dari sorotan arus utama, seorang pendidik melanjutkan dedikasi sang ayah dengan menghadirkan ruang belajar berbasis pendidikan Islam dan seni, mengantarkan generasi muda menemukan pengetahuan, jati diri, dan harapan baru bagi masa depan.",
+      "posterUrl": "/assets/hasil_download/11_NIAT INGSUN NGAJI/Poster_Film/Poster_Niat_Ingsun_Ngaji.jpg",
+      "trailerUrl": "",
+      "email": "srirahma8102@gmail.com"
+    },
+    "portrait-of-tins-family": {
+      "id": "portrait-of-tins-family",
+      "title": "PORTRAIT OF TIN'S FAMILY",
+      "director": "Mochammad Legawa Alit Albandika",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film suara independen terpilih dalam Program Kompetisi Mahaditya Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "portraitoftinsfamily@gmail.com"
+    },
+    "marandang": {
+      "id": "marandang",
+      "title": "MARANDANG",
+      "director": "Prabu Hafli Al Hafidz",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film suara independen terpilih dalam Program Kompetisi Mahaditya Awards di Kotabaru Heritage Film Festival 2026.",
+      "posterUrl": "/assets/poster-placeholder.png",
+      "trailerUrl": "",
+      "email": "stanley.simanjuntak@gmail.com"
+    },
+    "naijan-on-hai-aina": {
+      "id": "naijan-on-hai-aina",
+      "title": "NAIJAN ON HAI AINA",
+      "director": "Wisnu Febri Wardana",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Sebuah karya hasil residensi Apinat-Aklahat oleh Wisnu Febri Wardana bersama komunitas Lakoat.Kujawas & Studio Garna. Dipersembahkan untuk perempuan tiga generasi dan tanah yang oleh masyarakat Mollo dimuliakan sebagai Ibu penopang kehidupan.",
+      "posterUrl": "/assets/hasil_download/14_NAIJAN ON HAI AINA/Poster_Film/Poster_Naijan_On_Hai_Aina.jpg",
+      "trailerUrl": "",
+      "email": "wisnufwrd@gmail.com"
+    },
+    "hope": {
+      "id": "hope",
+      "title": "HOPE",
+      "director": "Angel Ching",
+      "year": 2026,
+      "duration": 15,
+      "synopsis": "Karya film karya sutradara Angel Ching (Jogja Film Academy, Noema, Lokapurva Films) yang menampilkan Jessy Wijaya dan Novera Angellina dalam eksplorasi sinematik tentang harapan, keluarga, dan pencarian jati diri.",
+      "posterUrl": "/assets/hasil_download/15_HOPE/Poster_Film/Poster_Hope.jpg",
+      "trailerUrl": "",
+      "email": "chingangel98@gmail.com"
     }
   },
   "programs": [
@@ -66,19 +274,37 @@
       "id": "mahaditya",
       "name": "Mahaditya Awards",
       "description": "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan.",
-      "filmIds": ["budi-pekerti", "autobiography"]
+      "filmIds": [
+        "niat-ingsun-ngaji",
+        "portrait-of-tins-family",
+        "marandang",
+        "naijan-on-hai-aina",
+        "hope"
+      ]
     },
     {
       "id": "purwaseswa",
       "name": "Purwaseswa Awards",
       "description": "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia.",
-      "filmIds": ["yuni", "27-steps-of-may"]
+      "filmIds": [
+        "serada",
+        "nyanyi-di-angkringan",
+        "waled",
+        "anak-yang-bertumbuh",
+        "mupusti"
+      ]
     },
     {
       "id": "karyanagri",
       "name": "Karyanagri Awards",
       "description": "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional.",
-      "filmIds": ["penyalin-cahaya", "kucumbu-tubuh-indahku"]
+      "filmIds": [
+        "nyanyian-pohon-lontar",
+        "bong",
+        "ruang-sesak",
+        "khatib-gantarang-lalang-bata",
+        "mateos-anin"
+      ]
     },
     {
       "id": "national-heritage",

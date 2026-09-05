@@ -8,7 +8,11 @@ export interface Film {
   duration: number; // in minutes
   synopsis: string;
   posterUrl: string;
-  trailerUrl: string; // youtube embed
+  trailerUrl: string; // youtube embed or local video
+  stills?: string[];
+  directorPhoto?: string;
+  phLogo?: string;
+  email?: string;
 }
 
 export interface Program {
@@ -19,17 +23,19 @@ export interface Program {
 }
 
 // Menentukan apakah proses kurasi sedang berlangsung (menampilkan placeholder)
-export const IS_CURATION_ONGOING = true;
+export const IS_CURATION_ONGOING = false;
 
 // Mengekspor data film langsung dari JSON
-export const films: Record<string, Film> = data.films;
+export const films: Record<string, Film> = data.films as unknown as Record<string, Film>;
 
 // Mengonversi referensi filmIds di JSON kembali menjadi array object Film untuk UI
 export const programs: Program[] = data.programs.map((program) => ({
   id: program.id,
   name: program.name,
   description: program.description,
-  films: program.filmIds.map((id) => data.films[id as keyof typeof data.films])
+  films: program.filmIds
+    .map((id) => (data.films as unknown as Record<string, Film>)[id])
+    .filter(Boolean)
 }));
 
 export const specialPrograms = data.specialPrograms;

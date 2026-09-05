@@ -1,0 +1,12 @@
+Link: https://drive.google.com/drive/folders/15t5mYKrHCl0vVoP3unutMKhcTANQdOyp
+Error: Failed to retrieve file url:
+
+	Only the owner and editors can download this file. If you'd like to
+	download it, please contact the owner.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=1gpESssPywF_QqDg8QReuM-aTePRxM7V_
+
+but Gdown can't. Please check connections and permissions.
+Kemungkinan file/folder ini private, download manual dari link di atas.

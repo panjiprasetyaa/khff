@@ -90,13 +90,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             {/* FILM LIST GRID */}
             <div>
               <div className="flex justify-between items-center mb-8">
-                 <h3 className="text-2xl font-serif font-black text-white">Daftar Karya Seleksi ({currentProgram?.films.slice(0, 1).length || 0} Film)</h3>
+                 <h3 className="text-2xl font-serif font-black text-white">Daftar Karya Seleksi ({currentProgram?.films.length || 0} Film)</h3>
               </div>
               
               {currentProgram && currentProgram.films.length > 0 ? (
                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                   {currentProgram.films.slice(0, 1).map((film) => (
-                     <FilmCard key={film.id} film={film} overrideTitle={activeTabInfo?.label} programId={activeKompetisiTab} />
+                   {currentProgram.films.map((film) => (
+                     <FilmCard key={film.id} film={film} programId={activeKompetisiTab} />
                    ))}
                  </div>
               ) : (

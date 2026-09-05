@@ -21,7 +21,7 @@ export default function AboutUs() {
       <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden bg-khff-navy pt-20">
         <div className="absolute inset-0 w-full h-full z-0">
           <img
-            src="/assets/about/hero.webp"
+            src="/assets/about/hero2.jpg"
             alt="KHFF Day 1-4"
             className="w-full h-full object-cover object-center"
           />
@@ -115,7 +115,7 @@ export default function AboutUs() {
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-4">Catatan Kuratorial</h2>
-            <h3 className="text-xl md:text-2xl font-bold font-serif text-white">Suluh Pamuji — <span className="text-khff-pink">Kurator</span></h3>
+            <h3 className="text-xl md:text-2xl font-bold font-serif text-white">Suluh Pamuji — <span className="text-khff-pink">Direktur Program</span></h3>
           </div>
           
           <div className="flex flex-col md:flex-row gap-12 md:gap-16">

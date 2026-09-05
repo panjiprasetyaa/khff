@@ -54,7 +54,10 @@ export default function FilmDetail({
   return (
     <main className="min-h-screen pt-36 pb-28 bg-khff-navy text-khff-cream relative font-sans overflow-hidden">
       {/* Background ambient lighting and poster blur */}
-      <div className="absolute inset-0 z-0 opacity-15 bg-cover bg-center blur-3xl mix-blend-screen" style={{ backgroundImage: `url(${film.posterUrl})` }}></div>
+      <div 
+        className="absolute inset-0 z-0 opacity-15 bg-cover bg-center blur-3xl mix-blend-screen" 
+        style={{ backgroundImage: `url(${film.posterUrl || '/assets/poster-placeholder.png'})` }}
+      ></div>
       
       {/* Decorative Character Artworks */}
       <div className="absolute bottom-10 right-20 opacity-25 w-72 pointer-events-none z-0">
@@ -73,14 +76,23 @@ export default function FilmDetail({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Poster Section */}
           <div className="md:col-span-5 lg:col-span-4">
-            <div className="relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/40 group cursor-pointer" onClick={() => setIsVideoOpen(true)}>
-              <img src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : film.posterUrl} alt={displayTitle} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div 
+              className={`relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/40 group ${film.trailerUrl ? 'cursor-pointer' : ''}`} 
+              onClick={() => film.trailerUrl && setIsVideoOpen(true)}
+            >
+              <img 
+                src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : (film.posterUrl || "/assets/poster-placeholder.png")} 
+                alt={displayTitle} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+              />
 
-              <div className="absolute inset-0 bg-khff-navy/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-20 h-20 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.6)] group-hover:scale-110 transition-transform">
-                  <Play size={32} fill="currentColor" className="ml-1" />
+              {film.trailerUrl && (
+                <div className="absolute inset-0 bg-khff-navy/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-20 h-20 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.6)] group-hover:scale-110 transition-transform">
+                    <Play size={32} fill="currentColor" className="ml-1" />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
@@ -110,6 +122,40 @@ export default function FilmDetail({
                 </div>
               </div>
 
+              {/* Director & Production House info if available */}
+              {(film.directorPhoto || film.phLogo || film.email) && (
+                <div className="flex flex-wrap items-center gap-6 mb-10 p-5 bg-white/5 border border-khff-cream/15 rounded-2xl">
+                  {film.directorPhoto && (
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={film.directorPhoto} 
+                        alt={film.director} 
+                        className="w-14 h-14 rounded-full object-cover border-2 border-khff-yellow shadow-md" 
+                      />
+                      <div>
+                        <span className="block text-[10px] font-mono uppercase text-khff-cream/60 font-bold tracking-wider">Sutradara</span>
+                        <span className="text-base font-serif font-bold text-white">{film.director}</span>
+                      </div>
+                    </div>
+                  )}
+                  {film.phLogo && (
+                    <div className="flex items-center gap-3 pl-4 border-l border-khff-cream/20">
+                      <img 
+                        src={film.phLogo} 
+                        alt="Logo Production House" 
+                        className="h-10 max-w-[140px] object-contain" 
+                      />
+                    </div>
+                  )}
+                  {film.email && (
+                    <div className="ml-auto text-xs font-mono text-khff-cream/60">
+                      <span className="block font-bold uppercase tracking-wider text-[10px]">Kontak</span>
+                      <span className="text-khff-yellow">{film.email}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="prose prose-invert max-w-none">
                 <h3 className="text-xl font-serif font-black text-khff-yellow mb-4 flex items-center gap-4">
                   <span className="w-8 h-1 bg-khff-pink rounded-full"></span> Sinopsis Cerita
@@ -120,33 +166,75 @@ export default function FilmDetail({
               </div>
             </div>
 
-            <button 
-              onClick={() => setIsVideoOpen(true)}
-              className="w-full sm:w-auto self-start inline-flex items-center justify-center gap-4 bg-khff-yellow text-khff-navy px-10 py-5 rounded-2xl text-xl font-black font-mono hover:bg-white transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:scale-105 cursor-pointer"
-            >
-              <Play size={24} fill="currentColor" /> PUTAR TRAILER
-            </button>
+            {film.trailerUrl ? (
+              <button 
+                onClick={() => setIsVideoOpen(true)}
+                className="w-full sm:w-auto self-start inline-flex items-center justify-center gap-4 bg-khff-yellow text-khff-navy px-10 py-5 rounded-2xl text-xl font-black font-mono hover:bg-white transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:scale-105 cursor-pointer"
+              >
+                <Play size={24} fill="currentColor" /> PUTAR TRAILER
+              </button>
+            ) : (
+              <div className="inline-flex items-center gap-3 bg-white/10 text-khff-cream/60 px-8 py-4 rounded-2xl font-mono text-sm uppercase tracking-wider font-bold border border-white/10 self-start">
+                Trailer Tidak Tersedia
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Film Stills Gallery */}
+        {film.stills && film.stills.length > 0 && (
+          <section className="mt-20 pt-12 border-t border-khff-cream/15">
+            <div className="mb-8">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-khff-yellow font-black block mb-1">
+                Visual Archive
+              </span>
+              <h2 className="text-2xl md:text-4xl font-serif font-black text-white">
+                Galeri Still Foto Film
+              </h2>
+              <div className="w-16 h-1 bg-khff-yellow rounded-full mt-3"></div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {film.stills.map((still, idx) => (
+                <div key={idx} className="aspect-video rounded-2xl overflow-hidden border-2 border-khff-cream/20 shadow-xl group bg-black/40">
+                  <img 
+                    src={still} 
+                    alt={`${film.title} Still ${idx + 1}`} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
 
       {/* Video Modal Popup */}
-      {isVideoOpen && (
+      {isVideoOpen && film.trailerUrl && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-khff-navy/95 backdrop-blur-md p-4 animate-in fade-in duration-300">
           <button 
             onClick={() => setIsVideoOpen(false)}
-            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-3 bg-white/10 rounded-full hover:bg-khff-pink"
+            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-3 bg-white/10 rounded-full hover:bg-khff-pink z-10"
           >
             <X size={28} />
           </button>
           <div className="w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/20 relative scale-in-95 duration-300">
-            <iframe 
-              className="w-full h-full"
-              src={`${film.trailerUrl}?autoplay=1`} 
-              title="Trailer" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            ></iframe>
+            {film.trailerUrl.endsWith('.mp4') || film.trailerUrl.startsWith('/assets/') ? (
+              <video 
+                src={film.trailerUrl} 
+                controls 
+                autoPlay 
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <iframe 
+                className="w-full h-full"
+                src={`${film.trailerUrl}?autoplay=1`} 
+                title="Trailer" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
         </div>
       )}

@@ -18,60 +18,57 @@ Dengan terbukanya ruang dialog internasional tentang pelestarian budaya melalui 
 
 Akhir kata, melewati tahun ketiga ini, saya yakin bahwa keberhasilan inovasi KHFF di masa depan akan sangat bergantung pada infrastruktur berbagi, mulai dari pengalaman, praktik baik, hingga strategi bertahan. Semoga KHFF akan terus berkomitmen menjadikan warisan budaya bukan sekadar tema, tetapi juga metodologi kerja sekaligus strategi keberlanjutan.`;
 
-export const catatanKuratorial = `“Heritage bukan hanya apa yang kita warisi, tetapi juga bagaimana kita mewariskannya kembali.”
+export const catatanKuratorial = `“Kualleangi tallanga na toalia.”
 
-Memasuki tahun ketiga penyelenggaraannya, Kotabaru Heritage Film Festival (KHFF) memperluas cara pandang kami terhadap warisan budaya. Tahun pertama dan kedua, festival ini lebih menekankan pemetaan ekspresi dan selebrasi keberagaman heritage dalam sinema. Tahun ini, kami memilih langkah yang berbeda: menghadirkan heritage bukan hanya sebagai materi yang ditampilkan, tetapi sebagai medan berpikir kritis.
+Lebih baik tenggelam di lautan daripada kembali ke pantai. Falsafah Bugis-Makassar ini menjadi pijakan KHFF 2026: keberanian untuk menerima bahwa layar telah dibentangkan, sekaligus keberanian untuk terus berlayar ketika kembali bukan lagi pilihan.
 
-Warisan budaya tidak lagi kami tempatkan semata sebagai representasi masa lalu, tetapi sebagai tafsir yang hidup, terbuka untuk digugat, diuji ulang, bahkan diperbarui. Kami percaya bahwa film bukan hanya alat pelestari warisan, tetapi juga dapat menjadi alat pembacaan ulang atas dinamika sejarah, kekuasaan, dan identitas yang membentuknya.
+Memasuki tahun keempat, Kotabaru Heritage Film Festival terus membaca ulang posisi dan perjalanannya. Tahun 2023 adalah introduksi; membangun identitas dengan keyakinan bahwa sedikit berbeda lebih baik daripada sedikit lebih baik. Tahun 2024 adalah interaksi; menempatkan heritage bukan sebagai isolasi, melainkan sebagai hasil dari perjumpaan dan pertukaran. Tahun 2025 adalah penetapan posisi; memandang heritage sebagai perspektif kritis sekaligus objek yang dapat dikritisi. Maka, tahun 2026 bergerak menuju kontekstualisasi.
 
-KHFF 2025 menandai pergeseran ini melalui dua arah besar pendekatan kuratorial:
+Perjalanan empat tahun ini mungkin belum panjang, tetapi telah cukup untuk menunjukkan bahwa heritage tidak berhenti pada pembedaan antara benda dan tak benda, inventarisasi, pencatatan, maupun formalisasi. Heritage adalah sesuatu yang terus diproduksi melalui relasi antara manusia, ruang, sejarah, ingatan, dan kekuasaan.
 
-1. Heritage sebagai objek kritik, ketika warisan budaya justru tampil problematis—penuh ambiguitas, eksklusi, atau manipulasi sejarah.
-2. Heritage sebagai cara berpikir kritis, ketika warisan budaya dijadikan lensa untuk memahami persoalan kontemporer seperti krisis ekologi, migrasi, dan transformasi digital.
+Karena itu, heritage hari ini juga berhadapan dengan persoalan identitas dan politik kekuasaan, krisis iklim dan keberlanjutan, komersialisasi dan pariwisata, dekolonisasi dan repatriasi, serta living heritage: warisan yang terus hidup, berubah, dan dinegosiasikan oleh masyarakat.
 
-Melalui program-program, baik pemutaran maupun non-pemutaran, kompetisi maupun non-kompetisi, kami menyeleksi film-film yang tidak hanya bisa diperjuangkan secara naratif dan sinematik, tetapi juga menawarkan relasi yang reflektif dengan konteks kebudayaan yang diangkat. Estetika tetap penting, tetapi posisi dan keberpihakan film terhadap warisan yang dibicarakannya menjadi penentu utama.
+Melalui kompetisi, program non-kompetisi, forum, dan aktivasi ruang publik, KHFF 2026 mengajak kita tidak sekadar melihat warisan sebagai sesuatu yang harus dijaga, tetapi mempertanyakan: siapa yang mewarisi, siapa yang menentukan, siapa yang memiliki, dan bagaimana warisan itu dapat terus hidup tanpa kehilangan keberagamannya.
 
-Beberapa film klasik kami hadirkan kembali untuk membaca ulang bagaimana budaya dibingkai sebagai instrumen legitimasi. Di sisi lain, film-film kontemporer menampilkan cara komunitas mengambil alih kembali narasi budaya mereka—dengan ragam pendekatan yang lebih cair, kritis, dan kontekstual.
-
-Melalui pendekatan ini, KHFF 2025 ingin menegaskan bahwa warisan budaya bukanlah entitas beku. Ia bisa menjadi bahan bacaan baru, bahkan menjadi alat negosiasi untuk membayangkan masa depan kebudayaan secara lebih adil dan terbuka. Sebab warisan, sebagaimana film, tidak pernah selesai pada masa lalu—ia selalu bekerja di masa kini dan membentuk masa depan.`;
+`;
 
 export const festivalBoard = [
   {
     id: "board-1",
     name: "Yetti Martanti",
     role: "Kepala Dinas Kebudayaan Kota Yogyakarta",
-    image: "/assets/about/board/Yetti-2.webp"
+    image: "/assets/about/board/Yetti-2.webp",
   },
   {
     id: "board-2",
     name: "Hanung Bramantyo",
     role: "Sutradara",
-    image: "/assets/about/board/hanung-bramantyo-1773371479527_11.webp"
+    image: "/assets/about/board/hanung-bramantyo-1773371479527_11.webp",
   },
   {
     id: "board-3",
     name: "Zaki Habibi",
     role: "Akademisi & Pengkaji Film",
-    image: "/assets/about/board/s200_zaki.habibi.webp"
+    image: "/assets/about/board/s200_zaki.habibi.webp",
   },
   {
     id: "board-4",
     name: "Tyo Harwanto",
     role: "Penggiat Seni & Event Expert",
-    image: "/assets/about/board/IMG_7377.webp"
+    image: "/assets/about/board/IMG_7377.webp",
   },
   {
     id: "board-5",
     name: "Sekar Sari",
     role: "Aktris, Seniman & Akademisi",
-    image: "/assets/about/board/IMG_7378.webp"
+    image: "/assets/about/board/IMG_7378.webp",
   },
   {
     id: "board-6",
     name: "Uul Jihadan",
     role: "Partnership",
-    image: "/assets/about/board/IMG_7380.webp"
-  }
+    image: "/assets/about/board/IMG_7380.webp",
+  },
 ];
 
 export const festivalJury = [
@@ -79,32 +76,32 @@ export const festivalJury = [
     id: "jury-1",
     name: "Zamzam Fauzanafi",
     role: "Juri Festival",
-    image: "/assets/about/jury/zamzam_fauzanafi.webp"
+    image: "/assets/about/jury/zamzam_fauzanafi.webp",
   },
   {
     id: "jury-2",
     name: "BW Purbanegara",
     role: "Juri Festival",
-    image: "/assets/about/jury/bw_purbanegara.webp"
+    image: "/assets/about/jury/bw_purbanegara.webp",
   },
   {
     id: "jury-3",
     name: "DS Nugraheni",
     role: "Juri Festival",
-    image: "/assets/about/jury/ds_nugraheni.webp"
+    image: "/assets/about/jury/ds_nugraheni.webp",
   },
   {
     id: "jury-4",
     name: "Nissa Fijriani",
     role: "Juri Festival",
-    image: "/assets/about/jury/nissa_fijriani.webp"
+    image: "/assets/about/jury/nissa_fijriani.webp",
   },
   {
     id: "jury-5",
     name: "Imam Karyadi",
     role: "Juri Festival",
-    image: "/assets/about/jury/imam_karyadi.webp"
-  }
+    image: "/assets/about/jury/imam_karyadi.webp",
+  },
 ];
 
 export const festivalTeam = [
@@ -112,38 +109,38 @@ export const festivalTeam = [
     id: "team-1",
     name: "Siska Raharja",
     role: "Festival Director",
-    image: "/assets/about/team/siska_raharja.webp"
+    image: "/assets/about/team/siska_raharja.webp",
   },
   {
     id: "team-2",
     name: "Suluh Pamuji",
     role: "Program Director",
-    image: "/assets/about/team/suluh_pamuji.webp"
+    image: "/assets/about/team/suluh_pamuji.webp",
   },
   {
     id: "team-3",
     name: "Michael Pantouw",
     role: "Festival Manager",
-    image: "/assets/about/team/michael_pantouw.webp"
+    image: "/assets/about/team/michael_pantouw.webp",
   },
   {
     id: "team-4",
     name: "Gerry Junus",
     role: "Programmer",
-    image: "/assets/about/team/gerry_junus.webp"
+    image: "/assets/about/team/gerry_junus.webp",
   },
   {
     id: "team-5",
     name: "Wucha Wulandari",
     role: "Programmer",
-    image: "/assets/about/team/wucha_wulandari.webp"
+    image: "/assets/about/team/wucha_wulandari.webp",
   },
   {
     id: "team-6",
     name: "Hardiwan Prayoga",
     role: "Programmer",
-    image: "/assets/about/team/hardiwan_prayoga.webp"
-  }
+    image: "/assets/about/team/hardiwan_prayoga.webp",
+  },
 ];
 
 export const creditGroups = [
@@ -152,8 +149,14 @@ export const creditGroups = [
     roles: [
       { role: "Kepala Dinas", names: ["Yetti Martanti, S.Sos., M.M."] },
       { role: "Sekretaris Dinas", names: ["Tri Sotya Atmi, S.Sos."] },
-      { role: "Kepala Bidang Adat Tradisi Lembaga Budaya dan Seni", names: ["Retno Yuliani, S.E., M.Ec.Dev."] },
-      { role: "Kepala Seksi Seni", names: ["Yoseph Wawan Agus Suharyanto, A.Md."] },
+      {
+        role: "Kepala Bidang Adat Tradisi Lembaga Budaya dan Seni",
+        names: ["Retno Yuliani, S.E., M.Ec.Dev."],
+      },
+      {
+        role: "Kepala Seksi Seni",
+        names: ["Yoseph Wawan Agus Suharyanto, A.Md."],
+      },
       {
         role: "Staf Seksi Seni",
         names: [
@@ -162,15 +165,18 @@ export const creditGroups = [
           "Abu 'Aniin Syu'Aisya', S.S.",
           "Catur Cang Pamungkas, S.Sn.",
           "Eksawada Wisang Agni Sweta, S.Pd.",
-          "Wahyudi Purnama, S.Sn."
-        ]
-      }
-    ]
+          "Wahyudi Purnama, S.Sn.",
+        ],
+      },
+    ],
   },
   {
     category: "Media & Dokumentasi",
     roles: [
-      { role: "Chief Media dan Komunikasi", names: ["Dara Asia Nashwa Aliela"] },
+      {
+        role: "Chief Media dan Komunikasi",
+        names: ["Dara Asia Nashwa Aliela"],
+      },
       { role: "Koordinator Dokumentasi", names: ["Taufik Hidayat"] },
       { role: "Koordinator Fotografer", names: ["Muhammad Ilham Yafi"] },
       { role: "Koordinator Videografer", names: ["Yohanes Paskah Reint"] },
@@ -182,8 +188,8 @@ export const creditGroups = [
           "Nayda Yasmine",
           "Muhamad Anang Rivai",
           "Anas Dawud Fathoni",
-          "Apriliandewi Indrisusanti"
-        ]
+          "Apriliandewi Indrisusanti",
+        ],
       },
       {
         role: "Staf Videografer",
@@ -191,10 +197,10 @@ export const creditGroups = [
           "Azizul Achmad Ali",
           "Sultan Bahharudin Fadhilah",
           "Gabryan Muhammad Rizky",
-          "Muhammad Andhika Zaafarani"
-        ]
-      }
-    ]
+          "Muhammad Andhika Zaafarani",
+        ],
+      },
+    ],
   },
   {
     category: "Web & Desain Grafis",
@@ -202,7 +208,7 @@ export const creditGroups = [
       { role: "Koordinator Web Development", names: ["Wildan Rifqi Prambudi"] },
       {
         role: "Staf Web Development",
-        names: ["Restu Hendra Pramono", "Muhammad Imam Panji Prasetya"]
+        names: ["Restu Hendra Pramono", "Muhammad Imam Panji Prasetya"],
       },
       { role: "Koordinator Desainer Grafis", names: ["Ryan Dwi Cahyadi"] },
       {
@@ -213,32 +219,41 @@ export const creditGroups = [
           "Afandy Nadhiful Fikri",
           "Fakhrul Sahotman Siregar",
           "Kholifah Nur Indah",
-          "Regita Hasna Aivissena"
-        ]
-      }
-    ]
+          "Regita Hasna Aivissena",
+        ],
+      },
+    ],
   },
   {
     category: "Media Sosial & Publikasi",
     roles: [
-      { role: "Koordinator Publikasi Media Sosial", names: ["Arina Manasikana"] },
+      {
+        role: "Koordinator Publikasi Media Sosial",
+        names: ["Arina Manasikana"],
+      },
       {
         role: "Administrator Media Sosial",
         names: [
           "Leli Amalia",
           "Estu Purbaningrum",
           "Zahra Khoirunnisa",
-          "Zacky Raya Aditya Bawono"
-        ]
-      }
-    ]
+          "Zacky Raya Aditya Bawono",
+        ],
+      },
+    ],
   },
   {
     category: "Hospitality & Liaison Officer",
     roles: [
       { role: "Chief Hospitality", names: ["Fatin Nisrina Muti"] },
-      { role: "Asisten Chief Hospitality", names: ["Baiq Khadija Azhar Baidha"] },
-      { role: "Koordinator Liaison Officer", names: ["Adellia Jeanief Anindita"] },
+      {
+        role: "Asisten Chief Hospitality",
+        names: ["Baiq Khadija Azhar Baidha"],
+      },
+      {
+        role: "Koordinator Liaison Officer",
+        names: ["Adellia Jeanief Anindita"],
+      },
       {
         role: "Liaison Officer",
         names: [
@@ -246,10 +261,10 @@ export const creditGroups = [
           "Manggala Vijja Loka",
           "Rizmi Azizi Almi",
           "Elyanta Qonita",
-          "Bintang Zaki Mubarok"
-        ]
-      }
-    ]
+          "Bintang Zaki Mubarok",
+        ],
+      },
+    ],
   },
   {
     category: "Logistik & Sponsor",
@@ -257,8 +272,8 @@ export const creditGroups = [
       { role: "Chief Sponsor", names: ["Uul Jihadan"] },
       { role: "Staf Sponsor", names: ["Adinda Permata Nirwana"] },
       { role: "Koordinator Logistik", names: ["Muh. Jendra Alfala H."] },
-      { role: "Staf Logistik", names: ["Bernando Randy Putra Menggilona"] }
-    ]
+      { role: "Staf Logistik", names: ["Bernando Randy Putra Menggilona"] },
+    ],
   },
   {
     category: "Teknis & Acara",
@@ -272,22 +287,25 @@ export const creditGroups = [
           "Angela Ayu Kartika",
           "Chiara Devie Utami",
           "Reswinda Harvionita",
-          "Adryan Ahmad Shidiq"
-        ]
-      }
-    ]
+          "Adryan Ahmad Shidiq",
+        ],
+      },
+    ],
   },
   {
     category: "Artistik",
     roles: [
       { role: "Chief Artistik", names: ["Tyo"] },
-      { role: "Staf Artistik", names: ["Volunteer"] }
-    ]
+      { role: "Staf Artistik", names: ["Volunteer"] },
+    ],
   },
   {
     category: "Volunteers",
     roles: [
-      { role: "Relawan Festival", names: ["53 Dedicated Volunteers / Segenap Volunteer KHFF"] }
-    ]
-  }
+      {
+        role: "Relawan Festival",
+        names: ["53 Dedicated Volunteers / Segenap Volunteer KHFF"],
+      },
+    ],
+  },
 ];

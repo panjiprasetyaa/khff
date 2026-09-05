@@ -15,7 +15,7 @@ export default function FilmCard({ film, overrideTitle, programId }: FilmCardPro
     <Link href={`/film/${film.id}${programId ? `?p=${programId}` : ''}`} className="block group cursor-pointer">
       <div className="relative aspect-[2/3] overflow-hidden rounded-md bg-white/5 mb-4 shadow-lg border border-white/10 transition-all duration-500 group-hover:border-white/40 group-hover:shadow-2xl">
         <img
-          src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : film.posterUrl}
+          src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : (film.posterUrl || "/assets/poster-placeholder.png")}
           alt={displayTitle}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
