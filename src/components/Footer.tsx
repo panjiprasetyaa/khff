@@ -3,8 +3,8 @@ import { AtSign, Mail, MapPin } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="font-sans">
-      {/* Supported By & Official Media Partners (KHFF Yellow Background Section) */}
-      <div className="relative py-16 md:py-20 overflow-hidden bg-khff-yellow text-khff-navy border-t border-khff-yellow/40 shadow-inner">
+      {/* Supported By & Official Media Partners (Golden Yellow Gradient) */}
+      <div className="relative py-16 md:py-24 overflow-hidden bg-[linear-gradient(to_bottom,#f6df87,#edae30)] text-khff-navy">
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10 text-center">
           {/* Section Heading Badge */}
           <span className="text-xs md:text-sm font-mono tracking-[0.3em] uppercase text-khff-navy font-black mb-10 md:mb-14 inline-block px-6 py-2 rounded-full bg-khff-navy/10 border border-khff-navy/20 shadow-xs">
@@ -31,13 +31,13 @@ export default function Footer() {
                 className="h-9 sm:h-12 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/dana-keistimewaan.png"
+                src="/assets/sponsors/dana-keistimewaan.png?v=5"
                 alt="Dana Keistimewaan"
                 className="h-10 sm:h-13 md:h-15 lg:h-16 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
               />
               <img
-                src="/assets/sponsors/05-pemda-diy.png"
-                alt="Pemerintah Daerah Daerah Istimewa Yogyakarta"
+                src="/assets/sponsors/dinas-diy-official.png?v=4"
+                alt="Dinas Pemerintah Daerah DIY"
                 className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
             </div>
@@ -50,17 +50,17 @@ export default function Footer() {
                 className="h-12 sm:h-15 md:h-17 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/07-teh-pucuk-harum.png"
+                src="/assets/sponsors/teh-pucuk-official.png?v=4"
                 alt="Teh Pucuk Harum"
                 className="h-14 sm:h-18 md:h-19 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/270-yk-official.png?v=3"
+                src="/assets/sponsors/270-yk-official.png?v=4"
                 alt="HUT Kota Yogyakarta 270"
                 className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/pdin-official.png?v=3"
+                src="/assets/sponsors/pdin-official.png?v=5"
                 alt="PDIN Pusat Desain Industri Nasional"
                 className="h-11 sm:h-13 md:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
