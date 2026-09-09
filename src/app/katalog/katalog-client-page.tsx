@@ -45,7 +45,7 @@ export default function KatalogClientPage() {
           </button>
           
           <div className="max-w-4xl">
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg break-words">
               Arsip Katalog
             </h1>
             <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
@@ -56,7 +56,7 @@ export default function KatalogClientPage() {
       </section>
 
       {/* CATALOG GRID SECTION (NAVY GREEN THEATER) */}
-      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
+      <section className="bg-khff-navy text-khff-cream rounded-t-[3.5rem] py-20 sm:py-24 shadow-2xl relative z-20 border-t-8 border-khff-pink overflow-hidden -mt-12">
         {/* Background Characters */}
         <div className="absolute top-20 -left-10 opacity-10 pointer-events-none w-64 md:w-96">
           <img src="/assets/illustrations/SINGA.png" alt="" className="w-full h-auto drop-shadow-2xl" />
@@ -66,7 +66,7 @@ export default function KatalogClientPage() {
         </div>
 
         <div className="container mx-auto px-6 max-w-5xl relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
             {catalogArchives.map((cat, idx) => (
               <a 
                 key={idx} 
@@ -75,10 +75,10 @@ export default function KatalogClientPage() {
                 rel="noopener noreferrer" 
                 className="block group h-full"
               >
-                <div className={`rounded-3xl p-8 sm:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[420px] ${cat.bg}`}>
+                <div className={`rounded-3xl p-6 sm:p-10 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-3 h-full flex flex-col justify-between min-h-[380px] sm:min-h-[420px] ${cat.bg}`}>
                   
                   {/* Decorative Heritage Artwork on bottom corner */}
-                  <div className="absolute right-[-10px] bottom-[-10px] sm:right-4 sm:bottom-4 opacity-40 w-36 sm:w-44 pointer-events-none group-hover:scale-110 group-hover:opacity-50 transition-all duration-700">
+                  <div className="absolute right-[-10px] bottom-[-10px] sm:right-4 sm:bottom-4 opacity-40 w-32 sm:w-44 pointer-events-none group-hover:scale-110 group-hover:opacity-50 transition-all duration-700">
                     <img src={cat.asset} alt="" className="w-full h-auto object-contain drop-shadow-md" />
                   </div>
 
@@ -90,10 +90,10 @@ export default function KatalogClientPage() {
                     </div>
 
                     <p className="text-sm font-mono font-bold opacity-90 mb-2 tracking-wider uppercase">{cat.edition}</p>
-                    <h3 className="text-3xl sm:text-4xl font-serif font-black mb-4 leading-tight">
+                    <h3 className="text-2xl sm:text-4xl font-serif font-black mb-4 leading-tight">
                       {cat.title}
                     </h3>
-                    <p className="opacity-90 text-base sm:text-lg font-medium leading-relaxed mb-8 max-w-md">
+                    <p className="opacity-90 text-sm sm:text-lg font-medium leading-relaxed mb-8 max-w-md">
                       {cat.desc}
                     </p>
                   </div>
@@ -107,8 +107,8 @@ export default function KatalogClientPage() {
             ))}
           </div>
 
-          <div className="mt-20 p-8 sm:p-10 bg-white/5 border border-khff-cream/10 rounded-3xl text-center max-w-3xl mx-auto backdrop-blur-sm">
-            <h4 className="text-2xl font-serif font-bold text-khff-yellow mb-3">
+          <div className="mt-16 sm:mt-20 p-6 sm:p-10 bg-white/5 border border-khff-cream/10 rounded-3xl text-center max-w-3xl mx-auto backdrop-blur-sm">
+            <h4 className="text-xl sm:text-2xl font-serif font-bold text-khff-yellow mb-3">
               Katalog KHFF 2026
             </h4>
             <p className="text-khff-cream/80 text-base sm:text-lg font-medium leading-relaxed">

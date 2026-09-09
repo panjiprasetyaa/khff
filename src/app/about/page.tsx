@@ -120,7 +120,7 @@ export default function AboutUs() {
           
           <div className="flex flex-col md:flex-row gap-12 md:gap-16">
             <div className="w-full md:w-4/12 shrink-0">
-              <div className="w-full rounded-[2rem] overflow-hidden border-2 border-khff-cream/20 shadow-2xl relative group sticky top-32">
+              <div className="w-full rounded-[2rem] overflow-hidden border-2 border-khff-cream/20 shadow-2xl relative group md:sticky md:top-32">
                 <img
                   src="/assets/about/kurator.webp"
                   alt="Suluh Pamuji"
@@ -155,16 +155,16 @@ export default function AboutUs() {
           </p>
           <Link
             href="/festival-team"
-            className="inline-flex items-center gap-4 bg-khff-yellow text-khff-navy px-10 py-5 rounded-full font-black hover:bg-white transition-all duration-300 text-lg md:text-xl shadow-[0_10px_30px_rgba(238,173,47,0.3)] hover:scale-105 group"
+            className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-khff-yellow text-khff-navy px-6 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-white transition-all duration-300 text-sm sm:text-lg md:text-xl shadow-[0_10px_30px_rgba(238,173,47,0.3)] hover:scale-105 group w-full sm:w-auto"
           >
             <span>Kunjungi Halaman Tim Festival</span>
-            <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+            <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform shrink-0" />
           </Link>
         </div>
       </section>
 
       {/* SECTION 7: DIRECT TO GALERI */}
-      <section className="py-32 bg-khff-yellow text-khff-navy text-center relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-khff-yellow text-khff-navy text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
            {/* Subtle pattern or noise can go here */}
         </div>
@@ -174,10 +174,10 @@ export default function AboutUs() {
           </h2>
           <Link
             href="/galeri"
-            className="inline-flex items-center gap-4 bg-khff-navy text-white px-10 py-5 rounded-full font-black hover:bg-khff-pink transition-all duration-300 text-lg md:text-xl shadow-[0_10px_30px_rgba(29,77,79,0.4)] hover:scale-105 group"
+            className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-khff-navy text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-khff-pink transition-all duration-300 text-sm sm:text-lg md:text-xl shadow-[0_10px_30px_rgba(29,77,79,0.4)] hover:scale-105 group w-full sm:w-auto"
           >
             <span>Arsip Visual Galeri KHFF</span>
-            <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+            <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform shrink-0" />
           </Link>
         </div>
       </section>

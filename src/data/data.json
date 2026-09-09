@@ -144,7 +144,7 @@
       "director": "Santirta Martandano",
       "year": 2026,
       "duration": 18,
-      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagari di Kotabaru Heritage Film Festival 2026.",
       "posterUrl": "/assets/hasil_download/06_NYANYIAN POHON LONTAR/Poster_Film/Poster_Nyanyian_Pohon_Lontar.jpg",
       "trailerUrl": "",
       "email": "yusmita@afy.ac.id",
@@ -161,7 +161,7 @@
       "director": "Destian Rendra",
       "year": 2026,
       "duration": 15,
-      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagari di Kotabaru Heritage Film Festival 2026.",
       "posterUrl": "/assets/hasil_download/07_BONG/Poster_Film/Poster_Bong.jpg",
       "trailerUrl": "",
       "email": "halonashiru@gmail.com"
@@ -172,7 +172,7 @@
       "director": "Muhammad Jaya",
       "year": 2026,
       "duration": 15,
-      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagari di Kotabaru Heritage Film Festival 2026.",
       "posterUrl": "/assets/hasil_download/08_RUANG SESAK/Poster_Film/Poster_Ruang_Sesak.jpg",
       "trailerUrl": "",
       "email": "jagatrayafilms@gmail.com"
@@ -183,7 +183,7 @@
       "director": "Zhaddam A. Nurdin",
       "year": 2026,
       "duration": 20,
-      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "synopsis": "Karya sinematik bermuatan warisan budaya yang terpilih dalam Program Kompetisi Karyanagari di Kotabaru Heritage Film Festival 2026.",
       "posterUrl": "/assets/hasil_download/09_KHATIB GANTARANG LALANG BATA/Poster_Film/Poster_Khatib_Gantarang_Lalang_Bata.jpg",
       "trailerUrl": "",
       "email": "work.dienfi@gmail.com"
@@ -194,7 +194,7 @@
       "director": "Gilang Akbar",
       "year": 2026,
       "duration": 16,
-      "synopsis": "Karya sinematik produksi Balai Film Banyumas yang terpilih dalam Program Kompetisi Karyanagri Awards di Kotabaru Heritage Film Festival 2026.",
+      "synopsis": "Karya sinematik produksi Balai Film Banyumas yang terpilih dalam Program Kompetisi Karyanagari di Kotabaru Heritage Film Festival 2026.",
       "posterUrl": "/assets/hasil_download/10_MATEOS ANIN/Poster_Film/Poster_Mateos_Anin.png",
       "trailerUrl": "",
       "email": "Balaifilmbanyumas@gmail.com",
@@ -271,20 +271,8 @@
   },
   "programs": [
     {
-      "id": "mahaditya",
-      "name": "Mahaditya Awards",
-      "description": "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan.",
-      "filmIds": [
-        "niat-ingsun-ngaji",
-        "portrait-of-tins-family",
-        "marandang",
-        "naijan-on-hai-aina",
-        "hope"
-      ]
-    },
-    {
       "id": "purwaseswa",
-      "name": "Purwaseswa Awards",
+      "name": "Purwaseswa",
       "description": "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia.",
       "filmIds": [
         "serada",
@@ -295,9 +283,9 @@
       ]
     },
     {
-      "id": "karyanagri",
-      "name": "Karyanagri Awards",
-      "description": "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional.",
+      "id": "karyanagari",
+      "name": "Karyanagari",
+      "description": "Karyanagari berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional.",
       "filmIds": [
         "nyanyian-pohon-lontar",
         "bong",
@@ -307,28 +295,34 @@
       ]
     },
     {
-      "id": "national-heritage",
-      "name": "National Heritage",
-      "description": "Program Pemutaran Heritage yang merayakan sejarah sinema dan pengarsipan film-film klasik Indonesia.",
-      "filmIds": ["budi-pekerti"]
+      "id": "mahaditya",
+      "name": "Mahaditya",
+      "description": "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan.",
+      "filmIds": [
+        "niat-ingsun-ngaji",
+        "portrait-of-tins-family",
+        "marandang",
+        "naijan-on-hai-aina",
+        "hope"
+      ]
     },
     {
-      "id": "international-heritage",
-      "name": "International Heritage",
-      "description": "Program Pemutaran Heritage yang menyoroti karya-karya klasik dan restorasi dari berbagai belahan dunia.",
-      "filmIds": ["autobiography"]
+      "id": "khff-panorama",
+      "name": "KHFF Panorama",
+      "description": "Program pemutaran kuratorial yang merayakan spektrum luas sinema dengan ragam narasi, kekayaan perspektif kultural, dan kebaruan estetika sinematik.",
+      "filmIds": []
     },
     {
-      "id": "opening-film",
-      "name": "Opening Film",
-      "description": "Pemutaran khusus film pembuka Kotabaru Heritage Film Festival 2026.",
-      "filmIds": ["yuni"]
+      "id": "heritage-in-indonesian-cinema",
+      "name": "Heritage in Indonesian Cinema",
+      "description": "Sorotan kuratorial pada khazanah karya sinema Indonesia yang merefleksikan nilai-nilai luhur, dinamika sosio-kultural, serta memori kolektif nusantara.",
+      "filmIds": []
     },
     {
-      "id": "closing-film",
-      "name": "Closing Film",
-      "description": "Pemutaran film penutup yang merayakan kebersamaan festival.",
-      "filmIds": ["27-steps-of-may"]
+      "id": "heritage-in-experimental-cinema",
+      "name": "Heritage in Experimental Cinema",
+      "description": "Eksplorasi sinema non-konvensional dan bahasa audiovisual eksperimental dalam merespons, merekonstruksi, serta merayakan warisan tradisi.",
+      "filmIds": []
     }
   ],
   "specialPrograms": [
@@ -440,13 +434,13 @@
         {
           "time": "15.15",
           "ruangSeminar": "National Heritage #1",
-          "ruangAudiovisual": "Purwaseswa Awards",
+          "ruangAudiovisual": "Purwaseswa",
           "balkonRumput": "Heritage Talks: Siska Raharja, Sekar Sari, Zaki Habibi, Yetti Martanti",
           "note": "Film \"Kantata Takwa\""
         },
         {
           "time": "19.15",
-          "ruangSeminar": "Karyanagri Awards",
+          "ruangSeminar": "Karyanagari",
           "ruangAudiovisual": "International Heritage (Collab with Asian Film Archive)",
           "balkonRumput": "Directors Talks: Hanung Bramantyo & Wregas Bhanuteja"
         }

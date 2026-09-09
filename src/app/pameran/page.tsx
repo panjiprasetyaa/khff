@@ -32,18 +32,18 @@ export default function PameranPage() {
             Exhibition & Art Installations
           </span>
 
-          <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg break-words">
             Pameran Karya
           </h1>
 
-          <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-12 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
-            <h3 className="text-2xl md:text-3xl font-serif font-bold text-khff-pink mb-4">
+          <div className="bg-white/5 border-2 border-khff-cream/20 p-6 sm:p-8 md:p-12 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-khff-pink mb-4">
               Eksibisi Kolaboratif Kotabaru 2026
             </h3>
-            <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed mb-6">
+            <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed mb-6">
               Mengungkap dialog ruang antara masa lalu dan era kontemporer melalui instalasi seni digital, maket arsitektur warisan, dan pameran fotografi yang terintegrasi di seluruh penjuru kawasan Kotabaru.
             </p>
-            <div className="inline-block bg-khff-navy/80 border border-khff-yellow/50 text-khff-yellow px-6 py-3 rounded-2xl font-mono text-sm font-black tracking-wider uppercase shadow">
+            <div className="w-full sm:w-auto inline-block bg-khff-navy/80 border border-khff-yellow/50 text-khff-yellow px-4 sm:px-6 py-3 rounded-2xl font-mono text-xs sm:text-sm font-black tracking-wider uppercase shadow">
               Daftar 5 Tim Eksibisi Akan Segera Diumumkan
             </div>
           </div>

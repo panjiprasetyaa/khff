@@ -68,7 +68,7 @@ export default function GaleriClientPage() {
       <div className="mb-24 container mx-auto px-6 max-w-7xl">
         {/* Title placed OUTSIDE and ABOVE the card */}
         <div className="mb-6 flex flex-col items-center md:items-start">
-          <h3 className="text-4xl md:text-5xl font-serif font-black text-khff-cream mb-3 drop-shadow-md">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-khff-cream mb-3 drop-shadow-md">
             {year}
           </h3>
           <div className={`w-24 h-2 ${colorTheme.line} rounded-full`}></div>
@@ -141,10 +141,10 @@ export default function GaleriClientPage() {
           </button>
           
           <div className="max-w-4xl">
-            <h1 className="text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-khff-cream mb-6 tracking-tight drop-shadow-lg break-words">
               Arsip Galeri
             </h1>
-            <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
+            <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed drop-shadow">
               Telusuri kilas balik momen, rekaman visual, dan dokumentasi kemeriahan Kotabaru Heritage Film Festival dari tahun ke tahun.
             </p>
           </div>

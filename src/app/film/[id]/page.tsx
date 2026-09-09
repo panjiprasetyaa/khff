@@ -2,7 +2,7 @@
 
 import { useState, use, useEffect } from "react";
 import { films, programs, IS_CURATION_ONGOING } from "@/data/dummy";
-import { Play, X, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { notFound, useRouter } from "next/navigation";
 
 export default function FilmDetail({ 
@@ -36,16 +36,6 @@ export default function FilmDetail({
   const displaySynopsis = IS_CURATION_ONGOING 
     ? "Proses kurasi film tengah berlangsung. Nantikan daftar film terpilih yang akan hadir di Kotabaru Heritage Film Festival 2026." 
     : film.synopsis;
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-
-  useEffect(() => {
-    if (isVideoOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => { document.body.style.overflow = "unset"; };
-  }, [isVideoOpen]);
 
   if (!film) {
     notFound();
@@ -77,22 +67,13 @@ export default function FilmDetail({
           {/* Poster Section */}
           <div className="md:col-span-5 lg:col-span-4">
             <div 
-              className={`relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/40 group ${film.trailerUrl ? 'cursor-pointer' : ''}`} 
-              onClick={() => film.trailerUrl && setIsVideoOpen(true)}
+              className="relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-khff-yellow/40 group"
             >
               <img 
                 src={IS_CURATION_ONGOING ? "/assets/poster-placeholder.png" : (film.posterUrl || "/assets/poster-placeholder.png")} 
                 alt={displayTitle} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
               />
-
-              {film.trailerUrl && (
-                <div className="absolute inset-0 bg-khff-navy/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-20 h-20 bg-khff-yellow text-khff-navy rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(236,172,45,0.6)] group-hover:scale-110 transition-transform">
-                    <Play size={32} fill="currentColor" className="ml-1" />
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
@@ -102,12 +83,12 @@ export default function FilmDetail({
               <span className="text-xs font-mono tracking-[0.25em] uppercase font-black text-khff-pink block mb-3">
                 Official Festival Selection
               </span>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white mb-8 leading-tight drop-shadow-lg">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white mb-8 leading-tight drop-shadow-lg break-words">
                 {displayTitle}
               </h1>
 
               {/* Editorial Ticket-Style Spec Box */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 border-y border-khff-cream/20 py-6 mb-10 font-mono text-sm bg-white/5 px-4 sm:px-6 rounded-2xl shadow-inner">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 border-y border-khff-cream/20 py-6 mb-10 font-mono text-sm bg-white/5 px-4 sm:px-6 rounded-2xl shadow-inner">
                 <div>
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Tahun Rilis</span>
                   <span className="text-khff-yellow font-bold text-base sm:text-lg">{displayYear}</span>
@@ -116,41 +97,43 @@ export default function FilmDetail({
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Durasi Film</span>
                   <span className="text-white font-bold text-base sm:text-lg">{displayDuration}</span>
                 </div>
-                <div className="border-l border-khff-cream/20 pl-3 sm:pl-4">
+                <div className="col-span-2 sm:col-span-1 border-t sm:border-t-0 sm:border-l border-khff-cream/20 pt-3 sm:pt-0 pl-0 sm:pl-4">
                   <span className="block text-xs uppercase text-khff-cream/50 font-black mb-1">Sutradara</span>
-                  <span className="text-khff-pink font-bold text-base sm:text-lg truncate block">{displayDirector}</span>
+                  <span className="text-khff-pink font-bold text-base sm:text-lg block leading-snug break-words">{displayDirector}</span>
                 </div>
               </div>
 
               {/* Director & Production House info if available */}
               {(film.directorPhoto || film.phLogo || film.email) && (
-                <div className="flex flex-wrap items-center gap-6 mb-10 p-5 bg-white/5 border border-khff-cream/15 rounded-2xl">
-                  {film.directorPhoto && (
-                    <div className="flex items-center gap-3">
-                      <img 
-                        src={film.directorPhoto} 
-                        alt={film.director} 
-                        className="w-14 h-14 rounded-full object-cover border-2 border-khff-yellow shadow-md" 
-                      />
-                      <div>
-                        <span className="block text-[10px] font-mono uppercase text-khff-cream/60 font-bold tracking-wider">Sutradara</span>
-                        <span className="text-base font-serif font-bold text-white">{film.director}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 mb-10 p-5 bg-white/5 border border-khff-cream/15 rounded-2xl">
+                  <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+                    {film.directorPhoto && (
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={film.directorPhoto} 
+                          alt={film.director} 
+                          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-khff-yellow shadow-md" 
+                        />
+                        <div>
+                          <span className="block text-[10px] font-mono uppercase text-khff-cream/60 font-bold tracking-wider">Sutradara</span>
+                          <span className="text-base font-serif font-bold text-white">{film.director}</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  {film.phLogo && (
-                    <div className="flex items-center gap-3 pl-4 border-l border-khff-cream/20">
-                      <img 
-                        src={film.phLogo} 
-                        alt="Logo Production House" 
-                        className="h-10 max-w-[140px] object-contain" 
-                      />
-                    </div>
-                  )}
+                    )}
+                    {film.phLogo && (
+                      <div className="flex items-center gap-3 pl-3 sm:pl-4 border-l border-khff-cream/20">
+                        <img 
+                          src={film.phLogo} 
+                          alt="Logo Production House" 
+                          className="h-9 sm:h-10 max-w-[120px] sm:max-w-[140px] object-contain" 
+                        />
+                      </div>
+                    )}
+                  </div>
                   {film.email && (
-                    <div className="ml-auto text-xs font-mono text-khff-cream/60">
+                    <div className="text-xs font-mono text-khff-cream/60 pt-3 sm:pt-0 border-t sm:border-t-0 border-khff-cream/10">
                       <span className="block font-bold uppercase tracking-wider text-[10px]">Kontak</span>
-                      <span className="text-khff-yellow">{film.email}</span>
+                      <span className="text-khff-yellow break-all">{film.email}</span>
                     </div>
                   )}
                 </div>
@@ -160,24 +143,11 @@ export default function FilmDetail({
                 <h3 className="text-xl font-serif font-black text-khff-yellow mb-4 flex items-center gap-4">
                   <span className="w-8 h-1 bg-khff-pink rounded-full"></span> Sinopsis Cerita
                 </h3>
-                <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed mb-12">
+                <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed">
                   {displaySynopsis}
                 </p>
               </div>
             </div>
-
-            {film.trailerUrl ? (
-              <button 
-                onClick={() => setIsVideoOpen(true)}
-                className="w-full sm:w-auto self-start inline-flex items-center justify-center gap-4 bg-khff-yellow text-khff-navy px-10 py-5 rounded-2xl text-xl font-black font-mono hover:bg-white transition-all shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:scale-105 cursor-pointer"
-              >
-                <Play size={24} fill="currentColor" /> PUTAR TRAILER
-              </button>
-            ) : (
-              <div className="inline-flex items-center gap-3 bg-white/10 text-khff-cream/60 px-8 py-4 rounded-2xl font-mono text-sm uppercase tracking-wider font-bold border border-white/10 self-start">
-                Trailer Tidak Tersedia
-              </div>
-            )}
           </div>
         </div>
 
@@ -208,36 +178,6 @@ export default function FilmDetail({
           </section>
         )}
       </div>
-
-      {/* Video Modal Popup */}
-      {isVideoOpen && film.trailerUrl && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-khff-navy/95 backdrop-blur-md p-4 animate-in fade-in duration-300">
-          <button 
-            onClick={() => setIsVideoOpen(false)}
-            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-3 bg-white/10 rounded-full hover:bg-khff-pink z-10"
-          >
-            <X size={28} />
-          </button>
-          <div className="w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/20 relative scale-in-95 duration-300">
-            {film.trailerUrl.endsWith('.mp4') || film.trailerUrl.startsWith('/assets/') ? (
-              <video 
-                src={film.trailerUrl} 
-                controls 
-                autoPlay 
-                className="w-full h-full object-contain"
-              />
-            ) : (
-              <iframe 
-                className="w-full h-full"
-                src={`${film.trailerUrl}?autoplay=1`} 
-                title="Trailer" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            )}
-          </div>
-        </div>
-      )}
     </main>
   );
 }

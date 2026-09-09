@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Film } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
 import "swiper/css";
@@ -17,15 +17,15 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   const { id } = use(params);
   
   // Tab States
-  const [activeKompetisiTab, setActiveKompetisiTab] = useState("mahaditya");
-  const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("opening-film");
+  const [activeKompetisiTab, setActiveKompetisiTab] = useState("purwaseswa");
+  const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("khff-panorama");
 
   // 1. PROGRAM KOMPETISI
   if (id === "kompetisi") {
     const tabs = [
-      { id: "mahaditya", label: "Mahaditya Awards", desc: "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan." },
-      { id: "purwaseswa", label: "Purwaseswa Awards", desc: "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia." },
-      { id: "karyanagri", label: "Karyanagri Awards", desc: "Karyanagri berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional." },
+      { id: "purwaseswa", label: "Purwaseswa", desc: "Purwaseswa berarti tingkat dasar dalam struktur pendidikan (pelajar). Kata “purwa” berarti awal, sementara “seswa” berarti murid/pelajar. Program ini adalah program kompetisi yang berfokus pada karya-karya film bermuatan warisan budaya yang dibuat oleh pelajar di Indonesia." },
+      { id: "karyanagari", label: "Karyanagari", desc: "Karyanagari berarti karya pemerintah/negara. Program ini adalah program kompetisi yang mewadahi berbagai karya film bermuatan warisan budaya di Indonesia yang didukung oleh pemerintah pusat dan merepresentasikan sudut pandang nasional." },
+      { id: "mahaditya", label: "Mahaditya", desc: "Mahaditya berarti yang paling terang. Program ini adalah program kompetisi yang berkonsentrasi kepada suara independen untuk menyajikan narasi warisan budaya secara sinematik. Mahaditya membawa semangat demokratisasi sudut pandang, menggarisbawahi keunikan, kesegaran, dan kedaulatan." },
     ];
     const currentProgram = programs.find((p) => p.id === activeKompetisiTab);
     const activeTabInfo = tabs.find((t) => t.id === activeKompetisiTab);
@@ -55,7 +55,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+        <section className="bg-khff-navy text-khff-cream p-5 sm:p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           {/* Floating Background Assets */}
           <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
             <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
@@ -63,12 +63,12 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           
           <div className="container mx-auto max-w-7xl relative z-10">
             {/* TAB BUTTONS */}
-            <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-8">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-12 border-b border-khff-cream/10 pb-6 sm:pb-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveKompetisiTab(tab.id)}
-                  className={`px-8 py-4 rounded-2xl font-serif font-black text-xl md:text-2xl transition-all duration-300 shadow-lg ${
+                  className={`px-5 sm:px-8 py-3 sm:py-4 rounded-2xl font-serif font-black text-lg sm:text-xl md:text-2xl transition-all duration-300 shadow-lg cursor-pointer ${
                     activeKompetisiTab === tab.id
                       ? "bg-khff-yellow text-khff-navy scale-105 shadow-[0_0_25px_rgba(236,172,45,0.4)]"
                       : "bg-white/5 text-khff-cream/60 hover:bg-white/10 hover:text-khff-cream"
@@ -81,9 +81,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
 
             {/* ACTIVE TAB DESCRIPTION */}
             {activeTabInfo && (
-              <div className="bg-white/5 border-l-4 border-khff-yellow p-8 rounded-r-3xl mb-12 backdrop-blur-sm max-w-4xl shadow-xl">
-                <h2 className="text-3xl font-serif font-black text-khff-yellow mb-3">Program {activeTabInfo.label}</h2>
-                <p className="text-khff-cream/90 text-lg md:text-xl font-medium leading-relaxed">{activeTabInfo.desc}</p>
+              <div className="bg-white/5 border-l-4 border-khff-yellow p-5 sm:p-8 rounded-2xl sm:rounded-r-3xl mb-10 sm:mb-12 backdrop-blur-sm max-w-4xl shadow-xl">
+                <h2 className="text-2xl sm:text-3xl font-serif font-black text-khff-yellow mb-3">Program {activeTabInfo.label}</h2>
+                <p className="text-khff-cream/90 text-base sm:text-lg md:text-xl font-medium leading-relaxed">{activeTabInfo.desc}</p>
               </div>
             )}
 
@@ -94,7 +94,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               </div>
               
               {currentProgram && currentProgram.films.length > 0 ? (
-                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-12">
                    {currentProgram.films.map((film) => (
                      <FilmCard key={film.id} film={film} programId={activeKompetisiTab} />
                    ))}
@@ -114,12 +114,26 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // 2. PROGRAM NON-KOMPETISI
   if (id === "non-kompetisi") {
     const tabs = [
-      { id: "opening-film", label: "Opening Film", badge: "Special Screening" },
-      { id: "international-heritage", label: "International Heritage", badge: "Curated Selection" },
-      { id: "national-heritage", label: "National Heritage", badge: "Curated Selection" },
-      { id: "closing-film", label: "Closing Film", badge: "Special Screening" },
+      {
+        id: "khff-panorama",
+        label: "KHFF Panorama",
+        badge: "Curated Selection",
+        desc: "Program pemutaran kuratorial yang merayakan spektrum luas sinema dengan ragam narasi, kekayaan perspektif kultural, dan kebaruan estetika sinematik."
+      },
+      {
+        id: "heritage-in-indonesian-cinema",
+        label: "Heritage in Indonesian Cinema",
+        badge: "National Showcase",
+        desc: "Sorotan kuratorial pada khazanah karya sinema Indonesia yang merefleksikan nilai-nilai luhur, dinamika sosio-kultural, serta memori kolektif bangsa."
+      },
+      {
+        id: "heritage-in-experimental-cinema",
+        label: "Heritage in Experimental Cinema",
+        badge: "Experimental Showcase",
+        desc: "Eksplorasi sinema non-konvensional dan bahasa audiovisual eksperimental dalam merespons, merekonstruksi, serta merayakan warisan tradisi."
+      },
     ];
-    const currentProgram = programs.find((p) => p.id === activeNonKompetisiTab);
+    const activeTabInfo = tabs.find((t) => t.id === activeNonKompetisiTab) || tabs[0];
 
     return (
       <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden">
@@ -147,7 +161,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+        <section className="bg-khff-navy text-khff-cream p-5 sm:p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           {/* Floating Background Assets */}
           <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
             <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
@@ -156,42 +170,85 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           <div className="container mx-auto max-w-7xl relative z-10">
             
             {/* TAB BUTTONS */}
-            <div className="flex flex-wrap gap-4 mb-12 border-b border-khff-cream/10 pb-8">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-12 border-b border-khff-cream/10 pb-6 sm:pb-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveNonKompetisiTab(tab.id)}
-                  className={`px-7 py-4 rounded-2xl text-left transition-all duration-300 shadow-lg ${
+                  className={`px-5 sm:px-7 py-3 sm:py-4 rounded-2xl text-left transition-all duration-300 shadow-lg cursor-pointer ${
                     activeNonKompetisiTab === tab.id
                       ? "bg-khff-pink text-white scale-105 shadow-[0_0_25px_rgba(235,93,121,0.4)]"
                       : "bg-white/5 text-khff-cream/60 hover:bg-white/10 hover:text-khff-cream"
                   }`}
                 >
-                  <span className="block text-xs font-mono uppercase opacity-80 mb-1 font-black">{tab.badge}</span>
-                  <span className="font-serif font-black text-xl md:text-2xl block">{tab.label}</span>
+                  <span className="block text-[10px] sm:text-xs font-mono uppercase opacity-80 mb-1 font-black">{tab.badge}</span>
+                  <span className="font-serif font-black text-lg sm:text-xl md:text-2xl block">{tab.label}</span>
                 </button>
               ))}
             </div>
 
-            {/* FILM LIST FOR SELECTED TAB */}
-            <div>
-              <div className="flex justify-between items-center mb-8">
-                 <h3 className="text-2xl font-serif font-black text-white">
-                   Penayangan Sesi {tabs.find(t => t.id === activeNonKompetisiTab)?.label}
-                 </h3>
+            {/* ACTIVE TAB DESCRIPTION */}
+            <div className="bg-white/5 border-l-4 border-khff-pink p-5 sm:p-8 rounded-2xl sm:rounded-r-3xl mb-10 sm:mb-12 backdrop-blur-sm max-w-4xl shadow-xl">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-[11px] font-mono uppercase font-black px-3 py-1 rounded-full bg-khff-pink/20 text-khff-pink border border-khff-pink/40">
+                  {activeTabInfo.badge}
+                </span>
               </div>
-              
-              {currentProgram && currentProgram.films.length > 0 ? (
-                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                   {currentProgram.films.slice(0, 1).map((film) => (
-                     <FilmCard key={film.id} film={film} overrideTitle={tabs.find(t => t.id === activeNonKompetisiTab)?.label} programId={activeNonKompetisiTab} />
-                   ))}
-                 </div>
-              ) : (
-                 <div className="py-24 text-center bg-white/5 rounded-3xl border border-khff-cream/10">
-                   <p className="text-khff-cream/50 text-lg font-mono">Informasi penayangan film untuk sesi ini segera diumumkan.</p>
-                 </div>
-              )}
+              <h2 className="text-2xl sm:text-3xl font-serif font-black text-white mb-3">{activeTabInfo.label}</h2>
+              <p className="text-khff-cream/90 text-base sm:text-lg md:text-xl font-medium leading-relaxed">{activeTabInfo.desc}</p>
+            </div>
+
+            {/* SEGERA HADIR (COMING SOON) DISPLAY */}
+            <div className="relative rounded-3xl overflow-hidden border-2 border-khff-pink/30 bg-gradient-to-br from-khff-pink/15 via-white/[0.03] to-khff-yellow/10 p-6 sm:p-8 md:p-16 backdrop-blur-md shadow-2xl">
+              <div className="max-w-3xl mx-auto text-center relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-khff-pink/20 border border-khff-pink/40 text-khff-pink text-xs md:text-sm font-mono font-black uppercase tracking-[0.2em] mb-6 shadow-[0_0_25px_rgba(235,93,121,0.35)] animate-pulse">
+                  <Sparkles size={16} /> SEGERA HADIR
+                </div>
+
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-black text-white mb-6 leading-tight">
+                  Kurasi Film Sesi {activeTabInfo.label}
+                </h3>
+
+                <p className="text-khff-cream/85 text-base sm:text-lg md:text-xl font-medium leading-relaxed mb-8 sm:mb-12">
+                  Daftar karya film pilihan dan jadwal penayangan untuk program non-kompetisi ini sedang dalam tahap kurasi akhir oleh tim festival. Informasi penayangan lengkap akan segera diumumkan.
+                </p>
+
+                {/* VISUAL TEASER PLACEHOLDER CARDS */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-12">
+                  {[1, 2, 3].map((num) => (
+                    <div
+                      key={num}
+                      className="relative aspect-[2/3] rounded-2xl border-2 border-dashed border-white/20 bg-white/5 p-4 sm:p-6 flex flex-col items-center justify-center text-center group hover:border-khff-pink/60 transition-all duration-300 shadow-lg"
+                    >
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/5 flex items-center justify-center mb-3 sm:mb-4 text-khff-cream/40 group-hover:text-khff-pink group-hover:scale-110 transition-all duration-300">
+                        <Film size={24} className="sm:w-7 sm:h-7" />
+                      </div>
+                      <span className="text-[9px] sm:text-xs font-mono font-bold tracking-widest text-khff-cream/40 uppercase mb-1 sm:mb-2">
+                        Official Selection
+                      </span>
+                      <h4 className="text-xs sm:text-base font-serif font-bold text-white/60 group-hover:text-white transition-colors">
+                        Segera Diumumkan
+                      </h4>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                  <Link
+                    href="/program/kompetisi"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-khff-yellow/90 font-mono font-black text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl shadow-xl hover:scale-105 transition-all"
+                  >
+                    <span>Lihat Film Program Kompetisi</span>
+                    <ArrowRight size={18} />
+                  </Link>
+                  <Link
+                    href="/jadwal"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl border border-white/20 transition-all"
+                  >
+                    <span>Jadwal Festival</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -248,7 +305,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
         </section>
 
         {/* CONTENT AREA (NAVY GREEN THEATER BACKGROUND) */}
-        <section className="bg-khff-navy text-khff-cream p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
+        <section className="bg-khff-navy text-khff-cream p-5 sm:p-8 md:p-20 shadow-2xl border-t-8 border-khff-pink relative z-20 overflow-hidden -mt-12">
           {/* Floating Background Assets */}
           <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
             <img src="/assets/illustrations/geni.png" alt="Geni" className="w-full h-auto object-cover object-bottom opacity-15 mix-blend-screen translate-y-1/4 scale-110" />
@@ -413,8 +470,14 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                ))}
              </div>
           ) : (
-             <div className="py-20 text-center">
-               <p className="text-khff-cream/50 font-mono">Belum ada film di program ini.</p>
+             <div className="py-20 text-center bg-white/5 rounded-3xl border border-khff-cream/10 p-8">
+               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-khff-pink/20 text-khff-pink text-xs font-mono font-black uppercase tracking-widest mb-4">
+                 <Sparkles size={14} /> SEGERA HADIR
+               </div>
+               <p className="text-khff-cream/80 text-lg font-serif mb-6">Daftar kurasi film untuk program ini sedang dipersiapkan.</p>
+               <Link href="/program" className="inline-flex items-center gap-2 bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider px-6 py-3 rounded-full hover:scale-105 transition-all">
+                 <ArrowLeft size={14} /> LIHAT PROGRAM LAINNYA
+               </Link>
              </div>
           )}
         </div>

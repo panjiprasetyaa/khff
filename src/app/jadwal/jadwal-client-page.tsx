@@ -73,7 +73,7 @@ const venueSummaries: Record<
     title: "Sesi Persiapan & Penjurian",
     venue: "Pusat Desain Industri Nasional (PDIN)",
     description:
-      "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Mahaditya, Purwaseswa, dan Karyanagri.",
+      "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Purwaseswa, Karyanagari, dan Mahaditya.",
     highlights: [
       "Sekretariat & Hospitality",
       "Ruang Penjurian Resmi",
@@ -97,7 +97,7 @@ const venueSummaries: Record<
     description:
       "PDIN menjadi pusat kegiatan hari kedua secara penuh, dengan tiga ruang beraktivitas paralel: Ruang Seminar untuk pengumuman Awards, Ruang Audiovisual untuk screening kompetisi dan heritage, serta Balkon Rumput Lantai 2 untuk forum dan sesi bincang bersama sineas.",
     highlights: [
-      "Mahaditya, Purwaseswa & Karyanagri Awards",
+      "Purwaseswa, Karyanagari & Mahaditya",
       "Screening National & International Heritage",
       "Heritage Talks & Directors Talks",
     ],
@@ -141,7 +141,30 @@ const activeTabAccent: Record<string, string> = {
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   return (
     <div className="w-full">
-      <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
+      {/* Mobile Card View (No awkward horizontal scroll on phones) */}
+      <div className="md:hidden space-y-4">
+        {events.map((ev, i) => (
+          <div
+            key={i}
+            className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
+                {ev.time}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold px-3 py-1 rounded-xl bg-khff-pink/15 border border-khff-pink/30">
+                {ev.location}
+              </span>
+            </div>
+            <h4 className="text-white font-serif font-black text-lg leading-snug">
+              {ev.program}
+            </h4>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table View */}
+      <div className="hidden md:block overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
         <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[680px]">
           <table className="w-full text-sm md:text-base">
             <thead>
@@ -173,12 +196,6 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                   </td>
                   <td className="px-6 py-5 text-white font-serif font-black text-lg md:text-xl align-top leading-snug">
                     {ev.program}
-                    {/* ev.note disembunyikan sementara hingga film dikonfirmasi */}
-                    {/* {ev.note && (
-                      <span className="block text-khff-pink font-mono font-bold text-xs md:text-sm mt-1.5 uppercase tracking-wide">
-                        Catatan: {ev.note}
-                      </span>
-                    )} */}
                   </td>
                 </tr>
               ))}
@@ -202,6 +219,10 @@ function MultiTrackTable({
 }) {
   return (
     <div className="w-full">
+      {/* Mobile Swipe Hint */}
+      <div className="md:hidden flex items-center justify-end gap-1.5 text-xs font-mono text-khff-yellow/80 mb-2">
+        <span>Geser jadwal ke samping →</span>
+      </div>
       <div className="overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
         <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[750px]">
           <table className="w-full text-sm md:text-base">

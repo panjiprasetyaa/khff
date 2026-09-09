@@ -44,12 +44,12 @@ const homepageSchedule = [
       },
       {
         time: "15.15",
-        name: "National Heritage #1 & Purwaseswa Awards",
+        name: "National Heritage #1 & Purwaseswa",
         location: "PDIN",
       },
       {
         time: "19.15",
-        name: "Karyanagri Awards & International Heritage",
+        name: "Karyanagari & International Heritage",
         location: "PDIN",
       },
     ],
@@ -174,7 +174,7 @@ export default function Home() {
             href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-base transition-all duration-300 px-8 py-4 rounded-full shadow-2xl hover:scale-105"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-sm sm:text-base transition-all duration-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-2xl hover:scale-105"
           >
             <span>Tonton Seluruh Arsip di YouTube</span>{" "}
             <PlayCircle size={22} className="shrink-0" />
@@ -388,7 +388,7 @@ export default function Home() {
             <span className="text-sm md:text-base font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-3 drop-shadow-md">
               Program Festival
             </span>
-            <h2 className="text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight">
               Tiga Program Utama
             </h2>
             <p className="text-khff-cream/80 text-lg md:text-xl font-medium leading-relaxed">
@@ -400,7 +400,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Kolom 1: Program Kompetisi */}
             <Link href="/program/kompetisi" className="block group">
-              <div className="bg-khff-yellow rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
+              <div className="bg-khff-yellow rounded-3xl p-6 sm:p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
                 <div className="absolute right-0 md:-right-6 bottom-0 md:-bottom-6 opacity-10 md:opacity-20 w-32 md:w-52 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
                     src="/assets/illustrations/terompet.png"
@@ -432,7 +432,7 @@ export default function Home() {
 
             {/* Kolom 2: Program Non Kompetisi */}
             <Link href="/program/non-kompetisi" className="block group">
-              <div className="bg-khff-pink rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
+              <div className="bg-khff-pink rounded-3xl p-6 sm:p-8 shadow-xl text-white flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-white/40">
                 <div className="absolute right-0 md:-right-10 bottom-0 md:-bottom-10 opacity-10 md:opacity-20 w-32 md:w-64 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
                     src="/assets/illustrations/bendera.png"
@@ -463,7 +463,7 @@ export default function Home() {
 
             {/* Kolom 3: Program Non Pemutaran (Workshop & Lecture) */}
             <Link href="/program/non-pemutaran" className="block group">
-              <div className="bg-white rounded-3xl p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-khff-pink/40">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl text-khff-navy flex flex-col justify-between h-full min-h-[380px] group-hover:-translate-y-3 transition-all duration-300 relative overflow-hidden border-2 border-transparent group-hover:border-khff-pink/40">
                 <div className="absolute bottom-0 md:-bottom-10 right-0 md:-right-6 opacity-10 md:opacity-20 w-28 md:w-44 pointer-events-none group-hover:scale-110 transition-transform duration-500">
                   <img
                     src="/assets/illustrations/kendhang.png"

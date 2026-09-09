@@ -33,15 +33,15 @@ export default function SubmissionPage() {
             Call for Entries 2026
           </span>
 
-          <h1 className="text-5xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg break-words">
             Film Submission
           </h1>
 
-          <div className="bg-white/5 border-2 border-khff-cream/20 p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
-            <h3 className="text-2xl md:text-4xl font-serif font-black text-white mb-6">
+          <div className="bg-white/5 border-2 border-khff-cream/20 p-6 sm:p-8 md:p-14 rounded-3xl backdrop-blur-md shadow-2xl relative mb-12">
+            <h3 className="text-xl sm:text-2xl md:text-4xl font-serif font-black text-white mb-6">
               Ajang Apresiasi Sinema Pendek Nusantara
             </h3>
-            <p className="text-khff-cream/95 text-lg md:text-2xl font-medium leading-relaxed mb-8">
+            <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed mb-8">
               Jadilah bagian dari perayaan persilangan sinema dan warisan budaya. Kirimkan karya film fiksi, dokumenter, atau eksperimental terbaikmu untuk berkompetisi di KHFF 2026.
             </p>
             
@@ -49,9 +49,9 @@ export default function SubmissionPage() {
               href={gFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-khff-yellow text-khff-navy font-black text-lg px-10 py-5 rounded-2xl hover:bg-white transition-all shadow-2xl hover:scale-105"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy font-black text-sm sm:text-base md:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-2xl hover:bg-white transition-all shadow-2xl hover:scale-105"
             >
-              Daftarkan Karya Sekarang <ArrowRight size={22} />
+              Daftarkan Karya Sekarang <ArrowRight size={22} className="shrink-0" />
             </a>
           </div>
         </div>

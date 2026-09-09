@@ -11,7 +11,7 @@ export default function ProgramList() {
     {
       id: "kompetisi",
       title: "Program Kompetisi",
-      subtitle: ["Mahaditya", "Purwaseswa", "Karyanagri"],
+      subtitle: ["Purwaseswa", "Karyanagari", "Mahaditya"],
       description:
         "Pemutaran film hasil submisi terbuka yang telah melalui proses kurasi, sekaligus menjadi ruang kompetisi bagi sineas untuk memperebutkan penghargaan dalam berbagai kategori.",
       bgClass: "bg-khff-yellow text-khff-navy border-khff-yellow",
@@ -23,10 +23,9 @@ export default function ProgramList() {
       id: "non-kompetisi",
       title: "Program Non-Kompetisi",
       subtitle: [
-        "Opening Film",
-        "International Heritage",
-        "National Heritage",
-        "Closing Film",
+        "KHFF Panorama",
+        "Heritage in Indonesian Cinema",
+        "Heritage in Experimental Cinema",
       ],
       description:
         "Pemutaran film pilihan yang mengeksplorasi cerita, tradisi, dan kehidupan yang membentuk warisan budaya.",
@@ -83,10 +82,10 @@ export default function ProgramList() {
                 className="block group"
               >
                 <div
-                  className={`rounded-3xl p-8 md:p-14 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-2 active:scale-[0.98] ${category.bgClass}`}
+                  className={`rounded-3xl p-6 sm:p-8 md:p-14 transition-all duration-500 relative overflow-hidden shadow-2xl border-4 group-hover:-translate-y-2 active:scale-[0.98] ${category.bgClass}`}
                 >
                   {/* Floating Character Asset */}
-                  <div className="absolute right-8 bottom-4 opacity-35 w-48 md:w-72 pointer-events-none group-hover:scale-105 group-hover:opacity-50 transition-all duration-700 animate-[pulse_4s_ease-in-out_infinite]">
+                  <div className="absolute right-2 sm:right-8 bottom-2 sm:bottom-4 opacity-35 w-36 sm:w-48 md:w-72 pointer-events-none group-hover:scale-105 group-hover:opacity-50 transition-all duration-700 animate-[pulse_4s_ease-in-out_infinite]">
                     <img
                       src={category.asset}
                       alt=""
@@ -106,19 +105,19 @@ export default function ProgramList() {
                       ))}
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-serif font-black mb-6 leading-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-black mb-6 leading-tight">
                       {category.title}
                     </h2>
 
-                    <p className="text-lg md:text-xl font-medium max-w-2xl mb-10 opacity-90 leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl font-medium max-w-2xl mb-8 sm:mb-10 opacity-90 leading-relaxed">
                       {category.description}
                     </p>
 
-                    <div className="inline-flex items-center gap-4 text-base md:text-lg font-mono font-black py-4 px-8 rounded-2xl bg-black/10 hover:bg-black/20 backdrop-blur-md transition-all shadow-md">
+                    <div className="inline-flex items-center justify-between sm:justify-start gap-3 sm:gap-4 text-sm sm:text-base md:text-lg font-mono font-black py-3.5 sm:py-4 px-5 sm:px-8 rounded-2xl bg-black/10 hover:bg-black/20 backdrop-blur-md transition-all shadow-md w-full sm:w-auto">
                       <span>{category.cta}</span>
                       <ArrowRight
                         size={22}
-                        className="group-hover:translate-x-2 transition-transform duration-300"
+                        className="group-hover:translate-x-2 transition-transform duration-300 shrink-0"
                       />
                     </div>
                   </div>

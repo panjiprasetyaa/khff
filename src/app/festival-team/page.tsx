@@ -66,28 +66,28 @@ export default function FestivalTeamPage() {
 
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Quick Navigation Tabs */}
-          <div className="flex flex-wrap gap-3 md:gap-4 mb-16 pb-8 border-b border-khff-cream/20">
+          <div className="flex flex-wrap gap-2 sm:gap-4 mb-12 sm:mb-16 pb-6 sm:pb-8 border-b border-khff-cream/20">
             <a
               href="#festival-board"
-              className="px-6 py-3 rounded-2xl font-serif text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-yellow hover:text-khff-navy hover:border-khff-yellow transition-all duration-300 shadow-md font-bold"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-serif text-xs sm:text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-yellow hover:text-khff-navy hover:border-khff-yellow transition-all duration-300 shadow-md font-bold"
             >
               Festival Board
             </a>
             <a
               href="#festival-juri"
-              className="px-6 py-3 rounded-2xl font-serif text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-pink hover:text-white hover:border-khff-pink transition-all duration-300 shadow-md font-bold"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-serif text-xs sm:text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-pink hover:text-white hover:border-khff-pink transition-all duration-300 shadow-md font-bold"
             >
               Festival Juri
             </a>
             <a
               href="#tim-festival"
-              className="px-6 py-3 rounded-2xl font-serif text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-white hover:text-khff-navy hover:border-white transition-all duration-300 shadow-md font-bold"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-serif text-xs sm:text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-white hover:text-khff-navy hover:border-white transition-all duration-300 shadow-md font-bold"
             >
               Tim Festival
             </a>
             <a
               href="#kerabat-kerja"
-              className="px-6 py-3 rounded-2xl font-serif text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-yellow hover:text-khff-navy hover:border-khff-yellow transition-all duration-300 shadow-md font-bold"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-serif text-xs sm:text-sm md:text-base bg-white/5 text-khff-cream/80 border border-khff-cream/20 hover:bg-khff-yellow hover:text-khff-navy hover:border-khff-yellow transition-all duration-300 shadow-md font-bold"
             >
               Segenap Kerabat Kerja
             </a>
@@ -112,11 +112,11 @@ export default function FestivalTeamPage() {
                   className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[260px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 hover:border-khff-yellow/50 text-left"
                 >
                   {/* Top part: Text */}
-                  <div className="p-4 md:p-5 flex flex-col justify-end min-h-[96px] bg-white">
-                    <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-end min-h-[80px] sm:min-h-[96px] bg-white">
+                    <p className="text-khff-navy/60 font-mono text-[9px] sm:text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
                       {person.role}
                     </p>
-                    <h3 className="text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
+                    <h3 className="text-sm sm:text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
                       {person.name}
                     </h3>
                   </div>
@@ -152,11 +152,11 @@ export default function FestivalTeamPage() {
                   className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[260px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 hover:border-khff-pink/50 text-left"
                 >
                   {/* Top part: Text */}
-                  <div className="p-4 md:p-5 flex flex-col justify-end min-h-[96px] bg-white">
-                    <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-end min-h-[80px] sm:min-h-[96px] bg-white">
+                    <p className="text-khff-navy/60 font-mono text-[9px] sm:text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
                       {person.role}
                     </p>
-                    <h3 className="text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
+                    <h3 className="text-sm sm:text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
                       {person.name}
                     </h3>
                   </div>
@@ -192,11 +192,11 @@ export default function FestivalTeamPage() {
                   className="flex flex-col bg-khff-cream rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full max-w-[260px] shadow-xl hover:shadow-2xl transition-all duration-300 group border-2 border-khff-cream/10 hover:border-white/50 text-left"
                 >
                   {/* Top part: Text */}
-                  <div className="p-4 md:p-5 flex flex-col justify-end min-h-[96px] bg-white">
-                    <p className="text-khff-navy/60 font-mono text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-end min-h-[80px] sm:min-h-[96px] bg-white">
+                    <p className="text-khff-navy/60 font-mono text-[9px] sm:text-[10px] md:text-xs tracking-widest uppercase mb-1 font-bold leading-tight line-clamp-2">
                       {person.role}
                     </p>
-                    <h3 className="text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
+                    <h3 className="text-sm sm:text-base md:text-xl font-black font-serif text-khff-navy leading-tight line-clamp-2">
                       {person.name}
                     </h3>
                   </div>
