@@ -29,7 +29,7 @@ export default function FilmCard({ film, overrideTitle, programId }: FilmCardPro
         </div>
       </div>
       <div className="px-1">
-        <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2 group-hover:text-gray-300 transition-colors line-clamp-1">
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2 group-hover:text-gray-300 transition-colors line-clamp-1 uppercase">
           {displayTitle}
         </h3>
         <p className="text-xs md:text-sm text-gray-500 font-sans tracking-widest uppercase">
