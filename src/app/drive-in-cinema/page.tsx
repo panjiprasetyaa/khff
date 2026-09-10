@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import { 
@@ -85,16 +85,6 @@ export default function DriveInCinemaRegistrationPage() {
     message: string;
     regCode?: string;
   } | null>(null);
-
-  const isLocalIp = useSyncExternalStore(
-    () => () => {},
-    () => {
-      if (typeof window === "undefined") return false;
-      const host = window.location.hostname;
-      return /^(\d{1,3}\.){3}\d{1,3}$/.test(host) && window.location.protocol === "http:";
-    },
-    () => false
-  );
 
   const isInitializedRef = useRef(false);
   const btnContainerRef = useRef<HTMLDivElement>(null);
@@ -297,7 +287,7 @@ export default function DriveInCinemaRegistrationPage() {
       console.error("Gagal mengirim form pendaftaran:", err);
       setStatusState({
         type: "error",
-        message: err instanceof Error ? err.message : "Gagal terhubung ke server pendaftaran Google Sheets. Silakan periksa koneksi internet Anda atau coba sesaat lagi.",
+        message: err instanceof Error ? err.message : "Gagal memproses pendaftaran. Silakan periksa koneksi internet Anda atau coba sesaat lagi.",
       });
     } finally {
       setLoading(false);
@@ -503,28 +493,13 @@ export default function DriveInCinemaRegistrationPage() {
                           Sistem menggunakan Google Sign-In untuk memastikan identitas valid dan mencegah spam serta duplikasi pengisian form.
                         </p>
 
-                        {/* Banner Peringatan jika diakses via IP Lokal di HP */}
-                        {isLocalIp && (
-                          <div className="mb-4 p-3.5 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs text-left leading-relaxed">
-                            <p className="font-bold flex items-center gap-1.5 mb-1 font-mono text-[11px] uppercase tracking-wider">
-                              <span>⚠️</span> Akses Pengujian via IP Lokal ({typeof window !== "undefined" ? window.location.hostname : ""})
-                            </p>
-                            <p className="text-amber-200/90 mb-1.5">
-                              Google OAuth secara otomatis memblokir protokol HTTP pada IP lokal. Tombol resmi Google aktif pada <strong>localhost</strong> atau domain <strong>HTTPS</strong> (seperti Vercel).
-                            </p>
-                            <p className="text-amber-200/80">
-                              Untuk pengujian form di HP, silakan gunakan tombol <strong>Simulasi Login</strong> di bawah ini.
-                            </p>
-                          </div>
-                        )}
-
                         {/* Tombol Resmi Google GIS */}
                         <div className="flex justify-center mb-3">
                           <div ref={btnContainerRef} id="googleSignInBtn" className="min-h-[44px] flex items-center justify-center" />
                         </div>
 
-                        {/* Tombol Demo Fallback: Tampil jika belum ada Client ID, atau jika diakses via IP */}
-                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID") || isLocalIp) ? (
+                        {/* Tombol Demo Fallback jika belum pasang Client ID */}
+                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID")) && (
                           <div className="pt-3 border-t border-white/10">
                             <button
                               type="button"
@@ -533,16 +508,6 @@ export default function DriveInCinemaRegistrationPage() {
                             >
                               <Sparkles size={14} className="text-khff-yellow" />
                               Simulasi Login Google (Mode Pengujian)
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="pt-2 text-center">
-                            <button
-                              type="button"
-                              onClick={handleDemoSignIn}
-                              className="text-[11px] font-mono text-khff-cream/50 hover:text-khff-yellow transition-colors underline cursor-pointer"
-                            >
-                              Bermasalah dengan Google Sign-In? Gunakan Akun Uji Coba
                             </button>
                           </div>
                         )}
@@ -736,7 +701,7 @@ export default function DriveInCinemaRegistrationPage() {
                       {loading ? (
                         <>
                           <Loader2 size={18} className="animate-spin" />
-                          <span>MENGHUBUNGKAN KE GOOGLE SHEETS...</span>
+                          <span>MEMPROSES PENDAFTARAN...</span>
                         </>
                       ) : (
                         <>
