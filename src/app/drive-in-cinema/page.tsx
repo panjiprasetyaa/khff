@@ -24,6 +24,54 @@ interface GoogleUser {
   picture: string;
 }
 
+interface GoogleCredentialResponse {
+  credential: string;
+  select_by?: string;
+  clientId?: string;
+}
+
+interface GoogleJwtPayload {
+  name?: string;
+  email?: string;
+  picture?: string;
+  sub?: string;
+}
+
+interface GoogleIdConfiguration {
+  client_id: string;
+  callback: (response: GoogleCredentialResponse) => void;
+  auto_select?: boolean;
+}
+
+interface GoogleGsiButtonConfiguration {
+  theme?: "outline" | "filled_blue" | "filled_black";
+  size?: "large" | "medium" | "small";
+  text?: "signin_with" | "signup_with" | "continue_with" | "signin";
+  shape?: "rectangular" | "pill" | "circle" | "square";
+  logo_alignment?: "left" | "center";
+  width?: number;
+  locale?: string;
+}
+
+interface GoogleIdentityServices {
+  accounts: {
+    id: {
+      initialize: (config: GoogleIdConfiguration) => void;
+      renderButton: (
+        parent: HTMLElement,
+        options: GoogleGsiButtonConfiguration
+      ) => void;
+      prompt?: () => void;
+    };
+  };
+}
+
+declare global {
+  interface Window {
+    google?: GoogleIdentityServices;
+  }
+}
+
 export default function DriveInCinemaRegistrationPage() {
   const [googleUser, setGoogleUser] = useState<GoogleUser | null>(null);
   const [fullName, setFullName] = useState("");
@@ -44,7 +92,7 @@ export default function DriveInCinemaRegistrationPage() {
   const scriptUrl = process.env.NEXT_PUBLIC_DRIVE_IN_SCRIPT_URL || "";
 
   // Callback penanganan token dari Google Identity Services
-  const handleCredentialResponse = useCallback((response: any) => {
+  const handleCredentialResponse = useCallback((response: GoogleCredentialResponse) => {
     try {
       const base64Url = response.credential.split(".")[1];
       const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -54,7 +102,7 @@ export default function DriveInCinemaRegistrationPage() {
           .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
           .join("")
       );
-      const user = JSON.parse(jsonPayload);
+      const user: GoogleJwtPayload = JSON.parse(jsonPayload);
       setGoogleUser({
         name: user.name || "",
         email: user.email || "",
@@ -73,13 +121,13 @@ export default function DriveInCinemaRegistrationPage() {
 
   // Inisialisasi Google GIS (hanya initialize sekali)
   const initGoogleSignIn = useCallback(() => {
-    if (typeof window === "undefined" || !(window as any).google || !clientId) {
+    if (typeof window === "undefined" || !window.google || !clientId) {
       return;
     }
 
     try {
       if (!isInitializedRef.current) {
-        (window as any).google.accounts.id.initialize({
+        window.google.accounts.id.initialize({
           client_id: clientId,
           callback: handleCredentialResponse,
           auto_select: false,
@@ -90,7 +138,7 @@ export default function DriveInCinemaRegistrationPage() {
       const btnContainer = document.getElementById("googleSignInBtn");
       if (btnContainer && !googleUser) {
         btnContainer.innerHTML = "";
-        (window as any).google.accounts.id.renderButton(btnContainer, {
+        window.google.accounts.id.renderButton(btnContainer, {
           theme: "filled_blue",
           size: "large",
           shape: "pill",
@@ -104,7 +152,7 @@ export default function DriveInCinemaRegistrationPage() {
   }, [clientId, handleCredentialResponse, googleUser]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).google) {
+    if (typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
   }, [initGoogleSignIn]);
@@ -197,11 +245,11 @@ export default function DriveInCinemaRegistrationPage() {
           message: result.message || "Terjadi kesalahan saat memproses pendaftaran.",
         });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Gagal mengirim form pendaftaran:", err);
       setStatusState({
         type: "error",
-        message: "Gagal terhubung ke server pendaftaran Google Sheets. Silakan periksa koneksi internet Anda atau coba sesaat lagi.",
+        message: err instanceof Error ? err.message : "Gagal terhubung ke server pendaftaran Google Sheets. Silakan periksa koneksi internet Anda atau coba sesaat lagi.",
       });
     } finally {
       setLoading(false);
