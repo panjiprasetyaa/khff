@@ -159,6 +159,11 @@ export default function Footer() {
                   alt="Seling Selasa Screening"
                   className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
                 />
+                <img
+                  src="/assets/sponsors/wanu-sinema.png"
+                  alt="Wanu Sinema"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                />
               </div>
             </div>
           </div>
