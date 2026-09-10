@@ -158,10 +158,9 @@ export default function Home() {
               <div className="flex flex-col items-start lg:items-end gap-3 lg:pr-4">
                 <Link
                   href="/drive-in-cinema"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-khff-pink hover:text-white font-mono font-black text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(238,173,47,0.35)] hover:shadow-[0_0_35px_rgba(225,76,113,0.5)] hover:scale-105 cursor-pointer uppercase tracking-wider group/btn"
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-khff-yellow text-khff-navy hover:bg-khff-pink hover:text-white font-mono font-black text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(238,173,47,0.35)] hover:shadow-[0_0_35px_rgba(225,76,113,0.5)] hover:scale-105 cursor-pointer uppercase tracking-wider text-center"
                 >
                   <span>Daftar Sekarang</span>
-                  <span className="text-xl transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
                 </Link>
                 <span className="text-[11px] sm:text-xs font-mono text-khff-cream/70 tracking-wider">
                   *1 Akun Google = 1 Unit Becak
