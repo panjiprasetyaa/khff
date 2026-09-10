@@ -21,9 +21,9 @@ export default function Footer() {
                 className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/yk-kota.png"
-                alt="Kota Yogyakarta"
-                className="h-14 sm:h-18 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                src="/assets/sponsors/270-yk-official.png?v=4"
+                alt="HUT Kota Yogyakarta 270"
+                className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
                 src="/assets/sponsors/jogja-istimewa.png"
@@ -55,9 +55,9 @@ export default function Footer() {
                 className="h-14 sm:h-18 md:h-19 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
-                src="/assets/sponsors/270-yk-official.png?v=4"
-                alt="HUT Kota Yogyakarta 270"
-                className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                src="/assets/sponsors/yk-kota.png"
+                alt="Kota Yogyakarta"
+                className="h-14 sm:h-18 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
                 src="/assets/sponsors/pdin-official.png?v=5"
