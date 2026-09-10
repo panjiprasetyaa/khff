@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import { 
@@ -86,7 +86,18 @@ export default function DriveInCinemaRegistrationPage() {
     regCode?: string;
   } | null>(null);
 
+  const isLocalIp = useSyncExternalStore(
+    () => () => {},
+    () => {
+      if (typeof window === "undefined") return false;
+      const host = window.location.hostname;
+      return /^(\d{1,3}\.){3}\d{1,3}$/.test(host) && window.location.protocol === "http:";
+    },
+    () => false
+  );
+
   const isInitializedRef = useRef(false);
+  const btnContainerRef = useRef<HTMLDivElement>(null);
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
   const scriptUrl = process.env.NEXT_PUBLIC_DRIVE_IN_SCRIPT_URL || "";
 
@@ -134,15 +145,19 @@ export default function DriveInCinemaRegistrationPage() {
         isInitializedRef.current = true;
       }
 
-      const btnContainer = document.getElementById("googleSignInBtn");
+      const btnContainer = btnContainerRef.current || document.getElementById("googleSignInBtn");
       if (btnContainer && !googleUser) {
         btnContainer.innerHTML = "";
+        // Sesuaikan lebar tombol agar proporsional di layar HP (240px - 280px)
+        const screenW = typeof window !== "undefined" ? window.innerWidth : 360;
+        const btnWidth = Math.min(280, Math.max(220, screenW - 80));
+        
         window.google.accounts.id.renderButton(btnContainer, {
           theme: "filled_blue",
           size: "large",
           shape: "pill",
           text: "continue_with",
-          width: 280,
+          width: btnWidth,
         });
       }
     } catch (e) {
@@ -150,10 +165,26 @@ export default function DriveInCinemaRegistrationPage() {
     }
   }, [clientId, handleCredentialResponse, googleUser]);
 
+  // Poller untuk memastikan Google SDK segera di-render saat script selesai dimuat
   useEffect(() => {
     if (typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
+
+    const interval = setInterval(() => {
+      if (typeof window !== "undefined" && window.google) {
+        initGoogleSignIn();
+      }
+    }, 300);
+
+    const timer = setTimeout(() => {
+      clearInterval(interval);
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
   }, [initGoogleSignIn]);
 
   // Tombol simulasi demo jika Client ID belum dikonfigurasi di .env
@@ -472,13 +503,28 @@ export default function DriveInCinemaRegistrationPage() {
                           Sistem menggunakan Google Sign-In untuk memastikan identitas valid dan mencegah spam serta duplikasi pengisian form.
                         </p>
 
+                        {/* Banner Peringatan jika diakses via IP Lokal di HP */}
+                        {isLocalIp && (
+                          <div className="mb-4 p-3.5 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs text-left leading-relaxed">
+                            <p className="font-bold flex items-center gap-1.5 mb-1 font-mono text-[11px] uppercase tracking-wider">
+                              <span>⚠️</span> Akses Pengujian via IP Lokal ({typeof window !== "undefined" ? window.location.hostname : ""})
+                            </p>
+                            <p className="text-amber-200/90 mb-1.5">
+                              Google OAuth secara otomatis memblokir protokol HTTP pada IP lokal. Tombol resmi Google aktif pada <strong>localhost</strong> atau domain <strong>HTTPS</strong> (seperti Vercel).
+                            </p>
+                            <p className="text-amber-200/80">
+                              Untuk pengujian form di HP, silakan gunakan tombol <strong>Simulasi Login</strong> di bawah ini.
+                            </p>
+                          </div>
+                        )}
+
                         {/* Tombol Resmi Google GIS */}
                         <div className="flex justify-center mb-3">
-                          <div id="googleSignInBtn" className="min-h-[44px] flex items-center justify-center" />
+                          <div ref={btnContainerRef} id="googleSignInBtn" className="min-h-[44px] flex items-center justify-center" />
                         </div>
 
-                        {/* Tombol Demo Fallback jika belum pasang Client ID */}
-                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID")) && (
+                        {/* Tombol Demo Fallback: Tampil jika belum ada Client ID, atau jika diakses via IP */}
+                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID") || isLocalIp) ? (
                           <div className="pt-3 border-t border-white/10">
                             <button
                               type="button"
@@ -487,6 +533,16 @@ export default function DriveInCinemaRegistrationPage() {
                             >
                               <Sparkles size={14} className="text-khff-yellow" />
                               Simulasi Login Google (Mode Pengujian)
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="pt-2 text-center">
+                            <button
+                              type="button"
+                              onClick={handleDemoSignIn}
+                              className="text-[11px] font-mono text-khff-cream/50 hover:text-khff-yellow transition-colors underline cursor-pointer"
+                            >
+                              Bermasalah dengan Google Sign-In? Gunakan Akun Uji Coba
                             </button>
                           </div>
                         )}
