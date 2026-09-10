@@ -77,9 +77,9 @@ export default function Footer() {
                 className="h-7 sm:h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
               />
               <img
-                src="/assets/sponsors/the-101-hotel.png"
+                src="/assets/sponsors/the-101-hotel.png?v=2"
                 alt="THE 1O1 Hotel Yogyakarta Tugu"
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
               />
               <img
                 src="/assets/sponsors/aston-gejayan.png"
