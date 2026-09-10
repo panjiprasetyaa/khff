@@ -126,24 +126,47 @@ export default function Home() {
                 alt="Drive In Cinema Becak"
                 className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-1000"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/40 to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/60 to-khff-navy/30 z-10" />
             </div>
 
-            <div className="relative z-20 p-8 md:p-20 max-w-3xl">
-              <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">
-                Special Program
-              </span>
-              <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">
-                Drive In
-                <br />
-                Cinema
-              </h3>
-              <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
-                Menghadirkan cara baru menikmati film lokal dari atas becak,
-                memadukan pengalaman sinema dengan transportasi tradisional
-                Yogyakarta yang ramah lingkungan.
-              </p>
-              {/* Waktu dan Tempat Drive-in Di Takeout untuk rilis */}
+            <div className="relative z-20 p-8 md:p-16 lg:p-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+              <div className="max-w-2xl">
+                <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">
+                  Special Program
+                </span>
+                <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">
+                  Drive In
+                  <br />
+                  Cinema
+                </h3>
+                <p className="text-khff-cream text-base md:text-2xl mb-8 drop-shadow font-medium leading-relaxed">
+                  Menghadirkan cara baru menikmati film lokal dari atas becak,
+                  memadukan pengalaman sinema dengan transportasi tradisional
+                  Yogyakarta yang ramah lingkungan.
+                </p>
+                
+                <div className="inline-flex flex-wrap items-center gap-3 text-xs md:text-sm font-mono text-khff-yellow bg-white/10 px-5 py-2.5 rounded-full backdrop-blur-sm border border-khff-cream/20">
+                  <span>📍 Halaman Pasar Terban</span>
+                  <span className="opacity-40">•</span>
+                  <span>🗓️ 17 September 2026</span>
+                  <span className="opacity-40">•</span>
+                  <span>🎟️ Kuota Terbatas</span>
+                </div>
+              </div>
+
+              {/* Tombol Pendaftaran di Kanan */}
+              <div className="flex flex-col items-start lg:items-end gap-3 lg:pr-4">
+                <Link
+                  href="/drive-in-cinema"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-khff-pink hover:text-white font-mono font-black text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(238,173,47,0.35)] hover:shadow-[0_0_35px_rgba(225,76,113,0.5)] hover:scale-105 cursor-pointer uppercase tracking-wider group/btn"
+                >
+                  <span>Daftar Sekarang</span>
+                  <span className="text-xl transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
+                </Link>
+                <span className="text-[11px] sm:text-xs font-mono text-khff-cream/70 tracking-wider">
+                  *1 Akun Google = 1 Unit Becak
+                </span>
+              </div>
             </div>
           </div>
         </div>

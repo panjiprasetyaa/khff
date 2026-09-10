@@ -143,7 +143,7 @@ export default function FilmDetail({
                 <h3 className="text-xl font-serif font-black text-khff-yellow mb-4 flex items-center gap-4">
                   <span className="w-8 h-1 bg-khff-pink rounded-full"></span> Sinopsis Cerita
                 </h3>
-                <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed">
+                <p className="text-khff-cream/95 text-lg md:text-xl font-medium leading-relaxed whitespace-pre-line">
                   {displaySynopsis}
                 </p>
               </div>
