@@ -11,9 +11,9 @@ export default function Footer() {
             Didukung Oleh & Mitra Media Resmi
           </span>
 
-          {/* Logos Display (6 logos top, 3 logos bottom, divider, 5 hotel logos) */}
+          {/* Logos Display (5 logos top, 4 logos bottom, divider, 5 hotel logos) */}
           <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto px-4">
-            {/* Top Row: 6 Logos */}
+            {/* Top Row: 5 Logos */}
             <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
               <img
                 src="/assets/sponsors/dinas-pendidikan.png"
@@ -40,14 +40,9 @@ export default function Footer() {
                 alt="Kementerian Kebudayaan Republik Indonesia"
                 className="h-10 sm:h-13 md:h-15 lg:h-16 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
               />
-              <img
-                src="/assets/sponsors/dinas-diy-official.png?v=4"
-                alt="Dinas Pemerintah Daerah DIY"
-                className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
-              />
             </div>
 
-            {/* Bottom Row: 3 Logos */}
+            {/* Bottom Row: 4 Logos */}
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
               <img
                 src="/assets/sponsors/kotabaru.png"
@@ -58,6 +53,11 @@ export default function Footer() {
                 src="/assets/sponsors/teh-pucuk-official.png?v=4"
                 alt="Teh Pucuk Harum"
                 className="h-14 sm:h-18 md:h-19 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+              />
+              <img
+                src="/assets/sponsors/dinas-diy-official.png?v=4"
+                alt="Dinas Pemerintah Daerah DIY"
+                className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
                 src="/assets/sponsors/pdin-official.png?v=5"
