@@ -3,17 +3,17 @@ import { AtSign, Mail, MapPin } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="font-sans">
-      {/* Supported By & Official Media Partners (Golden Yellow Gradient) */}
-      <div className="relative py-16 md:py-24 overflow-hidden bg-[linear-gradient(to_bottom,#f6df87,#edae30)] text-khff-navy">
+      {/* Supported By & Official Media Partners (Custom Illustrated Landscape Background) */}
+      <div className="relative py-16 md:py-24 overflow-hidden bg-[#f39920] bg-[url('/assets/sponsors/sponsor-bg.png')] bg-cover bg-bottom bg-no-repeat text-khff-navy">
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10 text-center">
           {/* Section Heading Badge */}
-          <span className="text-xs md:text-sm font-mono tracking-[0.3em] uppercase text-khff-navy font-black mb-10 md:mb-14 inline-block px-6 py-2 rounded-full bg-khff-navy/10 border border-khff-navy/20 shadow-xs">
+          <span className="text-xs md:text-sm font-mono tracking-[0.3em] uppercase text-khff-navy font-black mb-10 md:mb-14 inline-block px-6 py-2 rounded-full bg-khff-navy/10 border border-khff-navy/20 shadow-xs backdrop-blur-xs">
             Didukung Oleh & Mitra Media Resmi
           </span>
 
-          {/* Logos Display (5 logos top, 4 logos bottom, divider, 5 hotel logos) */}
+          {/* Logos Display (6 logos top, 3 logos bottom, divider, 5 hotel logos) */}
           <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto px-4">
-            {/* Top Row: 5 Logos */}
+            {/* Top Row: 6 Logos */}
             <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
               <img
                 src="/assets/sponsors/dinas-pendidikan.png"
@@ -36,14 +36,19 @@ export default function Footer() {
                 className="h-10 sm:h-13 md:h-15 lg:h-16 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
               />
               <img
+                src="/assets/sponsors/kemenbud.png"
+                alt="Kementerian Kebudayaan Republik Indonesia"
+                className="h-10 sm:h-13 md:h-15 lg:h-16 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+              />
+              <img
                 src="/assets/sponsors/dinas-diy-official.png?v=4"
                 alt="Dinas Pemerintah Daerah DIY"
                 className="h-16 sm:h-20 md:h-22 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
             </div>
 
-            {/* Bottom Row: 4 Logos */}
-            <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-7 md:gap-8 lg:gap-10 w-full">
+            {/* Bottom Row: 3 Logos */}
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
               <img
                 src="/assets/sponsors/kotabaru.png"
                 alt="Kotabaru Heritage"
@@ -53,11 +58,6 @@ export default function Footer() {
                 src="/assets/sponsors/teh-pucuk-official.png?v=4"
                 alt="Teh Pucuk Harum"
                 className="h-14 sm:h-18 md:h-19 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
-              />
-              <img
-                src="/assets/sponsors/yk-kota.png"
-                alt="Kota Yogyakarta"
-                className="h-14 sm:h-18 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
               />
               <img
                 src="/assets/sponsors/pdin-official.png?v=5"
