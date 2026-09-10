@@ -75,9 +75,8 @@ declare global {
 export default function DriveInCinemaRegistrationPage() {
   const [googleUser, setGoogleUser] = useState<GoogleUser | null>(null);
   const [fullName, setFullName] = useState("");
+  const [fullName2, setFullName2] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
-  const [passengers, setPassengers] = useState("2");
-  const [notes, setNotes] = useState("");
   const [agreed, setAgreed] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -166,18 +165,36 @@ export default function DriveInCinemaRegistrationPage() {
     };
     setGoogleUser(demoUser);
     setFullName(demoUser.name);
+    setFullName2("Teman Pengunjung Demo");
     setStatusState(null);
   };
 
   const handleSignOut = () => {
     setGoogleUser(null);
     setFullName("");
+    setFullName2("");
     setStatusState(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!googleUser) return;
+
+    if (!fullName.trim() && !googleUser.name) {
+      setStatusState({
+        type: "error",
+        message: "Silakan masukkan nama lengkap penumpang 1.",
+      });
+      return;
+    }
+
+    if (!fullName2.trim()) {
+      setStatusState({
+        type: "error",
+        message: "Silakan masukkan nama lengkap penumpang 2.",
+      });
+      return;
+    }
 
     if (!whatsapp.trim() || whatsapp.trim().length < 9) {
       setStatusState({
@@ -200,10 +217,10 @@ export default function DriveInCinemaRegistrationPage() {
 
     const payload = {
       name: fullName.trim() || googleUser.name,
+      name2: fullName2.trim(),
       email: googleUser.email,
       whatsapp: whatsapp.trim(),
-      passengers: passengers,
-      notes: notes.trim(),
+      passengers: "2",
     };
 
     // Mode jika Apps Script URL belum diset: berikan simulasi sukses yang jelas
@@ -392,20 +409,20 @@ export default function DriveInCinemaRegistrationPage() {
 
                     <div className="grid grid-cols-2 gap-3 text-xs border-t border-white/10 pt-4 font-mono">
                       <div>
-                        <span className="text-khff-cream/50 uppercase block">Atas Nama</span>
+                        <span className="text-khff-cream/50 uppercase block">Penumpang 1</span>
                         <span className="text-white font-bold truncate block">{fullName || googleUser?.name}</span>
                       </div>
                       <div>
-                        <span className="text-khff-cream/50 uppercase block">Email</span>
+                        <span className="text-khff-cream/50 uppercase block">Penumpang 2</span>
+                        <span className="text-white font-bold truncate block">{fullName2}</span>
+                      </div>
+                      <div>
+                        <span className="text-khff-cream/50 uppercase block">Email Akun</span>
                         <span className="text-white font-bold truncate block">{googleUser?.email}</span>
                       </div>
                       <div>
-                        <span className="text-khff-cream/50 uppercase block">Jumlah Penumpang</span>
-                        <span className="text-khff-yellow font-bold block">{passengers} Orang</span>
-                      </div>
-                      <div>
-                        <span className="text-khff-cream/50 uppercase block">Tanggal</span>
-                        <span className="text-white font-bold block">17 Sep 2026</span>
+                        <span className="text-khff-cream/50 uppercase block">Alokasi</span>
+                        <span className="text-khff-yellow font-bold block">2 Orang</span>
                       </div>
                     </div>
                   </div>
@@ -528,10 +545,10 @@ export default function DriveInCinemaRegistrationPage() {
                       )}
                     </div>
 
-                    {/* Nama Lengkap */}
+                    {/* Nama Lengkap Penumpang 1 */}
                     <div>
                       <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold mb-1.5">
-                        Nama Lengkap *
+                        Nama Lengkap Penumpang 1 *
                       </label>
                       <input
                         type="text"
@@ -539,7 +556,23 @@ export default function DriveInCinemaRegistrationPage() {
                         disabled={!googleUser}
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder="Nama lengkap pendaftar"
+                        placeholder="Nama lengkap penumpang pertama"
+                        className="w-full bg-black/40 border border-khff-cream/20 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:border-khff-yellow focus:outline-none font-sans text-sm transition-colors"
+                      />
+                    </div>
+
+                    {/* Nama Lengkap Penumpang 2 */}
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold mb-1.5">
+                        Nama Lengkap Penumpang 2 *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        disabled={!googleUser}
+                        value={fullName2}
+                        onChange={(e) => setFullName2(e.target.value)}
+                        placeholder="Nama lengkap penumpang kedua"
                         className="w-full bg-black/40 border border-khff-cream/20 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:border-khff-yellow focus:outline-none font-sans text-sm transition-colors"
                       />
                     </div>
@@ -582,33 +615,25 @@ export default function DriveInCinemaRegistrationPage() {
 
                     {/* Jumlah Penumpang Becak */}
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold mb-1.5">
-                        Jumlah Penumpang Becak *
-                      </label>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold">
+                          Jumlah Penumpang Becak *
+                        </label>
+                        <span className="text-[10px] font-mono text-khff-pink uppercase font-bold px-2 py-0.5 rounded bg-khff-pink/15 border border-khff-pink/30">
+                          1 Orang SOLD OUT
+                        </span>
+                      </div>
                       <select
-                        disabled={!googleUser}
-                        value={passengers}
-                        onChange={(e) => setPassengers(e.target.value)}
-                        className="w-full bg-black/40 border border-khff-cream/20 rounded-xl px-4 py-3 text-white focus:border-khff-yellow focus:outline-none font-mono text-sm transition-colors"
+                        disabled
+                        value="2"
+                        className="w-full bg-black/20 border border-khff-cream/15 rounded-xl px-4 py-3 text-khff-cream/90 font-mono text-sm cursor-not-allowed opacity-90"
                       >
-                        <option value="1" className="bg-khff-navy text-white">1 Orang</option>
-                        <option value="2" className="bg-khff-navy text-white">2 Orang (Maksimal per becak)</option>
+                        <option value="2" className="bg-khff-navy text-white">2 Orang</option>
+                        <option value="1" disabled className="bg-khff-navy text-white/30">1 Orang (SOLD OUT)</option>
                       </select>
-                    </div>
-
-                    {/* Catatan Tambahan (Opsional) */}
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold mb-1.5">
-                        Catatan Khusus (Opsional)
-                      </label>
-                      <textarea
-                        rows={2}
-                        disabled={!googleUser}
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Contoh: Membawa anggota keluarga lansia atau balita..."
-                        className="w-full bg-black/40 border border-khff-cream/20 rounded-xl px-4 py-2.5 text-white placeholder:text-white/20 focus:border-khff-yellow focus:outline-none font-sans text-sm transition-colors"
-                      />
+                      <span className="text-[11px] font-mono text-khff-cream/60 mt-1 block">
+                        *Alokasi unit becak saat ini dikhususkan untuk 2 orang penumpang.
+                      </span>
                     </div>
 
                     {/* Checkbox Persetujuan */}
