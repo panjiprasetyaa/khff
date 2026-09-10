@@ -14,62 +14,62 @@ export default function Footer() {
           {/* Logos Display */}
           <div className="flex flex-col items-center justify-center gap-5 sm:gap-7 md:gap-9 w-full max-w-6xl mx-auto">
             {/* Top Official Row: 5 Logos (3 + 2 on Mobile, 5 on Desktop) */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 w-full">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-6 md:gap-8 lg:gap-10 w-full">
               <div className="flex justify-center items-center gap-3.5 sm:gap-6 md:gap-8">
                 <img
                   src="/assets/sponsors/dinas-pendidikan.png"
                   alt="Dinas Pendidikan Kota Yogyakarta"
-                  className="h-10 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/270-yk-official.png?v=4"
                   alt="HUT Kota Yogyakarta 270"
-                  className="h-10 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/jogja-istimewa.png"
                   alt="Jogja Istimewa"
-                  className="h-7 sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-[34px] sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
               </div>
-              <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
+              <div className="flex justify-center items-center gap-5 sm:gap-6 md:gap-8">
                 <img
                   src="/assets/sponsors/dana-keistimewaan.png?v=5"
                   alt="Dana Keistimewaan"
-                  className="h-8 sm:h-11 md:h-14 lg:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+                  className="h-10 sm:h-11 md:h-14 lg:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
                 />
                 <img
                   src="/assets/sponsors/kemenbud.png"
                   alt="Kementerian Kebudayaan Republik Indonesia"
-                  className="h-8 sm:h-11 md:h-14 lg:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+                  className="h-10 sm:h-11 md:h-14 lg:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
               </div>
             </div>
 
             {/* Bottom Official Row: 4 Logos (2 + 2 on Mobile, 4 on Desktop) */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-8 md:gap-10 lg:gap-12 w-full">
-              <div className="flex justify-center items-center gap-5 sm:gap-8 md:gap-10">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-8 md:gap-10 lg:gap-12 w-full">
+              <div className="flex justify-center items-center gap-6 sm:gap-8 md:gap-10">
                 <img
                   src="/assets/sponsors/kotabaru.png"
                   alt="Kotabaru Heritage"
-                  className="h-8 sm:h-12 md:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-10 sm:h-12 md:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/teh-pucuk-official.png?v=4"
                   alt="Teh Pucuk Harum"
-                  className="h-10 sm:h-14 md:h-18 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-12 sm:h-14 md:h-18 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
               </div>
-              <div className="flex justify-center items-center gap-5 sm:gap-8 md:gap-10">
+              <div className="flex justify-center items-center gap-6 sm:gap-8 md:gap-10">
                 <img
                   src="/assets/sponsors/dinas-diy-official.png?v=4"
                   alt="Dinas Pemerintah Daerah DIY"
-                  className="h-10 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/pdin-official.png?v=5"
                   alt="PDIN Pusat Desain Industri Nasional"
-                  className="h-7 sm:h-11 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+                  className="h-9 sm:h-11 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
               </div>
             </div>
