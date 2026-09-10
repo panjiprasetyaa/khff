@@ -97,6 +97,38 @@ export default function Footer() {
                 className="h-12 sm:h-14 md:h-16 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
               />
             </div>
+
+            {/* Garis Divider Bawah Sponsor Hotel */}
+            <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-khff-navy/25 to-transparent my-2 sm:my-3" />
+
+            {/* Media & Community Partners Row */}
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
+              <img
+                src="/assets/sponsors/info-festival-film.png"
+                alt="Info Festival Film ID"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-xl"
+              />
+              <img
+                src="/assets/sponsors/jogja-punya-acara.png"
+                alt="Jogja Punya Acara"
+                className="h-8 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-lg"
+              />
+              <img
+                src="/assets/sponsors/acara-kita.png"
+                alt="AcaraKita.net"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+              />
+              <img
+                src="/assets/sponsors/radio-q.png"
+                alt="88.3 FM Radio Q Jogja"
+                className="h-9 sm:h-11 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+              />
+              <img
+                src="/assets/sponsors/avikom.png"
+                alt="Avikom UPN Veteran Yogyakarta"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+              />
+            </div>
           </div>
         </div>
       </div>
