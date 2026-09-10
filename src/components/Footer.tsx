@@ -11,10 +11,10 @@ export default function Footer() {
             Didukung Oleh & Mitra Media Resmi
           </span>
 
-          {/* Logos Display (5 logos top, 4 logos bottom) */}
-          <div className="flex flex-col items-center justify-center gap-10 md:gap-14 w-full max-w-6xl mx-auto px-4">
+          {/* Logos Display (5 logos top, 4 logos bottom, divider, 5 hotel logos) */}
+          <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto px-4">
             {/* Top Row: 5 Logos */}
-            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
               <img
                 src="/assets/sponsors/dinas-pendidikan.png"
                 alt="Dinas Pendidikan Kota Yogyakarta"
@@ -43,7 +43,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom Row: 4 Logos */}
-            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-14 lg:gap-16 w-full">
+            <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-7 md:gap-8 lg:gap-10 w-full">
               <img
                 src="/assets/sponsors/kotabaru.png"
                 alt="Kotabaru Heritage"
@@ -63,6 +63,38 @@ export default function Footer() {
                 src="/assets/sponsors/pdin-official.png?v=5"
                 alt="PDIN Pusat Desain Industri Nasional"
                 className="h-11 sm:h-13 md:h-15 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
+              />
+            </div>
+
+            {/* Garis Divider */}
+            <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-khff-navy/25 to-transparent my-1 sm:my-2" />
+
+            {/* Hotel Hospitality Sponsors (Ukuran Lebih Kecil) */}
+            <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-7 md:gap-9 lg:gap-11 w-full">
+              <img
+                src="/assets/sponsors/harper-malioboro.png"
+                alt="Harper Malioboro Yogyakarta"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+              />
+              <img
+                src="/assets/sponsors/the-101-hotel.png"
+                alt="THE 1O1 Hotel Yogyakarta Tugu"
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+              />
+              <img
+                src="/assets/sponsors/aston-gejayan.png"
+                alt="ASTON Gejayan Yogyakarta"
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+              />
+              <img
+                src="/assets/sponsors/nueve-hotel.png"
+                alt="Nueve Jogja Hotel"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+              />
+              <img
+                src="/assets/sponsors/aveon-hotel.png"
+                alt="Aveon Hotel Yogyakarta"
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
               />
             </div>
           </div>
