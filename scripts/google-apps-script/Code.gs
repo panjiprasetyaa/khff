@@ -1,76 +1,92 @@
 /**
  * ===================================================================
  * KOTABARU HERITAGE FILM FESTIVAL 2026
- * Backend Serverless: Google Apps Script untuk Becak Drive-In Cinema
+ * Backend Serverless: Google Apps Script untuk Drive-In Cinema
+ * Mendukung Multi-Tab (Becak & Kursi) & Realtime Quota Tracking
  * ===================================================================
+ * 
+ * KUOTA PROGRAM:
+ * - Becak: 23 Slot (1 Becak = 2 Penumpang)
+ * - Kursi: 40 Slot (1 Kursi = 1 Penumpang)
  * 
  * PANDUAN DEPLOY:
  * 1. Buka spreadsheet Google Drive Anda.
- * 2. Masuk ke Extensions > Apps Script.
- * 3. Hapus semua kode default, lalu tempel kode di bawah ini.
+ * 2. Masuk ke menu: Extensions (Ekstensi) > Apps Script.
+ * 3. Hapus semua kode default, lalu tempel seluruh kode di bawah ini.
  * 4. Klik tombol "Deploy" (kanan atas) > "Manage deployments" (jika edit) atau "New deployment".
  * 5. Pilih type: "Web app".
  * 6. Set "Execute as": "Me" (email Anda).
- * 7. Set "Who has access": "Anyone" (PENTING: harus Anyone agar form bisa kirim data).
- * 8. Klik "Deploy", beri izin (Authorize Access), lalu salin Web App URL.
+ * 7. Set "Who has access": "Anyone" (PENTING: harus Anyone agar form web dapat mengakses data).
+ * 8. Klik "Deploy", izinkan hak akses (Authorize Access), lalu salin Web App URL ke .env.local:
+ *    NEXT_PUBLIC_DRIVE_IN_SCRIPT_URL=https://script.google.com/macros/s/.../exec
  */
 
-const SHEET_NAME = "Pendaftar_DriveIn";
+const TAB_BECAK = "Pendaftar_Becak";
+const TAB_KURSI = "Pendaftar_Kursi";
 
+const MAX_BECAK = 23;
+const MAX_KURSI = 40;
+
+/**
+ * Endpoint GET: Digunakan untuk mengambil sisa kuota slot secara realtime
+ */
+function doGet(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheetBecak = ss.getSheetByName(TAB_BECAK);
+    var sheetKursi = ss.getSheetByName(TAB_KURSI);
+
+    var becakUsed = sheetBecak ? Math.max(0, sheetBecak.getLastRow() - 1) : 0;
+    var kursiUsed = sheetKursi ? Math.max(0, sheetKursi.getLastRow() - 1) : 0;
+
+    return createJsonResponse({
+      status: "success",
+      slots: {
+        becak: {
+          total: MAX_BECAK,
+          used: becakUsed,
+          available: Math.max(0, MAX_BECAK - becakUsed),
+          isFull: becakUsed >= MAX_BECAK
+        },
+        kursi: {
+          total: MAX_KURSI,
+          used: kursiUsed,
+          available: Math.max(0, MAX_KURSI - kursiUsed),
+          isFull: kursiUsed >= MAX_KURSI
+        }
+      }
+    });
+  } catch (err) {
+    return createJsonResponse({
+      status: "error",
+      message: "Gagal memuat status kuota slot: " + err.toString(),
+      slots: {
+        becak: { total: MAX_BECAK, used: 0, available: MAX_BECAK, isFull: false },
+        kursi: { total: MAX_KURSI, used: 0, available: MAX_KURSI, isFull: false }
+      }
+    });
+  }
+}
+
+/**
+ * Endpoint POST: Menangani pendaftaran form untuk Becak atau Kursi
+ */
 function doPost(e) {
-  // Gunakan lock untuk mencegah race-condition saat ada pendaftaran bersamaan
   var lock = LockService.getScriptLock();
-  lock.tryLock(10000);
+  lock.tryLock(15000); // 15 detik lock timeout
 
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(SHEET_NAME);
-    
-    // Inisialisasi Sheet dan Header jika belum dibuat
-    if (!sheet) {
-      sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow([
-        "Timestamp",
-        "Nama Lengkap (Penumpang 1)",
-        "Nama Lengkap (Penumpang 2)",
-        "Email (Google Terverifikasi)",
-        "No. WhatsApp",
-        "Jumlah Penumpang Becak",
-        "Kode Registrasi",
-        "Status"
-      ]);
-      // Format header
-      var headerRange = sheet.getRange(1, 1, 1, 8);
-      headerRange.setFontWeight("bold");
-      headerRange.setBackground("#1d4d4f");
-      headerRange.setFontColor("#ffffff");
-    } else {
-      // Migrasi cerdas: jika sheet sudah dibuat dengan kolom lama, pastikan kolom Penumpang 2 tersedia
-      var lastCol = Math.max(sheet.getLastColumn(), 1);
-      var currentHeaders = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-      var hasPassenger2 = currentHeaders.some(function(h) {
-        return h.toString().toLowerCase().indexOf("penumpang 2") !== -1;
-      });
-
-      if (!hasPassenger2 && currentHeaders.length >= 2) {
-        sheet.insertColumnAfter(2);
-        sheet.getRange(1, 3).setValue("Nama Lengkap (Penumpang 2)")
-          .setFontWeight("bold")
-          .setBackground("#1d4d4f")
-          .setFontColor("#ffffff");
-      }
-    }
-
     var contents = e.postData.contents;
     var data = JSON.parse(contents);
 
-    var email = (data.email || "").trim().toLowerCase();
-    var name = (data.name || "").trim();
-    var name2 = (data.name2 || "").trim();
-    var whatsapp = (data.whatsapp || "").trim();
-    var passengers = data.passengers || "2";
+    var type = (data.type || "becak").toString().trim().toLowerCase();
+    var email = (data.email || "").toString().trim().toLowerCase();
+    var name = (data.name || "").toString().trim();
+    var name2 = (data.name2 || "").toString().trim();
+    var whatsapp = (data.whatsapp || "").toString().trim();
 
-    // 1. Validasi data wajib
+    // 1. Validasi dasar
     if (!email) {
       return createJsonResponse({
         status: "error",
@@ -79,65 +95,96 @@ function doPost(e) {
       });
     }
 
-    if (!name || !name2 || !whatsapp) {
+    if (!name || !whatsapp) {
       return createJsonResponse({
         status: "error",
         code: "INCOMPLETE_DATA",
-        message: "Nama lengkap penumpang 1, nama lengkap penumpang 2, dan nomor WhatsApp wajib diisi."
+        message: "Nama lengkap dan nomor WhatsApp wajib diisi."
       });
     }
 
-    // 2. CEK ANTI-SPAM & DUPLIKASI (Cari kolom Email secara dinamis berdasarkan header)
-    var lastRow = sheet.getLastRow();
-    if (lastRow > 1) {
-      var headerCols = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-      var emailColIndex = 4; // default kolom D
-      for (var c = 0; c < headerCols.length; c++) {
-        if (headerCols[c].toString().toLowerCase().indexOf("email") !== -1) {
-          emailColIndex = c + 1;
-          break;
-        }
-      }
-
-      var existingEmails = sheet.getRange(2, emailColIndex, lastRow - 1, 1).getValues();
-      for (var i = 0; i < existingEmails.length; i++) {
-        var existingEmail = existingEmails[i][0].toString().trim().toLowerCase();
-        if (existingEmail === email) {
-          return createJsonResponse({
-            status: "duplicate",
-            code: "DUPLICATE_REGISTRATION",
-            message: "Akun Google (" + email + ") sudah pernah terdaftar untuk Becak Drive-In Cinema. 1 Akun hanya diperbolehkan mendaftar 1 kali."
-          });
-        }
-      }
+    if (type === "becak" && !name2) {
+      return createJsonResponse({
+        status: "error",
+        code: "INCOMPLETE_PASSENGER_2",
+        message: "Untuk pemesanan Becak, nama lengkap Penumpang 2 wajib diisi."
+      });
     }
 
-    // 3. Generate Kode Registrasi Unik (Contoh: KHFF-DRV-8492)
-    var regCode = "KHFF-DRV-" + Math.floor(1000 + Math.random() * 9000);
+    // 2. Inisialisasi Sheet Tab sesuai jenis pemesanan
+    var sheet;
+    if (type === "becak") {
+      sheet = getOrCreateBecakSheet(ss);
+    } else {
+      sheet = getOrCreateKursiSheet(ss);
+    }
 
-    // 4. Tambah Baris Baru ke Google Sheet
-    sheet.appendRow([
-      new Date(),
-      name,
-      name2,
-      email,
-      "'" + whatsapp, // Tanda petik agar digit 0 di depan nomor HP tidak hilang
-      passengers,
-      regCode,
-      "Terkonfirmasi"
-    ]);
+    // 3. Cek kapasitas kuota slot saat ini
+    var currentUsed = Math.max(0, sheet.getLastRow() - 1);
+    var maxSlot = type === "becak" ? MAX_BECAK : MAX_KURSI;
 
-    // 5. Kembalikan Response Sukses
+    if (currentUsed >= maxSlot) {
+      return createJsonResponse({
+        status: "full",
+        code: "SLOT_FULL",
+        message: "Mohon maaf, kuota pemesanan untuk " + (type === "becak" ? "Becak (" + MAX_BECAK + " unit)" : "Kursi (" + MAX_KURSI + " tempat duduk)") + " sudah penuh."
+      });
+    }
+
+    // 4. Anti-Duplikasi: Cek apakah email sudah terdaftar di tab Becak atau Kursi
+    if (isEmailRegistered(ss, email)) {
+      return createJsonResponse({
+        status: "duplicate",
+        code: "DUPLICATE_REGISTRATION",
+        message: "Akun Google (" + email + ") sudah pernah terdaftar dalam program Drive-In Cinema. 1 akun hanya diperbolehkan mendaftar 1 kali."
+      });
+    }
+
+    // 5. Generate Kode Registrasi Unik
+    var prefix = type === "becak" ? "KHFF-BCK-" : "KHFF-KRS-";
+    var regCode = prefix + Math.floor(1000 + Math.random() * 9000);
+
+    // 6. Masukkan data ke sheet tab yang tepat
+    if (type === "becak") {
+      sheet.appendRow([
+        new Date(),
+        name,
+        name2,
+        email,
+        "'" + whatsapp,
+        "Becak (2 Orang)",
+        regCode,
+        "Terkonfirmasi"
+      ]);
+    } else {
+      sheet.appendRow([
+        new Date(),
+        name,
+        email,
+        "'" + whatsapp,
+        "Kursi (1 Orang)",
+        regCode,
+        "Terkonfirmasi"
+      ]);
+    }
+
+    // 7. Hitung sisa kuota terbaru
+    var updatedUsed = currentUsed + 1;
+    var updatedAvailable = Math.max(0, maxSlot - updatedUsed);
+
     return createJsonResponse({
       status: "success",
       code: "REGISTRATION_SUCCESS",
-      message: "Pendaftaran berhasil! Becak Drive-In Cinema Anda telah terkonfirmasi.",
+      message: "Pendaftaran berhasil! Tiket " + (type === "becak" ? "Becak" : "Kursi") + " Drive-In Cinema Anda telah terkonfirmasi.",
       data: {
         registrationCode: regCode,
+        type: type,
         name: name,
-        name2: name2,
+        name2: type === "becak" ? name2 : undefined,
         email: email,
-        passengers: passengers
+        whatsapp: whatsapp,
+        passengers: type === "becak" ? "2" : "1",
+        remainingSlots: updatedAvailable
       }
     });
 
@@ -152,12 +199,83 @@ function doPost(e) {
   }
 }
 
-// Untuk cek health status endpoint via GET
-function doGet(e) {
-  return createJsonResponse({
-    status: "ok",
-    message: "Google Apps Script Backend KHFF Becak Drive-In Cinema aktif dan siap menerima data."
-  });
+/**
+ * Helper: Ambil atau buat tab Pendaftar_Becak
+ */
+function getOrCreateBecakSheet(ss) {
+  var sheet = ss.getSheetByName(TAB_BECAK);
+  if (!sheet) {
+    sheet = ss.insertSheet(TAB_BECAK);
+    sheet.appendRow([
+      "Timestamp",
+      "Nama Lengkap (Penumpang 1)",
+      "Nama Lengkap (Penumpang 2)",
+      "Email (Google Terverifikasi)",
+      "No. WhatsApp",
+      "Kategori Tiket",
+      "Kode Registrasi",
+      "Status"
+    ]);
+    var header = sheet.getRange(1, 1, 1, 8);
+    header.setFontWeight("bold");
+    header.setBackground("#1d4d4f");
+    header.setFontColor("#ffffff");
+  }
+  return sheet;
+}
+
+/**
+ * Helper: Ambil atau buat tab Pendaftar_Kursi
+ */
+function getOrCreateKursiSheet(ss) {
+  var sheet = ss.getSheetByName(TAB_KURSI);
+  if (!sheet) {
+    sheet = ss.insertSheet(TAB_KURSI);
+    sheet.appendRow([
+      "Timestamp",
+      "Nama Lengkap",
+      "Email (Google Terverifikasi)",
+      "No. WhatsApp",
+      "Kategori Tiket",
+      "Kode Registrasi",
+      "Status"
+    ]);
+    var header = sheet.getRange(1, 1, 1, 7);
+    header.setFontWeight("bold");
+    header.setBackground("#2c4a3e");
+    header.setFontColor("#ffffff");
+  }
+  return sheet;
+}
+
+/**
+ * Helper: Cek apakah email sudah terdaftar di tab Becak maupun Kursi
+ */
+function isEmailRegistered(ss, email) {
+  var tabs = [TAB_BECAK, TAB_KURSI];
+  for (var t = 0; t < tabs.length; t++) {
+    var sheet = ss.getSheetByName(tabs[t]);
+    if (sheet && sheet.getLastRow() > 1) {
+      var lastRow = sheet.getLastRow();
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var emailCol = -1;
+      for (var c = 0; c < headers.length; c++) {
+        if (headers[c].toString().toLowerCase().indexOf("email") !== -1) {
+          emailCol = c + 1;
+          break;
+        }
+      }
+      if (emailCol !== -1) {
+        var values = sheet.getRange(2, emailCol, lastRow - 1, 1).getValues();
+        for (var r = 0; r < values.length; r++) {
+          if (values[r][0].toString().trim().toLowerCase() === email) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
 }
 
 function createJsonResponse(data) {
