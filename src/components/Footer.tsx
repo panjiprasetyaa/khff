@@ -17,8 +17,8 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-6 md:gap-8 lg:gap-10 w-full">
               <div className="flex justify-center items-center gap-3.5 sm:gap-6 md:gap-8">
                 <img
-                  src="/assets/sponsors/dinas-pendidikan.png"
-                  alt="Dinas Pendidikan Kota Yogyakarta"
+                  src="/assets/sponsors/dinas-kebudayaan-yk.png"
+                  alt="Dinas Kebudayaan Kota Yogyakarta"
                   className="h-14 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
@@ -62,8 +62,8 @@ export default function Footer() {
               </div>
               <div className="flex justify-center items-center gap-6 sm:gap-8 md:gap-10">
                 <img
-                  src="/assets/sponsors/dinas-diy-official.png?v=4"
-                  alt="Dinas Pemerintah Daerah DIY"
+                  src="/assets/sponsors/dishub-diy.png"
+                  alt="Dinas Perhubungan Daerah Istimewa Yogyakarta"
                   className="h-14 sm:h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]"
                 />
                 <img
@@ -169,7 +169,7 @@ export default function Footer() {
                 <img
                   src="/assets/sponsors/kamisinema.png"
                   alt="Kamisinema"
-                  className="h-[18px] w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                  className="h-[12px] w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/seling-selasa-screening.png"
@@ -235,7 +235,7 @@ export default function Footer() {
                 <img
                   src="/assets/sponsors/kamisinema.png"
                   alt="Kamisinema"
-                  className="h-6 sm:h-7 md:h-8 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+                  className="h-[15px] sm:h-[18px] md:h-[20px] w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
                 />
                 <img
                   src="/assets/sponsors/seling-selasa-screening.png"
