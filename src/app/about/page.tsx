@@ -40,8 +40,14 @@ export default function AboutUs() {
       </section>
 
       {/* SECTION 2: DESKRIPSI SEJARAH */}
-      <section className="py-20 md:py-28 relative z-20">
-        <div className="container mx-auto px-6 md:px-12 max-w-4xl text-center">
+      <section className="py-20 md:py-28 relative z-20 overflow-hidden">
+        <div className="absolute -top-10 -left-10 opacity-5 md:opacity-10 pointer-events-none w-48 md:w-64 select-none -rotate-12">
+          <img src="/assets/illustrations/tebu.png" alt="" className="w-full h-auto" />
+        </div>
+        <div className="absolute -bottom-10 -right-10 opacity-5 md:opacity-10 pointer-events-none w-48 md:w-64 select-none rotate-12">
+          <img src="/assets/illustrations/gedang.png" alt="" className="w-full h-auto" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 max-w-4xl text-center relative z-10">
           <p className="text-lg md:text-xl font-medium leading-relaxed text-khff-cream/90 whitespace-pre-wrap">
             {aboutDescription}
           </p>
@@ -49,8 +55,31 @@ export default function AboutUs() {
       </section>
 
       {/* SECTION 3: PRAKATA KEPALA DINAS */}
-      <section className="py-24 md:py-32 relative border-t border-khff-cream/10">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      <section className="py-24 md:py-32 relative border-t border-khff-cream/10 overflow-hidden">
+        {/* Floating Background Assets */}
+        <div className="absolute top-10 -right-16 opacity-10 md:opacity-15 pointer-events-none w-72 md:w-96 select-none -rotate-6">
+          <img
+            src="/assets/illustrations/gong.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute -bottom-10 -left-12 opacity-10 md:opacity-15 pointer-events-none w-64 md:w-80 select-none rotate-12">
+          <img
+            src="/assets/illustrations/kendhang.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute top-1/2 right-1/4 opacity-5 md:opacity-10 pointer-events-none w-48 md:w-64 select-none mix-blend-screen">
+          <img
+            src="/assets/illustrations/cahaya.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
             <div className="w-full md:w-5/12 shrink-0 relative">
               <div className="w-full rounded-[2rem] overflow-hidden border-2 border-khff-cream/20 shadow-2xl relative group">
@@ -77,10 +106,30 @@ export default function AboutUs() {
       </section>
 
       {/* SECTION 5: PENGANTAR FESTIVAL */}
-      <section className="py-24 md:py-32 bg-[#173e40] border-y border-khff-cream/10 relative">
-        <div className="absolute top-20 right-10 opacity-5 w-48 pointer-events-none -rotate-12">
-          <img src="/assets/illustrations/terompet.png" alt="" className="w-full" />
+      <section className="py-24 md:py-32 bg-[#173e40] border-y border-khff-cream/10 relative overflow-hidden">
+        {/* Floating Background Assets */}
+        <div className="absolute top-12 -right-10 opacity-10 md:opacity-15 w-64 md:w-80 pointer-events-none -rotate-12 select-none">
+          <img
+            src="/assets/illustrations/terompet.png"
+            alt=""
+            className="w-full h-auto"
+          />
         </div>
+        <div className="absolute -bottom-12 -left-14 opacity-10 md:opacity-15 w-72 md:w-96 pointer-events-none rotate-6 select-none -scale-x-100">
+          <img
+            src="/assets/illustrations/SINGA.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute top-1/3 left-1/3 opacity-5 md:opacity-10 w-52 md:w-64 pointer-events-none select-none mix-blend-screen">
+          <img
+            src="/assets/illustrations/geni.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20">
             <div className="w-full md:w-5/12 shrink-0 relative">
@@ -109,9 +158,36 @@ export default function AboutUs() {
 
       {/* SECTION 6: CATATAN KURATORIAL */}
       <section className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute bottom-10 left-0 opacity-5 w-96 pointer-events-none rotate-12">
-          <img src="/assets/illustrations/bendera.png" alt="" className="w-full" />
+        {/* Floating Background Assets */}
+        <div className="absolute top-16 -left-16 opacity-10 md:opacity-15 w-72 md:w-96 pointer-events-none rotate-12 select-none">
+          <img
+            src="/assets/illustrations/bendera.png"
+            alt=""
+            className="w-full h-auto"
+          />
         </div>
+        <div className="absolute top-1/4 -right-8 opacity-10 md:opacity-15 w-40 md:w-52 pointer-events-none select-none">
+          <img
+            src="/assets/illustrations/butotumpuk.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute bottom-12 right-6 opacity-10 md:opacity-15 w-64 md:w-80 pointer-events-none -rotate-6 select-none">
+          <img
+            src="/assets/illustrations/JATHILANwarna.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute bottom-0 left-1/4 opacity-10 w-full max-w-2xl pointer-events-none select-none mix-blend-screen translate-y-1/3">
+          <img
+            src="/assets/illustrations/genigeni.png"
+            alt=""
+            className="w-full h-auto"
+          />
+        </div>
+
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-serif font-black text-khff-cream mb-4">Catatan Kuratorial</h2>

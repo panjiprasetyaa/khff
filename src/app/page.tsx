@@ -145,12 +145,12 @@ export default function Home() {
                   Yogyakarta yang ramah lingkungan.
                 </p>
                 
-                <div className="inline-flex flex-wrap items-center gap-3 text-xs md:text-sm font-mono text-khff-yellow bg-white/10 px-5 py-2.5 rounded-full backdrop-blur-sm border border-khff-cream/20">
-                  <span>📍 Halaman Pasar Terban</span>
+                <div className="inline-flex flex-wrap items-center gap-3 text-xs md:text-sm font-mono text-khff-yellow bg-white/10 px-5 py-2.5 rounded-full backdrop-blur-sm border border-khff-cream/20 font-bold">
+                  <span>Halaman Pasar Terban</span>
                   <span className="opacity-40">•</span>
-                  <span>🗓️ 17 September 2026</span>
+                  <span>17 September 2026</span>
                   <span className="opacity-40">•</span>
-                  <span>🎟️ Kuota Terbatas</span>
+                  <span>KUOTA TERBATAS!</span>
                 </div>
               </div>
 

@@ -201,10 +201,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             {/* SEGERA HADIR (COMING SOON) DISPLAY */}
             <div className="relative rounded-3xl overflow-hidden border-2 border-khff-pink/30 bg-gradient-to-br from-khff-pink/15 via-white/[0.03] to-khff-yellow/10 p-6 sm:p-8 md:p-16 backdrop-blur-md shadow-2xl">
               <div className="max-w-3xl mx-auto text-center relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-khff-pink/20 border border-khff-pink/40 text-khff-pink text-xs md:text-sm font-mono font-black uppercase tracking-[0.2em] mb-6 shadow-[0_0_25px_rgba(235,93,121,0.35)] animate-pulse">
-                  <Sparkles size={16} /> SEGERA HADIR
-                </div>
-
                 <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-black text-white mb-6 leading-tight">
                   Kurasi Film Sesi {activeTabInfo.label}
                 </h3>
