@@ -57,7 +57,20 @@ export default function FilmDetail({
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Smart Navigation Back Button */}
         <button 
-          onClick={() => router.back()} 
+          onClick={() => {
+            if (programIdQuery) {
+              const isKompetisi = ["purwaseswa", "karyanagari", "mahaditya"].includes(programIdQuery);
+              const isNonKompetisi = ["khff-panorama", "heritage-in-indonesian-cinema", "heritage-in-experimental-cinema"].includes(programIdQuery);
+              if (isKompetisi) {
+                router.push(`/program/kompetisi?tab=${programIdQuery}`);
+                return;
+              } else if (isNonKompetisi) {
+                router.push(`/program/non-kompetisi?tab=${programIdQuery}`);
+                return;
+              }
+            }
+            router.back();
+          }} 
           className="inline-flex items-center gap-3 bg-white/10 border border-khff-cream/20 px-6 py-2.5 rounded-full text-khff-cream hover:bg-khff-yellow hover:text-khff-navy font-mono mb-12 transition-all text-sm font-black shadow-xl cursor-pointer"
         >
           <ArrowLeft size={18} /> KEMBALI

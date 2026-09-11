@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
 import { programs } from "@/data/dummy";
 import { notFound } from "next/navigation";
 import FilmCard from "@/components/FilmCard";
@@ -19,6 +19,38 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // Tab States
   const [activeKompetisiTab, setActiveKompetisiTab] = useState("purwaseswa");
   const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("khff-panorama");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const tabParam = searchParams.get("tab");
+      if (tabParam) {
+        if (["purwaseswa", "karyanagari", "mahaditya"].includes(tabParam)) {
+          setActiveKompetisiTab(tabParam);
+        } else if (["khff-panorama", "heritage-in-indonesian-cinema", "heritage-in-experimental-cinema"].includes(tabParam)) {
+          setActiveNonKompetisiTab(tabParam);
+        }
+      }
+    }
+  }, []);
+
+  const handleKompetisiTabChange = (tabId: string) => {
+    setActiveKompetisiTab(tabId);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", tabId);
+      window.history.replaceState({}, "", url.toString());
+    }
+  };
+
+  const handleNonKompetisiTabChange = (tabId: string) => {
+    setActiveNonKompetisiTab(tabId);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", tabId);
+      window.history.replaceState({}, "", url.toString());
+    }
+  };
 
   // 1. PROGRAM KOMPETISI
   if (id === "kompetisi") {
@@ -67,7 +99,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveKompetisiTab(tab.id)}
+                  onClick={() => handleKompetisiTabChange(tab.id)}
                   className={`px-5 sm:px-8 py-3 sm:py-4 rounded-2xl font-serif font-black text-lg sm:text-xl md:text-2xl transition-all duration-300 shadow-lg cursor-pointer ${
                     activeKompetisiTab === tab.id
                       ? "bg-khff-yellow text-khff-navy scale-105 shadow-[0_0_25px_rgba(236,172,45,0.4)]"
@@ -174,7 +206,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveNonKompetisiTab(tab.id)}
+                  onClick={() => handleNonKompetisiTabChange(tab.id)}
                   className={`px-5 sm:px-7 py-3 sm:py-4 rounded-2xl text-left transition-all duration-300 shadow-lg cursor-pointer ${
                     activeNonKompetisiTab === tab.id
                       ? "bg-khff-pink text-white scale-105 shadow-[0_0_25px_rgba(235,93,121,0.4)]"
