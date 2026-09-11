@@ -298,13 +298,13 @@ export default function DriveInCinemaRegistrationPage() {
       return;
     }
 
-    // 2. Validasi nama penumpang 1
+    // 2. Validasi nama penumpang 1 / penonton
     if (!fullName.trim() && !googleUser.name) {
       setStatusState({
         type: "error",
         message: bookingType === "becak" 
           ? "Silakan masukkan nama lengkap penumpang 1." 
-          : "Silakan masukkan nama lengkap penonton.",
+          : "Silakan masukkan nama lengkap penonton (kursi reguler).",
       });
       return;
     }
@@ -415,9 +415,14 @@ export default function DriveInCinemaRegistrationPage() {
         });
         fetchSlots(); // Refresh live slots
       } else {
+        let errMsg = result.message || "Terjadi kesalahan saat memproses pendaftaran.";
+        // Peringatan jika deployment Google Apps Script belum diperbarui ke versi multi-tab
+        if (bookingType === "kursi" && errMsg.toLowerCase().includes("penumpang 2")) {
+          errMsg = "Backend Google Apps Script belum diperbarui ke versi multi-tab terbaru. Buka Apps Script, simpan Code.gs terbaru, dan pilih Deploy > Manage deployments > Edit > New version.";
+        }
         setStatusState({
           type: "error",
-          message: result.message || "Terjadi kesalahan saat memproses pendaftaran.",
+          message: errMsg,
         });
       }
     } catch (err: unknown) {
@@ -844,6 +849,7 @@ export default function DriveInCinemaRegistrationPage() {
                         onClick={() => {
                           if (!slots.kursi.isFull) {
                             setBookingType("kursi");
+                            setFullName2("");
                             setStatusState(null);
                           }
                         }}
@@ -905,7 +911,7 @@ export default function DriveInCinemaRegistrationPage() {
                         <span className="w-6 h-6 rounded-full bg-khff-yellow text-khff-navy inline-flex items-center justify-center text-xs">
                           3
                         </span>
-                        Data Diri Pendaftar ({bookingType === "becak" ? "Becak" : "Kursi"})
+                        Data Diri Pendaftar ({bookingType === "becak" ? "Becak" : "Kursi Reguler"})
                       </h3>
                       {!googleUser && (
                         <span className="text-[11px] font-mono text-khff-cream/50">
@@ -918,7 +924,7 @@ export default function DriveInCinemaRegistrationPage() {
                     <div>
                       <label className="block text-xs font-mono uppercase tracking-wider text-khff-cream/80 font-bold mb-1.5 flex items-center gap-1.5">
                         <User size={13} className="text-khff-yellow" />
-                        {bookingType === "becak" ? "Nama Lengkap Penumpang 1 *" : "Nama Lengkap Penonton *"}
+                        {bookingType === "becak" ? "Nama Lengkap Penumpang 1 *" : "Nama Lengkap Penonton (Kursi Reguler) *"}
                       </label>
                       <input
                         type="text"
@@ -926,7 +932,7 @@ export default function DriveInCinemaRegistrationPage() {
                         disabled={!googleUser}
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder={bookingType === "becak" ? "Nama lengkap penumpang pertama" : "Nama lengkap penonton"}
+                        placeholder={bookingType === "becak" ? "Nama lengkap penumpang pertama" : "Nama lengkap penonton / penumpang 1"}
                         className="w-full bg-black/40 border border-khff-cream/20 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:border-khff-yellow focus:outline-none font-sans text-sm transition-colors"
                       />
                     </div>

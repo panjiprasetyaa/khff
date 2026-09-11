@@ -9,15 +9,18 @@
  * - Becak: 23 Slot (1 Becak = 2 Penumpang)
  * - Kursi: 40 Slot (1 Kursi = 1 Penumpang)
  * 
- * PANDUAN DEPLOY:
- * 1. Buka spreadsheet Google Drive Anda.
- * 2. Masuk ke menu: Extensions (Ekstensi) > Apps Script.
- * 3. Hapus semua kode default, lalu tempel seluruh kode di bawah ini.
- * 4. Klik tombol "Deploy" (kanan atas) > "Manage deployments" (jika edit) atau "New deployment".
- * 5. Pilih type: "Web app".
- * 6. Set "Execute as": "Me" (email Anda).
- * 7. Set "Who has access": "Anyone" (PENTING: harus Anyone agar form web dapat mengakses data).
- * 8. Klik "Deploy", izinkan hak akses (Authorize Access), lalu salin Web App URL ke .env.local:
+ * PANDUAN UPDATE DEPLOYMENT (PENTING):
+ * 1. Buka project Apps Script Anda di https://script.google.com.
+ * 2. Ganti seluruh isi Code.gs dengan kode terbaru ini, lalu tekan Save (Cmd+S / Ctrl+S).
+ * 3. Klik tombol "Deploy" di kanan atas > pilih "Manage deployments".
+ * 4. Klik ikon pensil (Edit) pada deployment aktif Web App Anda.
+ * 5. Pada dropdown "Version", WAJIB pilih "New version" (Versi Baru).
+ * 6. Klik "Deploy". URL Web App akan tetap sama dan langsung menjalankan logika kursi reguler terbaru.
+ * 
+ * JIKA MEMBUAT DEPLOYMENT BARU:
+ * 1. Klik "Deploy" > "New deployment".
+ * 2. Pilih type: "Web app", Execute as: "Me", Who has access: "Anyone".
+ * 3. Salin Web App URL baru ke .env.local:
  *    NEXT_PUBLIC_DRIVE_IN_SCRIPT_URL=https://script.google.com/macros/s/.../exec
  */
 
@@ -80,7 +83,9 @@ function doPost(e) {
     var contents = e.postData.contents;
     var data = JSON.parse(contents);
 
-    var type = (data.type || "becak").toString().trim().toLowerCase();
+    var rawType = (data.type || "becak").toString().trim().toLowerCase();
+    // Normalisasi jenis pemesanan: Kursi Reguler vs Becak
+    var type = (rawType.indexOf("kursi") !== -1 || rawType.indexOf("reguler") !== -1) ? "kursi" : "becak";
     var email = (data.email || "").toString().trim().toLowerCase();
     var name = (data.name || "").toString().trim();
     var name2 = (data.name2 || "").toString().trim();
@@ -95,14 +100,18 @@ function doPost(e) {
       });
     }
 
+    // Untuk Kursi Reguler: HANYA wajib mengisi nama dan nomor WhatsApp
     if (!name || !whatsapp) {
       return createJsonResponse({
         status: "error",
         code: "INCOMPLETE_DATA",
-        message: "Nama lengkap dan nomor WhatsApp wajib diisi."
+        message: type === "becak"
+          ? "Nama lengkap penumpang 1 dan nomor WhatsApp wajib diisi."
+          : "Nama lengkap dan nomor WhatsApp wajib diisi."
       });
     }
 
+    // Penumpang 2 HANYA wajib untuk unit Becak (kapasitas 2 orang)
     if (type === "becak" && !name2) {
       return createJsonResponse({
         status: "error",
