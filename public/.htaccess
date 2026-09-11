@@ -1,20 +1,16 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Remove trailing slashes (e.g. /program/ -> /program)
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)/$ /$1 [L,R=301]
+  # Ensure directory URLs have a trailing slash so DirectoryIndex loads index.html
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [L,R=301]
 
-  # If visiting /program but program/ exists, DO NOT let Apache add a trailing slash
-  # and instead internally rewrite to program.html
-  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-  RewriteRule ^(.*)$ $1.html [L]
-
-  # If the requested URL is a file or directory that exists, serve it
+  # If file or directory exists, serve directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Fallback for 404
+  # 404 Error page
   ErrorDocument 404 /404.html
 </IfModule>
