@@ -7,7 +7,7 @@
  * 
  * FITUR UTAMA:
  * 1. Multi-Tab Otomatis: Setiap acara memiliki tab terpisah di Spreadsheet.
- * 2. Kuota 30 Slot per Acara: Dikelola ketat dengan LockService serverless.
+ * 2. Kuota 20 Slot per Acara: Dikelola ketat dengan LockService serverless.
  * 3. Anti-Duplikasi: 1 Akun Google hanya dapat memesan 1 slot per acara.
  * 4. Realtime Quota Tracking: Endpoint doGet mengembalikan status sisa slot live.
  * 
@@ -38,7 +38,7 @@
  * ===================================================================
  */
 
-const MAX_SLOTS_PER_EVENT = 30;
+const MAX_SLOTS_PER_EVENT = 20;
 
 // Pemetaan Event ID ke Nama Tab Spreadsheet
 var EVENT_SHEET_MAP = {
@@ -145,13 +145,13 @@ function doPost(e) {
     var tabName = EVENT_SHEET_MAP[eventId];
     var sheet = getOrCreateEventSheet(ss, tabName, eventTitle);
 
-    // 3. Cek Kapasitas Kuota (Maksimal 30 Slot)
+    // 3. Cek Kapasitas Kuota (Maksimal 20 Slot)
     var currentUsed = Math.max(0, sheet.getLastRow() - 1);
     if (currentUsed >= MAX_SLOTS_PER_EVENT) {
       return createJsonResponse({
         status: "full",
         code: "SLOT_FULL",
-        message: "Mohon maaf, kuota 30 slot untuk acara '" + eventTitle + "' sudah penuh."
+        message: "Mohon maaf, kuota 20 slot untuk acara '" + eventTitle + "' sudah penuh."
       });
     }
 

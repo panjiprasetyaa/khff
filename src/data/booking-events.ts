@@ -28,7 +28,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "15.15 WIB",
     venue: "Ruang Audiovisual PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-PUR-",
   },
   {
@@ -43,7 +43,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "19.15 WIB",
     venue: "Ruang Seminar PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-KAR-",
   },
   {
@@ -58,7 +58,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "13.15 WIB",
     venue: "Ruang Seminar PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-MAH-",
   },
 
@@ -75,7 +75,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "13.00 WIB",
     venue: "Ruang Audiovisual PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-PAN-",
   },
   {
@@ -90,7 +90,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "15.15 WIB",
     venue: "Ruang Seminar PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-HIC1-",
   },
   {
@@ -105,7 +105,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "19.30 WIB",
     venue: "Ruang Audiovisual PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-HIC2-",
   },
   {
@@ -120,7 +120,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "15.30 WIB",
     venue: "Ruang Seminar PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-EXP1-",
   },
   {
@@ -135,7 +135,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "19.15 WIB",
     venue: "Ruang Seminar PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-EXP2-",
   },
 
@@ -152,7 +152,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "19.15 WIB",
     venue: "Ruang Kaca Bawah (Selatan) PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-DIR-",
   },
   {
@@ -167,7 +167,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "15.30 WIB",
     venue: "Ruang Kaca Bawah (Selatan) PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-TALK-",
   },
   {
@@ -182,7 +182,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     scheduleTime: "13.00 WIB",
     venue: "Ruang Kaca Bawah (Selatan) PDIN",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
-    maxSlots: 30,
+    maxSlots: 20,
     ticketPrefix: "KHFF-WKP-",
   },
 ];

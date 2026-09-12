@@ -213,7 +213,7 @@ export default async function NonPemutaranDetailPage({
                     Reservasi Kursi
                   </span>
                   <span className="bg-green-500/20 text-green-300 border border-green-500/40 text-xs font-mono px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Kuota 30 Slot
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Kuota 20 Slot
                   </span>
                 </div>
                 <p className="text-xs text-khff-cream/85 leading-relaxed">

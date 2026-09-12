@@ -160,13 +160,13 @@ export default function ProgramBookingModal({
           }
         }
       }
-      // Fallback default 30 slots for all events
+      // Fallback default 20 slots for all events
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
         defaultSlots[e.id] = {
-          total: 30,
+          total: e.maxSlots || 20,
           used: 0,
-          available: 30,
+          available: e.maxSlots || 20,
           isFull: false,
           tabSheet: e.tabSheet,
         };
@@ -178,9 +178,9 @@ export default function ProgramBookingModal({
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
         defaultSlots[e.id] = {
-          total: 30,
+          total: e.maxSlots || 20,
           used: 0,
-          available: 30,
+          available: e.maxSlots || 20,
           isFull: false,
           tabSheet: e.tabSheet,
         };
@@ -242,9 +242,9 @@ export default function ProgramBookingModal({
 
   const currentEvent = getBookingEventById(selectedEventId) || BOOKING_EVENTS[0];
   const currentSlot: SlotDetail = slotsData[currentEvent.id] || {
-    total: 30,
+    total: currentEvent.maxSlots || 20,
     used: 0,
-    available: 30,
+    available: currentEvent.maxSlots || 20,
     isFull: false,
     tabSheet: currentEvent.tabSheet,
   };
@@ -311,7 +311,7 @@ export default function ProgramBookingModal({
     if (currentSlot.isFull) {
       setStatusState({
         type: "full",
-        message: `Mohon maaf, kuota 30 slot untuk acara '${currentEvent.title}' sudah penuh.`,
+        message: `Mohon maaf, kuota 20 slot untuk acara '${currentEvent.title}' sudah penuh.`,
       });
       return;
     }
@@ -371,13 +371,14 @@ export default function ProgramBookingModal({
         // Decrement local slot
         setSlotsData((prev) => {
           const old = prev[currentEvent.id] || {
-            total: 30,
+            total: currentEvent.maxSlots || 20,
             used: 0,
-            available: 30,
+            available: currentEvent.maxSlots || 20,
             isFull: false,
           };
           const newUsed = old.used + 1;
-          const newAvail = Math.max(0, 30 - newUsed);
+          const maxCap = currentEvent.maxSlots || 20;
+          const newAvail = Math.max(0, maxCap - newUsed);
           return {
             ...prev,
             [currentEvent.id]: {
@@ -488,7 +489,7 @@ export default function ProgramBookingModal({
             </h2>
             {statusState?.type !== "success" && (
               <p className="text-khff-cream/75 text-xs sm:text-sm mt-1">
-                Setiap sesi memiliki kuota terbatas <strong className="text-khff-yellow">30 Slot</strong>. Silakan masuk dengan akun Google untuk konfirmasi instan.
+                Setiap sesi memiliki kuota terbatas <strong className="text-khff-yellow">20 Slot</strong>. Silakan masuk dengan akun Google untuk konfirmasi instan.
               </p>
             )}
           </div>
@@ -600,7 +601,7 @@ export default function ProgramBookingModal({
               {/* Event Picker Dropdown */}
               <div>
                 <label className="block font-mono text-xs font-black uppercase tracking-wider text-khff-yellow mb-2">
-                  1. Pilih Acara / Sesi (Kapasitas 30 Slot)
+                  1. Pilih Acara / Sesi (Kapasitas 20 Slot)
                 </label>
                 <div className="relative">
                   <select
@@ -674,8 +675,8 @@ export default function ProgramBookingModal({
                       />
                       <span>
                         {currentSlot.isFull
-                          ? "Slot Penuh (0/30)"
-                          : `Sisa ${currentSlot.available} / 30 Slot`}
+                          ? "Slot Penuh (0/20)"
+                          : `Sisa ${currentSlot.available} / 20 Slot`}
                       </span>
                     </span>
 
@@ -751,10 +752,10 @@ export default function ProgramBookingModal({
                 {currentSlot.isFull ? (
                   <div className="p-4 sm:p-5 rounded-2xl bg-red-500/10 border-2 border-red-500/30 text-center space-y-2">
                     <div className="inline-flex items-center gap-1.5 text-red-300 font-mono text-xs font-bold uppercase tracking-wider">
-                      <AlertCircle size={15} /> Kuota 30 Slot Penuh
+                      <AlertCircle size={15} /> Kuota 20 Slot Penuh
                     </div>
                     <p className="text-xs text-red-200 leading-relaxed max-w-md mx-auto">
-                      Seluruh 30 kursi untuk sesi acara ini telah terisi penuh (Sold Out). Silakan pilih sesi acara lain pada pilihan di atas yang masih tersedia.
+                      Seluruh 20 kursi untuk sesi acara ini telah terisi penuh (Sold Out). Silakan pilih sesi acara lain pada pilihan di atas yang masih tersedia.
                     </p>
                   </div>
                 ) : googleUser ? (
