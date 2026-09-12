@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   Calendar,
-  Clock,
   MapPin,
   Film,
   LayoutGrid,
@@ -237,7 +236,7 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   );
 }
 
-// Render Room Card Sessions (Day 2 & Day 3 Rich View)
+// Render Room Schedule (Day 2 & Day 3 - Consistent with Day 1 Table Style)
 function RoomCardView({
   rooms,
   selectedRoom,
@@ -251,63 +250,146 @@ function RoomCardView({
       : rooms.filter((r) => r.name === selectedRoom);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-16">
       {filteredRooms.map((room, rIdx) => (
         <div
           key={rIdx}
-          className="bg-white/5 border-2 border-khff-cream/20 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-sm relative overflow-hidden"
+          className="bg-white/5 p-6 md:p-8 rounded-3xl border border-khff-cream/15 shadow-xl space-y-6"
         >
-          {/* Room Header */}
-          <div className="flex items-center gap-3 mb-8 pb-5 border-b border-khff-cream/15">
-            <span className="w-3 h-8 bg-khff-yellow rounded-full inline-block" />
-            <h3 className="text-2xl md:text-3xl font-serif font-black text-white">
-              {room.name}
-            </h3>
+          {/* Room Header - Matching Day 1 Track Header */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-khff-cream/15">
+            <div className="flex items-center gap-3">
+              <span className="w-3 h-8 bg-khff-pink rounded-full inline-block" />
+              <h3 className="text-khff-yellow font-serif font-black text-2xl md:text-3xl">
+                {room.name}
+              </h3>
+            </div>
+            <span className="text-xs md:text-sm font-mono font-black uppercase tracking-widest px-4 py-1.5 rounded-full bg-khff-pink text-white shadow-md border border-white/20">
+              PDIN Yogyakarta
+            </span>
           </div>
 
-          {/* Sessions List */}
-          <div className="space-y-6">
+          {/* Desktop Table View (Consistent with Day 1) */}
+          <div className="hidden md:block overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
+            <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[700px]">
+              <table className="w-full text-sm md:text-base">
+                <thead>
+                  <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
+                    <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-44">
+                      Waktu & Durasi
+                    </th>
+                    <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
+                      Lokasi
+                    </th>
+                    <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
+                      Program / Kegiatan
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-khff-cream/10">
+                  {room.sessions.map((session, sIdx) => (
+                    <tr
+                      key={sIdx}
+                      className="group hover:bg-white/10 transition-all duration-300"
+                    >
+                      <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
+                        <div className="text-base">{session.time}</div>
+                        {session.duration && session.duration !== "-" && (
+                          <span className="inline-block mt-1 text-[11px] font-mono text-khff-cream/70 bg-white/10 px-2 py-0.5 rounded border border-white/15">
+                            {session.duration}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
+                        <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-pink font-bold">
+                          {room.name}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 align-top">
+                        <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
+                          {session.title}
+                        </h4>
+
+                        {/* Speaker detail if any */}
+                        {session.speaker && (
+                          <p className="text-sm font-sans text-khff-yellow mt-1">
+                            <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
+                            <span className="font-bold">{session.speaker}</span>
+                          </p>
+                        )}
+
+                        {/* Film compilation list if any */}
+                        {session.films && session.films.length > 0 && (
+                          <div className="mt-4 pt-4 border-t border-khff-cream/10">
+                            <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
+                              <Film size={14} className="text-khff-pink" />
+                              <span>Daftar Film ({session.films.length} Film):</span>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-2.5">
+                              {session.films.map((film, fIdx) => (
+                                <div
+                                  key={fIdx}
+                                  className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 transition-colors"
+                                >
+                                  <div className="font-serif font-bold text-base md:text-lg text-white">
+                                    {film.title}
+                                  </div>
+                                  <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                                    <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                                    <span className="mx-2 text-khff-cream/30">•</span>
+                                    <span>{film.genre}</span>
+                                    <span className="mx-2 text-khff-cream/30">•</span>
+                                    <span>{film.duration}</span>
+                                    <span className="mx-2 text-khff-cream/30">•</span>
+                                    <span>{film.year}</span>
+                                    <span className="mx-2 text-khff-cream/30">•</span>
+                                    <span>{film.origin}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Mobile Card View (Consistent with Day 1) */}
+          <div className="md:hidden space-y-4">
             {room.sessions.map((session, sIdx) => (
               <div
                 key={sIdx}
-                className="bg-black/25 rounded-2xl p-5 md:p-6 border border-khff-cream/15 hover:border-khff-yellow/50 transition-all duration-200"
+                className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
               >
-                {/* Session Header: Time */}
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                  <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-khff-yellow" />
-                    <span className="font-mono font-bold text-khff-yellow text-sm md:text-base">
-                      {session.time}
-                    </span>
-                  </div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
+                    {session.time}
+                  </span>
                   {session.duration && session.duration !== "-" && (
-                    <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-khff-cream/90 border border-khff-cream/20">
+                    <span className="font-mono text-[11px] text-khff-cream/80 font-bold px-2.5 py-0.5 rounded-lg bg-white/10 border border-khff-cream/20">
                       {session.duration}
                     </span>
                   )}
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold">
+                    {room.name}
+                  </span>
                 </div>
-
-                {/* Session Title */}
-                <h4 className="text-xl md:text-2xl font-serif font-black text-white leading-tight mb-1">
+                <h4 className="text-white font-serif font-black text-lg leading-snug">
                   {session.title}
                 </h4>
 
-                {/* Subtitle / Topic */}
-                {session.subtitle && (
-                  <p className="text-khff-cream/80 text-sm md:text-base font-sans mb-3">
-                    {session.subtitle}
-                  </p>
-                )}
-
-                {/* Speaker detail as clean plain text */}
                 {session.speaker && (
-                  <p className="text-sm font-sans text-khff-yellow mb-3">
+                  <p className="text-sm font-sans text-khff-yellow mt-1.5">
                     <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
                     <span className="font-bold">{session.speaker}</span>
                   </p>
                 )}
 
-                {/* Film compilation list if any */}
                 {session.films && session.films.length > 0 && (
                   <div className="mt-4 pt-4 border-t border-khff-cream/10">
                     <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
@@ -315,13 +397,13 @@ function RoomCardView({
                       <span>Daftar Film ({session.films.length} Film):</span>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-2.5">
                       {session.films.map((film, fIdx) => (
                         <div
                           key={fIdx}
-                          className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 transition-colors"
+                          className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10"
                         >
-                          <div className="font-serif font-bold text-base md:text-lg text-white">
+                          <div className="font-serif font-bold text-base text-white">
                             {film.title}
                           </div>
                           <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">

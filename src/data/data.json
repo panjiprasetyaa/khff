@@ -722,8 +722,7 @@
             {
               "time": "12:30 – 13:00",
               "duration": "30 menit",
-              "title": "Persiapan & Pengumuman Agenda",
-              "subtitle": "Informasi jadwal pemutaran film hari kedua"
+              "title": "Persiapan & Pengumuman Agenda"
             },
             {
               "time": "13:00 – 14:53",
@@ -740,7 +739,6 @@
               "time": "16:00 – 17:15",
               "duration": "75 menit (+ Q&A 30m) = 105 menit",
               "title": "Heritage in Experimental Cinema #1",
-              "subtitle": "BEYOND PROVENANCE",
               "films": [
                 { "title": "IDAK-IDAK-IDAK", "director": "Kae Oktorina & Christopher Tym", "genre": "Hybrid", "duration": "45 menit", "year": "2025", "origin": "Indonesia & Belanda" },
                 { "title": "SHARP OBJECTS", "director": "Taufiqurrahman Kifu & Hattie Wade", "genre": "Hybrid", "duration": "16 menit", "year": "2025", "origin": "Indonesia & Belanda" },
@@ -750,8 +748,7 @@
             {
               "time": "17:40 – 19:15",
               "duration": "95 menit",
-              "title": "Break Maghrib & Break Isya",
-              "subtitle": "Istirahat dan Ibadah"
+              "title": "Break Maghrib & Break Isya"
             },
             {
               "time": "19:15 – 20:05",
@@ -770,8 +767,7 @@
             {
               "time": "12:30 – 13:00",
               "duration": "30 menit",
-              "title": "Persiapan & Pengumuman Agenda",
-              "subtitle": "Informasi jadwal kompetisi film"
+              "title": "Persiapan & Pengumuman Agenda"
             },
             {
               "time": "13:00 – 14:16",
@@ -800,8 +796,7 @@
             {
               "time": "17:40 – 19:15",
               "duration": "95 menit",
-              "title": "Break Maghrib & Break Isya",
-              "subtitle": "Istirahat dan Ibadah"
+              "title": "Break Maghrib & Break Isya"
             },
             {
               "time": "19:15 – 20:58",
@@ -814,26 +809,23 @@
           ]
         },
         {
-          "name": "Ruang Kaca Bawah (Selatan)",
+          "name": "Ruang Kaca Bawah",
           "sessions": [
             {
               "time": "12:30 – 13:00",
               "duration": "30 menit",
-              "title": "Persiapan & Pengumuman Agenda",
-              "subtitle": "Informasi agenda festival"
+              "title": "Persiapan & Pengumuman Agenda"
             },
             {
               "time": "13:00 – 18:05",
               "duration": "-",
-              "title": "Area Persiapan & Break",
-              "subtitle": "Persiapan sesi bincang malam"
+              "title": "Area Persiapan & Break"
             },
             {
               "time": "19:15 – 21:15",
               "duration": "120 menit",
               "title": "Director Talk: \"Mistik Melampaui Ketakutan\"",
-              "speaker": "Wregas Bhanuteja",
-              "subtitle": "Sesi bincang bersama Wregas Bhanuteja (Sutradara Film 'Para Perasuk')"
+              "speaker": "Wregas Bhanuteja"
             }
           ]
         },
@@ -843,44 +835,37 @@
             {
               "time": "12:30 – 13:00",
               "duration": "30 menit",
-              "title": "Pembukaan Hari Festival",
-              "subtitle": "Pengumuman agenda festival sepanjang hari"
+              "title": "Pembukaan Hari Festival"
             },
             {
               "time": "13:00 – 15:00",
               "duration": "2 jam",
-              "title": "Playback Sinema",
-              "subtitle": "Pemutaran highlight arsip festival"
+              "title": "Playback Sinema"
             },
             {
               "time": "15:00 – 16:00",
               "duration": "1 jam",
-              "title": "Penampilan Musik & Pengumuman Agenda",
-              "subtitle": "Live music dan informasi kegiatan"
+              "title": "Penampilan Musik & Pengumuman Agenda"
             },
             {
               "time": "16:00 – 18:05",
               "duration": "2 jam 5 menit",
-              "title": "Playback Sinema",
-              "subtitle": "Pemutaran materi visual festival"
+              "title": "Playback Sinema"
             },
             {
               "time": "18:10 – 18:40",
               "duration": "30 menit",
-              "title": "Musik & Pengumuman Agenda",
-              "subtitle": "Pengumuman agenda sesi malam"
+              "title": "Musik & Pengumuman Agenda"
             },
             {
               "time": "19:00 – 19:15",
               "duration": "15 menit",
-              "title": "Pengumuman Agenda Sesi Malam",
-              "subtitle": "Informasi agenda Director Talk & Pemutaran Ibunda"
+              "title": "Pengumuman Agenda Sesi Malam"
             },
             {
               "time": "21:15 – 21:30",
               "duration": "15 menit",
-              "title": "Penutupan Hari Kedua",
-              "subtitle": "Rangkuman hari kedua dan pengantar Day 3"
+              "title": "Penutupan Hari Kedua"
             }
           ]
         }
@@ -895,7 +880,7 @@
       "columns": [
         "Waktu",
         "Ruang Seminar",
-        "Ruang Kaca Bawah (Selatan)",
+        "Ruang Kaca Bawah",
         "Main Stage"
       ],
       "keys": [
@@ -930,8 +915,7 @@
             {
               "time": "12:00 – 13:00",
               "duration": "1 jam",
-              "title": "Persiapan & Pengumuman Agenda",
-              "subtitle": "Briefing penonton dan persiapan screening"
+              "title": "Persiapan & Pengumuman Agenda"
             },
             {
               "time": "13:00 – 15:39",
@@ -956,39 +940,34 @@
             {
               "time": "17:40 – Selesai",
               "duration": "-",
-              "title": "Break Maghrib & Penutupan Festival",
-              "subtitle": "Istirahat dan penutupan kegiatan"
+              "title": "Break Maghrib & Penutupan Festival"
             }
           ]
         },
         {
-          "name": "Ruang Kaca Bawah (Selatan)",
+          "name": "Ruang Kaca Bawah",
           "sessions": [
             {
               "time": "12:00 – 13:00",
               "duration": "1 jam",
-              "title": "Persiapan & Registrasi Peserta",
-              "subtitle": "Persiapan material workshop animasi stop motion"
+              "title": "Persiapan & Registrasi Peserta"
             },
             {
               "time": "13:00 – 16:00",
               "duration": "180 menit (3 jam)",
-              "title": "Heritage Workshop: Stop Motion!",
-              "subtitle": "\"Diam-Diam Bergerak\"",
+              "title": "Heritage Workshop: Stop Motion! \"Diam-Diam Bergerak\"",
               "speaker": "Rimbun Project"
             },
             {
               "time": "16:00 – 18:00",
               "duration": "120 menit (2 jam)",
               "title": "Heritage Talk: \"Merawat yang Hidup\"",
-              "speaker": "Zaki Habibi",
-              "subtitle": "Pembicara: Zaki Habibi (Akademisi & Peneliti Budaya Visual)"
+              "speaker": "Zaki Habibi"
             },
             {
               "time": "18:00 – Selesai",
               "duration": "-",
-              "title": "Break Maghrib",
-              "subtitle": "Istirahat dan Ibadah"
+              "title": "Break Maghrib"
             }
           ]
         },
@@ -998,20 +977,17 @@
             {
               "time": "12:00 – 13:00",
               "duration": "1 jam",
-              "title": "Pembukaan Festival",
-              "subtitle": "Pengumuman agenda hari terakhir festival"
+              "title": "Pembukaan Festival"
             },
             {
               "time": "13:00 – 16:00",
               "duration": "3 jam",
-              "title": "Playback Sinema",
-              "subtitle": "Pemutaran kompilasi video arsip KHFF"
+              "title": "Playback Sinema"
             },
             {
               "time": "16:00 – 18:00",
               "duration": "2 jam",
-              "title": "Persiapan & Break Maghrib",
-              "subtitle": "Transisi menuju penutupan festival"
+              "title": "Persiapan & Break Maghrib"
             }
           ]
         }
