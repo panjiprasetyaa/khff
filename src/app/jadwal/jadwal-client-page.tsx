@@ -8,11 +8,8 @@ import {
   Clock,
   MapPin,
   Film,
-  Mic,
   Table2,
   LayoutGrid,
-  Users,
-  Info,
 } from "lucide-react";
 import dataJson from "@/data/data.json";
 import Link from "next/link";
@@ -25,8 +22,6 @@ interface SingleEvent {
   duration?: string;
   location?: string;
   program: string;
-  remarks?: string;
-  note?: string;
 }
 
 interface MultiTrackEvent {
@@ -35,12 +30,6 @@ interface MultiTrackEvent {
   ruangAudiovisual?: string;
   ruangKacaBawah?: string;
   mainStage?: string;
-  note?: string;
-}
-
-interface RoomActivation {
-  area: string;
-  function: string;
 }
 
 interface SingleTrack {
@@ -48,7 +37,6 @@ interface SingleTrack {
   label: string;
   type: "single";
   events: SingleEvent[];
-  roomActivation?: RoomActivation[];
 }
 
 interface MultiTrack {
@@ -58,7 +46,6 @@ interface MultiTrack {
   columns: string[];
   keys: string[];
   events: MultiTrackEvent[];
-  roomActivation?: RoomActivation[];
 }
 
 type Track = SingleTrack | MultiTrack;
@@ -77,21 +64,13 @@ interface SessionItem {
   duration?: string;
   title: string;
   subtitle?: string;
-  type?: string;
   speaker?: string;
-  note?: string;
   films?: FilmItem[];
 }
 
 interface RoomSchedule {
   name: string;
-  badge?: string;
   sessions: SessionItem[];
-}
-
-interface Officer {
-  role: string;
-  name: string;
 }
 
 interface ScheduleDay {
@@ -105,8 +84,6 @@ interface ScheduleDay {
   keys?: string[];
   tracks?: Track[];
   rooms?: RoomSchedule[];
-  officers?: Officer[];
-  roomActivation?: RoomActivation[];
 }
 
 const schedule = (dataJson.schedule as unknown as ScheduleDay[]).filter(
@@ -175,7 +152,7 @@ const activeTabAccent: Record<string, string> = {
     "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
 };
 
-// Render table for single-track (rows: time, duration, location, program, remarks)
+// Render table for single-track (rows: time, duration, location, program)
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   return (
     <div className="w-full">
@@ -186,7 +163,7 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
             key={i}
             className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
           >
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
               <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
                 {ev.time}
               </span>
@@ -196,20 +173,14 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                 </span>
               )}
               {ev.location && (
-                <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold px-3 py-1 rounded-xl bg-khff-pink/15 border border-khff-pink/30">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold">
                   {ev.location}
                 </span>
               )}
             </div>
-            <h4 className="text-white font-serif font-black text-lg leading-snug mb-2">
+            <h4 className="text-white font-serif font-black text-lg leading-snug">
               {ev.program}
             </h4>
-            {ev.remarks && (
-              <p className="text-khff-cream/80 text-xs md:text-sm font-sans leading-relaxed border-t border-khff-cream/10 pt-2 mt-2">
-                <span className="text-khff-yellow font-mono font-bold text-xs mr-1">Catatan:</span>
-                {ev.remarks}
-              </p>
-            )}
           </div>
         ))}
       </div>
@@ -227,7 +198,7 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                   Lokasi
                 </th>
                 <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
-                  Kegiatan & Remarks
+                  Program / Kegiatan
                 </th>
               </tr>
             </thead>
@@ -247,21 +218,15 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                   </td>
                   <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
                     {ev.location && (
-                      <span className="inline-block bg-white/10 px-3 py-1 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-pink font-bold">
+                      <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-pink font-bold">
                         {ev.location}
                       </span>
                     )}
                   </td>
                   <td className="px-6 py-5 align-top">
-                    <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug mb-1.5">
+                    <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
                       {ev.program}
                     </h4>
-                    {ev.remarks && (
-                      <p className="text-khff-cream/80 text-xs md:text-sm font-sans leading-relaxed">
-                        <span className="text-khff-yellow font-mono font-bold mr-1">Catatan:</span>
-                        {ev.remarks}
-                      </p>
-                    )}
                   </td>
                 </tr>
               ))}
@@ -294,18 +259,11 @@ function RoomCardView({
           className="bg-white/5 border-2 border-khff-cream/20 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-sm relative overflow-hidden"
         >
           {/* Room Header */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-5 border-b border-khff-cream/15">
-            <div className="flex items-center gap-3">
-              <span className="w-3 h-8 bg-khff-yellow rounded-full inline-block" />
-              <h3 className="text-2xl md:text-3xl font-serif font-black text-white">
-                {room.name}
-              </h3>
-            </div>
-            {room.badge && (
-              <span className="font-mono text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-khff-pink/20 text-khff-pink border border-khff-pink/40">
-                {room.badge}
-              </span>
-            )}
+          <div className="flex items-center gap-3 mb-8 pb-5 border-b border-khff-cream/15">
+            <span className="w-3 h-8 bg-khff-yellow rounded-full inline-block" />
+            <h3 className="text-2xl md:text-3xl font-serif font-black text-white">
+              {room.name}
+            </h3>
           </div>
 
           {/* Sessions List */}
@@ -315,7 +273,7 @@ function RoomCardView({
                 key={sIdx}
                 className="bg-black/25 rounded-2xl p-5 md:p-6 border border-khff-cream/15 hover:border-khff-yellow/50 transition-all duration-200"
               >
-                {/* Session Header: Time & Badges */}
+                {/* Session Header: Time */}
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-khff-yellow" />
@@ -323,18 +281,11 @@ function RoomCardView({
                       {session.time}
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {session.duration && session.duration !== "-" && (
-                      <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-khff-cream/90 border border-khff-cream/20">
-                        {session.duration}
-                      </span>
-                    )}
-                    {session.type && (
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-khff-teal/40 text-khff-yellow border border-khff-teal/50">
-                        {session.type}
-                      </span>
-                    )}
-                  </div>
+                  {session.duration && session.duration !== "-" && (
+                    <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-khff-cream/90 border border-khff-cream/20">
+                      {session.duration}
+                    </span>
+                  )}
                 </div>
 
                 {/* Session Title */}
@@ -349,12 +300,12 @@ function RoomCardView({
                   </p>
                 )}
 
-                {/* Speaker pill if any */}
+                {/* Speaker detail as clean plain text */}
                 {session.speaker && (
-                  <div className="inline-flex items-center gap-2 bg-khff-yellow/15 border border-khff-yellow/40 px-3.5 py-1.5 rounded-xl text-xs md:text-sm font-mono font-bold text-khff-yellow mb-4">
-                    <Mic size={14} />
-                    <span>Narasumber: {session.speaker}</span>
-                  </div>
+                  <p className="text-sm font-sans text-khff-yellow mb-3">
+                    <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
+                    <span className="font-bold">{session.speaker}</span>
+                  </p>
                 )}
 
                 {/* Film compilation list if any */}
@@ -369,42 +320,25 @@ function RoomCardView({
                       {session.films.map((film, fIdx) => (
                         <div
                           key={fIdx}
-                          className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                          className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 transition-colors"
                         >
-                          <div>
-                            <div className="font-serif font-bold text-base md:text-lg text-white">
-                              {film.title}
-                            </div>
-                            <div className="text-xs text-khff-cream/70 font-sans mt-0.5">
-                              Sutradara: <span className="text-khff-cream font-medium">{film.director}</span>
-                            </div>
+                          <div className="font-serif font-bold text-base md:text-lg text-white">
+                            {film.title}
                           </div>
-
-                          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono shrink-0">
-                            <span className="px-2 py-0.5 rounded bg-khff-pink/20 text-khff-pink border border-khff-pink/30 font-semibold">
-                              {film.genre}
-                            </span>
-                            <span className="px-2 py-0.5 rounded bg-khff-yellow/15 text-khff-yellow border border-khff-yellow/30 font-bold">
-                              {film.duration}
-                            </span>
-                            <span className="px-2 py-0.5 rounded bg-white/10 text-khff-cream/80 border border-white/20">
-                              {film.year}
-                            </span>
-                            <span className="px-2 py-0.5 rounded bg-white/5 text-khff-cream/70 border border-white/10">
-                              {film.origin}
-                            </span>
+                          <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                            <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                            <span className="mx-2 text-khff-cream/30">•</span>
+                            <span>{film.genre}</span>
+                            <span className="mx-2 text-khff-cream/30">•</span>
+                            <span>{film.duration}</span>
+                            <span className="mx-2 text-khff-cream/30">•</span>
+                            <span>{film.year}</span>
+                            <span className="mx-2 text-khff-cream/30">•</span>
+                            <span>{film.origin}</span>
                           </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-
-                {/* Note if any */}
-                {session.note && (
-                  <div className="mt-3 text-xs font-mono text-khff-yellow/80 flex items-center gap-1.5">
-                    <Info size={13} />
-                    <span>{session.note}</span>
                   </div>
                 )}
               </div>
@@ -481,57 +415,6 @@ function MultiTrackTable({
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-  );
-}
-
-// Room activation cards
-function RoomActivationSection({ rooms }: { rooms: RoomActivation[] }) {
-  if (!rooms || rooms.length === 0) return null;
-  return (
-    <div className="mt-12 pt-8 border-t border-khff-cream/10">
-      <h4 className="text-xs font-mono font-black uppercase tracking-[0.25em] text-khff-pink mb-6 border-l-4 border-khff-pink pl-3">
-        Aktivasi Ruang & Area Pendukung Festival
-      </h4>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {rooms.map((r, i) => (
-          <div
-            key={i}
-            className="bg-white/5 border border-khff-cream/20 rounded-2xl p-5 hover:bg-white/10 transition-all shadow-md"
-          >
-            <p className="text-khff-yellow font-serif font-black text-lg mb-1">
-              {r.area}
-            </p>
-            <p className="text-khff-cream/80 text-sm font-medium leading-relaxed">
-              {r.function}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// Officers Section
-function OfficersSection({ officers }: { officers?: Officer[] }) {
-  if (!officers || officers.length === 0) return null;
-  return (
-    <div className="mt-8 pt-6 border-t border-khff-cream/10">
-      <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-khff-cream/60 mb-4">
-        <Users size={14} className="text-khff-yellow" />
-        <span>Pimpinan & Penanggung Jawab Festival:</span>
-      </div>
-      <div className="flex flex-wrap gap-4">
-        {officers.map((off, idx) => (
-          <div
-            key={idx}
-            className="bg-white/5 border border-khff-cream/20 px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-mono"
-          >
-            <span className="text-khff-cream/70 font-medium">{off.role}:</span>
-            <span className="text-khff-yellow font-bold">{off.name}</span>
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -718,9 +601,6 @@ export default function JadwalClientPage() {
                     <SingleTrackTable events={track.events as SingleEvent[]} />
                   </div>
                 ))}
-
-                <OfficersSection officers={currentDay.officers} />
-                <RoomActivationSection rooms={currentDay.roomActivation ?? []} />
               </div>
             )}
 
@@ -801,8 +681,6 @@ export default function JadwalClientPage() {
                     events={currentDay.events as MultiTrackEvent[]}
                   />
                 )}
-
-                <RoomActivationSection rooms={currentDay.roomActivation ?? []} />
               </div>
             )}
 
@@ -810,7 +688,6 @@ export default function JadwalClientPage() {
             {currentDay.type === "single" && currentDay.events && (
               <div className="space-y-12">
                 <SingleTrackTable events={currentDay.events as SingleEvent[]} />
-                <RoomActivationSection rooms={currentDay.roomActivation ?? []} />
               </div>
             )}
           </div>

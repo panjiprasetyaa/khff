@@ -236,9 +236,6 @@ export default function Home() {
               <div className="lg:col-span-5">
                 <div className="rounded-2xl bg-black/35 border border-white/15 p-6 sm:p-8 space-y-6 shadow-xl">
                   <div className="border-b border-white/15 pb-4 space-y-1 text-center sm:text-left">
-                    <span className="text-[11px] font-mono text-khff-yellow uppercase tracking-widest font-black block">
-                      OFFICIAL ADMISSION PASS
-                    </span>
                     <h4 className="text-xl sm:text-2xl font-serif font-black text-white">
                       Festival Pass KHFF 2026
                     </h4>
