@@ -11,8 +11,9 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Dropdown states
-  const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<"program" | "tentang" | "arsip" | null>(null);
+  const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<"program" | "jadwal" | "tentang" | "arsip" | null>(null);
   const [mobileProgramOpen, setMobileProgramOpen] = useState<boolean | null>(null);
+  const [mobileJadwalOpen, setMobileJadwalOpen] = useState<boolean | null>(null);
   const [mobileAboutOpen, setMobileAboutOpen] = useState<boolean | null>(null);
   const [mobileArsipOpen, setMobileArsipOpen] = useState<boolean | null>(null);
 
@@ -23,10 +24,12 @@ export default function Navbar() {
   const isHomeActive = pathname === "/";
   const isAboutActive = pathname === "/about" || pathname === "/festival-team";
   const isProgramActive = pathname.startsWith("/program");
+  const isJadwalActive = pathname.startsWith("/jadwal");
   const isArsipActive = pathname === "/galeri" || pathname === "/katalog";
 
   // Derived mobile open state (defaults to true if user is on that route, or follows user toggle)
   const isMobileProgramOpen = mobileProgramOpen !== null ? mobileProgramOpen : isProgramActive;
+  const isMobileJadwalOpen = mobileJadwalOpen !== null ? mobileJadwalOpen : isJadwalActive;
   const isMobileAboutOpen = mobileAboutOpen !== null ? mobileAboutOpen : isAboutActive;
   const isMobileArsipOpen = mobileArsipOpen !== null ? mobileArsipOpen : isArsipActive;
 
@@ -69,7 +72,7 @@ export default function Navbar() {
   }, []);
 
   // Hover handlers with debounce
-  const handleMouseEnter = (menu: "program" | "tentang" | "arsip") => {
+  const handleMouseEnter = (menu: "program" | "jadwal" | "tentang" | "arsip") => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -83,7 +86,7 @@ export default function Navbar() {
     }, 150);
   };
 
-  const toggleDesktopDropdown = (menu: "program" | "tentang" | "arsip") => {
+  const toggleDesktopDropdown = (menu: "program" | "jadwal" | "tentang" | "arsip") => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -202,6 +205,73 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* JADWAL DROPDOWN */}
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("jadwal")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              onClick={() => toggleDesktopDropdown("jadwal")}
+              className={`flex items-center gap-1.5 hover:text-khff-yellow transition-colors py-1 cursor-pointer font-mono font-bold tracking-wider ${
+                isJadwalActive ? "text-khff-yellow" : ""
+              }`}
+              aria-expanded={activeDesktopDropdown === "jadwal"}
+            >
+              <span>JADWAL</span>
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${
+                  activeDesktopDropdown === "jadwal" ? "rotate-180 text-khff-yellow" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            <div
+              className={`absolute top-full left-0 pt-2 min-w-[250px] transition-all duration-200 z-50 ${
+                activeDesktopDropdown === "jadwal"
+                  ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                  : "opacity-0 invisible -translate-y-2 pointer-events-none"
+              }`}
+            >
+              <div className="bg-khff-navy/95 backdrop-blur-md border border-khff-cream/20 shadow-2xl rounded-xl p-2 flex flex-col gap-1">
+                <Link
+                  href="/jadwal"
+                  onClick={handleNavClick}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between border-b border-khff-cream/10 mb-1 ${
+                    pathname === "/jadwal"
+                      ? "bg-khff-teal/50 text-khff-yellow"
+                      : "hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                  }`}
+                >
+                  <span>SEMUA JADWAL</span>
+                </Link>
+                <Link
+                  href="/jadwal?day=day-1"
+                  onClick={handleNavClick}
+                  className="px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                >
+                  <span>DAY 1 (KAMIS, 17 SEP)</span>
+                </Link>
+                <Link
+                  href="/jadwal?day=day-2"
+                  onClick={handleNavClick}
+                  className="px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                >
+                  <span>DAY 2 (JUMAT, 18 SEP)</span>
+                </Link>
+                <Link
+                  href="/jadwal?day=day-3"
+                  onClick={handleNavClick}
+                  className="px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                >
+                  <span>DAY 3 (SABTU, 19 SEP)</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* TENTANG KAMI DROPDOWN */}
           <div
             className="relative"
@@ -315,12 +385,6 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
-          {/*
-          <Link href="/jadwal" className="hover:text-khff-yellow transition-colors">
-            JADWAL
-          </Link>
-          */}
           {/* 
           <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
             FESTIVAL GUIDE
@@ -420,6 +484,56 @@ export default function Navbar() {
               )}
             </div>
 
+            {/* JADWAL ACCORDION */}
+            <div className="flex flex-col py-3">
+              <button
+                onClick={() => setMobileJadwalOpen(!isMobileJadwalOpen)}
+                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+              >
+                <span className={isJadwalActive ? "text-khff-yellow" : ""}>JADWAL</span>
+                <ChevronDown
+                  size={20}
+                  className={`transition-transform duration-300 ${
+                    isMobileJadwalOpen ? "rotate-180 text-khff-yellow" : ""
+                  }`}
+                />
+              </button>
+              {isMobileJadwalOpen && (
+                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <Link
+                    href="/jadwal"
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-3 mb-1 ${
+                      pathname === "/jadwal" ? "text-khff-yellow font-black" : "text-khff-cream/80"
+                    }`}
+                    onClick={handleNavClick}
+                  >
+                    SEMUA JADWAL
+                  </Link>
+                  <Link
+                    href="/jadwal?day=day-1"
+                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    onClick={handleNavClick}
+                  >
+                    DAY 1 (KAMIS, 17 SEP)
+                  </Link>
+                  <Link
+                    href="/jadwal?day=day-2"
+                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    onClick={handleNavClick}
+                  >
+                    DAY 2 (JUMAT, 18 SEP)
+                  </Link>
+                  <Link
+                    href="/jadwal?day=day-3"
+                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    onClick={handleNavClick}
+                  >
+                    DAY 3 (SABTU, 19 SEP)
+                  </Link>
+                </div>
+              )}
+            </div>
+
             {/* TENTANG KAMI ACCORDION */}
             <div className="flex flex-col py-3">
               <button
@@ -495,16 +609,6 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
-            {/*
-            <Link
-              href="/jadwal"
-              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
-              onClick={handleNavClick}
-            >
-              JADWAL
-            </Link>
-            */}
             {/*
             <a
               href="/festival-guide.pdf"

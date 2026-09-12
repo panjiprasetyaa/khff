@@ -478,69 +478,219 @@
   ],
   "schedule": [
     {
-      "id": "pre-festival",
-      "day": "Pre-Festival",
-      "date": "Rabu, 16 September 2026",
-      "type": "single",
-      "venue": "PDIN",
-      "events": [
-        {
-          "time": "09.00 – 17.00",
-          "location": "Ruang Meeting (Sekat Kecil)",
-          "program": "Penjurian Kompetisi"
-        },
-        {
-          "time": "09.00 – 17.00",
-          "location": "Ruang Meeting (Sekat Besar)",
-          "program": "Penataan Ruang Sekretariat Panitia"
-        }
-      ],
-      "roomActivation": []
-    },
-    {
       "id": "day-1",
       "day": "Day 1 - Opening",
       "date": "Kamis, 17 September 2026",
-      "type": "single",
+      "type": "split",
       "venue": "Pasar Terban",
-      "events": [
+      "officers": [
+        { "role": "Direktur KHFF", "name": "Siska Raharja" },
+        { "role": "Direktur Program", "name": "Suluh Pamuji" },
+        { "role": "Festival Manager", "name": "Michael Pantouw" }
+      ],
+      "tracks": [
         {
-          "time": "16.00 – 18.30",
-          "location": "Area Tenant",
-          "program": "Aktivasi Tenant & Kuliner"
+          "venue": "Pasar Terban",
+          "label": "Becak Drive In Cinema & Jelajah Becak",
+          "type": "single",
+          "events": [
+            {
+              "time": "16:00 – 16:10",
+              "startTime": "16:00",
+              "endTime": "16:10",
+              "duration": "10 menit",
+              "location": "Pasar Terban",
+              "program": "Registrasi Ulang Peserta",
+              "remarks": "Registrasi ulang, pembagian kebutuhan peserta & briefing singkat"
+            },
+            {
+              "time": "16:10 – 17:40",
+              "startTime": "16:10",
+              "endTime": "17:40",
+              "duration": "1 jam 30 menit",
+              "location": "Rute Kotabaru",
+              "program": "Jelajah Becak",
+              "remarks": "Peserta mulai perjalanan mengikuti rute yang telah ditentukan"
+            },
+            {
+              "time": "17:40 – 17:50",
+              "startTime": "17:40",
+              "endTime": "17:50",
+              "duration": "10 menit",
+              "location": "Pasar Terban",
+              "program": "Break Maghrib",
+              "remarks": "Snack time – Mayora, pengkondisian audience naik ke atas becak (persiapan opening Drive In Cinema Kotabaru)"
+            },
+            {
+              "time": "17:50 – 18:00",
+              "startTime": "17:50",
+              "endTime": "18:00",
+              "duration": "10 menit",
+              "location": "Halaman Pasar Terban",
+              "program": "Opening Becak Drive In Cinema",
+              "remarks": "Voice Over (sinema), Tari pulung + kampung menari"
+            },
+            {
+              "time": "18:00 – 19:59",
+              "startTime": "18:00",
+              "endTime": "19:59",
+              "duration": "1 jam 59 menit",
+              "location": "Halaman Pasar Terban",
+              "program": "Drive in Cinema Kotabaru",
+              "remarks": "Pelaksanaan program Becak Drive In Cinema"
+            }
+          ]
         },
         {
-          "time": "17.30 – 18.45",
-          "location": "Halaman Pasar Terban",
-          "program": "Registrasi Peserta & Becak Drive-In Cinema"
-        },
-        {
-          "time": "19.15 – 20.00",
-          "location": "Lobby Pasar Terban",
-          "program": "Opening Ceremony"
-        },
-        {
-          "time": "20.00 – 20.30",
-          "location": "Lobby Pasar Terban → Halaman Pasar Terban",
-          "program": "Move to Opening Film"
-        },
-        {
-          "time": "20.30 – 22.00",
-          "location": "Halaman Pasar Terban",
-          "program": "Opening Film with Becak Drive-In Cinema & Public Gathering",
-          "note": "Film \"Para Perasuk\""
+          "venue": "Pasar Terban",
+          "label": "Seremoni Pembukaan KHFF 2026",
+          "type": "single",
+          "events": [
+            {
+              "time": "16:00 – 16:30",
+              "startTime": "16:00",
+              "endTime": "16:30",
+              "duration": "30 menit",
+              "location": "Lobby Pembukaan",
+              "program": "Registrasi Tamu & Clear Area",
+              "remarks": "Tamu undangan melakukan registrasi & diarahkan ke area opening"
+            },
+            {
+              "time": "16:30 – 16:45",
+              "startTime": "16:30",
+              "endTime": "16:45",
+              "duration": "15 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Welcoming Music",
+              "remarks": "Penampilan musik akustik sebagai welcoming entertainment"
+            },
+            {
+              "time": "16:45 – 16:47",
+              "startTime": "16:45",
+              "endTime": "16:47",
+              "duration": "2 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Indonesia Raya",
+              "remarks": "MC mempersilahkan tamu menyanyikan lagu Indonesia Raya"
+            },
+            {
+              "time": "16:47 – 16:50",
+              "startTime": "16:47",
+              "endTime": "16:50",
+              "duration": "3 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Opening MC & Doa",
+              "remarks": "MC membuka acara dan memimpin doa bersama"
+            },
+            {
+              "time": "16:50 – 16:55",
+              "startTime": "16:50",
+              "endTime": "16:55",
+              "duration": "5 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Sambutan Direktur KHFF - Siska Raharja",
+              "remarks": "Sambutan Ketua KHFF"
+            },
+            {
+              "time": "16:55 – 17:00",
+              "startTime": "16:55",
+              "endTime": "17:00",
+              "duration": "5 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Sambutan Kepala Dinas Kebudayaan (Kundha Kabudayan) Kota Yogyakarta",
+              "remarks": "Yetti Martanti, S.Sos., M.M. - Sambutan Kepala Dinas Kebudayaan"
+            },
+            {
+              "time": "17:00 – 17:05",
+              "startTime": "17:00",
+              "endTime": "17:05",
+              "duration": "5 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Sambutan Walikota Yogyakarta",
+              "remarks": "Dr. (H.C.) dr. H. Hasto Wardoyo, Sp.OG (K) - Sambutan Walikota Kota Yogyakarta"
+            },
+            {
+              "time": "17:05 – 17:15",
+              "startTime": "17:05",
+              "endTime": "17:15",
+              "duration": "10 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Mengundang Head Officer & Mas Wregas (plus Profile)",
+              "remarks": "Prosesi mengundang: 1. Sambutan Kepala Dinas Kebudayaan Kota Yogyakarta - Yetti Martanti, S.Sos., M.M., 2. Sutradara Film Para Perasuk - Wregas Bhanuteja, 3. Direktur KHFF - Siska Raharja, 4. Direktur Program - Suluh Pamuji, 5. Festival Manager - Michael Pantouw untuk bersiap melakukan Seremoni Pembukaan"
+            },
+            {
+              "time": "17:15 – 17:20",
+              "startTime": "17:15",
+              "endTime": "17:20",
+              "duration": "5 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Opening Ceremony",
+              "remarks": "Prosesi nyebar kembang. Seluruh penari lantai 2 melakukan prosesi nyebar kembang. Penari lantai 1 mulai kesurupan dan dilanjutkan dengan tarian"
+            },
+            {
+              "time": "17:20 – 17:35",
+              "startTime": "17:20",
+              "endTime": "17:35",
+              "duration": "15 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Pertunjukan Tari",
+              "remarks": "Pertunjukan tari sebagai rangkaian opening ceremony"
+            },
+            {
+              "time": "17:35 – 17:40",
+              "startTime": "17:35",
+              "endTime": "17:40",
+              "duration": "5 menit",
+              "location": "Panggung Pembukaan",
+              "program": "Closing & Information Becak Drive In Cinema",
+              "remarks": "MC memberikan informasi terkait rangkaian D.I.C dan agenda selanjutnya"
+            },
+            {
+              "time": "17:40 – 17:50",
+              "startTime": "17:40",
+              "endTime": "17:50",
+              "duration": "10 menit",
+              "location": "Area Pasar Terban",
+              "program": "Break Maghrib & Preparation Becak Drive In Cinema",
+              "remarks": "Break, ISOMA, persiapan talent, peserta, technical & venue untuk D.I.C"
+            },
+            {
+              "time": "17:50 – 18:00",
+              "startTime": "17:50",
+              "endTime": "18:00",
+              "duration": "10 menit",
+              "location": "Halaman Pasar Terban",
+              "program": "Opening Becak Drive In Cinema",
+              "remarks": "Snack time – Mayora, pengkondisian audience naik ke atas becak (persiapan opening Drive In Cinema Kotabaru)"
+            },
+            {
+              "time": "18:00 – 19:59",
+              "startTime": "18:00",
+              "endTime": "19:59",
+              "duration": "1 jam 59 menit",
+              "location": "Halaman Pasar Terban",
+              "program": "Becak Drive In Cinema",
+              "remarks": "Pelaksanaan program Becak Drive In Cinema"
+            }
+          ]
         }
       ],
       "roomActivation": [
         {
           "area": "Lobby Pasar Terban",
-          "function": "Panggung Seremoni & Entertainment"
+          "function": "Panggung Seremoni Pembukaan & Live Acoustic Music"
         },
-        { "area": "Halaman Pasar Terban", "function": "Becak Drive-In Cinema" },
-        { "area": "Area Tenant", "function": "Tenant & Konsumsi" },
         {
-          "area": "Area Parkir",
-          "function": "Parkir dan Jalur Masuk–Keluar Becak"
+          "area": "Halaman Pasar Terban",
+          "function": "Becak Drive-In Cinema & Pemutaran Layar Terbuka"
+        },
+        {
+          "area": "Kawasan Kotabaru",
+          "function": "Rute Jelajah Becak Heritage Kotabaru"
+        },
+        {
+          "area": "Area Tenant & Parkir",
+          "function": "Aktivasi Kuliner Mayora, Registrasi, dan Jalur Becak"
         }
       ]
     },
@@ -549,39 +699,264 @@
       "day": "Day 2 - Festival",
       "date": "Jumat, 18 September 2026",
       "type": "multi-track",
-      "venue": "PDIN",
+      "venue": "Pusat Desain Industri Nasional (PDIN)",
       "columns": [
         "Waktu",
         "Ruang Seminar",
         "Ruang Audiovisual",
-        "Balkon Rumput Lantai 2"
+        "Ruang Kaca Bawah (Selatan)",
+        "Main Stage"
       ],
-      "keys": ["ruangSeminar", "ruangAudiovisual", "balkonRumput"],
+      "keys": [
+        "ruangSeminar",
+        "ruangAudiovisual",
+        "ruangKacaBawah",
+        "mainStage"
+      ],
       "events": [
         {
-          "time": "13.15",
-          "ruangSeminar": "Mahaditya Awards",
-          "ruangAudiovisual": "KHFF Rewind #1",
-          "balkonRumput": "-"
+          "time": "12:30 – 13:00",
+          "ruangSeminar": "Persiapan & Pengumuman Agenda",
+          "ruangAudiovisual": "Persiapan Ruang Audiovisual",
+          "ruangKacaBawah": "-",
+          "mainStage": "Opening MC (Pengumuman Agenda)"
         },
         {
-          "time": "15.15",
-          "ruangSeminar": "National Heritage #1",
-          "ruangAudiovisual": "Purwaseswa",
-          "balkonRumput": "Heritage Talks: Siska Raharja, Sekar Sari, Zaki Habibi, Yetti Martanti",
-          "note": "Film \"Kantata Takwa\""
+          "time": "13:00 – 14:53",
+          "ruangSeminar": "KHFF Panorama (Total: 113m + Q&A 30m = 143m) • Siti Walidah (46m), Barisan Jiwa Doraka (20m), Kudapan Rindu Rasa (19m), Sisupu Wonge (25m)",
+          "ruangAudiovisual": "Kompetisi Purwaseswa (Total: 46m + Q&A 30m = 76m) [13:00 – 14:16] • Mupusti (12m), Serada (7m), Nyanyian di Angkringan (5m), Waled (9m), Anak yang Bertumbuh (8m)",
+          "ruangKacaBawah": "-",
+          "mainStage": "Playback Sinema [13:00 – 15:00]"
         },
         {
-          "time": "19.15",
-          "ruangSeminar": "Karyanagri",
-          "ruangAudiovisual": "International Heritage (Collab with Asian Film Archive)",
-          "balkonRumput": "Directors Talks: Hanung Bramantyo & Wregas Bhanuteja"
+          "time": "15:00 – 16:00",
+          "ruangSeminar": "-",
+          "ruangAudiovisual": "-",
+          "ruangKacaBawah": "-",
+          "mainStage": "MC Insert (Pengumuman Agenda & Penampilan Musik)"
+        },
+        {
+          "time": "16:00 – 18:05",
+          "ruangSeminar": "Heritage in Experimental Cinema #1: BEYOND PROVENANCE (Total: 75m + Q&A 30m = 105m) [16:00 – 17:15] • Idak-Idak-Idak (45m), Sharp Objects (16m), The Stone That Remembers (14m)",
+          "ruangAudiovisual": "Kompetisi Karyanagri (Total: 95m + Q&A 30m = 125m) • Bong (18m), Khatib Gantarang Lalang Bata (12m), Ruang Sesak (26m), Nyanyian Pohon Lontar (11m), Mateos Anin (23m)",
+          "ruangKacaBawah": "-",
+          "mainStage": "Playback Sinema"
+        },
+        {
+          "time": "18:10 – 19:15",
+          "ruangSeminar": "Break Maghrib (17:40 – 18:10) & Break Isya (18:40 – 19:00)",
+          "ruangAudiovisual": "Break Maghrib & Break Isya",
+          "ruangKacaBawah": "-",
+          "mainStage": "MC Insert (Pengumuman Agenda & Penampilan Musik) [18:10 – 18:40 & 19:00 – 19:15]"
+        },
+        {
+          "time": "19:15 – 21:15",
+          "ruangSeminar": "Heritage in Experimental Cinema #2 (Total: 50m + Q&A 30m = 80m) [19:15 – 20:05] • Garden Amidst the Flame (28m), Afterlives (22m)",
+          "ruangAudiovisual": "Heritage in Indonesian Cinema #1 (Total: 103m) [19:15 – 20:58] • IBUNDA (Teguh Karya, 1986)",
+          "ruangKacaBawah": "Director Talk: \"Mistik Melampaui Ketakutan\" (Total: 120m) • Pembicara: Wregas Bhanuteja",
+          "mainStage": "MC Insert (Pengumuman Agenda) [21:15 – 21:30]"
+        }
+      ],
+      "rooms": [
+        {
+          "name": "Ruang Seminar",
+          "badge": "Screening & Q&A",
+          "sessions": [
+            {
+              "time": "12:30 – 13:00",
+              "duration": "30 menit",
+              "title": "Persiapan & Pengumuman Agenda",
+              "subtitle": "Informasi jadwal pemutaran film hari kedua"
+            },
+            {
+              "time": "13:00 – 14:53",
+              "duration": "113 menit (+ Q&A 30m) = 143 menit",
+              "title": "KHFF Panorama",
+              "type": "Kompilasi Film Pendek",
+              "note": "Waktu selesai dan durasi telah disesuaikan",
+              "films": [
+                { "title": "SITI WALIDAH", "director": "Yusron Fuadi", "genre": "Dokumenter", "duration": "46 menit", "year": "2025", "origin": "DI Yogyakarta, Indonesia" },
+                { "title": "BARISAN JIWA DORAKA", "director": "Belva Atsil", "genre": "Dokumenter", "duration": "20 menit", "year": "2025", "origin": "Jawa Barat, Indonesia" },
+                { "title": "KUDAPAN RINDU RASA", "director": "Bilbo Luansa", "genre": "Fiksi", "duration": "19 menit", "year": "2023", "origin": "Kalimantan Barat, Indonesia" },
+                { "title": "SISUPU WONGE", "director": "Gilang Akbar", "genre": "Dokumenter", "duration": "25 menit", "year": "2025", "origin": "Jawa Tengah, Indonesia" }
+              ]
+            },
+            {
+              "time": "16:00 – 17:15",
+              "duration": "75 menit (+ Q&A 30m) = 105 menit",
+              "title": "Heritage in Experimental Cinema #1",
+              "subtitle": "BEYOND PROVENANCE",
+              "type": "Kompilasi Film Pendek",
+              "note": "Waktu selesai dan durasi telah disesuaikan",
+              "films": [
+                { "title": "IDAK-IDAK-IDAK", "director": "Kae Oktorina & Christopher Tym", "genre": "Hybrid", "duration": "45 menit", "year": "2025", "origin": "Indonesia & Belanda" },
+                { "title": "SHARP OBJECTS", "director": "Taufiqurrahman Kifu & Hattie Wade", "genre": "Hybrid", "duration": "16 menit", "year": "2025", "origin": "Indonesia & Belanda" },
+                { "title": "THE STONE THAT REMEMBERS", "director": "Dyantini Adeline", "genre": "Hybrid", "duration": "14 menit", "year": "2025", "origin": "Indonesia & Belanda" }
+              ]
+            },
+            {
+              "time": "17:40 – 19:15",
+              "duration": "95 menit",
+              "title": "Break Maghrib & Break Isya",
+              "subtitle": "Istirahat dan Ibadah"
+            },
+            {
+              "time": "19:15 – 20:05",
+              "duration": "50 menit (+ Q&A 30m) = 80 menit",
+              "title": "Heritage in Experimental Cinema #2",
+              "type": "Kompilasi Film Pendek",
+              "note": "Waktu selesai dan durasi telah disesuaikan",
+              "films": [
+                { "title": "GARDEN AMIDST THE FLAME", "director": "Natasha Tontey", "genre": "Hybrid", "duration": "28 menit", "year": "2022", "origin": "Indonesia" },
+                { "title": "AFTERLIVES", "director": "TA Kusno", "genre": "Hybrid", "duration": "22 menit", "year": "2024", "origin": "Indonesia" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ruang Audiovisual",
+          "badge": "Kompetisi & Film Restorasi",
+          "sessions": [
+            {
+              "time": "12:30 – 13:00",
+              "duration": "30 menit",
+              "title": "Persiapan & Pengumuman Agenda",
+              "subtitle": "Informasi jadwal kompetisi film"
+            },
+            {
+              "time": "13:00 – 14:16",
+              "duration": "46 menit (+ Q&A 30m) = 76 menit",
+              "title": "Kompetisi Purwaseswa",
+              "type": "Kompilasi Film Pendek Pelajar",
+              "films": [
+                { "title": "MUPUSTI", "director": "Ilya Fathimah Taqiyya", "genre": "Dokumenter", "duration": "12 menit", "year": "2025", "origin": "Bandung, Indonesia" },
+                { "title": "SERADA", "director": "Septiyani Putri", "genre": "Dokumenter", "duration": "7 menit", "year": "2025", "origin": "Kebumen, Indonesia" },
+                { "title": "NYANYIAN DI ANGKRINGAN", "director": "Shafiyyah Aida", "genre": "Animasi", "duration": "5 menit", "year": "2026", "origin": "Semarang, Indonesia" },
+                { "title": "WALED", "director": "Miftahul Huda", "genre": "Dokumenter", "duration": "9 menit", "year": "2026", "origin": "Banjarnegara, Indonesia" },
+                { "title": "ANAK YANG BERTUMBUH", "director": "Gede Dika Dheva Ariadi", "genre": "Fiksi", "duration": "8 menit", "year": "2026", "origin": "Denpasar, Indonesia" }
+              ]
+            },
+            {
+              "time": "16:00 – 18:05",
+              "duration": "95 menit (+ Q&A 30m) = 125 menit",
+              "title": "Kompetisi Karyanagri",
+              "type": "Kompilasi Film Pendek Umum / Nasional",
+              "films": [
+                { "title": "BONG", "director": "Destian Rendra", "genre": "Fiksi", "duration": "18 menit", "year": "2024", "origin": "Malang, Jawa Timur" },
+                { "title": "KHATIB GANTARANG LALANG BATA", "director": "Zhaddam A. Nurdin", "genre": "Dokumenter", "duration": "12 menit", "year": "2025", "origin": "Makassar, Sulawesi Selatan" },
+                { "title": "RUANG SESAK", "director": "Muhammad Jaya", "genre": "Fiksi", "duration": "26 menit", "year": "2026", "origin": "Samarinda, Kalimantan Timur" },
+                { "title": "NYANYIAN POHON LONTAR", "director": "Santirta Martendano", "genre": "Fiksi", "duration": "11 menit", "year": "2024", "origin": "Sabu, Nusa Tenggara Timur" },
+                { "title": "MATEOS ANIN", "director": "Gilang Akbar", "genre": "Dokumenter", "duration": "23 menit", "year": "2024", "origin": "Banyumas, Jawa Tengah" }
+              ]
+            },
+            {
+              "time": "17:40 – 19:15",
+              "duration": "95 menit",
+              "title": "Break Maghrib & Break Isya",
+              "subtitle": "Istirahat dan Ibadah"
+            },
+            {
+              "time": "19:15 – 20:58",
+              "duration": "103 menit",
+              "title": "Heritage in Indonesian Cinema #1",
+              "type": "Film Panjang Klasik / Restorasi",
+              "films": [
+                { "title": "IBUNDA", "director": "Teguh Karya", "genre": "Fiksi", "duration": "103 menit", "year": "1986", "origin": "Indonesia" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ruang Kaca Bawah (Selatan)",
+          "badge": "Talks & Public Program",
+          "sessions": [
+            {
+              "time": "12:30 – 13:00",
+              "duration": "30 menit",
+              "title": "Opening MC",
+              "subtitle": "Pengumuman agenda festival"
+            },
+            {
+              "time": "13:00 – 18:05",
+              "duration": "-",
+              "title": "Area Persiapan & Break",
+              "subtitle": "Persiapan technical dan hospitality untuk sesi malam"
+            },
+            {
+              "time": "19:15 – 21:15",
+              "duration": "120 menit",
+              "title": "Director Talk: \"Mistik Melampaui Ketakutan\"",
+              "speaker": "Wregas Bhanuteja",
+              "subtitle": "Sesi bincang mendalam bersama Wregas Bhanuteja (Sutradara Film 'Para Perasuk')",
+              "type": "Sesi Diskusi Eksklusif"
+            }
+          ]
+        },
+        {
+          "name": "Main Stage",
+          "badge": "Panggung Publik & Musik",
+          "sessions": [
+            {
+              "time": "12:30 – 13:00",
+              "duration": "30 menit",
+              "title": "Opening MC",
+              "subtitle": "Pengumuman Agenda Festival Sepanjang Hari"
+            },
+            {
+              "time": "13:00 – 15:00",
+              "duration": "2 jam",
+              "title": "Playback Sinema",
+              "subtitle": "Pemutaran highlight arsip festival & visual installation"
+            },
+            {
+              "time": "15:00 – 16:00",
+              "duration": "1 jam",
+              "title": "MC Insert & Penampilan Musik",
+              "subtitle": "Live performance musik dan update agenda kegiatan"
+            },
+            {
+              "time": "16:00 – 18:05",
+              "duration": "2 jam 5 menit",
+              "title": "Playback Sinema",
+              "subtitle": "Pemutaran materi visual & teaser film festival"
+            },
+            {
+              "time": "18:10 – 18:40",
+              "duration": "30 menit",
+              "title": "MC Insert & Musik",
+              "subtitle": "Pengumuman agenda sesi malam"
+            },
+            {
+              "time": "19:00 – 19:15",
+              "duration": "15 menit",
+              "title": "MC Insert",
+              "subtitle": "Pengumuman agenda Director Talk & Pemutaran Ibunda"
+            },
+            {
+              "time": "21:15 – 21:30",
+              "duration": "15 menit",
+              "title": "MC Insert Penutup",
+              "subtitle": "Rangkuman hari kedua dan pengantar Day 3"
+            }
+          ]
         }
       ],
       "roomActivation": [
         {
-          "area": "Balkon Rumput Lantai 2",
-          "function": "Area Istirahat & Networking"
+          "area": "Ruang Seminar PDIN",
+          "function": "Screening KHFF Panorama & Heritage in Experimental Cinema"
+        },
+        {
+          "area": "Ruang Audiovisual PDIN",
+          "function": "Screening Kompetisi Purwaseswa, Karyanagri, & Film Ibunda"
+        },
+        {
+          "area": "Ruang Kaca Bawah (Selatan)",
+          "function": "Director Talk eksklusif bersama Wregas Bhanuteja"
+        },
+        {
+          "area": "Main Stage PDIN",
+          "function": "Panggung Interaksi Publik, Playback Sinema, & Live Music"
         }
       ]
     },
@@ -590,36 +965,151 @@
       "day": "Day 3 - Festival & Closing",
       "date": "Sabtu, 19 September 2026",
       "type": "multi-track",
-      "venue": "PDIN",
-      "columns": ["Waktu", "Ruang Seminar", "Balkon Rumput", "Lobby PDIN"],
-      "keys": ["ruangSeminar", "balkonRumput", "hallPDIN"],
+      "venue": "Pusat Desain Industri Nasional (PDIN)",
+      "columns": [
+        "Waktu",
+        "Ruang Seminar",
+        "Ruang Kaca Bawah (Selatan)",
+        "Main Stage"
+      ],
+      "keys": [
+        "ruangSeminar",
+        "ruangKacaBawah",
+        "mainStage"
+      ],
       "events": [
         {
-          "time": "13.15",
-          "ruangSeminar": "National Heritage #2",
-          "balkonRumput": "-",
-          "hallPDIN": "-",
-          "note": "Film \"November 1928\""
+          "time": "12:00 – 13:00",
+          "ruangSeminar": "Persiapan & Pengumuman Agenda",
+          "ruangKacaBawah": "Persiapan Ruang Workshop",
+          "mainStage": "Opening MC (Pengumuman Agenda)"
         },
         {
-          "time": "15.15",
-          "ruangSeminar": "KHFF Rewind #2",
-          "balkonRumput": "KHFF Audience Forum / KHFF Community Forum (Facilitated by Non-Screening Programmer Team)",
-          "hallPDIN": "-"
+          "time": "13:00 – 16:00",
+          "ruangSeminar": "Kompetisi Mahaditya (Total: 129m + Q&A 30m = 159m) [13:00 – 15:39] • Niat Ingsun Ngaji (28m), Portrait of Tin's Family (29m), Marandang (20m), Naijan on Hai Aina (30m), Hope (19m)",
+          "ruangKacaBawah": "Heritage Workshop: Stop Motion! \"Diam-Diam Bergerak\" (180m) • by Rimbun Project",
+          "mainStage": "Playback Sinema"
         },
         {
-          "time": "19.15 – 22.00",
-          "ruangSeminar": "-",
-          "balkonRumput": "-",
-          "hallPDIN": "Closing Awarding Ceremony & Closing Film"
+          "time": "16:00 – 18:00",
+          "ruangSeminar": "Heritage in Indonesian Cinema #2 (Total: 72m) [16:00 – 17:12] • KANTATA TAKWA (Erros Djarot & Gotot Prakosa, 2008)",
+          "ruangKacaBawah": "Heritage Talk: \"Merawat yang Hidup\" (Total: 120m) • Pembicara: Zaki Habibi",
+          "mainStage": "Break Maghrib & Persiapan Penutupan Festival"
+        }
+      ],
+      "rooms": [
+        {
+          "name": "Ruang Seminar",
+          "badge": "Kompetisi Independen & Film Heritage",
+          "sessions": [
+            {
+              "time": "12:00 – 13:00",
+              "duration": "1 jam",
+              "title": "Persiapan & Pengumuman Agenda",
+              "subtitle": "Briefing penonton dan persiapan screening"
+            },
+            {
+              "time": "13:00 – 15:39",
+              "duration": "129 menit (+ Q&A 30m) = 159 menit",
+              "title": "Kompetisi Mahaditya",
+              "type": "Kompilasi Film Pendek Independen",
+              "films": [
+                { "title": "NIAT INGSUN NGAJI", "director": "Sri Rahmawati", "genre": "Dokumenter", "duration": "28 menit", "year": "2026", "origin": "Cilacap, Jawa Tengah" },
+                { "title": "PORTRAIT OF TIN'S FAMILY", "director": "Mochammad Legawa Allit Albandika", "genre": "Fiksi", "duration": "29 menit", "year": "2026", "origin": "Lingga, Kepulauan Riau" },
+                { "title": "MARANDANG", "director": "Prabu Hafli Al Hafidz", "genre": "Dokumenter", "duration": "20 menit", "year": "2026", "origin": "Padang, Sumatera Barat" },
+                { "title": "NAIJAN ON HAI AINA", "director": "Wisnu Febri Wardana", "genre": "Dokumenter", "duration": "30 menit", "year": "2025", "origin": "Timor Tengah Selatan, NTT" },
+                { "title": "HOPE", "director": "Angel Ching", "genre": "Fiksi", "duration": "19 menit", "year": "2025", "origin": "Yogyakarta, D.I. Yogyakarta" }
+              ]
+            },
+            {
+              "time": "16:00 – 17:12",
+              "duration": "72 menit",
+              "title": "Heritage in Indonesian Cinema #2",
+              "type": "Film Panjang Dokumenter Musik",
+              "films": [
+                { "title": "KANTATA TAKWA", "director": "Erros Djarot & Gotot Prakosa", "genre": "Dokumenter", "duration": "72 menit", "year": "2008", "origin": "Indonesia" }
+              ]
+            },
+            {
+              "time": "17:40 – Selesai",
+              "duration": "-",
+              "title": "Break Maghrib & Penutupan Festival",
+              "subtitle": "Istirahat dan evaluasi festival"
+            }
+          ]
+        },
+        {
+          "name": "Ruang Kaca Bawah (Selatan)",
+          "badge": "Workshop & Heritage Talk",
+          "sessions": [
+            {
+              "time": "12:00 – 13:00",
+              "duration": "1 jam",
+              "title": "Persiapan & Registrasi Peserta",
+              "subtitle": "Persiapan material workshop animasi stop motion"
+            },
+            {
+              "time": "13:00 – 16:00",
+              "duration": "180 menit (3 jam)",
+              "title": "Heritage Workshop: Stop Motion!",
+              "subtitle": "\"Diam-Diam Bergerak\"",
+              "speaker": "Rimbun Project",
+              "type": "Workshop Partisipatif & Praktik Animasi"
+            },
+            {
+              "time": "16:00 – 18:00",
+              "duration": "120 menit (2 jam)",
+              "title": "Heritage Talk: \"Merawat yang Hidup\"",
+              "speaker": "Zaki Habibi",
+              "subtitle": "Pembicara: Zaki Habibi (Akademisi & Peneliti Budaya Visual)",
+              "type": "Diskusi Publik"
+            },
+            {
+              "time": "18:00 – Selesai",
+              "duration": "-",
+              "title": "Break Maghrib",
+              "subtitle": "Istirahat dan Ibadah"
+            }
+          ]
+        },
+        {
+          "name": "Main Stage",
+          "badge": "Panggung Utama & Penutupan",
+          "sessions": [
+            {
+              "time": "12:00 – 13:00",
+              "duration": "1 jam",
+              "title": "Opening MC",
+              "subtitle": "MC: Pengumuman Agenda Hari Terakhir Festival"
+            },
+            {
+              "time": "13:00 – 16:00",
+              "duration": "3 jam",
+              "title": "Playback Sinema",
+              "subtitle": "Pemutaran kompilasi video arsip KHFF"
+            },
+            {
+              "time": "16:00 – 18:00",
+              "duration": "2 jam",
+              "title": "Persiapan & Break Maghrib",
+              "subtitle": "Transisi menuju penutupan festival"
+            }
+          ]
         }
       ],
       "roomActivation": [
         {
-          "area": "Lobby PDIN",
-          "function": "Kantin & Closing Awarding Ceremony"
+          "area": "Ruang Seminar PDIN",
+          "function": "Screening Kompetisi Mahaditya & Film Legendaris Kantata Takwa"
         },
-        { "area": "Balkon Rumput", "function": "Area Gathering" }
+        {
+          "area": "Ruang Kaca Bawah (Selatan)",
+          "function": "Workshop Stop Motion Rimbun Project & Heritage Talk Zaki Habibi"
+        },
+        {
+          "area": "Main Stage PDIN",
+          "function": "Panggung Utama, Playback Audio Visual, & Closing Gathering"
+        }
       ]
     }
   ],
