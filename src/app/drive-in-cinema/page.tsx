@@ -292,7 +292,7 @@ export default function DriveInCinemaRegistrationPage() {
       setStatusState({
         type: "full",
         message: `Mohon maaf, kuota pemesanan untuk ${
-          bookingType === "becak" ? "Becak Drive-In (23 unit)" : "Kursi Drive-In (40 tempat duduk)"
+          bookingType === "becak" ? "Becak Drive-In" : "Kursi Drive-In"
         } sudah penuh. Silakan pilih jenis tempat duduk yang masih tersedia.`,
       });
       return;
@@ -496,7 +496,7 @@ export default function DriveInCinemaRegistrationPage() {
                 Drive-In Cinema
               </h1>
               <p className="text-khff-cream/90 text-sm leading-relaxed mb-6">
-                Menghadirkan pengalaman unik menikmati sajian sinema lokal di bawah langit malam Kotabaru dengan dua pilihan tempat duduk: Becak Kayuh Tradisional dan Kursi Penonton Reguler.
+                Menghadirkan pengalaman unik menikmati sajian sinema lokal di bawah langit malam Kotabaru dengan dua pilihan tempat duduk: Becak dan Kursi Penonton Reguler.
               </p>
 
               {/* Status Kuota Realtime Card di Kolom Kiri */}
@@ -522,16 +522,16 @@ export default function DriveInCinemaRegistrationPage() {
                   <div>
                     <div className="flex justify-between text-xs font-mono mb-1">
                       <span className="text-white font-bold flex items-center gap-1.5">
-                        <Bike size={14} className="text-khff-yellow" /> Becak (Maks. 2 org)
+                        <Bike size={14} className="text-khff-yellow" /> Becak (2 orang)
                       </span>
                       <span className={`font-bold ${slots.becak.isFull ? "text-red-400" : "text-emerald-400"}`}>
-                        {slots.becak.isFull ? "SOLD OUT" : `Sisa ${slots.becak.available} / ${slots.becak.total}`}
+                        {slots.becak.isFull ? "SOLD OUT" : `Sisa ${slots.becak.available} / 50`}
                       </span>
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 rounded-full ${slots.becak.isFull ? "bg-red-400" : "bg-emerald-400"}`}
-                        style={{ width: `${Math.min(100, (slots.becak.used / slots.becak.total) * 100)}%` }}
+                        style={{ width: `${Math.min(100, ((27 + slots.becak.used) / 50) * 100)}%` }}
                       />
                     </div>
                   </div>
@@ -540,16 +540,16 @@ export default function DriveInCinemaRegistrationPage() {
                   <div>
                     <div className="flex justify-between text-xs font-mono mb-1">
                       <span className="text-white font-bold flex items-center gap-1.5">
-                        <Armchair size={14} className="text-khff-pink" /> Kursi (1 org)
+                        <Armchair size={14} className="text-khff-pink" /> Kursi (1 orang)
                       </span>
                       <span className={`font-bold ${slots.kursi.isFull ? "text-red-400" : "text-emerald-400"}`}>
-                        {slots.kursi.isFull ? "SOLD OUT" : `Sisa ${slots.kursi.available} / ${slots.kursi.total}`}
+                        {slots.kursi.isFull ? "SOLD OUT" : `Sisa ${slots.kursi.available} / 80`}
                       </span>
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
                       <div 
                         className={`h-full transition-all duration-500 rounded-full ${slots.kursi.isFull ? "bg-red-400" : "bg-emerald-400"}`}
-                        style={{ width: `${Math.min(100, (slots.kursi.used / slots.kursi.total) * 100)}%` }}
+                        style={{ width: `${Math.min(100, ((40 + slots.kursi.used) / 80) * 100)}%` }}
                       />
                     </div>
                   </div>
@@ -585,8 +585,8 @@ export default function DriveInCinemaRegistrationPage() {
                   <div>
                     <span className="block font-bold text-white">Pilihan Tempat Duduk</span>
                     <span className="text-khff-cream/70 text-xs leading-relaxed block">
-                      • <strong>Becak Kayuh</strong>: 23 Slot (Maks. 2 orang/unit)<br />
-                      • <strong>Kursi Reguler</strong>: 40 Slot (1 orang/kursi)
+                      • <strong>Becak</strong>: Tersedia 23/50 Slot (2 orang/unit)<br />
+                      • <strong>Kursi Reguler</strong>: Tersedia 40/80 Slot (1 orang/kursi)
                     </span>
                   </div>
                 </div>
@@ -828,7 +828,7 @@ export default function DriveInCinemaRegistrationPage() {
                             Becak Drive-In
                           </h4>
                           <p className="text-xs text-khff-cream/70 leading-relaxed mb-4">
-                            Menonton sinema langsung dari atas becak tradisional (1 unit becak untuk 2 orang penumpang).
+                            Menonton sinema langsung dari atas becak (1 unit becak untuk 2 orang penumpang).
                           </p>
                         </div>
 
@@ -839,7 +839,7 @@ export default function DriveInCinemaRegistrationPage() {
                             slots.becak.isFull ? "text-red-400" : "text-emerald-400"
                           }`}>
                             {!slots.becak.isFull && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
-                            {slots.becak.isFull ? "0 / 23 (Penuh)" : `${slots.becak.available} dari ${slots.becak.total} Unit`}
+                            {slots.becak.isFull ? "0 / 50 (Penuh)" : `${slots.becak.available} dari 50 Unit`}
                           </span>
                         </div>
                       </div>
@@ -897,7 +897,7 @@ export default function DriveInCinemaRegistrationPage() {
                             slots.kursi.isFull ? "text-red-400" : "text-emerald-400"
                           }`}>
                             {!slots.kursi.isFull && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
-                            {slots.kursi.isFull ? "0 / 40 (Penuh)" : `${slots.kursi.available} dari ${slots.kursi.total} Kursi`}
+                            {slots.kursi.isFull ? "0 / 80 (Penuh)" : `${slots.kursi.available} dari 80 Kursi`}
                           </span>
                         </div>
                       </div>

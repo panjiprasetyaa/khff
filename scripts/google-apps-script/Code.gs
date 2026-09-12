@@ -136,7 +136,7 @@ function doPost(e) {
       return createJsonResponse({
         status: "full",
         code: "SLOT_FULL",
-        message: "Mohon maaf, kuota pemesanan untuk " + (type === "becak" ? "Becak (" + MAX_BECAK + " unit)" : "Kursi (" + MAX_KURSI + " tempat duduk)") + " sudah penuh."
+        message: "Mohon maaf, kuota pemesanan untuk " + (type === "becak" ? "Becak Drive-In" : "Kursi Drive-In") + " sudah penuh."
       });
     }
 

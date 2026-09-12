@@ -77,35 +77,50 @@ export default function Footer() {
             {/* Garis Divider */}
             <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-khff-navy/25 to-transparent my-1 sm:my-2" />
 
-            {/* Hotel Hospitality Sponsors: 5 Logos (2 + 3 on Mobile, 5 on Desktop) */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 w-full">
-              <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
+            {/* Hotel Hospitality Sponsors: 8 Logos (4 + 4 on Mobile, 8 on Desktop) */}
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 md:gap-7 lg:gap-8 w-full">
+              <div className="flex justify-center items-center gap-3 sm:gap-5 md:gap-7 lg:gap-8 flex-wrap">
                 <img
                   src="/assets/sponsors/harper-malioboro.png"
                   alt="Harper Malioboro Yogyakarta"
-                  className="h-6 sm:h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                  className="h-5 sm:h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
                 <img
                   src="/assets/sponsors/the-101-hotel.png?v=2"
                   alt="THE 1O1 Hotel Yogyakarta Tugu"
-                  className="h-7 sm:h-11 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+                  className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
-              </div>
-              <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8">
                 <img
                   src="/assets/sponsors/aston-gejayan.png?v=3"
                   alt="ASTON Gejayan Yogyakarta"
-                  className="h-7 sm:h-11 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+                  className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
+                <img
+                  src="/assets/sponsors/the-prajan-hotel.png"
+                  alt="The Prajan Hotel & Villas"
+                  className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+                />
+              </div>
+              <div className="flex justify-center items-center gap-3.5 sm:gap-5 md:gap-7 lg:gap-8 flex-wrap">
                 <img
                   src="/assets/sponsors/nueve-hotel.png"
                   alt="Nueve Jogja Hotel"
-                  className="h-8 sm:h-11 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                  className="h-7 sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
                 <img
                   src="/assets/sponsors/aveon-hotel.png"
                   alt="Aveon Hotel Yogyakarta"
-                  className="h-8 sm:h-12 md:h-14 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                  className="h-7 sm:h-11 md:h-13 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                />
+                <img
+                  src="/assets/sponsors/pop-hotel.png"
+                  alt="POP! Hotel Sangaji Yogyakarta"
+                  className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                />
+                <img
+                  src="/assets/sponsors/favehotel.png"
+                  alt="favehotel Yogyakarta"
+                  className="h-[18px] sm:h-[22px] md:h-[26px] w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
               </div>
             </div>

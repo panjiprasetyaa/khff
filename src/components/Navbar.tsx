@@ -11,7 +11,8 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Dropdown states
-  const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<"tentang" | "arsip" | null>(null);
+  const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<"program" | "tentang" | "arsip" | null>(null);
+  const [mobileProgramOpen, setMobileProgramOpen] = useState<boolean | null>(null);
   const [mobileAboutOpen, setMobileAboutOpen] = useState<boolean | null>(null);
   const [mobileArsipOpen, setMobileArsipOpen] = useState<boolean | null>(null);
 
@@ -25,6 +26,7 @@ export default function Navbar() {
   const isArsipActive = pathname === "/galeri" || pathname === "/katalog";
 
   // Derived mobile open state (defaults to true if user is on that route, or follows user toggle)
+  const isMobileProgramOpen = mobileProgramOpen !== null ? mobileProgramOpen : isProgramActive;
   const isMobileAboutOpen = mobileAboutOpen !== null ? mobileAboutOpen : isAboutActive;
   const isMobileArsipOpen = mobileArsipOpen !== null ? mobileArsipOpen : isArsipActive;
 
@@ -67,7 +69,7 @@ export default function Navbar() {
   }, []);
 
   // Hover handlers with debounce
-  const handleMouseEnter = (menu: "tentang" | "arsip") => {
+  const handleMouseEnter = (menu: "program" | "tentang" | "arsip") => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -81,7 +83,7 @@ export default function Navbar() {
     }, 150);
   };
 
-  const toggleDesktopDropdown = (menu: "tentang" | "arsip") => {
+  const toggleDesktopDropdown = (menu: "program" | "tentang" | "arsip") => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -121,16 +123,84 @@ export default function Navbar() {
             BERANDA
           </Link>
 
-          {/* PROGRAM */}
-          <Link
-            href="/program"
-            onClick={handleNavClick}
-            className={`hover:text-khff-yellow transition-colors ${
-              isProgramActive ? "text-khff-yellow" : ""
-            }`}
+          {/* PROGRAM DROPDOWN */}
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("program")}
+            onMouseLeave={handleMouseLeave}
           >
-            PROGRAM
-          </Link>
+            <button
+              onClick={() => toggleDesktopDropdown("program")}
+              className={`flex items-center gap-1.5 hover:text-khff-yellow transition-colors py-1 cursor-pointer font-mono font-bold tracking-wider ${
+                isProgramActive ? "text-khff-yellow" : ""
+              }`}
+              aria-expanded={activeDesktopDropdown === "program"}
+            >
+              <span>PROGRAM</span>
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${
+                  activeDesktopDropdown === "program" ? "rotate-180 text-khff-yellow" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            <div
+              className={`absolute top-full left-0 pt-2 min-w-[240px] transition-all duration-200 z-50 ${
+                activeDesktopDropdown === "program"
+                  ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                  : "opacity-0 invisible -translate-y-2 pointer-events-none"
+              }`}
+            >
+              <div className="bg-khff-navy/95 backdrop-blur-md border border-khff-cream/20 shadow-2xl rounded-xl p-2 flex flex-col gap-1">
+                <Link
+                  href="/program"
+                  onClick={handleNavClick}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between border-b border-khff-cream/10 mb-1 ${
+                    pathname === "/program"
+                      ? "bg-khff-teal/50 text-khff-yellow"
+                      : "hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                  }`}
+                >
+                  <span>SEMUA PROGRAM</span>
+                </Link>
+                <Link
+                  href="/program/kompetisi"
+                  onClick={handleNavClick}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between ${
+                    pathname.startsWith("/program/kompetisi")
+                      ? "bg-khff-teal/50 text-khff-yellow"
+                      : "hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                  }`}
+                >
+                  <span>PROGRAM KOMPETISI</span>
+                </Link>
+                <Link
+                  href="/program/non-kompetisi"
+                  onClick={handleNavClick}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between ${
+                    pathname.startsWith("/program/non-kompetisi")
+                      ? "bg-khff-teal/50 text-khff-yellow"
+                      : "hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                  }`}
+                >
+                  <span>PROGRAM NON-KOMPETISI</span>
+                </Link>
+                <Link
+                  href="/program/non-pemutaran"
+                  onClick={handleNavClick}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider transition-colors flex items-center justify-between ${
+                    pathname.startsWith("/program/non-pemutaran")
+                      ? "bg-khff-teal/50 text-khff-yellow"
+                      : "hover:bg-khff-teal/30 hover:text-khff-yellow text-khff-cream"
+                  }`}
+                >
+                  <span>PROGRAM NON-PEMUTARAN</span>
+                </Link>
+              </div>
+            </div>
+          </div>
 
           {/* TENTANG KAMI DROPDOWN */}
           <div
@@ -294,16 +364,61 @@ export default function Navbar() {
               BERANDA
             </Link>
 
-            {/* PROGRAM */}
-            <Link
-              href="/program"
-              className={`text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5 ${
-                isProgramActive ? "text-khff-yellow" : ""
-              }`}
-              onClick={handleNavClick}
-            >
-              PROGRAM
-            </Link>
+            {/* PROGRAM ACCORDION */}
+            <div className="flex flex-col py-3">
+              <button
+                onClick={() => setMobileProgramOpen(!isMobileProgramOpen)}
+                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+              >
+                <span className={isProgramActive ? "text-khff-yellow" : ""}>PROGRAM</span>
+                <ChevronDown
+                  size={20}
+                  className={`transition-transform duration-300 ${
+                    isMobileProgramOpen ? "rotate-180 text-khff-yellow" : ""
+                  }`}
+                />
+              </button>
+              {isMobileProgramOpen && (
+                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <Link
+                    href="/program"
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-3 mb-1 ${
+                      pathname === "/program" ? "text-khff-yellow font-black" : "text-khff-cream/80"
+                    }`}
+                    onClick={handleNavClick}
+                  >
+                    SEMUA PROGRAM
+                  </Link>
+                  <Link
+                    href="/program/kompetisi"
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                      pathname.startsWith("/program/kompetisi") ? "text-khff-yellow font-black" : "text-khff-cream/80"
+                    }`}
+                    onClick={handleNavClick}
+                  >
+                    PROGRAM KOMPETISI
+                  </Link>
+                  <Link
+                    href="/program/non-kompetisi"
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                      pathname.startsWith("/program/non-kompetisi") ? "text-khff-yellow font-black" : "text-khff-cream/80"
+                    }`}
+                    onClick={handleNavClick}
+                  >
+                    PROGRAM NON-KOMPETISI
+                  </Link>
+                  <Link
+                    href="/program/non-pemutaran"
+                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                      pathname.startsWith("/program/non-pemutaran") ? "text-khff-yellow font-black" : "text-khff-cream/80"
+                    }`}
+                    onClick={handleNavClick}
+                  >
+                    PROGRAM NON-PEMUTARAN
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* TENTANG KAMI ACCORDION */}
             <div className="flex flex-col py-3">

@@ -11,7 +11,7 @@ export default function ProgramList() {
     {
       id: "kompetisi",
       title: "Program Kompetisi",
-      subtitle: ["Purwaseswa", "Karyanagari", "Mahaditya"],
+      subtitle: ["Purwaseswa", "Karyanagri", "Mahaditya"],
       description:
         "Pemutaran film hasil submisi terbuka yang telah melalui proses kurasi, sekaligus menjadi ruang kompetisi bagi sineas untuk memperebutkan penghargaan dalam berbagai kategori.",
       bgClass: "bg-khff-yellow text-khff-navy border-khff-yellow",
@@ -37,13 +37,13 @@ export default function ProgramList() {
     {
       id: "non-pemutaran",
       title: "Program Non-Pemutaran",
-      subtitle: ["Workshop", "Public Lecture"],
+      subtitle: ["Heritage Talks", "Director Talks", "Workshop"],
       description:
         "Ruang interaksi yang menghadirkan berbagai kegiatan untuk belajar, berdiskusi, dan merayakan keberagaman budaya melalui film.",
       bgClass: "bg-white text-khff-navy border-white",
       tagClass: "bg-khff-navy text-white",
       asset: "/assets/illustrations/kendhang.png",
-      cta: "Lihat Detail & Pendaftaran",
+      cta: "Lihat Detail & Catatan Program",
     },
   ];
 

@@ -15,11 +15,20 @@ export interface Film {
   email?: string;
 }
 
+export interface ProgramSession {
+  id: string;
+  title: string;
+  subtitle?: string;
+  filmIds: string[];
+  films: Film[];
+}
+
 export interface Program {
   id: string;
   name: string;
   description: string;
   films: Film[];
+  sessions?: ProgramSession[];
 }
 
 // Menentukan apakah proses kurasi sedang berlangsung (menampilkan placeholder)
@@ -29,14 +38,29 @@ export const IS_CURATION_ONGOING = false;
 export const films: Record<string, Film> = data.films as unknown as Record<string, Film>;
 
 // Mengonversi referensi filmIds di JSON kembali menjadi array object Film untuk UI
-export const programs: Program[] = data.programs.map((program) => ({
-  id: program.id,
-  name: program.name,
-  description: program.description,
-  films: program.filmIds
-    .map((id) => (data.films as unknown as Record<string, Film>)[id])
-    .filter(Boolean)
-}));
+export const programs: Program[] = data.programs.map((program) => {
+  const filmMap = data.films as unknown as Record<string, Film>;
+  const rawSessions = (program as { sessions?: { id: string; title: string; subtitle?: string; filmIds: string[] }[] }).sessions;
+  const sessions: ProgramSession[] | undefined = rawSessions
+    ? rawSessions.map((session) => ({
+        id: session.id,
+        title: session.title,
+        subtitle: session.subtitle,
+        filmIds: session.filmIds,
+        films: session.filmIds.map((id) => filmMap[id]).filter(Boolean),
+      }))
+    : undefined;
+
+  return {
+    id: program.id,
+    name: program.name,
+    description: program.description,
+    films: program.filmIds
+      .map((id) => filmMap[id])
+      .filter(Boolean),
+    sessions,
+  };
+});
 
 export const specialPrograms = data.specialPrograms;
 export const schedule = data.schedule;

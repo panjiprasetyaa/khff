@@ -1,6 +1,13 @@
 export async function generateStaticParams() {
   const { programs } = await import("@/data/dummy");
-  const customIds = ["kompetisi", "non-kompetisi", "non-pemutaran"];
+  const customIds = [
+    "kompetisi",
+    "non-kompetisi",
+    "non-pemutaran",
+    "director-talks",
+    "heritage-talks",
+    "workshop-stop-motion",
+  ];
   const programIds = programs.map((p) => p.id);
   const allIds = Array.from(new Set([...customIds, ...programIds]));
   

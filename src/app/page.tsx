@@ -49,7 +49,7 @@ const homepageSchedule = [
       },
       {
         time: "19.15",
-        name: "Karyanagari & International Heritage",
+        name: "Karyanagri & International Heritage",
         location: "PDIN",
       },
     ],

@@ -73,7 +73,7 @@ const venueSummaries: Record<
     title: "Sesi Persiapan & Penjurian",
     venue: "Pusat Desain Industri Nasional (PDIN)",
     description:
-      "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Purwaseswa, Karyanagari, dan Mahaditya.",
+      "Pusat kegiatan persiapan teknis, registrasi ulang tamu undangan festival, ruang sekretariat utama, serta sesi penjurian akhir untuk program kompetisi Purwaseswa, Karyanagri, dan Mahaditya.",
     highlights: [
       "Sekretariat & Hospitality",
       "Ruang Penjurian Resmi",
@@ -97,7 +97,7 @@ const venueSummaries: Record<
     description:
       "PDIN menjadi pusat kegiatan hari kedua secara penuh, dengan tiga ruang beraktivitas paralel: Ruang Seminar untuk pengumuman Awards, Ruang Audiovisual untuk screening kompetisi dan heritage, serta Balkon Rumput Lantai 2 untuk forum dan sesi bincang bersama sineas.",
     highlights: [
-      "Purwaseswa, Karyanagari & Mahaditya",
+      "Purwaseswa, Karyanagri & Mahaditya",
       "Screening National & International Heritage",
       "Heritage Talks & Directors Talks",
     ],
