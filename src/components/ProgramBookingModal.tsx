@@ -154,7 +154,23 @@ export default function ProgramBookingModal({
         if (res.ok) {
           const data = await res.json();
           if (data && data.slots) {
-            setSlotsData(data.slots);
+            const normalizedSlots: Record<string, SlotDetail> = {};
+            BOOKING_EVENTS.forEach((e) => {
+              const remote =
+                data.slots[e.id] ||
+                (e.tabSheet ? data.slots[e.tabSheet] : null);
+              const maxCap = e.maxSlots || 20;
+              const used = remote ? Number(remote.used) || 0 : 0;
+              const available = Math.max(0, maxCap - used);
+              normalizedSlots[e.id] = {
+                total: maxCap,
+                used: used,
+                available: available,
+                isFull: available <= 0,
+                tabSheet: e.tabSheet,
+              };
+            });
+            setSlotsData(normalizedSlots);
             setLastRefreshed(new Date());
             return;
           }
@@ -673,8 +689,8 @@ export default function ProgramBookingModal({
                       />
                       <span>
                         {currentSlot.isFull
-                          ? "Slot Penuh (0/20)"
-                          : `Sisa ${currentSlot.available} / 20 Slot`}
+                          ? `Slot Penuh (0/${currentSlot.total || 20})`
+                          : `Sisa ${Math.min(currentSlot.available, currentSlot.total || 20)} / ${currentSlot.total || 20} Slot`}
                       </span>
                     </span>
 

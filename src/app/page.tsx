@@ -176,14 +176,15 @@ export default function Home() {
 
               {/* Tombol Pendaftaran di Kanan */}
               <div className="flex flex-col items-start lg:items-end gap-3 lg:pr-4">
-                <Link
-                  href="/drive-in-cinema"
-                  className="w-full sm:w-auto inline-flex items-center justify-center bg-khff-yellow text-khff-navy hover:bg-khff-pink hover:text-white font-mono font-black text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(238,173,47,0.35)] hover:shadow-[0_0_35px_rgba(225,76,113,0.5)] hover:scale-105 cursor-pointer uppercase tracking-wider text-center"
+                <button
+                  type="button"
+                  disabled
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-white/20 text-white/50 border border-white/20 font-mono font-black text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full cursor-not-allowed uppercase tracking-wider text-center select-none"
                 >
-                  <span>Daftar Sekarang</span>
-                </Link>
+                  <span>SOLD OUT</span>
+                </button>
                 <span className="text-[11px] sm:text-xs font-mono text-khff-cream/70 tracking-wider">
-                  *1 Akun Google = 1 Unit Becak
+                  *Kuota pendaftaran telah habis
                 </span>
               </div>
             </div>
