@@ -481,9 +481,9 @@ export default function ProgramBookingModal({
 
           {/* Modal Header */}
           <div className="pr-10 mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-khff-yellow/20 border border-khff-yellow/40 text-khff-yellow font-mono text-[11px] font-black uppercase tracking-wider mb-2">
-              <Ticket size={13} /> Reservasi Tiket Program KHFF 2026
-            </div>
+            <span className="inline-block px-3 py-1 rounded-full bg-khff-yellow text-khff-navy font-mono text-[11px] font-black uppercase tracking-wider mb-2">
+              Reservasi Tiket Program KHFF 2026
+            </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-black text-white leading-snug">
               Pemesanan Tiket Acara
             </h2>
@@ -497,9 +497,7 @@ export default function ProgramBookingModal({
           {/* SUCCESS VIEW: DIGITAL TICKET PASS */}
           {statusState?.type === "success" ? (
             <div className="space-y-6">
-              <div className="p-6 rounded-3xl bg-gradient-to-br from-[#1e4544] to-[#122e2f] border-2 border-khff-yellow shadow-2xl text-khff-cream relative overflow-hidden">
-                {/* Visual Accent */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-khff-yellow/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+              <div className="p-6 rounded-3xl bg-[#163839] border-2 border-khff-yellow shadow-2xl text-khff-cream relative overflow-hidden">
 
                 <div className="flex items-center justify-between pb-4 border-b border-white/15 mb-4">
                   <div className="flex items-center gap-2">
@@ -656,21 +654,21 @@ export default function ProgramBookingModal({
                   {/* Slot Indicator Badge */}
                   <div className="shrink-0 flex items-center gap-2">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs font-black uppercase tracking-wider shadow ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs font-black uppercase tracking-wider ${
                         currentSlot.isFull
-                          ? "bg-red-500/30 text-red-300 border border-red-500/50"
+                          ? "bg-red-600 text-white"
                           : currentSlot.available <= 5
-                          ? "bg-amber-500/30 text-amber-300 border border-amber-500/50"
-                          : "bg-green-500/30 text-green-300 border border-green-500/50"
+                          ? "bg-amber-500 text-khff-navy font-bold"
+                          : "bg-emerald-600 text-white"
                       }`}
                     >
                       <span
                         className={`w-2 h-2 rounded-full ${
                           currentSlot.isFull
-                            ? "bg-red-400"
+                            ? "bg-white"
                             : currentSlot.available <= 5
-                            ? "bg-amber-400 animate-pulse"
-                            : "bg-green-400"
+                            ? "bg-khff-navy"
+                            : "bg-white"
                         }`}
                       />
                       <span>

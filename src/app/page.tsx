@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   PlayCircle,
   Ticket,
-  Sparkles,
   Calendar,
   MapPin,
   ArrowRight,
@@ -193,29 +192,15 @@ export default function Home() {
       </section>
 
       {/* 2.5 PROMOTIONAL SECTION - PROGRAM TICKETS RESERVATION */}
-      <section className="py-20 bg-gradient-to-b from-khff-navy via-[#153a3c] to-khff-navy text-khff-cream relative overflow-hidden border-t border-khff-cream/10 z-10">
-        {/* Ambient Glows */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-khff-yellow/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-khff-pink/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="relative rounded-3xl overflow-hidden border-2 border-khff-yellow/50 bg-gradient-to-br from-[#1d4d4f]/95 via-[#163e40]/95 to-[#0e2728]/95 p-8 sm:p-12 lg:p-16 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-md">
-            {/* Subtle Accent Glow */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-khff-yellow/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none" />
-
+      <section className="py-20 bg-khff-navy text-khff-cream relative border-t border-khff-cream/10 z-10">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="relative rounded-3xl overflow-hidden border-4 border-khff-yellow bg-[#163839] p-8 sm:p-12 lg:p-16 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Left Column: Promotion Details */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-khff-yellow/20 border border-khff-yellow/40 text-khff-yellow font-mono text-xs font-black uppercase tracking-wider">
-                    <Sparkles size={14} className="text-khff-yellow" />
-                    <span>Reservasi Tiket Program KHFF 2026</span>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-green-500/20 border border-green-500/40 text-green-300 font-mono text-xs font-bold">
-                    <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
-                    <span>Kuota 20 Slot / Sesi</span>
-                  </div>
-                </div>
+                <span className="inline-block px-4 py-1 rounded-full bg-khff-yellow text-khff-navy font-bold tracking-[0.3em] uppercase mb-2 font-mono text-xs shadow-md">
+                  Pemesanan Tiket Program
+                </span>
 
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-white leading-tight tracking-tight">
                   Amankan Tiket Program Festival Sekarang!
@@ -246,13 +231,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right Column: Ticket Stub Interactive Card */}
+              {/* Right Column: Ticket Box */}
               <div className="lg:col-span-5">
-                <div className="relative rounded-2xl bg-black/40 border-2 border-dashed border-khff-yellow/40 p-6 sm:p-8 space-y-6 backdrop-blur-md shadow-2xl">
-                  {/* Decorative Ticket Cutouts on Desktop */}
-                  <div className="hidden sm:block absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#153a3c] border-r-2 border-dashed border-khff-yellow/40 pointer-events-none" />
-                  <div className="hidden sm:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#153a3c] border-l-2 border-dashed border-khff-yellow/40 pointer-events-none" />
-
+                <div className="rounded-2xl bg-black/35 border border-white/15 p-6 sm:p-8 space-y-6 shadow-xl">
                   <div className="border-b border-white/15 pb-4 space-y-1 text-center sm:text-left">
                     <span className="text-[11px] font-mono text-khff-yellow uppercase tracking-widest font-black block">
                       OFFICIAL ADMISSION PASS
@@ -286,7 +267,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() => openBookingModal()}
-                      className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-[0_0_25px_rgba(238,173,47,0.35)] hover:shadow-[0_0_35px_rgba(255,255,255,0.5)] hover:scale-[1.02] cursor-pointer uppercase tracking-wider group"
+                      className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer uppercase tracking-wider group"
                     >
                       <Ticket size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                       <span>Pesan Tiket Sekarang</span>

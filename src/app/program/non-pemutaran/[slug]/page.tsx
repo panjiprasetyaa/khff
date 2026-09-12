@@ -8,7 +8,6 @@ import {
   Clock,
   MapPin,
   User,
-  BookOpen,
   ChevronRight,
   Info,
 } from "lucide-react";
@@ -207,13 +206,13 @@ export default async function NonPemutaranDetailPage({
             {/* Left Sidebar: Speaker & Info Box (4 cols) */}
             <div className="lg:col-span-4 space-y-6">
               {/* Ticket Reservation Card */}
-              <div className="bg-gradient-to-br from-[#1d4d4f] to-khff-navy border-2 border-khff-yellow/40 rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4">
+              <div className="bg-[#163839] border-2 border-khff-yellow/40 rounded-3xl p-6 sm:p-7 shadow-xl space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono text-khff-yellow uppercase tracking-wider font-black">
                     Reservasi Kursi
                   </span>
-                  <span className="bg-green-500/20 text-green-300 border border-green-500/40 text-xs font-mono px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Kuota 20 Slot
+                  <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" /> Kuota 20 Slot
                   </span>
                 </div>
                 <p className="text-xs text-khff-cream/85 leading-relaxed">
@@ -290,9 +289,9 @@ export default async function NonPemutaranDetailPage({
             {/* Right Column: Complete Curatorial Program Notes (8 cols) */}
             <div className="lg:col-span-8 space-y-8">
               <div className="border-b border-white/15 pb-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-khff-yellow/20 border border-khff-yellow/30 text-khff-yellow font-mono text-xs font-black uppercase tracking-widest mb-3">
-                  <BookOpen size={14} /> Catatan Program
-                </div>
+                <span className="inline-block px-3.5 py-1 rounded-full bg-khff-yellow text-khff-navy font-mono text-xs font-black uppercase tracking-widest mb-3">
+                  Catatan Program
+                </span>
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-black text-white leading-tight">
                   {event.title}
                 </h3>

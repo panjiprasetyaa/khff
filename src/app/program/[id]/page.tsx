@@ -149,9 +149,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             {activeTabInfo && (
               <div className="bg-white/5 border-l-4 border-khff-yellow p-5 sm:p-8 rounded-2xl sm:rounded-r-3xl mb-10 sm:mb-12 backdrop-blur-sm max-w-5xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="max-w-2xl">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-khff-yellow/20 text-khff-yellow font-mono text-xs font-black uppercase tracking-wider mb-2 border border-khff-yellow/30">
-                    <span className="w-2 h-2 rounded-full bg-green-400" /> Sesi Kompetisi • Kuota 20 Slot
-                  </div>
+                  <span className="inline-block px-3.5 py-1 rounded-full bg-khff-navy text-khff-yellow font-mono text-xs font-black uppercase tracking-wider mb-2 border border-khff-yellow/40">
+                    Sesi Kompetisi • Kuota 20 Slot
+                  </span>
                   <h2 className="text-2xl sm:text-3xl font-serif font-black text-khff-yellow mb-2">Program {activeTabInfo.label}</h2>
                   <p className="text-khff-cream/90 text-base sm:text-lg font-medium leading-relaxed">{activeTabInfo.desc}</p>
                 </div>
@@ -298,9 +298,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                   >
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 sm:mb-10 border-b border-khff-cream/10">
                       <div>
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-khff-pink/20 text-khff-pink font-mono font-black text-xs uppercase tracking-wider mb-2.5 border border-khff-pink/30">
-                          <span className="w-2 h-2 rounded-full bg-green-400" /> Sesi {sIdx + 1} • Kuota 20 Slot
-                        </div>
+                        <span className="inline-block px-3.5 py-1 rounded-full bg-khff-pink text-white font-mono font-black text-xs uppercase tracking-wider mb-2.5">
+                          Sesi {sIdx + 1} • Kuota 20 Slot
+                        </span>
                         <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-black text-white">
                           {session.title}
                         </h3>
@@ -361,7 +361,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 </div>
               </div>
             ) : (
-              <div className="relative rounded-3xl overflow-hidden border-2 border-khff-pink/30 bg-gradient-to-br from-khff-pink/15 via-white/[0.03] to-khff-yellow/10 p-6 sm:p-8 md:p-16 backdrop-blur-md shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-khff-pink/40 bg-white/[0.03] p-6 sm:p-8 md:p-16 shadow-xl">
                 <div className="max-w-3xl mx-auto text-center relative z-10">
                   <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-black text-white mb-6 leading-tight">
                     Kurasi Film Sesi {activeTabInfo.label}
@@ -584,8 +584,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                         {event.category}
                       </span>
                       <div className="flex items-center gap-1.5">
-                        <span className="bg-green-500/20 text-green-300 border border-green-500/40 text-xs font-mono px-2.5 py-1 rounded-full font-bold flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> 20 Slot
+                        <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white" /> 20 Slot
                         </span>
                         <span className="bg-black/60 backdrop-blur-xs border border-white/20 text-white/90 text-xs font-mono px-3 py-1 rounded-full">
                           #{idx + 1}
