@@ -240,9 +240,25 @@ export default function ProgramBookingModal({
     []
   );
 
-  // Initialize Google GIS button
+  const currentEvent = getBookingEventById(selectedEventId) || BOOKING_EVENTS[0];
+  const currentSlot: SlotDetail = slotsData[currentEvent.id] || {
+    total: 30,
+    used: 0,
+    available: 30,
+    isFull: false,
+    tabSheet: currentEvent.tabSheet,
+  };
+
+  const handleSignOut = () => {
+    setGoogleUser(null);
+    setFullName("");
+    setStatusState(null);
+  };
+
+  // Initialize Google GIS button (disabled if slot is full)
   const initGoogleSignIn = useCallback(() => {
     if (typeof window === "undefined" || !window.google || !clientId) return;
+    if (currentSlot.isFull) return;
 
     try {
       if (!isInitializedRef.current) {
@@ -269,14 +285,14 @@ export default function ProgramBookingModal({
     } catch (e) {
       console.error("GIS render error:", e);
     }
-  }, [clientId, handleCredentialResponse, googleUser]);
+  }, [clientId, handleCredentialResponse, googleUser, currentSlot.isFull]);
 
   useEffect(() => {
-    if (isOpen && typeof window !== "undefined" && window.google) {
+    if (isOpen && !currentSlot.isFull && !googleUser && typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
     const interval = setInterval(() => {
-      if (isOpen && typeof window !== "undefined" && window.google) {
+      if (isOpen && !currentSlot.isFull && !googleUser && typeof window !== "undefined" && window.google) {
         initGoogleSignIn();
       }
     }, 300);
@@ -285,22 +301,7 @@ export default function ProgramBookingModal({
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, [isOpen, initGoogleSignIn]);
-
-
-  const handleSignOut = () => {
-    setGoogleUser(null);
-    setFullName("");
-    setStatusState(null);
-  };
-
-  const currentEvent = getBookingEventById(selectedEventId) || BOOKING_EVENTS[0];
-  const currentSlot = slotsData[currentEvent.id] || {
-    total: 30,
-    used: 0,
-    available: 30,
-    isFull: false,
-  };
+  }, [isOpen, selectedEventId, currentSlot.isFull, googleUser, initGoogleSignIn]);
 
   // Submit Booking
   const handleSubmit = async (e: React.FormEvent) => {
@@ -456,7 +457,7 @@ export default function ProgramBookingModal({
         src="https://accounts.google.com/gsi/client"
         strategy="afterInteractive"
         onLoad={() => {
-          if (isOpen) initGoogleSignIn();
+          if (isOpen && !currentSlot.isFull) initGoogleSignIn();
         }}
       />
 
@@ -737,11 +738,27 @@ export default function ProgramBookingModal({
 
               {/* STEP 2: GOOGLE AUTH */}
               <div>
-                <label className="block font-mono text-xs font-black uppercase tracking-wider text-khff-yellow mb-2">
-                  2. Verifikasi Akun Google
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block font-mono text-xs font-black uppercase tracking-wider text-khff-yellow">
+                    2. Verifikasi Akun Google
+                  </label>
+                  {currentSlot.isFull && (
+                    <span className="text-[11px] text-red-400 font-mono font-bold">
+                      Slot Penuh
+                    </span>
+                  )}
+                </div>
 
-                {googleUser ? (
+                {currentSlot.isFull ? (
+                  <div className="p-4 sm:p-5 rounded-2xl bg-red-500/10 border-2 border-red-500/30 text-center space-y-2">
+                    <div className="inline-flex items-center gap-1.5 text-red-300 font-mono text-xs font-bold uppercase tracking-wider">
+                      <AlertCircle size={15} /> Kuota 30 Slot Penuh
+                    </div>
+                    <p className="text-xs text-red-200 leading-relaxed max-w-md mx-auto">
+                      Seluruh 30 kursi untuk sesi acara ini telah terisi penuh (Sold Out). Silakan pilih sesi acara lain pada pilihan di atas yang masih tersedia.
+                    </p>
+                  </div>
+                ) : googleUser ? (
                   <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 border border-green-400/40">
                     <div className="flex items-center gap-3">
                       {googleUser.picture ? (
@@ -767,7 +784,7 @@ export default function ProgramBookingModal({
                     <button
                       type="button"
                       onClick={handleSignOut}
-                      className="inline-flex items-center gap-1.5 text-xs text-khff-cream/60 hover:text-khff-pink transition-colors px-2.5 py-1.5 rounded-lg bg-black/20"
+                      className="inline-flex items-center gap-1.5 text-xs text-khff-cream/60 hover:text-khff-pink transition-colors px-2.5 py-1.5 rounded-lg bg-black/20 cursor-pointer"
                     >
                       <LogOut size={13} /> Ganti
                     </button>
@@ -785,7 +802,7 @@ export default function ProgramBookingModal({
               </div>
 
               {/* STEP 3: FORM INPUT (Hanya Nama Lengkap & Nomor WA) */}
-              <div className="space-y-4">
+              <div className={`space-y-4 transition-all duration-300 ${currentSlot.isFull || !googleUser ? "opacity-35 pointer-events-none" : "opacity-100"}`}>
                 <label className="block font-mono text-xs font-black uppercase tracking-wider text-khff-yellow">
                   3. Data Pemesan Tiket
                 </label>

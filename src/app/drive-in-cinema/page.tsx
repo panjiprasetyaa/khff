@@ -206,9 +206,12 @@ export default function DriveInCinemaRegistrationPage() {
     }
   }, []);
 
-  // Inisialisasi Google GIS (hanya initialize sekali)
+  // Inisialisasi Google GIS (hanya initialize jika slot masih tersedia)
   const initGoogleSignIn = useCallback(() => {
     if (typeof window === "undefined" || !window.google || !clientId) {
+      return;
+    }
+    if (slots[bookingType]?.isFull) {
       return;
     }
 
@@ -239,16 +242,16 @@ export default function DriveInCinemaRegistrationPage() {
     } catch (e) {
       console.error("Inisialisasi Google SDK error:", e);
     }
-  }, [clientId, handleCredentialResponse, googleUser]);
+  }, [clientId, handleCredentialResponse, googleUser, slots, bookingType]);
 
   // Poller untuk memastikan Google SDK segera di-render saat script selesai dimuat
   useEffect(() => {
-    if (typeof window !== "undefined" && window.google) {
+    if (!slots[bookingType]?.isFull && !googleUser && typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
 
     const interval = setInterval(() => {
-      if (typeof window !== "undefined" && window.google) {
+      if (!slots[bookingType]?.isFull && !googleUser && typeof window !== "undefined" && window.google) {
         initGoogleSignIn();
       }
     }, 300);
@@ -261,7 +264,7 @@ export default function DriveInCinemaRegistrationPage() {
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, [initGoogleSignIn]);
+  }, [bookingType, slots, googleUser, initGoogleSignIn]);
 
   // Tombol simulasi demo jika Client ID belum dikonfigurasi di .env
   const handleDemoSignIn = () => {
@@ -442,7 +445,11 @@ export default function DriveInCinemaRegistrationPage() {
       <Script
         src="https://accounts.google.com/gsi/client"
         strategy="afterInteractive"
-        onLoad={initGoogleSignIn}
+        onLoad={() => {
+          if (!slots[bookingType]?.isFull) {
+            initGoogleSignIn();
+          }
+        }}
       />
 
       {/* Decorative Character Artworks */}
@@ -687,97 +694,12 @@ export default function DriveInCinemaRegistrationPage() {
                 /* FORM PENDAFTARAN */
                 <form onSubmit={handleSubmit} className="space-y-6">
                   
-                  {/* SECTION STEP 1: GOOGLE AUTH */}
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-mono font-black uppercase tracking-wider text-khff-yellow flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-khff-yellow text-khff-navy inline-flex items-center justify-center text-xs">
-                          1
-                        </span>
-                        Verifikasi Akun Google
-                      </h3>
-                      {googleUser && (
-                        <span className="text-xs text-emerald-400 font-mono inline-flex items-center gap-1 font-bold">
-                          <ShieldCheck size={14} /> Terverifikasi
-                        </span>
-                      )}
-                    </div>
-
-                    {!googleUser ? (
-                      <div className="p-6 rounded-2xl bg-white/5 border border-khff-cream/15 text-center">
-                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3 text-khff-yellow">
-                          <ShieldCheck size={26} />
-                        </div>
-                        <h4 className="text-base font-serif font-bold text-white mb-1.5">
-                          Masuk dengan Akun Google
-                        </h4>
-                        <p className="text-xs text-khff-cream/75 max-w-sm mx-auto mb-5 leading-relaxed">
-                          Sistem menggunakan Google Sign-In untuk memastikan identitas valid dan mencegah spam serta duplikasi pengisian form.
-                        </p>
-
-                        {/* Tombol Resmi Google GIS */}
-                        <div className="flex justify-center mb-3">
-                          <div ref={btnContainerRef} id="googleSignInBtn" className="min-h-[44px] flex items-center justify-center" />
-                        </div>
-
-                        {/* Tombol Demo Fallback jika belum pasang Client ID */}
-                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID")) && (
-                          <div className="pt-3 border-t border-white/10">
-                            <button
-                              type="button"
-                              onClick={handleDemoSignIn}
-                              className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-khff-cream/20 text-khff-cream px-5 py-2.5 rounded-full font-mono text-xs font-bold transition-all cursor-pointer shadow-md"
-                            >
-                              <Sparkles size={14} className="text-khff-yellow" />
-                              Simulasi Login Google (Mode Pengujian)
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* Akun Terhubung Card */
-                      <div className="p-4 rounded-2xl bg-white/10 border border-emerald-500/40 flex items-center justify-between gap-4 shadow-inner">
-                        <div className="flex items-center gap-3.5 overflow-hidden">
-                          {googleUser.picture ? (
-                            <img
-                              src={googleUser.picture}
-                              alt={googleUser.name}
-                              className="w-11 h-11 rounded-full border-2 border-khff-yellow shrink-0 object-cover"
-                            />
-                          ) : (
-                            <div className="w-11 h-11 rounded-full bg-khff-yellow text-khff-navy font-bold flex items-center justify-center shrink-0">
-                              {googleUser.name.charAt(0)}
-                            </div>
-                          )}
-                          <div className="truncate">
-                            <span className="text-sm font-bold text-white block truncate leading-snug">
-                              {googleUser.name}
-                            </span>
-                            <span className="text-xs text-khff-cream/70 font-mono block truncate">
-                              {googleUser.email}
-                            </span>
-                          </div>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={handleSignOut}
-                          title="Ganti Akun Google"
-                          className="text-xs font-mono text-khff-cream/60 hover:text-khff-pink flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors shrink-0 cursor-pointer"
-                        >
-                          <LogOut size={14} />
-                          <span className="hidden sm:inline">Ganti</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* SECTION STEP 2: PILIH JENIS TEMPAT DUDUK (BECAK / KURSI) */}
-                  <div className={`space-y-4 pt-2 transition-all duration-300 ${!googleUser ? "opacity-35 pointer-events-none filter blur-[1px]" : "opacity-100"}`}>
+                  {/* SECTION STEP 1: PILIH JENIS TEMPAT DUDUK (BECAK / KURSI) */}
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="text-sm font-mono font-black uppercase tracking-wider text-khff-yellow flex items-center gap-2">
                         <span className="w-6 h-6 rounded-full bg-khff-yellow text-khff-navy inline-flex items-center justify-center text-xs">
-                          2
+                          1
                         </span>
                         Pilih Jenis Tempat Duduk
                       </h3>
@@ -904,8 +826,112 @@ export default function DriveInCinemaRegistrationPage() {
                     </div>
                   </div>
 
+                  {/* SECTION STEP 2: GOOGLE AUTH */}
+                  <div className="pt-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-sm font-mono font-black uppercase tracking-wider text-khff-yellow flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-khff-yellow text-khff-navy inline-flex items-center justify-center text-xs">
+                          2
+                        </span>
+                        Verifikasi Akun Google
+                      </h3>
+                      {slots[bookingType]?.isFull ? (
+                        <span className="text-xs text-red-400 font-mono font-bold">
+                          Slot Penuh
+                        </span>
+                      ) : googleUser ? (
+                        <span className="text-xs text-emerald-400 font-mono inline-flex items-center gap-1 font-bold">
+                          <ShieldCheck size={14} /> Terverifikasi
+                        </span>
+                      ) : null}
+                    </div>
+
+                    {slots[bookingType]?.isFull ? (
+                      /* Slot Full Banner */
+                      <div className="p-6 rounded-2xl bg-red-500/10 border-2 border-red-500/30 text-center space-y-2">
+                        <div className="inline-flex items-center gap-2 text-red-300 font-mono text-xs font-bold uppercase tracking-wider">
+                          <AlertCircle size={16} /> Kuota {bookingType === "becak" ? "Becak Drive-In" : "Kursi Drive-In"} Penuh
+                        </div>
+                        <p className="text-xs text-red-200 leading-relaxed max-w-md mx-auto">
+                          Seluruh kuota tiket untuk {bookingType === "becak" ? "Becak Drive-In" : "Kursi Drive-In"} telah habis (Sold Out).
+                          {(!slots.becak.isFull || !slots.kursi.isFull) && (
+                            <span className="block mt-1.5 text-khff-yellow font-bold">
+                              Silakan pilih opsi {bookingType === "becak" ? "Kursi Drive-In" : "Becak Drive-In"} pada pilihan di atas yang masih tersedia.
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                    ) : !googleUser ? (
+                      <div className="p-6 rounded-2xl bg-white/5 border border-khff-cream/15 text-center">
+                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3 text-khff-yellow">
+                          <ShieldCheck size={26} />
+                        </div>
+                        <h4 className="text-base font-serif font-bold text-white mb-1.5">
+                          Masuk dengan Akun Google
+                        </h4>
+                        <p className="text-xs text-khff-cream/75 max-w-sm mx-auto mb-5 leading-relaxed">
+                          Sistem menggunakan Google Sign-In untuk memastikan identitas valid dan mencegah spam serta duplikasi pengisian form.
+                        </p>
+
+                        {/* Tombol Resmi Google GIS */}
+                        <div className="flex justify-center mb-3">
+                          <div ref={btnContainerRef} id="googleSignInBtn" className="min-h-[44px] flex items-center justify-center" />
+                        </div>
+
+                        {/* Tombol Demo Fallback jika belum pasang Client ID */}
+                        {(!clientId || clientId.includes("YOUR_GOOGLE_CLIENT_ID")) && (
+                          <div className="pt-3 border-t border-white/10">
+                            <button
+                              type="button"
+                              onClick={handleDemoSignIn}
+                              className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-khff-cream/20 text-khff-cream px-5 py-2.5 rounded-full font-mono text-xs font-bold transition-all cursor-pointer shadow-md"
+                            >
+                              <Sparkles size={14} className="text-khff-yellow" />
+                              Simulasi Login Google (Mode Pengujian)
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      /* Akun Terhubung Card */
+                      <div className="p-4 rounded-2xl bg-white/10 border border-emerald-500/40 flex items-center justify-between gap-4 shadow-inner">
+                        <div className="flex items-center gap-3.5 overflow-hidden">
+                          {googleUser.picture ? (
+                            <img
+                              src={googleUser.picture}
+                              alt={googleUser.name}
+                              className="w-11 h-11 rounded-full border-2 border-khff-yellow shrink-0 object-cover"
+                            />
+                          ) : (
+                            <div className="w-11 h-11 rounded-full bg-khff-yellow text-khff-navy font-bold flex items-center justify-center shrink-0">
+                              {googleUser.name.charAt(0)}
+                            </div>
+                          )}
+                          <div className="truncate">
+                            <span className="text-sm font-bold text-white block truncate leading-snug">
+                              {googleUser.name}
+                            </span>
+                            <span className="text-xs text-khff-cream/70 font-mono block truncate">
+                              {googleUser.email}
+                            </span>
+                          </div>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={handleSignOut}
+                          title="Ganti Akun Google"
+                          className="text-xs font-mono text-khff-cream/60 hover:text-khff-pink flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors shrink-0 cursor-pointer"
+                        >
+                          <LogOut size={14} />
+                          <span className="hidden sm:inline">Ganti</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
                   {/* SECTION STEP 3: FORM DATA PENDAFTARAN */}
-                  <div className={`space-y-4 pt-2 transition-all duration-300 ${!googleUser ? "opacity-35 pointer-events-none filter blur-[1px]" : "opacity-100"}`}>
+                  <div className={`space-y-4 pt-2 transition-all duration-300 ${slots[bookingType]?.isFull || !googleUser ? "opacity-35 pointer-events-none filter blur-[1px]" : "opacity-100"}`}>
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="text-sm font-mono font-black uppercase tracking-wider text-khff-yellow flex items-center gap-2">
                         <span className="w-6 h-6 rounded-full bg-khff-yellow text-khff-navy inline-flex items-center justify-center text-xs">
@@ -913,11 +939,15 @@ export default function DriveInCinemaRegistrationPage() {
                         </span>
                         Data Diri Pendaftar ({bookingType === "becak" ? "Becak" : "Kursi Reguler"})
                       </h3>
-                      {!googleUser && (
+                      {slots[bookingType]?.isFull ? (
+                        <span className="text-[11px] font-mono text-red-400 font-bold">
+                          (Slot Penuh)
+                        </span>
+                      ) : !googleUser ? (
                         <span className="text-[11px] font-mono text-khff-cream/50">
                           (Buka setelah verifikasi Google)
                         </span>
-                      )}
+                      ) : null}
                     </div>
 
                     {/* Nama Lengkap Penumpang 1 / Penonton */}

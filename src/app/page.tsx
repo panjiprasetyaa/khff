@@ -171,216 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
-      <section className="py-24 bg-gradient-to-b from-khff-navy via-[#23585a] to-khff-yellow text-khff-cream relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
-          <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
-            Pra Event KHFF 2026
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">
-            Panorama
-          </h2>
-          <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow mb-6">
-            Periode Penayangan :<br className="sm:hidden" /> 19 Juli - 12
-            September 2026
-          </p>
-          <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
-            PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival
-            (KHFF) 2026 yang menghadirkan kembali sepuluh film pendek Program
-            Panorama KHFF 2024 melalui kanal YouTube @kebudayaanjogjakota.
-            Didukung oleh Dinas Kebudayaan Kota Yogyakarta, satu film akan
-            tayang setiap minggu sebagai bagian dari perjalanan menuju KHFF
-            2026.
-          </p>
-          <a
-            href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-sm sm:text-base transition-all duration-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-2xl hover:scale-105"
-          >
-            <span>Tonton Seluruh Arsip di YouTube</span>{" "}
-            <PlayCircle size={22} className="shrink-0" />
-          </a>
-        </div>
-
-        {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
-        <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-10">
-          {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
-          <div className="block md:hidden relative">
-            <Swiper
-              modules={[Navigation, Scrollbar, Mousewheel]}
-              navigation={{
-                nextEl: ".swiper-button-next-mobile",
-                prevEl: ".swiper-button-prev-mobile",
-              }}
-              scrollbar={{ draggable: true, hide: false }}
-              mousewheel={{ forceToAxis: true }}
-              grabCursor={true}
-              centeredSlides={true}
-              slideToClickedSlide={true}
-              spaceBetween={24}
-              slidesPerView="auto"
-              className="w-full px-6 py-4 !overflow-visible"
-              style={
-                {
-                  "--swiper-scrollbar-drag-bg-color":
-                    "rgba(255, 255, 255, 0.4)",
-                  "--swiper-scrollbar-bg-color": "transparent",
-                  "--swiper-scrollbar-bottom": "-20px",
-                  "--swiper-scrollbar-size": "5px",
-                } as React.CSSProperties
-              }
-            >
-              {praEvents.map((event) => (
-                <SwiperSlide
-                  key={`mobile-${event.id}`}
-                  className="!w-auto !h-auto"
-                >
-                  <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu will-change-transform cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
-                    <img
-                      src={event.image}
-                      alt={event.judul}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
-                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
-                        Panorama #{event.id}
-                      </p>
-                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
-                        {event.judul}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            {/* Left Navigation Overlay (Mobile) */}
-            <div className="swiper-button-prev-mobile absolute top-0 bottom-0 left-0 z-20 w-16 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
-              </div>
-            </div>
-            {/* Right Navigation Overlay (Mobile) */}
-            <div className="swiper-button-next-mobile absolute top-0 bottom-0 right-0 z-20 w-16 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
-          <div className="hidden md:block relative">
-            <Swiper
-              modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
-              navigation={{
-                nextEl: ".swiper-button-next-desktop",
-                prevEl: ".swiper-button-prev-desktop",
-              }}
-              scrollbar={{ draggable: true, hide: false }}
-              mousewheel={{ forceToAxis: true }}
-              grabCursor={true}
-              freeMode={true}
-              spaceBetween={24}
-              slidesPerView="auto"
-              className="w-full px-12 py-4 !overflow-visible"
-              style={
-                {
-                  "--swiper-scrollbar-drag-bg-color":
-                    "rgba(255, 255, 255, 0.4)",
-                  "--swiper-scrollbar-bg-color": "transparent",
-                  "--swiper-scrollbar-bottom": "-20px",
-                  "--swiper-scrollbar-size": "5px",
-                } as React.CSSProperties
-              }
-            >
-              {praEvents.map((event) => (
-                <SwiperSlide
-                  key={`desktop-${event.id}`}
-                  className="!w-auto !h-auto group"
-                >
-                  <div className="w-[300px] h-[440px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03]">
-                    <img
-                      src={event.image}
-                      alt={event.judul}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
-                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
-                        Panorama #{event.id}
-                      </p>
-                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
-                        {event.judul}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            {/* Left Navigation Overlay (Desktop) */}
-            <div className="swiper-button-prev-desktop absolute top-0 bottom-0 left-0 z-20 w-24 bg-gradient-to-r from-khff-yellow/80 to-transparent flex items-center justify-start pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
-              </div>
-            </div>
-            {/* Right Navigation Overlay (Desktop) */}
-            <div className="swiper-button-next-desktop absolute top-0 bottom-0 right-0 z-20 w-24 bg-gradient-to-l from-khff-yellow/80 to-transparent flex items-center justify-end pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
-              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. PROGRAM UTAMA (3 KOLOM - TRANSISI KE HIJAU TUA) */}
+      {/* 3. PROGRAM UTAMA (3 KOLOM - TIGA PROGRAM UTAMA) */}
       <section className="py-28 bg-gradient-to-br from-khff-navy to-khff-blue text-khff-cream rounded-t-[3.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)] relative z-20 border-t-8 border-khff-pink -mt-8 overflow-hidden">
         {/* Floating Asset */}
         <div className="absolute top-0 right-0 w-40 md:w-80 h-auto opacity-[0.05] md:opacity-10 pointer-events-none z-0 rotate-12">
@@ -514,6 +305,215 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
+      <section className="py-24 bg-gradient-to-b from-[#18393b] via-[#23585a] to-[#143638] text-khff-cream relative overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
+          <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
+            Pra Event KHFF 2026
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">
+            Panorama
+          </h2>
+          <p className="text-khff-cream/95 text-lg sm:text-xl md:text-2xl font-mono font-bold max-w-3xl mx-auto leading-relaxed drop-shadow mb-6">
+            Periode Penayangan :<br className="sm:hidden" /> 19 Juli - 12
+            September 2026
+          </p>
+          <p className="text-khff-cream/80 text-base md:text-lg font-medium max-w-4xl mx-auto leading-relaxed">
+            PANORAMA merupakan program pra-event Kotabaru Heritage Film Festival
+            (KHFF) 2026 yang menghadirkan kembali sepuluh film pendek Program
+            Panorama KHFF 2024 melalui kanal YouTube @kebudayaanjogjakota.
+            Didukung oleh Dinas Kebudayaan Kota Yogyakarta, satu film akan
+            tayang setiap minggu sebagai bagian dari perjalanan menuju KHFF
+            2026.
+          </p>
+          <a
+            href="https://www.youtube.com/playlist?list=PLH6gQAT9xGRw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 mt-8 bg-khff-pink text-white hover:bg-white hover:text-khff-navy font-mono font-black text-sm sm:text-base transition-all duration-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-2xl hover:scale-105"
+          >
+            <span>Tonton Seluruh Arsip di YouTube</span>{" "}
+            <PlayCircle size={22} className="shrink-0" />
+          </a>
+        </div>
+
+        {/* Swiper Slider for Posters with Transparent Arrows (Netflix Style) */}
+        <div className="relative z-10 w-full group/slider overflow-hidden pt-6 pb-10">
+          {/* MOBILE SWIPER (Snap & Scale, No FreeMode) */}
+          <div className="block md:hidden relative">
+            <Swiper
+              modules={[Navigation, Scrollbar, Mousewheel]}
+              navigation={{
+                nextEl: ".swiper-button-next-mobile",
+                prevEl: ".swiper-button-prev-mobile",
+              }}
+              scrollbar={{ draggable: true, hide: false }}
+              mousewheel={{ forceToAxis: true }}
+              grabCursor={true}
+              centeredSlides={true}
+              slideToClickedSlide={true}
+              spaceBetween={24}
+              slidesPerView="auto"
+              className="w-full px-6 py-4 !overflow-visible"
+              style={
+                {
+                  "--swiper-scrollbar-drag-bg-color":
+                    "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties
+              }
+            >
+              {praEvents.map((event) => (
+                <SwiperSlide
+                  key={`mobile-${event.id}`}
+                  className="!w-auto !h-auto"
+                >
+                  <div className="w-[260px] h-[380px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu will-change-transform cursor-pointer [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.85] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-50 [.swiper-slide-active_&]:scale-105 [.swiper-slide-active_&]:-translate-y-2">
+                    <img
+                      src={event.image}
+                      alt={event.judul}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
+                        Panorama #{event.id}
+                      </p>
+                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
+                        {event.judul}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {/* Left Navigation Overlay (Mobile) */}
+            <div className="swiper-button-prev-mobile absolute top-0 bottom-0 left-0 z-20 w-16 bg-gradient-to-r from-[#23585a]/90 to-transparent flex items-center justify-start pl-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </div>
+            </div>
+            {/* Right Navigation Overlay (Mobile) */}
+            <div className="swiper-button-next-mobile absolute top-0 bottom-0 right-0 z-20 w-16 bg-gradient-to-l from-[#23585a]/90 to-transparent flex items-center justify-end pr-2 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* DESKTOP SWIPER (FreeMode, Default Hover) */}
+          <div className="hidden md:block relative">
+            <Swiper
+              modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
+              navigation={{
+                nextEl: ".swiper-button-next-desktop",
+                prevEl: ".swiper-button-prev-desktop",
+              }}
+              scrollbar={{ draggable: true, hide: false }}
+              mousewheel={{ forceToAxis: true }}
+              grabCursor={true}
+              freeMode={true}
+              spaceBetween={24}
+              slidesPerView="auto"
+              className="w-full px-12 py-4 !overflow-visible"
+              style={
+                {
+                  "--swiper-scrollbar-drag-bg-color":
+                    "rgba(255, 255, 255, 0.4)",
+                  "--swiper-scrollbar-bg-color": "transparent",
+                  "--swiper-scrollbar-bottom": "-20px",
+                  "--swiper-scrollbar-size": "5px",
+                } as React.CSSProperties
+              }
+            >
+              {praEvents.map((event) => (
+                <SwiperSlide
+                  key={`desktop-${event.id}`}
+                  className="!w-auto !h-auto group"
+                >
+                  <div className="w-[300px] h-[440px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu cursor-pointer hover:border-khff-pink hover:-translate-y-3 hover:scale-[1.03]">
+                    <img
+                      src={event.image}
+                      alt={event.judul}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-khff-navy via-khff-navy/90 to-transparent pt-[28px] pb-4 px-4 translate-y-2 group-hover:translate-y-0 transition-all">
+                      <p className="text-khff-yellow font-black font-mono text-xs uppercase tracking-wider text-center mb-1 drop-shadow-md">
+                        Panorama #{event.id}
+                      </p>
+                      <p className="text-white font-serif font-black text-base text-center leading-snug drop-shadow-md">
+                        {event.judul}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {/* Left Navigation Overlay (Desktop) */}
+            <div className="swiper-button-prev-desktop absolute top-0 bottom-0 left-0 z-20 w-24 bg-gradient-to-r from-[#23585a]/90 to-transparent flex items-center justify-start pl-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </div>
+            </div>
+            {/* Right Navigation Overlay (Desktop) */}
+            <div className="swiper-button-next-desktop absolute top-0 bottom-0 right-0 z-20 w-24 bg-gradient-to-l from-[#23585a]/90 to-transparent flex items-center justify-end pr-6 cursor-pointer opacity-100 transition-opacity duration-300 [&.swiper-button-disabled]:hidden">
+              <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </section>
