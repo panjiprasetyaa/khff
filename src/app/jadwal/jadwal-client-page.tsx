@@ -8,9 +8,98 @@ import {
   MapPin,
   Film,
   LayoutGrid,
+  ArrowUpRight,
 } from "lucide-react";
 import dataJson from "@/data/data.json";
 import Link from "next/link";
+
+// Program title to page URL resolver
+function getProgramUrl(title: string): string | null {
+  const t = title.toLowerCase().trim();
+
+  // Becak Drive-In Cinema
+  if (t.includes("becak drive") || t.includes("drive in") || t.includes("drive-in")) {
+    return "/drive-in-cinema";
+  }
+
+  // Talks & Workshops
+  if (t.includes("director talk") || t.includes("mistik melampaui ketakutan")) {
+    return "/program/non-pemutaran/director-talks";
+  }
+  if (t.includes("heritage talk") || t.includes("merawat yang hidup")) {
+    return "/program/non-pemutaran/heritage-talks";
+  }
+  if (t.includes("stop motion") || t.includes("diam-diam bergerak")) {
+    return "/program/non-pemutaran/workshop-stop-motion";
+  }
+
+  // Competitions
+  if (t.includes("purwaseswa")) {
+    return "/program/kompetisi?tab=purwaseswa";
+  }
+  if (t.includes("karyanagri")) {
+    return "/program/kompetisi?tab=karyanagri";
+  }
+  if (t.includes("mahaditya")) {
+    return "/program/kompetisi?tab=mahaditya";
+  }
+
+  // Non-Kompetisi Screenings
+  if (t.includes("panorama")) {
+    return "/program/non-kompetisi?tab=khff-panorama";
+  }
+  if (t.includes("experimental cinema")) {
+    return "/program/non-kompetisi?tab=heritage-in-experimental-cinema";
+  }
+  if (t.includes("indonesian cinema")) {
+    return "/program/non-kompetisi?tab=heritage-in-indonesian-cinema";
+  }
+
+  return null;
+}
+
+// Film title to film detail page URL resolver
+const filmTitleToSlug: Record<string, string> = {
+  "SERADA": "serada",
+  "NYANYI DI ANGKRINGAN": "nyanyi-di-angkringan",
+  "NYANYIAN DI ANGKRINGAN": "nyanyi-di-angkringan",
+  "WALED": "waled",
+  "ANAK YANG BERTUMBUH": "anak-yang-bertumbuh",
+  "MUPUSTI": "mupusti",
+  "NYANYIAN POHON LONTAR": "nyanyian-pohon-lontar",
+  "BONG": "bong",
+  "RUANG SESAK": "ruang-sesak",
+  "KHATIB GANTARANG LALANG BATA": "khatib-gantarang-lalang-bata",
+  "MATEOS ANIN": "mateos-anin",
+  "NIAT INGSUN NGAJI": "niat-ingsun-ngaji",
+  "PORTRAIT OF TIN'S FAMILY": "portrait-of-tins-family",
+  "MARANDANG": "marandang",
+  "NAIJAN ON HAI AINA": "naijan-on-hai-aina",
+  "HOPE": "hope",
+  "IDAK-IDAK-IDAK": "idak-idak-idak",
+  "SHARP OBJECTS": "sharp-object",
+  "THE STONE THAT REMEMBERS": "the-stone-that-remembers",
+  "GARDEN AMIDST THE FLAME": "garden-amidst-the-flame",
+  "AFTERLIVES": "afterlives",
+  "IBUNDA": "ibunda",
+  "KANTATA TAKWA": "kantata-takwa",
+  "SISUPU WONGE": "sisupu-wonge",
+  "BARISAN JIWA DORAKA": "barisan-jiwa-doraka",
+  "KUDAPAN RINDU RASA": "kudapan-rindu-rasa",
+  "SITI WALIDAH": "siti-walidah",
+};
+
+function getFilmUrl(title: string): string | null {
+  const upper = title.trim().toUpperCase();
+  if (filmTitleToSlug[upper]) {
+    return `/film/${filmTitleToSlug[upper]}`;
+  }
+  const allFilms = Object.values(dataJson.films) as { id: string; title: string }[];
+  const found = allFilms.find(
+    (f) => f.title.trim().toUpperCase() === upper || f.id.toLowerCase() === title.toLowerCase().trim()
+  );
+  return found ? `/film/${found.id}` : null;
+}
 
 // Type definitions
 interface SingleEvent {
@@ -150,37 +239,45 @@ const activeTabAccent: Record<string, string> = {
     "bg-khff-yellow text-khff-navy border border-khff-yellow font-black shadow-[0_0_20px_rgba(236,172,45,0.5)] scale-105",
 };
 
-// Render table for single-track (rows: time, duration, location, program)
+// Render table for single-track (Day 1)
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
   return (
     <div className="w-full">
       {/* Mobile Card View */}
       <div className="md:hidden space-y-4">
-        {events.map((ev, i) => (
-          <div
-            key={i}
-            className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
-                {ev.time}
-              </span>
-              {ev.duration && (
-                <span className="font-mono text-[11px] text-khff-cream/80 font-bold px-2.5 py-0.5 rounded-lg bg-white/10 border border-khff-cream/20">
-                  {ev.duration}
+        {events.map((ev, i) => {
+          const progUrl = getProgramUrl(ev.program);
+          return (
+            <div
+              key={i}
+              className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
+                  {ev.time}
                 </span>
-              )}
-              {ev.location && (
-                <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold">
-                  {ev.location}
-                </span>
+                {ev.location && (
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-white font-bold">
+                    {ev.location}
+                  </span>
+                )}
+              </div>
+              {progUrl ? (
+                <Link
+                  href={progUrl}
+                  className="group/link inline-flex items-center gap-1.5 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg leading-snug"
+                >
+                  <span>{ev.program}</span>
+                  <ArrowUpRight size={16} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
+                </Link>
+              ) : (
+                <h4 className="text-white font-serif font-black text-lg leading-snug">
+                  {ev.program}
+                </h4>
               )}
             </div>
-            <h4 className="text-white font-serif font-black text-lg leading-snug">
-              {ev.program}
-            </h4>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Desktop Table View */}
@@ -190,9 +287,9 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
             <thead>
               <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
                 <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-44">
-                  Waktu & Durasi
+                  Waktu
                 </th>
-                <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
+                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
                   Lokasi
                 </th>
                 <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
@@ -201,33 +298,41 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
               </tr>
             </thead>
             <tbody className="divide-y divide-khff-cream/10">
-              {events.map((ev, i) => (
-                <tr
-                  key={i}
-                  className="group hover:bg-white/10 transition-all duration-300"
-                >
-                  <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
-                    <div className="text-base">{ev.time}</div>
-                    {ev.duration && (
-                      <span className="inline-block mt-1 text-[11px] font-mono text-khff-cream/70 bg-white/10 px-2 py-0.5 rounded border border-white/15">
-                        {ev.duration}
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
-                    {ev.location && (
-                      <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-pink font-bold">
-                        {ev.location}
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-6 py-5 align-top">
-                    <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
-                      {ev.program}
-                    </h4>
-                  </td>
-                </tr>
-              ))}
+              {events.map((ev, i) => {
+                const progUrl = getProgramUrl(ev.program);
+                return (
+                  <tr
+                    key={i}
+                    className="group hover:bg-white/10 transition-all duration-300"
+                  >
+                    <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
+                      <div className="text-base">{ev.time}</div>
+                    </td>
+                    <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
+                      {ev.location && (
+                        <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/20 text-xs uppercase tracking-wider text-white font-bold">
+                          {ev.location}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-6 py-5 align-top">
+                      {progUrl ? (
+                        <Link
+                          href={progUrl}
+                          className="group/link inline-flex items-center gap-1.5 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg md:text-xl leading-snug"
+                        >
+                          <span>{ev.program}</span>
+                          <ArrowUpRight size={18} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
+                        </Link>
+                      ) : (
+                        <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
+                          {ev.program}
+                        </h4>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -276,9 +381,9 @@ function RoomCardView({
                 <thead>
                   <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
                     <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-44">
-                      Waktu & Durasi
+                      Waktu
                     </th>
-                    <th className="px-6 py-4 text-khff-pink font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
+                    <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
                       Lokasi
                     </th>
                     <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
@@ -287,73 +392,108 @@ function RoomCardView({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-khff-cream/10">
-                  {room.sessions.map((session, sIdx) => (
-                    <tr
-                      key={sIdx}
-                      className="group hover:bg-white/10 transition-all duration-300"
-                    >
-                      <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
-                        <div className="text-base">{session.time}</div>
-                        {session.duration && session.duration !== "-" && (
-                          <span className="inline-block mt-1 text-[11px] font-mono text-khff-cream/70 bg-white/10 px-2 py-0.5 rounded border border-white/15">
-                            {session.duration}
+                  {room.sessions.map((session, sIdx) => {
+                    const progUrl = getProgramUrl(session.title);
+                    return (
+                      <tr
+                        key={sIdx}
+                        className="group hover:bg-white/10 transition-all duration-300"
+                      >
+                        <td className="px-6 py-5 font-mono font-bold text-khff-yellow align-top whitespace-nowrap">
+                          <div className="text-base">{session.time}</div>
+                        </td>
+                        <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
+                          <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/20 text-xs uppercase tracking-wider text-white font-bold">
+                            {room.name}
                           </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-5 text-khff-cream/90 align-top font-mono text-sm font-medium">
-                        <span className="inline-block bg-white/10 px-3.5 py-1.5 rounded-xl border border-khff-cream/20 text-xs uppercase tracking-wider text-khff-pink font-bold">
-                          {room.name}
-                        </span>
-                      </td>
-                      <td className="px-6 py-5 align-top">
-                        <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
-                          {session.title}
-                        </h4>
+                        </td>
+                        <td className="px-6 py-5 align-top">
+                          {progUrl ? (
+                            <Link
+                              href={progUrl}
+                              className="group/link inline-flex items-center gap-1.5 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg md:text-xl leading-snug"
+                            >
+                              <span>{session.title}</span>
+                              <ArrowUpRight size={18} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
+                            </Link>
+                          ) : (
+                            <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug">
+                              {session.title}
+                            </h4>
+                          )}
 
-                        {/* Speaker detail if any */}
-                        {session.speaker && (
-                          <p className="text-sm font-sans text-khff-yellow mt-1">
-                            <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
-                            <span className="font-bold">{session.speaker}</span>
-                          </p>
-                        )}
+                          {/* Speaker detail if any */}
+                          {session.speaker && (
+                            <p className="text-sm font-sans text-khff-yellow mt-1">
+                              <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
+                              <span className="font-bold">{session.speaker}</span>
+                            </p>
+                          )}
 
-                        {/* Film compilation list if any */}
-                        {session.films && session.films.length > 0 && (
-                          <div className="mt-4 pt-4 border-t border-khff-cream/10">
-                            <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
-                              <Film size={14} className="text-khff-pink" />
-                              <span>Daftar Film ({session.films.length} Film):</span>
+                          {/* Film compilation list if any */}
+                          {session.films && session.films.length > 0 && (
+                            <div className="mt-4 pt-4 border-t border-khff-cream/10">
+                              <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
+                                <Film size={14} className="text-khff-pink" />
+                                <span>Daftar Film ({session.films.length} Film):</span>
+                              </div>
+
+                              <div className="grid grid-cols-1 gap-2.5">
+                                {session.films.map((film, fIdx) => {
+                                  const filmUrl = getFilmUrl(film.title);
+                                  return filmUrl ? (
+                                    <Link
+                                      key={fIdx}
+                                      href={filmUrl}
+                                      className="group/film block p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 hover:border-khff-yellow/40 transition-all cursor-pointer"
+                                    >
+                                      <div className="flex items-center justify-between gap-2">
+                                        <div className="font-serif font-bold text-base md:text-lg text-white group-hover/film:text-khff-yellow transition-colors">
+                                          {film.title}
+                                        </div>
+                                        <ArrowUpRight size={16} className="text-khff-yellow opacity-0 group-hover/film:opacity-100 group-hover/film:translate-x-0.5 transition-all shrink-0" />
+                                      </div>
+                                      <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                                        <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.genre}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.duration}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.year}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.origin}</span>
+                                      </div>
+                                    </Link>
+                                  ) : (
+                                    <div
+                                      key={fIdx}
+                                      className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10"
+                                    >
+                                      <div className="font-serif font-bold text-base md:text-lg text-white">
+                                        {film.title}
+                                      </div>
+                                      <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                                        <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.genre}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.duration}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.year}</span>
+                                        <span className="mx-2 text-khff-cream/30">•</span>
+                                        <span>{film.origin}</span>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
                             </div>
-
-                            <div className="grid grid-cols-1 gap-2.5">
-                              {session.films.map((film, fIdx) => (
-                                <div
-                                  key={fIdx}
-                                  className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 transition-colors"
-                                >
-                                  <div className="font-serif font-bold text-base md:text-lg text-white">
-                                    {film.title}
-                                  </div>
-                                  <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
-                                    <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
-                                    <span className="mx-2 text-khff-cream/30">•</span>
-                                    <span>{film.genre}</span>
-                                    <span className="mx-2 text-khff-cream/30">•</span>
-                                    <span>{film.duration}</span>
-                                    <span className="mx-2 text-khff-cream/30">•</span>
-                                    <span>{film.year}</span>
-                                    <span className="mx-2 text-khff-cream/30">•</span>
-                                    <span>{film.origin}</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -361,69 +501,104 @@ function RoomCardView({
 
           {/* Mobile Card View (Consistent with Day 1) */}
           <div className="md:hidden space-y-4">
-            {room.sessions.map((session, sIdx) => (
-              <div
-                key={sIdx}
-                className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
-                    {session.time}
-                  </span>
-                  {session.duration && session.duration !== "-" && (
-                    <span className="font-mono text-[11px] text-khff-cream/80 font-bold px-2.5 py-0.5 rounded-lg bg-white/10 border border-khff-cream/20">
-                      {session.duration}
+            {room.sessions.map((session, sIdx) => {
+              const progUrl = getProgramUrl(session.title);
+              return (
+                <div
+                  key={sIdx}
+                  className="p-5 rounded-2xl bg-white/5 border border-khff-cream/20 shadow-xl backdrop-blur-sm"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span className="font-mono text-xs font-black text-khff-yellow px-3 py-1 rounded-xl bg-khff-yellow/15 border border-khff-yellow/30">
+                      {session.time}
                     </span>
-                  )}
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-khff-pink font-bold">
-                    {room.name}
-                  </span>
-                </div>
-                <h4 className="text-white font-serif font-black text-lg leading-snug">
-                  {session.title}
-                </h4>
-
-                {session.speaker && (
-                  <p className="text-sm font-sans text-khff-yellow mt-1.5">
-                    <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
-                    <span className="font-bold">{session.speaker}</span>
-                  </p>
-                )}
-
-                {session.films && session.films.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-khff-cream/10">
-                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
-                      <Film size={14} className="text-khff-pink" />
-                      <span>Daftar Film ({session.films.length} Film):</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-2.5">
-                      {session.films.map((film, fIdx) => (
-                        <div
-                          key={fIdx}
-                          className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10"
-                        >
-                          <div className="font-serif font-bold text-base text-white">
-                            {film.title}
-                          </div>
-                          <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
-                            <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
-                            <span className="mx-2 text-khff-cream/30">•</span>
-                            <span>{film.genre}</span>
-                            <span className="mx-2 text-khff-cream/30">•</span>
-                            <span>{film.duration}</span>
-                            <span className="mx-2 text-khff-cream/30">•</span>
-                            <span>{film.year}</span>
-                            <span className="mx-2 text-khff-cream/30">•</span>
-                            <span>{film.origin}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-white font-bold">
+                      {room.name}
+                    </span>
                   </div>
-                )}
-              </div>
-            ))}
+                  {progUrl ? (
+                    <Link
+                      href={progUrl}
+                      className="group/link inline-flex items-center gap-1.5 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg leading-snug"
+                    >
+                      <span>{session.title}</span>
+                      <ArrowUpRight size={16} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
+                    </Link>
+                  ) : (
+                    <h4 className="text-white font-serif font-black text-lg leading-snug">
+                      {session.title}
+                    </h4>
+                  )}
+
+                  {session.speaker && (
+                    <p className="text-sm font-sans text-khff-yellow mt-1.5">
+                      <span className="text-khff-cream/80 font-medium">Narasumber:</span>{" "}
+                      <span className="font-bold">{session.speaker}</span>
+                    </p>
+                  )}
+
+                  {session.films && session.films.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-khff-cream/10">
+                      <div className="flex items-center gap-2 text-xs font-mono font-bold text-khff-cream/60 uppercase tracking-wider mb-3">
+                        <Film size={14} className="text-khff-pink" />
+                        <span>Daftar Film ({session.films.length} Film):</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-2.5">
+                        {session.films.map((film, fIdx) => {
+                          const filmUrl = getFilmUrl(film.title);
+                          return filmUrl ? (
+                            <Link
+                              key={fIdx}
+                              href={filmUrl}
+                              className="group/film block p-3.5 rounded-xl bg-white/5 border border-khff-cream/10 hover:bg-white/10 hover:border-khff-yellow/40 transition-all cursor-pointer"
+                            >
+                              <div className="flex items-center justify-between gap-2">
+                                <div className="font-serif font-bold text-base text-white group-hover/film:text-khff-yellow transition-colors">
+                                  {film.title}
+                                </div>
+                                <ArrowUpRight size={16} className="text-khff-yellow opacity-0 group-hover/film:opacity-100 group-hover/film:translate-x-0.5 transition-all shrink-0" />
+                              </div>
+                              <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                                <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.genre}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.duration}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.year}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.origin}</span>
+                              </div>
+                            </Link>
+                          ) : (
+                            <div
+                              key={fIdx}
+                              className="p-3.5 rounded-xl bg-white/5 border border-khff-cream/10"
+                            >
+                              <div className="font-serif font-bold text-base text-white">
+                                {film.title}
+                              </div>
+                              <div className="text-xs text-khff-cream/75 font-sans mt-1 leading-relaxed">
+                                <span>Sutradara: <span className="text-white font-medium">{film.director}</span></span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.genre}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.duration}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.year}</span>
+                                <span className="mx-2 text-khff-cream/30">•</span>
+                                <span>{film.origin}</span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       ))}
