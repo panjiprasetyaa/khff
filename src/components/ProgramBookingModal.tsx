@@ -486,9 +486,11 @@ export default function ProgramBookingModal({
             <h2 className="text-2xl sm:text-3xl font-serif font-black text-white leading-snug">
               Pemesanan Tiket Acara
             </h2>
-            <p className="text-khff-cream/75 text-xs sm:text-sm mt-1">
-              Setiap sesi memiliki kuota terbatas <strong className="text-khff-yellow">30 Slot</strong>. Silakan masuk dengan akun Google untuk konfirmasi instan.
-            </p>
+            {statusState?.type !== "success" && (
+              <p className="text-khff-cream/75 text-xs sm:text-sm mt-1">
+                Setiap sesi memiliki kuota terbatas <strong className="text-khff-yellow">30 Slot</strong>. Silakan masuk dengan akun Google untuk konfirmasi instan.
+              </p>
+            )}
           </div>
 
           {/* SUCCESS VIEW: DIGITAL TICKET PASS */}
@@ -500,14 +502,11 @@ export default function ProgramBookingModal({
 
                 <div className="flex items-center justify-between pb-4 border-b border-white/15 mb-4">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-green-400 animate-ping" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0" />
                     <span className="font-mono text-xs font-black uppercase tracking-wider text-khff-yellow">
                       Tiket Terkonfirmasi
                     </span>
                   </div>
-                  <span className="font-mono text-[11px] text-khff-cream/60">
-                    Tab: {statusState.event?.tabSheet}
-                  </span>
                 </div>
 
                 <div className="mb-5">
