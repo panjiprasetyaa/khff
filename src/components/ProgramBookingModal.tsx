@@ -615,7 +615,7 @@ export default function ProgramBookingModal({
               {/* Event Picker Dropdown */}
               <div>
                 <label className="block font-mono text-xs font-black uppercase tracking-wider text-khff-yellow mb-2">
-                  1. Pilih Acara / Sesi • Kapasitas 20 Slot
+                  1. Pilih Acara / Sesi (Kapasitas 20 Slot)
                 </label>
                 <div className="relative">
                   <select
@@ -769,7 +769,7 @@ export default function ProgramBookingModal({
                       <AlertCircle size={15} /> Kuota 20 Slot Penuh
                     </div>
                     <p className="text-xs text-red-200 leading-relaxed max-w-md mx-auto">
-                      Seluruh 20 kursi untuk sesi acara ini telah terisi penuh. Silakan pilih sesi acara lain pada pilihan di atas yang masih tersedia.
+                      Seluruh 20 kursi untuk sesi acara ini telah terisi penuh (Sold Out). Silakan pilih sesi acara lain pada pilihan di atas yang masih tersedia.
                     </p>
                   </div>
                 ) : googleUser ? (
@@ -791,7 +791,7 @@ export default function ProgramBookingModal({
                           {googleUser.name}
                         </span>
                         <span className="text-xs font-mono text-green-300">
-                          {googleUser.email} • Terverifikasi
+                          {googleUser.email} (Terverifikasi)
                         </span>
                       </div>
                     </div>
