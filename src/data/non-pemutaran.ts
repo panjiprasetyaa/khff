@@ -49,7 +49,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
     id: "heritage-talks",
     slug: "heritage-talks",
     category: "Heritage Talks",
-    title: "Merawat yang Hidup",
+    title: "Heritage Talks: Merawat yang Hidup",
     theme: "Heritage dalam Sudut Pandang KHFF",
     day: "Sabtu, 19 September 2026",
     date: "19 September 2026",

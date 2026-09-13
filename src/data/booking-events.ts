@@ -223,7 +223,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     programId: "non-pemutaran",
     programLabel: "Program Non-Pemutaran",
     category: "Heritage Talks",
-    title: "Merawat yang Hidup",
+    title: "Heritage Talks: Merawat yang Hidup",
     subtitle: "Zaki Habibi (Akademisi & Peneliti Budaya Visual)",
     scheduleDate: "Sabtu, 19 September 2026",
     scheduleTime: "16.00 WIB",

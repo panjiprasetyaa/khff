@@ -141,7 +141,7 @@ var ORDERED_PROGRAM_EVENTS = [
   {
     eventId: "nonpemutaran-heritage-talks",
     tabSheet: "NonPemutaran_HeritageTalks",
-    title: "Merawat yang Hidup (Heritage Talks: Zaki Habibi)",
+    title: "Heritage Talks: Merawat yang Hidup",
     category: "Heritage Talks",
     schedule: "Sabtu, 19 Sep 2026 | 16.00 - 18.10 WIB",
     venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta"
@@ -199,7 +199,7 @@ var EVENT_TITLES_MAP = {
   "kompetisi-mahaditya": "Kompetisi: Mahaditya (13.00 - 15.45)",
   "nonpemutaran-workshop-stop-motion": "Heritage Workshop: Stop Motion! (13.00 - 16.00)",
   "nonkomp-indonesian-cinema-2": "Heritage in Indonesian Cinema #2 (16.00 - 17.20)",
-  "nonpemutaran-heritage-talks": "Merawat yang Hidup (Heritage Talks) (16.00 - 18.10)"
+  "nonpemutaran-heritage-talks": "Heritage Talks: Merawat yang Hidup (16.00 - 18.10)"
 };
 
 /**
@@ -450,6 +450,7 @@ function doPost(e) {
     // ACTION: Reset / Pembatalan Sesi oleh User (Menghapus baris dari Spreadsheet)
     if (data.action === "resetRegistrations" || data.action === "cancelRegistrations") {
       var emailToReset = (data.email || "").toString().trim().toLowerCase();
+      var targetEventIds = Array.isArray(data.eventIds) ? data.eventIds : null;
       if (!emailToReset) {
         return createJsonResponse({
           status: "error",
@@ -462,6 +463,11 @@ function doPost(e) {
       var affectedSheets = [];
 
       for (var evId in EVENT_SHEET_MAP) {
+        // Jika user hanya memilih sesi tertentu untuk dihapus, lewati sesi lain
+        if (targetEventIds && targetEventIds.length > 0 && targetEventIds.indexOf(evId) === -1) {
+          continue;
+        }
+
         var tName = EVENT_SHEET_MAP[evId];
         var s = ss.getSheetByName(tName);
         if (s && s.getLastRow() > 1) {
@@ -491,10 +497,14 @@ function doPost(e) {
         }
       }
 
+      var msg = targetEventIds && targetEventIds.length > 0
+        ? "Sesi pendaftaran yang dipilih untuk " + emailToReset + " berhasil dibatalkan (" + deletedCount + " baris dihapus). Slot kursi telah dikembalikan."
+        : "Seluruh pendaftaran sesi untuk " + emailToReset + " berhasil dibatalkan (" + deletedCount + " baris dihapus). Slot kursi telah dikembalikan.";
+
       return createJsonResponse({
         status: "success",
         action: "resetRegistrations",
-        message: "Seluruh pendaftaran sesi untuk " + emailToReset + " berhasil dibatalkan dan dihapus dari Spreadsheet (" + deletedCount + " baris dihapus). Slot kursi telah dikembalikan.",
+        message: msg,
         deletedCount: deletedCount,
         affectedSheets: affectedSheets
       });

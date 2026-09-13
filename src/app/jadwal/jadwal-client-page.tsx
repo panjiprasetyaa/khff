@@ -216,7 +216,7 @@ const venueSummaries: Record<
       "Kompetisi Mahaditya (5 Film Pendek)",
       "Heritage Workshop: Stop Motion! Rimbun Project",
       "Heritage in Indonesian Cinema #2: Kantata Takwa",
-      "Heritage Talk: Merawat yang Hidup bersama Zaki Habibi",
+      "Heritage Talks: Merawat yang Hidup bersama Zaki Habibi",
     ],
   },
 };

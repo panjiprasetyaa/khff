@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Script from "next/script";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -95,6 +95,7 @@ interface SlotDetail {
 }
 
 export default function RegistrasiClientPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const sessionParam = searchParams.get("session") || searchParams.get("sesi");
 
@@ -121,6 +122,8 @@ export default function RegistrasiClientPage() {
   // User registered event IDs for conflict detection
   const [userRegisteredEventIds, setUserRegisteredEventIds] = useState<string[]>([]);
   const [showResetModal, setShowResetModal] = useState(false);
+  const [selectedResetEventIds, setSelectedResetEventIds] = useState<string[]>([]);
+  const [resetNotice, setResetNotice] = useState<string | null>(null);
   const [resetting, setResetting] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -340,14 +343,37 @@ export default function RegistrasiClientPage() {
     [googleUser]
   );
 
-  // Handle confirmed reset: deletes rows from Google Spreadsheet and clears local state
+  // Open reset modal and select all registered events by default
+  const handleOpenResetModal = () => {
+    setSelectedResetEventIds([...userRegisteredEventIds]);
+    setShowResetModal(true);
+  };
+
+  // Toggle single event selection for reset
+  const toggleSelectResetEvent = (eventId: string) => {
+    setSelectedResetEventIds((prev) =>
+      prev.includes(eventId) ? prev.filter((id) => id !== eventId) : [...prev, eventId]
+    );
+  };
+
+  // Toggle all events selection for reset
+  const handleToggleSelectAllReset = () => {
+    if (selectedResetEventIds.length === userRegisteredEventIds.length) {
+      setSelectedResetEventIds([]);
+    } else {
+      setSelectedResetEventIds([...userRegisteredEventIds]);
+    }
+  };
+
+  // Handle confirmed reset: deletes selected rows and redirects cleanly to registration
   const handleConfirmReset = async () => {
-    if (!googleUser) return;
+    if (!googleUser || selectedResetEventIds.length === 0) return;
     setResetting(true);
 
     const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+    const targetIdsToDelete = [...selectedResetEventIds];
 
-    // If scriptUrl is connected, send request to Apps Script to delete matching rows in Spreadsheet
+    // If scriptUrl is connected, send request to Apps Script to delete matching rows
     if (scriptUrl) {
       try {
         const res = await fetch(scriptUrl, {
@@ -356,29 +382,52 @@ export default function RegistrasiClientPage() {
           body: JSON.stringify({
             action: "resetRegistrations",
             email: googleUser.email,
+            eventIds: targetIdsToDelete,
           }),
         });
         const resText = await res.text();
         console.log("Reset registrations response:", resText);
       } catch (err) {
-        console.error("Gagal menghapus registrasi di Spreadsheet:", err);
+        console.error("Gagal membatalkan registrasi:", err);
       }
     }
 
-    // Clear local storage and component state
+    const countDeleted = targetIdsToDelete.length;
+    const remaining = userRegisteredEventIds.filter(
+      (id) => !targetIdsToDelete.includes(id)
+    );
+
+    // Update local storage and component state
     try {
-      localStorage.removeItem(storageKey);
+      if (remaining.length > 0) {
+        localStorage.setItem(storageKey, JSON.stringify(remaining));
+      } else {
+        localStorage.removeItem(storageKey);
+      }
     } catch {
       // ignore
     }
 
-    setUserRegisteredEventIds([]);
+    setUserRegisteredEventIds(remaining);
+    setSelectedResetEventIds([]);
     setResetting(false);
     setShowResetModal(false);
-    setStatusState({
-      type: "success",
-      message: "Seluruh pendaftaran sesi Anda berhasil dibatalkan dan dihapus dari Google Sheets. Slot kuota telah dikembalikan.",
-    });
+
+    // CRITICAL: Clear success state so digital ticket pass is not rendered with empty values
+    setStatusState(null);
+
+    // Show success notification banner above the registration form
+    setResetNotice(
+      `${countDeleted} sesi reservasi berhasil dibatalkan. Kuota kursi telah dikembalikan.`
+    );
+
+    // Redirect user to registration page and scroll to top
+    try {
+      router.push("/registrasi");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      // ignore
+    }
 
     // Refresh quota numbers immediately so freed slots are visible
     fetchSlots();
@@ -751,6 +800,29 @@ export default function RegistrasiClientPage() {
             Dapatkan tiket resmi gratis untuk menyaksikan penayangan program festival dan mengikuti temu wicara di PDIN Yogyakarta. Kuota sangat terbatas hanya <strong className="text-khff-yellow font-bold">20 slot kursi per sesi</strong> demi kenyamanan festival.
           </p>
         </div>
+
+        {/* Reset / Cancellation Banner Notice */}
+        {resetNotice && (
+          <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 text-khff-cream flex items-start justify-between gap-3 backdrop-blur-sm shadow-md max-w-4xl animate-in fade-in duration-300">
+            <div className="flex items-start gap-3">
+              <CheckCircle2 size={22} className="text-emerald-400 shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm leading-relaxed">
+                <strong className="text-emerald-300 block font-mono uppercase tracking-wider mb-1">
+                  Reservasi Sesi Berhasil Dibatalkan
+                </strong>
+                <p className="text-khff-cream/90">{resetNotice}</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setResetNotice(null)}
+              className="text-khff-cream/50 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+              title="Tutup pemberitahuan"
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
 
         {/* Development Setup Alert (if Google Client ID is not set) */}
         {!clientId && (
@@ -1243,12 +1315,12 @@ export default function RegistrasiClientPage() {
                           <span>Sesi Terdaftar: <strong className="text-khff-yellow">{userRegisteredEventIds.length}</strong> sesi</span>
                           <button
                             type="button"
-                            onClick={() => setShowResetModal(true)}
+                            onClick={handleOpenResetModal}
                             className="text-khff-cream/60 hover:text-red-400 underline transition-colors cursor-pointer inline-flex items-center gap-1.5"
                             title="Batalkan dan hapus sesi terdaftar dari akun ini"
                           >
                             <Trash2 size={12} />
-                            <span>Reset Sesi Saya</span>
+                            <span>Kelola / Hapus Sesi</span>
                           </button>
                         </div>
                       )}
@@ -1356,11 +1428,11 @@ export default function RegistrasiClientPage() {
         )}
       </div>
 
-      {/* CONFIRMATION MODAL: RESET SESI SAYA */}
+      {/* CONFIRMATION MODAL: BATALKAN SESI PILIHAN DENGAN CHECKBOX */}
       {showResetModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
           <div
-            className="bg-[#122829] border-2 border-red-500/40 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200 text-khff-cream"
+            className="bg-[#122829] border-2 border-red-500/40 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative animate-in zoom-in-95 duration-200 text-khff-cream"
             role="dialog"
             aria-modal="true"
           >
@@ -1381,7 +1453,7 @@ export default function RegistrasiClientPage() {
               </div>
               <div className="min-w-0 pr-6">
                 <h3 className="font-serif font-black text-lg sm:text-xl text-white leading-tight">
-                  Batalkan & Hapus Sesi?
+                  Batalkan Reservasi Sesi
                 </h3>
                 <p className="text-xs text-khff-cream/70 mt-1 truncate">
                   Akun: <strong className="text-khff-yellow font-mono">{googleUser?.email}</strong>
@@ -1389,31 +1461,72 @@ export default function RegistrasiClientPage() {
               </div>
             </div>
 
-            {/* Warning description */}
+            {/* Description without mentioning spreadsheet */}
             <p className="text-xs sm:text-sm text-khff-cream/85 leading-relaxed mb-4">
-              Apakah Anda yakin ingin membatalkan semua reservasi sesi program Anda? Tindakan ini akan <strong>menghapus data pendaftaran di Google Spreadsheet</strong> dan membebaskan kuota kursi untuk pengunjung lain.
+              Pilih sesi program yang ingin Anda batalkan reservasinya. Tindakan ini akan <strong>menghapus data pendaftaran</strong> dan membebaskan kuota kursi untuk pengunjung lain.
             </p>
 
-            {/* List of registered sessions that will be removed */}
-            {userRegisteredEventIds.length > 0 && (
-              <div className="mb-6 p-3 rounded-2xl bg-black/50 border border-white/10 max-h-36 overflow-y-auto custom-mini-scrollbar space-y-1.5">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-khff-yellow/80 block mb-1">
-                  Daftar Sesi yang Akan Dihapus ({userRegisteredEventIds.length}):
-                </span>
-                {userRegisteredEventIds.map((id) => {
-                  const ev = getBookingEventById(id);
-                  if (!ev) return null;
-                  return (
-                    <div
-                      key={id}
-                      className="flex items-center justify-between text-xs font-mono py-1.5 px-2.5 rounded-lg bg-white/5 text-khff-cream/90"
-                    >
-                      <span className="truncate pr-2">{ev.title}</span>
-                      <span className="text-[10px] text-khff-yellow shrink-0">{ev.scheduleTime}</span>
-                    </div>
-                  );
-                })}
+            {/* List of registered sessions with checkboxes */}
+            {userRegisteredEventIds.length > 0 ? (
+              <div className="mb-6 space-y-2">
+                <div className="flex items-center justify-between text-xs font-mono text-khff-cream/70 px-1">
+                  <span>
+                    Pilih sesi yang ingin dihapus ({selectedResetEventIds.length}/{userRegisteredEventIds.length}):
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleToggleSelectAllReset}
+                    disabled={resetting}
+                    className="text-khff-yellow hover:underline cursor-pointer font-bold disabled:opacity-50"
+                  >
+                    {selectedResetEventIds.length === userRegisteredEventIds.length
+                      ? "Batal Pilih Semua"
+                      : "Pilih Semua"}
+                  </button>
+                </div>
+
+                <div className="p-2 sm:p-3 rounded-2xl bg-black/50 border border-white/10 max-h-60 overflow-y-auto custom-mini-scrollbar space-y-2">
+                  {userRegisteredEventIds.map((id) => {
+                    const ev = getBookingEventById(id);
+                    if (!ev) return null;
+                    const isChecked = selectedResetEventIds.includes(id);
+
+                    return (
+                      <div
+                        key={id}
+                        onClick={() => !resetting && toggleSelectResetEvent(id)}
+                        className={`flex items-start gap-3 p-3 rounded-xl border transition-all cursor-pointer select-none ${
+                          isChecked
+                            ? "bg-red-500/15 border-red-500/50 text-white"
+                            : "bg-white/5 border-white/5 text-khff-cream/70 hover:bg-white/10 hover:text-khff-cream"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {}} // Handled by outer container click
+                          disabled={resetting}
+                          className="mt-0.5 w-4 h-4 rounded border-white/30 text-red-600 focus:ring-red-500/50 bg-black/40 shrink-0 cursor-pointer accent-red-600"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <p className={`text-xs sm:text-sm font-bold leading-snug ${isChecked ? "text-white" : "text-khff-cream/90"}`}>
+                            {ev.title}
+                          </p>
+                          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-khff-cream/60 mt-1">
+                            <span>{ev.scheduleDate.split(",")[0]}</span>
+                            <span>•</span>
+                            <span className="text-khff-yellow font-bold">{ev.scheduleTime}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+            ) : (
+              <p className="text-xs text-khff-cream/60 italic mb-6">
+                Tidak ada sesi aktif yang terdaftar untuk akun ini.
+              </p>
             )}
 
             {/* Action buttons */}
@@ -1429,8 +1542,8 @@ export default function RegistrasiClientPage() {
               <button
                 type="button"
                 onClick={handleConfirmReset}
-                disabled={resetting}
-                className="flex-1 py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-black transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                disabled={resetting || selectedResetEventIds.length === 0}
+                className="flex-1 py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 disabled:bg-white/10 disabled:text-white/30 disabled:border disabled:border-white/5 disabled:cursor-not-allowed text-white font-mono text-xs font-black transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
               >
                 {resetting ? (
                   <>
@@ -1440,7 +1553,11 @@ export default function RegistrasiClientPage() {
                 ) : (
                   <>
                     <Trash2 size={14} />
-                    <span>Ya, Hapus Sesi</span>
+                    <span>
+                      {selectedResetEventIds.length > 0
+                        ? `Hapus (${selectedResetEventIds.length}) Sesi Terpilih`
+                        : "Pilih Sesi Terlebih Dahulu"}
+                    </span>
                   </>
                 )}
               </button>
