@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Users,
 } from "lucide-react";
-import ProgramBookingModal from "@/components/ProgramBookingModal";
 import { praEvents } from "@/data/dummy";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from "swiper/modules";
@@ -81,16 +80,6 @@ const homepageSchedule = [
 */
 
 export default function Home() {
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [selectedBookingEventId, setSelectedBookingEventId] = useState<
-    string | undefined
-  >(undefined);
-
-  const openBookingModal = (eventId?: string) => {
-    setSelectedBookingEventId(eventId);
-    setIsBookingModalOpen(true);
-  };
-
   return (
     <div className="bg-khff-navy text-khff-navy min-h-screen font-sans overflow-x-hidden w-full relative">
       {/* 1. HERO SECTION (FULL ARTWORK BACKGROUND WITH READABILITY OVERLAY) */}
@@ -239,18 +228,17 @@ export default function Home() {
 
                   {/* Main CTA Button */}
                   <div className="space-y-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => openBookingModal()}
-                      className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer uppercase tracking-wider group"
+                    <Link
+                      href="/tiket"
+                      className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer uppercase tracking-wider group text-center"
                     >
                       <Ticket size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                       <span>Pesan Tiket Sekarang</span>
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
+                    </Link>
 
                     <p className="text-[11px] font-mono text-khff-cream/60 text-center tracking-wide">
-                      *Klik untuk membuka pilihan sesi & formulir registrasi
+                      *Pilih sesi acara & formulir registrasi instan
                     </p>
                   </div>
 
@@ -260,27 +248,24 @@ export default function Home() {
                       Pilih langsung kategori program:
                     </span>
                     <div className="flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => openBookingModal("kompetisi-purwaseswa")}
+                      <Link
+                        href="/tiket?session=kompetisi-purwaseswa"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Kompetisi
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => openBookingModal("nonkomp-panorama")}
+                      </Link>
+                      <Link
+                        href="/tiket?session=nonkomp-panorama"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-pink hover:text-white text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Non-Kompetisi
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => openBookingModal("nonpemutaran-director-talks")}
+                      </Link>
+                      <Link
+                        href="/tiket?session=nonpemutaran-director-talks"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Talks & Workshop
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -706,14 +691,6 @@ export default function Home() {
 
       {/* Video Modal Popup (Unused) */}
 
-      {/* PROGRAM BOOKING POPUP MODAL */}
-      {isBookingModalOpen && (
-        <ProgramBookingModal
-          isOpen={isBookingModalOpen}
-          onClose={() => setIsBookingModalOpen(false)}
-          initialEventId={selectedBookingEventId}
-        />
-      )}
     </div>
   );
 }

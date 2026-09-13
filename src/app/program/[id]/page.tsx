@@ -24,7 +24,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { nonPemutaranEvents } from "@/data/non-pemutaran";
-import ProgramBookingModal from "@/components/ProgramBookingModal";
 
 export default function ProgramDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -36,15 +35,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
   // Tab States
   const [activeKompetisiTab, setActiveKompetisiTab] = useState("purwaseswa");
   const [activeNonKompetisiTab, setActiveNonKompetisiTab] = useState("khff-panorama");
-
-  // Booking Modal State
-  const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  const [bookingEventId, setBookingEventId] = useState<string | undefined>(undefined);
-
-  const openBooking = (eventId?: string) => {
-    setBookingEventId(eventId);
-    setBookingModalOpen(true);
-  };
 
   useEffect(() => {
     const syncTabFromUrl = () => {
@@ -156,13 +146,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                   <p className="text-khff-cream/90 text-base sm:text-lg font-medium leading-relaxed">{activeTabInfo.desc}</p>
                 </div>
                 <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
-                  <button
-                    onClick={() => openBooking(`kompetisi-${activeKompetisiTab}`)}
-                    className="px-7 py-3.5 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-xl inline-flex items-center gap-2.5 cursor-pointer"
+                  <Link
+                    href={`/tiket?session=kompetisi-${activeKompetisiTab}`}
+                    className="px-7 py-3.5 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-xl inline-flex items-center gap-2.5 cursor-pointer text-center"
                   >
                     <Ticket size={16} />
                     <span>Registrasi di Sini</span>
-                  </button>
+                  </Link>
                   <span className="text-[11px] font-mono text-khff-cream/60">
                     Kapasitas: 20 Kursi per Sesi
                   </span>
@@ -190,12 +180,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             </div>
           </div>
         </section>
-
-        <ProgramBookingModal
-          isOpen={bookingModalOpen}
-          onClose={() => setBookingModalOpen(false)}
-          initialEventId={bookingEventId}
-        />
       </main>
     );
   }
@@ -312,21 +296,23 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                         <span className="text-xs sm:text-sm font-mono text-khff-cream/60">
                           <span className="font-bold text-khff-cream">{session.films?.length || 0} Film Terpilih</span>
                         </span>
-                        <button
-                          onClick={() => {
-                            const eventMap: Record<string, string> = {
-                              "heritage-in-indonesian-cinema-1": "nonkomp-indonesian-cinema-1",
-                              "heritage-in-indonesian-cinema-2": "nonkomp-indonesian-cinema-2",
-                              "heritage-in-experimental-cinema-1": "nonkomp-experimental-cinema-1",
-                              "heritage-in-experimental-cinema-2": "nonkomp-experimental-cinema-2",
-                            };
-                            openBooking(eventMap[session.id] || "nonkomp-panorama");
-                          }}
-                          className="px-5 py-2.5 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer shrink-0"
+                        <Link
+                          href={`/tiket?session=${
+                            session.id === "heritage-in-indonesian-cinema-1"
+                              ? "nonkomp-indonesian-cinema-1"
+                              : session.id === "heritage-in-indonesian-cinema-2"
+                              ? "nonkomp-indonesian-cinema-2"
+                              : session.id === "heritage-in-experimental-cinema-1"
+                              ? "nonkomp-experimental-cinema-1"
+                              : session.id === "heritage-in-experimental-cinema-2"
+                              ? "nonkomp-experimental-cinema-2"
+                              : "nonkomp-panorama"
+                          }`}
+                          className="px-5 py-2.5 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer shrink-0 text-center"
                         >
                           <Ticket size={15} />
                           <span>Registrasi di Sini</span>
-                        </button>
+                        </Link>
                       </div>
                     </div>
 
@@ -344,13 +330,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                   <h3 className="text-2xl sm:text-3xl font-serif font-black text-white">
                     Daftar Karya Seleksi ({currentProgram.films.length} Film)
                   </h3>
-                  <button
-                    onClick={() => openBooking("nonkomp-panorama")}
-                    className="px-6 py-3 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer"
+                  <Link
+                    href="/tiket?session=nonkomp-panorama"
+                    className="px-6 py-3 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer text-center"
                   >
                     <Ticket size={16} />
                     <span>Registrasi di Sini</span>
-                  </button>
+                  </Link>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-12">
                   {currentProgram.films.map((film) => (
@@ -389,12 +375,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             )}
           </div>
         </section>
-
-        <ProgramBookingModal
-          isOpen={bookingModalOpen}
-          onClose={() => setBookingModalOpen(false)}
-          initialEventId={bookingEventId}
-        />
       </main>
     );
   }
@@ -535,18 +515,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
 
                           {/* Interactive Buttons */}
                           <div className="grid grid-cols-2 gap-2 mt-3">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                openBooking(`nonpemutaran-${event.id}`);
-                              }}
-                              className="py-2.5 px-3 rounded-xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white transition-all cursor-pointer"
+                            <Link
+                              href={`/tiket?session=nonpemutaran-${event.id}`}
+                              className="py-2.5 px-3 rounded-xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white transition-all cursor-pointer text-center"
                             >
                               <Ticket size={13} />
                               <span>Registrasi di Sini</span>
-                            </button>
+                            </Link>
                             <div className="py-2.5 px-3 rounded-xl bg-white/10 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1 border border-white/20 transition-all">
                               <span>Detail</span>
                               <ChevronRight size={13} />
@@ -622,18 +597,13 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
 
                       {/* Interactive Buttons (Registrasi & Buka Halaman) */}
                       <div className="grid grid-cols-2 gap-2.5">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            openBooking(`nonpemutaran-${event.id}`);
-                          }}
-                          className="py-3 px-3 rounded-2xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white hover:scale-105 transition-all cursor-pointer"
+                        <Link
+                          href={`/tiket?session=nonpemutaran-${event.id}`}
+                          className="py-3 px-3 rounded-2xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white hover:scale-105 transition-all cursor-pointer text-center"
                         >
                           <Ticket size={14} />
                           <span>Registrasi di Sini</span>
-                        </button>
+                        </Link>
                         <div className="py-3 px-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 border border-white/20 transition-all">
                           <BookOpen size={14} />
                           <span>Detail</span>
@@ -648,11 +618,6 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
           </div>
         </section>
 
-        <ProgramBookingModal
-          isOpen={bookingModalOpen}
-          onClose={() => setBookingModalOpen(false)}
-          initialEventId={bookingEventId}
-        />
       </main>
     );
   }

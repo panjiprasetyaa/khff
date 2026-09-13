@@ -390,17 +390,16 @@ export default function Navbar() {
             FESTIVAL GUIDE
           </a> 
           */}
-          {/* 
-          <a 
-            href={gFormUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 bg-khff-yellow text-khff-navy font-black hover:bg-white"
+          <Link
+            href="/tiket"
+            className={`px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 font-black text-xs font-mono tracking-wider uppercase cursor-pointer ${
+              pathname === "/tiket"
+                ? "bg-white text-khff-navy"
+                : "bg-khff-yellow text-khff-navy hover:bg-white"
+            }`}
           >
-            <span>REGISTRASI</span>
-            <ExternalLink size={14} />
-          </a>
-          */}
+            <span>PESAN TIKET</span>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -621,18 +620,13 @@ export default function Navbar() {
             </a>
             */}
           </div>
-          {/*
-          <a
-            href={gFormUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl font-mono font-black text-khff-navy bg-khff-yellow px-8 py-4 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-8 shadow-xl"
+          <Link
+            href="/tiket"
+            className="text-lg font-mono font-black text-khff-navy bg-khff-yellow px-8 py-3.5 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-8 shadow-xl uppercase tracking-wider cursor-pointer"
             onClick={handleNavClick}
           >
-            <span>REGISTRASI</span>
-            <ExternalLink size={18} />
-          </a>
-          */}
+            <span>PESAN TIKET</span>
+          </Link>
         </div>
       )}
     </nav>

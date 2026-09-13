@@ -1,8 +1,5 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
 import { Ticket } from "lucide-react";
-import ProgramBookingModal from "@/components/ProgramBookingModal";
 
 interface ProgramTicketButtonProps {
   eventId: string;
@@ -19,10 +16,8 @@ export default function ProgramTicketButton({
   size = "md",
   variant = "primary",
 }: ProgramTicketButtonProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 font-mono font-black uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md";
+    "inline-flex items-center justify-center gap-2 font-mono font-black uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md text-center";
 
   const sizeStyles = {
     sm: "text-[11px] py-2 px-3.5 rounded-xl",
@@ -42,27 +37,12 @@ export default function ProgramTicketButton({
   }[variant];
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setIsOpen(true);
-        }}
-        className={`${baseStyles} ${sizeStyles} ${variantStyles} ${className}`}
-      >
-        <Ticket size={size === "sm" ? 13 : size === "lg" ? 17 : 15} />
-        <span>{label}</span>
-      </button>
-
-      {isOpen && (
-        <ProgramBookingModal
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          initialEventId={eventId}
-        />
-      )}
-    </>
+    <Link
+      href={`/tiket?session=${eventId}`}
+      className={`${baseStyles} ${sizeStyles} ${variantStyles} ${className}`}
+    >
+      <Ticket size={size === "sm" ? 13 : size === "lg" ? 17 : 15} />
+      <span>{label}</span>
+    </Link>
   );
 }
