@@ -671,18 +671,18 @@ export default function RegistrasiClientPage() {
               </div>
 
               {/* Schedule Info Box */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-black/40 border border-white/10 mb-6 text-xs sm:text-sm font-mono">
-                <div className="flex items-center gap-2.5">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-6 gap-y-3 p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 mb-6 text-xs sm:text-sm font-mono">
+                <div className="flex items-center gap-2.5 shrink-0">
                   <Calendar size={16} className="text-khff-yellow shrink-0" />
                   <span>{statusState.event?.scheduleDate}</span>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 shrink-0">
                   <Clock size={16} className="text-khff-yellow shrink-0" />
                   <span>{statusState.event?.scheduleTime}</span>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <MapPin size={16} className="text-khff-yellow shrink-0" />
-                  <span className="truncate">{statusState.event?.venue}</span>
+                  <span className="leading-snug">{statusState.event?.venue}</span>
                 </div>
               </div>
 
