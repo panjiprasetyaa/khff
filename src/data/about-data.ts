@@ -86,7 +86,7 @@ export const festivalJury = [
   },
   {
     id: "jury-3",
-    name: "DS Nugraheni",
+    name: "Wahyu Utami Wati",
     role: "Juri Festival",
     image: "/assets/about/jury/ds_nugraheni.webp",
   },
