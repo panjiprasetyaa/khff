@@ -58,12 +58,75 @@ var EVENT_SHEET_MAP = {
   "nonpemutaran-workshop-stop-motion": "NonPemutaran_Workshop"
 };
 
+// Pemetaan Konflik Jadwal Antar-Program (Tumpang tindih waktu pada hari festival yang sama)
+// Satu user (email Google) hanya dapat memilih 1 program di slot waktu yang bertabrakan.
+var EVENT_CONFLICT_MAP = {
+  // Cluster 1: Jumat 18 Sep, 13.00 - 15.30
+  "kompetisi-purwaseswa": ["nonkomp-panorama"],
+  "nonkomp-panorama": ["kompetisi-purwaseswa"],
+
+  // Cluster 2: Jumat 18 Sep, 16.00 - 18.10
+  "kompetisi-karyanagri": ["nonkomp-experimental-cinema-1", "nonpemutaran-director-talks"],
+  "nonkomp-experimental-cinema-1": ["kompetisi-karyanagri", "nonpemutaran-director-talks"],
+  "nonpemutaran-director-talks": ["kompetisi-karyanagri", "nonkomp-experimental-cinema-1"],
+
+  // Cluster 3: Jumat 18 Sep, 19.15 - 21.08
+  "nonkomp-indonesian-cinema-1": ["nonkomp-experimental-cinema-2"],
+  "nonkomp-experimental-cinema-2": ["nonkomp-indonesian-cinema-1"],
+
+  // Cluster 4: Sabtu 19 Sep, 13.00 - 16.00
+  "kompetisi-mahaditya": ["nonpemutaran-workshop-stop-motion"],
+  "nonpemutaran-workshop-stop-motion": ["kompetisi-mahaditya"],
+
+  // Cluster 5: Sabtu 19 Sep, 16.00 - 18.10
+  "nonkomp-indonesian-cinema-2": ["nonpemutaran-heritage-talks"],
+  "nonpemutaran-heritage-talks": ["nonkomp-indonesian-cinema-2"]
+};
+
+var EVENT_TITLES_MAP = {
+  "kompetisi-purwaseswa": "Kompetisi: Purwaseswa (13.00 - 14.20)",
+  "nonkomp-panorama": "Panorama: Jogja Film Academy (13.00 - 15.30)",
+  "kompetisi-karyanagri": "Kompetisi: Karyanagri (16.00 - 18.10)",
+  "nonkomp-experimental-cinema-1": "Heritage in Experimental Cinema #1 (16.00 - 17.55)",
+  "nonpemutaran-director-talks": "Director Talks: Mistik Melampaui Ketakutan (16.00 - 18.10)",
+  "nonkomp-indonesian-cinema-1": "Heritage in Indonesian Cinema #1 (19.15 - 21.08)",
+  "nonkomp-experimental-cinema-2": "Heritage in Experimental Cinema #2 (19.15 - 20.45)",
+  "kompetisi-mahaditya": "Kompetisi: Mahaditya (13.00 - 15.45)",
+  "nonpemutaran-workshop-stop-motion": "Heritage Workshop: Stop Motion! (13.00 - 16.00)",
+  "nonkomp-indonesian-cinema-2": "Heritage in Indonesian Cinema #2 (16.00 - 17.20)",
+  "nonpemutaran-heritage-talks": "Merawat yang Hidup (Heritage Talks) (16.00 - 18.10)"
+};
+
 /**
  * Endpoint GET: Mengambil status sisa kuota seluruh acara secara realtime
+ * atau daftar registrasi user berdasarkan email
  */
 function doGet(e) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    // Query registrasi user berdasarkan email: ?action=userRegistrations&email=...
+    if (e && e.parameter && e.parameter.action === "userRegistrations" && e.parameter.email) {
+      var queryEmail = e.parameter.email.toString().trim().toLowerCase();
+      var registeredIds = [];
+
+      for (var evId in EVENT_SHEET_MAP) {
+        var tName = EVENT_SHEET_MAP[evId];
+        var s = ss.getSheetByName(tName);
+        if (s && isEmailRegisteredInSheet(s, queryEmail)) {
+          registeredIds.push(evId);
+        }
+      }
+
+      return createJsonResponse({
+        status: "success",
+        email: queryEmail,
+        registeredEventIds: registeredIds,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Default: Status Kuota Seluruh Sesi
     var slots = {};
 
     for (var eventId in EVENT_SHEET_MAP) {
@@ -91,7 +154,7 @@ function doGet(e) {
   } catch (err) {
     return createJsonResponse({
       status: "error",
-      message: "Gagal memuat status kuota: " + err.toString()
+      message: "Gagal memproses permintaan: " + err.toString()
     });
   }
 }
@@ -164,11 +227,30 @@ function doPost(e) {
       });
     }
 
-    // 5. Generate Kode Tiket Unik
+    // 5. Cek Konflik Jadwal (Tabrakan Waktu dengan Program Lain)
+    // Jika user sudah terdaftar di program lain yang berlangsung pada rentang jam yang sama, pendaftaran digagalkan.
+    var conflictingIds = EVENT_CONFLICT_MAP[eventId] || [];
+    for (var c = 0; c < conflictingIds.length; c++) {
+      var confId = conflictingIds[c];
+      var confTabName = EVENT_SHEET_MAP[confId];
+      var confSheet = ss.getSheetByName(confTabName);
+      if (confSheet && isEmailRegisteredInSheet(confSheet, email)) {
+        var confTitle = EVENT_TITLES_MAP[confId] || confId;
+        return createJsonResponse({
+          status: "conflict",
+          code: "SCHEDULE_CONFLICT",
+          message: "Pendaftaran digagalkan karena jadwal bertabrakan! Akun Google Anda telah terdaftar di program '" + confTitle + "' yang berlangsung pada waktu bersamaan. Anda hanya dapat memilih 1 program pada slot waktu yang sama.",
+          conflictingEventId: confId,
+          conflictingEventTitle: confTitle
+        });
+      }
+    }
+
+    // 6. Generate Kode Tiket Unik
     var randomNum = Math.floor(1000 + Math.random() * 9000);
     var regCode = ticketPrefix + randomNum;
 
-    // 6. Tulis Data ke Tab Acara
+    // 7. Tulis Data ke Tab Acara
     sheet.appendRow([
       new Date(),
       name,

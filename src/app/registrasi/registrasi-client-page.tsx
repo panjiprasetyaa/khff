@@ -18,6 +18,7 @@ import {
   Copy,
   Check,
   AlertCircle,
+  AlertTriangle,
   Loader2,
   CheckCircle2,
   Share2,
@@ -28,6 +29,9 @@ import {
   BookingEvent,
   BOOKING_EVENTS,
   getBookingEventById,
+  checkScheduleConflict,
+  findConflictingRegisteredEvent,
+  getConflictingEventIds,
 } from "@/data/booking-events";
 
 interface GoogleUser {
@@ -117,12 +121,16 @@ export default function RegistrasiClientPage() {
   const [loadingSlots, setLoadingSlots] = useState(true);
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 
+  // User registered event IDs for conflict detection
+  const [userRegisteredEventIds, setUserRegisteredEventIds] = useState<string[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [statusState, setStatusState] = useState<{
-    type: "success" | "duplicate" | "error" | "full";
+    type: "success" | "duplicate" | "error" | "full" | "conflict";
     message: string;
     regCode?: string;
     event?: BookingEvent;
+    conflictingEvent?: BookingEvent;
     name?: string;
     whatsapp?: string;
     email?: string;
@@ -256,6 +264,75 @@ export default function RegistrasiClientPage() {
     []
   );
 
+  // Load registered events for the active Google user from local storage & remote script
+  useEffect(() => {
+    if (!googleUser) {
+      setUserRegisteredEventIds([]);
+      return;
+    }
+
+    const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setUserRegisteredEventIds(parsed);
+        }
+      }
+    } catch (e) {
+      console.warn("Gagal membaca riwayat pendaftaran lokal:", e);
+    }
+
+    // Sync with remote Apps Script if scriptUrl configured
+    if (scriptUrl) {
+      const checkUrl = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=userRegistrations&email=${encodeURIComponent(googleUser.email)}`;
+      fetch(checkUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.status === "success" && Array.isArray(data.registeredEventIds)) {
+            setUserRegisteredEventIds((prev) => {
+              const merged = Array.from(new Set([...prev, ...data.registeredEventIds]));
+              try {
+                localStorage.setItem(storageKey, JSON.stringify(merged));
+              } catch (err) {}
+              return merged;
+            });
+          }
+        })
+        .catch((err) => {
+          console.warn("Could not sync remote user registrations:", err);
+        });
+    }
+  }, [googleUser, scriptUrl]);
+
+  // Record a successful registration locally
+  const recordUserRegistration = useCallback(
+    (eventId: string) => {
+      if (!googleUser) return;
+      const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+      setUserRegisteredEventIds((prev) => {
+        const updated = Array.from(new Set([...prev, eventId]));
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(updated));
+        } catch (e) {}
+        return updated;
+      });
+    },
+    [googleUser]
+  );
+
+  // Reset user's registrations (useful for demo testing)
+  const handleResetMyRegistrations = () => {
+    if (!googleUser) return;
+    const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+    try {
+      localStorage.removeItem(storageKey);
+    } catch (e) {}
+    setUserRegisteredEventIds([]);
+    setStatusState(null);
+  };
+
   const currentEvent = getBookingEventById(selectedEventId) || BOOKING_EVENTS[0];
   const currentSlot: SlotDetail = slotsData[currentEvent.id] || {
     total: currentEvent.maxSlots || 20,
@@ -265,9 +342,14 @@ export default function RegistrasiClientPage() {
     tabSheet: currentEvent.tabSheet,
   };
 
+  // Schedule collision detection for the selected event
+  const conflictingEvent = findConflictingRegisteredEvent(currentEvent.id, userRegisteredEventIds);
+  const isAlreadyRegisteredForThisEvent = userRegisteredEventIds.includes(currentEvent.id);
+
   const handleSignOut = () => {
     googleRenderedRef.current = false;
     setGoogleUser(null);
+    setUserRegisteredEventIds([]);
     setFullName("");
     setStatusState(null);
   };
@@ -323,6 +405,25 @@ export default function RegistrasiClientPage() {
       return;
     }
 
+    // Check duplicate registration
+    if (isAlreadyRegisteredForThisEvent) {
+      setStatusState({
+        type: "duplicate",
+        message: `Akun Google Anda (${googleUser.email}) sudah terdaftar pada sesi '${currentEvent.title}'. Setiap akun hanya dapat mendaftar 1 tiket per sesi program.`,
+      });
+      return;
+    }
+
+    // Check schedule collision with another registered event
+    if (conflictingEvent) {
+      setStatusState({
+        type: "conflict",
+        message: `Pendaftaran digagalkan karena jadwal bertabrakan! Anda telah terdaftar di program '${conflictingEvent.title}' (${conflictingEvent.scheduleDate}, ${conflictingEvent.scheduleTime}) pada rentang waktu yang sama. Anda hanya dapat memilih 1 program pada slot waktu yang bersamaan.`,
+        conflictingEvent: conflictingEvent,
+      });
+      return;
+    }
+
     if (!fullName.trim()) {
       setStatusState({
         type: "error",
@@ -365,6 +466,7 @@ export default function RegistrasiClientPage() {
       setTimeout(() => {
         setLoading(false);
         const code = currentEvent.ticketPrefix + Math.floor(1000 + Math.random() * 9000);
+        recordUserRegistration(currentEvent.id);
         setStatusState({
           type: "success",
           message: `Registrasi tiket berhasil disimulasikan! Hubungkan URL Google Apps Script pada NEXT_PUBLIC_PROGRAM_SCRIPT_URL untuk menyimpan data langsung ke tab '${currentEvent.tabSheet}' di Spreadsheet Anda.`,
@@ -411,6 +513,7 @@ export default function RegistrasiClientPage() {
       setLoading(false);
 
       if (result.status === "success") {
+        recordUserRegistration(currentEvent.id);
         setStatusState({
           type: "success",
           message: result.message || "Registrasi tiket Anda berhasil terkonfirmasi!",
@@ -421,7 +524,18 @@ export default function RegistrasiClientPage() {
           email: payload.email,
         });
         fetchSlots();
+      } else if (result.status === "conflict") {
+        setStatusState({
+          type: "conflict",
+          message:
+            result.message ||
+            "Pendaftaran digagalkan karena jadwal bertabrakan dengan program lain yang telah Anda daftarkan.",
+          conflictingEvent: result.conflictingEventId
+            ? getBookingEventById(result.conflictingEventId)
+            : conflictingEvent || undefined,
+        });
       } else if (result.status === "duplicate") {
+        recordUserRegistration(currentEvent.id);
         setStatusState({
           type: "duplicate",
           message:
@@ -674,6 +788,8 @@ export default function RegistrasiClientPage() {
               <div className="space-y-3 max-h-[560px] overflow-y-auto p-1.5 sm:p-2 custom-mini-scrollbar">
                 {filteredEvents.map((event) => {
                   const isSelected = event.id === selectedEventId;
+                  const isRegistered = userRegisteredEventIds.includes(event.id);
+                  const conflict = findConflictingRegisteredEvent(event.id, userRegisteredEventIds);
                   const slot = slotsData[event.id] || {
                     total: event.maxSlots || 20,
                     used: 0,
@@ -695,14 +811,29 @@ export default function RegistrasiClientPage() {
                       className={`p-4 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                         isSelected
                           ? "bg-[#163839] border-khff-yellow shadow-lg ring-1 ring-khff-yellow/40"
+                          : isRegistered
+                          ? "bg-blue-950/25 border-blue-500/40 hover:border-blue-400/60"
+                          : conflict
+                          ? "bg-amber-950/20 border-amber-500/30 hover:border-amber-500/50 hover:bg-amber-950/30"
                           : "bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <div>
-                          <span className="text-[10px] font-mono uppercase tracking-widest text-khff-yellow font-bold block mb-1">
-                            {event.category}
-                          </span>
+                          <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-khff-yellow font-bold">
+                              {event.category}
+                            </span>
+                            {isRegistered ? (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-500/25 text-blue-300 border border-blue-500/40">
+                                <CheckCircle2 size={10} /> Terdaftar
+                              </span>
+                            ) : conflict ? (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/25 text-amber-300 border border-amber-500/40">
+                                <AlertTriangle size={10} /> Bentrok Jadwal
+                              </span>
+                            ) : null}
+                          </div>
                           <h3 className="font-serif font-black text-base sm:text-lg text-white leading-snug">
                             <Link
                               href={event.programUrl}
@@ -721,6 +852,12 @@ export default function RegistrasiClientPage() {
                             <p className="text-xs text-khff-cream/75 mt-0.5">
                               {event.subtitle}
                             </p>
+                          )}
+                          {conflict && (
+                            <div className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-mono text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/25">
+                              <AlertTriangle size={12} className="shrink-0 text-amber-400" />
+                              <span>Bentrok dengan: <strong>{conflict.title}</strong></span>
+                            </div>
                           )}
                         </div>
 
@@ -832,20 +969,45 @@ export default function RegistrasiClientPage() {
                       />
                     </div>
                   </div>
+
+                  {/* Registered or Conflict Alert in Active Session Box */}
+                  {isAlreadyRegisteredForThisEvent ? (
+                    <div className="mt-4 p-3 rounded-xl bg-blue-500/15 border border-blue-500/40 text-blue-200 text-xs font-mono flex items-start gap-2.5">
+                      <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-blue-400" />
+                      <div>
+                        <strong className="block font-bold text-blue-300">Anda Sudah Terdaftar di Sesi Ini</strong>
+                        <span>Akun Anda telah memiliki reservasi e-tiket untuk sesi ini. Silakan cek e-tiket Anda atau pilih sesi lain di jam yang berbeda.</span>
+                      </div>
+                    </div>
+                  ) : conflictingEvent ? (
+                    <div className="mt-4 p-3 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-200 text-xs font-mono flex items-start gap-2.5">
+                      <AlertTriangle size={16} className="shrink-0 mt-0.5 text-amber-400" />
+                      <div>
+                        <strong className="block font-bold text-amber-300">Jadwal Bertabrakan (Konflik Sesi)</strong>
+                        <span>
+                          Anda telah terdaftar di program <strong>'{conflictingEvent.title}'</strong> ({conflictingEvent.scheduleTime}) pada rentang waktu yang sama. Anda hanya dapat memilih 1 program pada slot jam yang bertabrakan.
+                        </span>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
 
                 {/* Form Status Messages */}
                 {statusState && (
                   <div
                     className={`p-3.5 rounded-xl mb-6 text-xs sm:text-sm flex items-start gap-2.5 font-mono ${
-                      statusState.type === "duplicate"
+                      statusState.type === "duplicate" || statusState.type === "conflict"
                         ? "bg-amber-500/20 border border-amber-500/40 text-amber-200"
                         : statusState.type === "full"
                         ? "bg-red-500/20 border border-red-500/40 text-red-200"
                         : "bg-red-500/20 border border-red-500/40 text-red-200"
                     }`}
                   >
-                    <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                    {statusState.type === "conflict" ? (
+                      <AlertTriangle size={16} className="shrink-0 mt-0.5 text-amber-400" />
+                    ) : (
+                      <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                    )}
                     <span>{statusState.message}</span>
                   </div>
                 )}
@@ -904,36 +1066,52 @@ export default function RegistrasiClientPage() {
                   /* STEP 2: REGISTRATION FORM */
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Signed-in user card */}
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/10">
-                      <div className="flex items-center gap-3 min-w-0">
-                        {googleUser.picture ? (
-                          <img
-                            src={googleUser.picture}
-                            alt={googleUser.name}
-                            className="w-10 h-10 rounded-full border border-white/20 object-cover shrink-0"
-                          />
-                        ) : (
-                          <div className="w-10 h-10 rounded-full bg-khff-yellow text-khff-navy flex items-center justify-center font-bold shrink-0">
-                            {googleUser.name.charAt(0)}
+                    <div className="p-3 rounded-xl bg-black/40 border border-white/10 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 min-w-0">
+                          {googleUser.picture ? (
+                            <img
+                              src={googleUser.picture}
+                              alt={googleUser.name}
+                              className="w-10 h-10 rounded-full border border-white/20 object-cover shrink-0"
+                            />
+                          ) : (
+                            <div className="w-10 h-10 rounded-full bg-khff-yellow text-khff-navy flex items-center justify-center font-bold shrink-0">
+                              {googleUser.name.charAt(0)}
+                            </div>
+                          )}
+                          <div className="min-w-0">
+                            <span className="block text-xs font-bold text-white truncate">
+                              {googleUser.name}
+                            </span>
+                            <span className="block text-[11px] font-mono text-khff-yellow truncate">
+                              {googleUser.email}
+                            </span>
                           </div>
-                        )}
-                        <div className="min-w-0">
-                          <span className="block text-xs font-bold text-white truncate">
-                            {googleUser.name}
-                          </span>
-                          <span className="block text-[11px] font-mono text-khff-yellow truncate">
-                            {googleUser.email}
-                          </span>
                         </div>
+                        <button
+                          type="button"
+                          onClick={handleSignOut}
+                          title="Ganti Akun Google"
+                          className="text-khff-cream/50 hover:text-red-400 p-1.5 transition-colors cursor-pointer shrink-0"
+                        >
+                          <LogOut size={16} />
+                        </button>
                       </div>
-                      <button
-                        type="button"
-                        onClick={handleSignOut}
-                        title="Ganti Akun Google"
-                        className="text-khff-cream/50 hover:text-red-400 p-1.5 transition-colors cursor-pointer shrink-0"
-                      >
-                        <LogOut size={16} />
-                      </button>
+
+                      {userRegisteredEventIds.length > 0 && (
+                        <div className="flex items-center justify-between text-[11px] font-mono text-khff-cream/70 pt-2 border-t border-white/10">
+                          <span>Sesi Terdaftar: <strong className="text-khff-yellow">{userRegisteredEventIds.length}</strong> sesi</span>
+                          <button
+                            type="button"
+                            onClick={handleResetMyRegistrations}
+                            className="text-khff-cream/50 hover:text-red-400 underline transition-colors cursor-pointer"
+                            title="Reset riwayat pendaftaran lokal akun ini"
+                          >
+                            Reset Sesi Saya
+                          </button>
+                        </div>
+                      )}
                     </div>
 
                     {/* Full Name Input */}
@@ -994,13 +1172,28 @@ export default function RegistrasiClientPage() {
                     <div className="pt-2">
                       <button
                         type="submit"
-                        disabled={loading || currentSlot.isFull}
+                        disabled={
+                          loading ||
+                          currentSlot.isFull ||
+                          isAlreadyRegisteredForThisEvent ||
+                          !!conflictingEvent
+                        }
                         className="w-full bg-khff-yellow text-khff-navy hover:bg-white disabled:opacity-50 font-mono font-black text-xs sm:text-sm py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer shadow-xl uppercase tracking-wider disabled:cursor-not-allowed"
                       >
                         {loading ? (
                           <>
                             <Loader2 size={16} className="animate-spin" />
                             <span>Memproses E-Tiket...</span>
+                          </>
+                        ) : isAlreadyRegisteredForThisEvent ? (
+                          <>
+                            <CheckCircle2 size={16} />
+                            <span>Sudah Terdaftar di Sesi Ini</span>
+                          </>
+                        ) : conflictingEvent ? (
+                          <>
+                            <AlertTriangle size={16} />
+                            <span>Jadwal Bertabrakan (Tidak Dapat Mendaftar)</span>
                           </>
                         ) : (
                           <>
