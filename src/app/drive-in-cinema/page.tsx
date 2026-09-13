@@ -294,7 +294,7 @@ export default function DriveInCinemaRegistrationPage() {
     if (slots[bookingType]?.isFull) {
       setStatusState({
         type: "full",
-        message: `Mohon maaf, kuota pemesanan untuk ${
+        message: `Mohon maaf, kuota registrasi untuk ${
           bookingType === "becak" ? "Becak Drive-In" : "Kursi Drive-In"
         } sudah penuh. Silakan pilih jenis tempat duduk yang masih tersedia.`,
       });
@@ -414,7 +414,7 @@ export default function DriveInCinemaRegistrationPage() {
       } else if (result.status === "full") {
         setStatusState({
           type: "full",
-          message: result.message || "Mohon maaf, kuota pemesanan untuk jenis ini sudah penuh.",
+          message: result.message || "Mohon maaf, kuota registrasi untuk jenis ini sudah penuh.",
         });
         fetchSlots(); // Refresh live slots
       } else {
@@ -603,7 +603,7 @@ export default function DriveInCinemaRegistrationPage() {
               <div className="mt-6 p-4 rounded-2xl bg-black/20 border border-khff-cream/10 text-xs text-khff-cream/80 space-y-1.5 leading-relaxed">
                 <p className="font-bold text-khff-yellow uppercase tracking-wider font-mono">Ketentuan Pendaftaran:</p>
                 <p>• Pendaftaran tidak dipungut biaya (Gratis).</p>
-                <p>• <strong>1 Akun Google hanya berlaku untuk 1 kali pemesanan.</strong></p>
+                <p>• <strong>1 Akun Google hanya berlaku untuk 1 kali registrasi.</strong></p>
                 <p>• Harap hadir sebelum pukul 18.45 WIB untuk proses registrasi ulang di lokasi.</p>
               </div>
             </div>
@@ -1044,7 +1044,7 @@ export default function DriveInCinemaRegistrationPage() {
                           className="mt-1 w-4 h-4 rounded border-khff-cream/40 bg-black/40 text-khff-yellow focus:ring-khff-yellow cursor-pointer"
                         />
                         <span className="text-xs text-khff-cream/80 leading-relaxed font-sans group-hover:text-white transition-colors">
-                          Saya bersedia hadir di Halaman Pasar Terban sebelum pukul 18.45 WIB dan memahami bahwa keterlambatan dapat mengakibatkan slot pemesanan dialihkan kepada pengunjung antrean on-the-spot.
+                          Saya bersedia hadir di Halaman Pasar Terban sebelum pukul 18.45 WIB dan memahami bahwa keterlambatan dapat mengakibatkan slot registrasi dialihkan kepada pengunjung antrean on-the-spot.
                         </span>
                       </label>
                     </div>

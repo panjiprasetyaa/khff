@@ -398,7 +398,7 @@ export default function Navbar() {
                 : "bg-khff-yellow text-khff-navy hover:bg-white"
             }`}
           >
-            <span>PESAN TIKET</span>
+            <span>REGISTRASI TIKET</span>
           </Link>
         </div>
 
@@ -625,7 +625,7 @@ export default function Navbar() {
             className="text-lg font-mono font-black text-khff-navy bg-khff-yellow px-8 py-3.5 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-8 shadow-xl uppercase tracking-wider cursor-pointer"
             onClick={handleNavClick}
           >
-            <span>PESAN TIKET</span>
+            <span>REGISTRASI TIKET</span>
           </Link>
         </div>
       )}

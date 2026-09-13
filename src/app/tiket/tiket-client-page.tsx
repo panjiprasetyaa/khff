@@ -129,6 +129,7 @@ export default function TiketClientPage() {
 
   const btnContainerRef = useRef<HTMLDivElement>(null);
   const isInitializedRef = useRef(false);
+  const googleRenderedRef = useRef(false);
 
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
   const scriptUrl = process.env.NEXT_PUBLIC_PROGRAM_SCRIPT_URL || "";
@@ -264,15 +265,16 @@ export default function TiketClientPage() {
   };
 
   const handleSignOut = () => {
+    googleRenderedRef.current = false;
     setGoogleUser(null);
     setFullName("");
     setStatusState(null);
   };
 
-  // Initialize Google GIS button
+  // Initialize Google GIS button once without re-rendering on session switch
   const initGoogleSignIn = useCallback(() => {
     if (typeof window === "undefined" || !window.google || !clientId) return;
-    if (currentSlot.isFull) return;
+    if (googleRenderedRef.current) return;
 
     try {
       if (!isInitializedRef.current) {
@@ -286,8 +288,7 @@ export default function TiketClientPage() {
 
       const btnContainer =
         btnContainerRef.current || document.getElementById("googleProgramSignInBtn");
-      if (btnContainer && !googleUser) {
-        btnContainer.innerHTML = "";
+      if (btnContainer && !googleUser && btnContainer.children.length === 0) {
         window.google.accounts.id.renderButton(btnContainer, {
           theme: "filled_blue",
           size: "large",
@@ -295,27 +296,18 @@ export default function TiketClientPage() {
           text: "continue_with",
           width: 280,
         });
+        googleRenderedRef.current = true;
       }
     } catch (e) {
       console.error("GIS render error:", e);
     }
-  }, [clientId, handleCredentialResponse, googleUser, currentSlot.isFull]);
+  }, [clientId, handleCredentialResponse, googleUser]);
 
   useEffect(() => {
-    if (!currentSlot.isFull && !googleUser && typeof window !== "undefined" && window.google) {
+    if (!googleUser && typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
-    const interval = setInterval(() => {
-      if (!currentSlot.isFull && !googleUser && typeof window !== "undefined" && window.google) {
-        initGoogleSignIn();
-      }
-    }, 300);
-    const timer = setTimeout(() => clearInterval(interval), 3000);
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-    };
-  }, [selectedEventId, currentSlot.isFull, googleUser, initGoogleSignIn]);
+  }, [googleUser, initGoogleSignIn]);
 
   // Submit Booking
   const handleSubmit = async (e: React.FormEvent) => {
@@ -374,7 +366,7 @@ export default function TiketClientPage() {
         const code = currentEvent.ticketPrefix + Math.floor(1000 + Math.random() * 9000);
         setStatusState({
           type: "success",
-          message: `Pemesanan tiket berhasil disimulasikan! Hubungkan URL Google Apps Script pada NEXT_PUBLIC_PROGRAM_SCRIPT_URL untuk menyimpan data langsung ke tab '${currentEvent.tabSheet}' di Spreadsheet Anda.`,
+          message: `Registrasi tiket berhasil disimulasikan! Hubungkan URL Google Apps Script pada NEXT_PUBLIC_PROGRAM_SCRIPT_URL untuk menyimpan data langsung ke tab '${currentEvent.tabSheet}' di Spreadsheet Anda.`,
           regCode: code,
           event: currentEvent,
           name: payload.name,
@@ -420,7 +412,7 @@ export default function TiketClientPage() {
       if (result.status === "success") {
         setStatusState({
           type: "success",
-          message: result.message || "Pemesanan tiket Anda berhasil terkonfirmasi!",
+          message: result.message || "Registrasi tiket Anda berhasil terkonfirmasi!",
           regCode: result.data?.registrationCode,
           event: currentEvent,
           name: payload.name,
@@ -500,11 +492,8 @@ export default function TiketClientPage() {
 
         {/* Page Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-2">
-            Official Ticket Pass KHFF 2026
-          </span>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-black text-white mb-4 leading-tight">
-            Pemesanan Tiket Program
+            Registrasi Tiket Program
           </h1>
           <p className="text-khff-cream/90 text-sm sm:text-base md:text-lg leading-relaxed">
             Dapatkan tiket resmi gratis untuk menyaksikan penayangan program festival dan mengikuti temu wicara di PDIN Yogyakarta. Kuota sangat terbatas hanya <strong className="text-khff-yellow font-bold">20 slot kursi per sesi</strong> demi kenyamanan festival.
@@ -637,7 +626,7 @@ export default function TiketClientPage() {
                   className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-khff-yellow text-khff-navy hover:bg-white font-mono text-xs font-black transition-all cursor-pointer shadow-lg uppercase tracking-wider"
                 >
                   <Ticket size={15} />
-                  <span>Pesan Sesi Lainnya</span>
+                  <span>Registrasi Sesi Lainnya</span>
                 </button>
               </div>
             </div>
@@ -671,7 +660,7 @@ export default function TiketClientPage() {
               </div>
 
               {/* Sessions List */}
-              <div className="space-y-3 max-h-[560px] overflow-y-auto pr-2 custom-mini-scrollbar">
+              <div className="space-y-3 max-h-[560px] overflow-y-auto p-1.5 sm:p-2 custom-mini-scrollbar">
                 {filteredEvents.map((event) => {
                   const isSelected = event.id === selectedEventId;
                   const slot = slotsData[event.id] || {
@@ -685,12 +674,16 @@ export default function TiketClientPage() {
                     <div
                       key={event.id}
                       onClick={() => {
-                        setSelectedEventId(event.id);
-                        setStatusState(null);
+                        if (selectedEventId !== event.id) {
+                          setSelectedEventId(event.id);
+                          if (statusState && statusState.type !== "success") {
+                            setStatusState(null);
+                          }
+                        }
                       }}
                       className={`p-4 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                         isSelected
-                          ? "bg-[#163839] border-khff-yellow shadow-xl scale-[1.01]"
+                          ? "bg-[#163839] border-khff-yellow shadow-lg ring-1 ring-khff-yellow/40"
                           : "bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10"
                       }`}
                     >

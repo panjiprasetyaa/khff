@@ -186,7 +186,7 @@ export default function Home() {
               {/* Left Column: Promotion Details */}
               <div className="lg:col-span-7 space-y-6">
                 <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-2">
-                  Pemesanan Tiket Program
+                  Registrasi Tiket Program
                 </span>
 
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-white leading-tight tracking-tight">
@@ -233,7 +233,7 @@ export default function Home() {
                       className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer uppercase tracking-wider group text-center"
                     >
                       <Ticket size={20} className="group-hover:rotate-12 transition-transform duration-300" />
-                      <span>Pesan Tiket Sekarang</span>
+                      <span>Registrasi Tiket Sekarang</span>
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
 
