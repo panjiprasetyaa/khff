@@ -12,6 +12,7 @@ export interface BookingEvent {
   venueDetail?: string;
   maxSlots: number;
   ticketPrefix: string;
+  programUrl: string;
 }
 
 export const BOOKING_EVENTS: BookingEvent[] = [
@@ -30,6 +31,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-PUR-",
+    programUrl: "/program/kompetisi?tab=purwaseswa",
   },
   {
     id: "kompetisi-karyanagri",
@@ -45,6 +47,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-KAR-",
+    programUrl: "/program/kompetisi?tab=karyanagri",
   },
   {
     id: "kompetisi-mahaditya",
@@ -60,6 +63,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-MAH-",
+    programUrl: "/program/kompetisi?tab=mahaditya",
   },
 
   // --- 2. PROGRAM NON-KOMPETISI (Panorama & Showcase Sinema) ---
@@ -77,6 +81,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-PAN-",
+    programUrl: "/program/non-kompetisi?tab=khff-panorama",
   },
   {
     id: "nonkomp-indonesian-cinema-1",
@@ -92,6 +97,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-HIC1-",
+    programUrl: "/program/non-kompetisi?tab=heritage-in-indonesian-cinema",
   },
   {
     id: "nonkomp-indonesian-cinema-2",
@@ -107,6 +113,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-HIC2-",
+    programUrl: "/program/non-kompetisi?tab=heritage-in-indonesian-cinema",
   },
   {
     id: "nonkomp-experimental-cinema-1",
@@ -122,6 +129,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-EXP1-",
+    programUrl: "/program/non-kompetisi?tab=heritage-in-experimental-cinema",
   },
   {
     id: "nonkomp-experimental-cinema-2",
@@ -137,6 +145,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-EXP2-",
+    programUrl: "/program/non-kompetisi?tab=heritage-in-experimental-cinema",
   },
 
   // --- 3. PROGRAM NON-PEMUTARAN (Talks & Workshop) ---
@@ -146,7 +155,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     programId: "non-pemutaran",
     programLabel: "Program Non-Pemutaran",
     category: "Director Talks",
-    title: "Director Talks: Mistik Melampaui Ketakutan",
+    title: "Mistik Melampaui Ketakutan",
     subtitle: "Wregas Bhanuteja (Sutradara 'Para Perasuk')",
     scheduleDate: "Jumat, 18 September 2026",
     scheduleTime: "19.15 WIB",
@@ -154,6 +163,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-DIR-",
+    programUrl: "/program/non-pemutaran/director-talks",
   },
   {
     id: "nonpemutaran-heritage-talks",
@@ -169,6 +179,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-TALK-",
+    programUrl: "/program/non-pemutaran/heritage-talks",
   },
   {
     id: "nonpemutaran-workshop-stop-motion",
@@ -176,7 +187,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     programId: "non-pemutaran",
     programLabel: "Program Non-Pemutaran",
     category: "Workshop",
-    title: "Workshop: Heritage Stop Motion: Diam-Diam Bergerak",
+    title: "Heritage Workshop: Stop Motion!",
     subtitle: "Rimbun Project (Studio Animasi & Kolektif Partisipatif)",
     scheduleDate: "Sabtu, 19 September 2026",
     scheduleTime: "13.00 WIB",
@@ -184,6 +195,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
     ticketPrefix: "KHFF-WKP-",
+    programUrl: "/program/non-pemutaran/workshop-stop-motion",
   },
 ];
 

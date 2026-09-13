@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
+  ArrowUpRight,
   Calendar,
   Clock,
   MapPin,
@@ -536,7 +537,17 @@ export default function TiketClientPage() {
                   {statusState.event?.category}
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-serif font-black text-white leading-tight mb-2">
-                  {statusState.event?.title}
+                  <Link
+                    href={statusState.event?.programUrl || "/program"}
+                    className="hover:text-khff-yellow inline-flex items-center gap-2 transition-colors group/suc"
+                    title={`Lihat detail halaman ${statusState.event?.title}`}
+                  >
+                    <span>{statusState.event?.title}</span>
+                    <ArrowUpRight
+                      size={24}
+                      className="text-khff-yellow/70 group-hover/suc:text-khff-yellow group-hover/suc:translate-x-0.5 group-hover/suc:-translate-y-0.5 transition-all shrink-0"
+                    />
+                  </Link>
                 </h2>
                 {statusState.event?.subtitle && (
                   <p className="text-khff-cream/85 text-sm sm:text-base italic">
@@ -693,7 +704,18 @@ export default function TiketClientPage() {
                             {event.category}
                           </span>
                           <h3 className="font-serif font-black text-base sm:text-lg text-white leading-snug">
-                            {event.title}
+                            <Link
+                              href={event.programUrl}
+                              onClick={(e) => e.stopPropagation()}
+                              className="hover:text-khff-yellow inline-flex items-center gap-1.5 transition-colors group/title"
+                              title={`Lihat detail halaman ${event.title}`}
+                            >
+                              <span>{event.title}</span>
+                              <ArrowUpRight
+                                size={15}
+                                className="text-khff-yellow/70 group-hover/title:text-khff-yellow group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all shrink-0"
+                              />
+                            </Link>
                           </h3>
                           {event.subtitle && (
                             <p className="text-xs text-khff-cream/75 mt-0.5">
@@ -758,7 +780,17 @@ export default function TiketClientPage() {
                   </div>
 
                   <h3 className="font-serif font-black text-lg sm:text-xl text-white mb-1 leading-snug">
-                    {currentEvent.title}
+                    <Link
+                      href={currentEvent.programUrl}
+                      className="hover:text-khff-yellow inline-flex items-center gap-1.5 transition-colors group/cur"
+                      title={`Lihat detail halaman ${currentEvent.title}`}
+                    >
+                      <span>{currentEvent.title}</span>
+                      <ArrowUpRight
+                        size={16}
+                        className="text-khff-yellow/70 group-hover/cur:text-khff-yellow group-hover/cur:translate-x-0.5 group-hover/cur:-translate-y-0.5 transition-all shrink-0"
+                      />
+                    </Link>
                   </h3>
                   {currentEvent.subtitle && (
                     <p className="text-xs text-khff-cream/80 mb-3">
