@@ -158,7 +158,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     title: "Director Talks: Mistik Melampaui Ketakutan",
     subtitle: "Wregas Bhanuteja (Sutradara 'Para Perasuk')",
     scheduleDate: "Jumat, 18 September 2026",
-    scheduleTime: "19.15 WIB",
+    scheduleTime: "16.00 WIB",
     venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,

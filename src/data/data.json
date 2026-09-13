@@ -671,7 +671,7 @@
           "time": "16:00 – 18:05",
           "ruangSeminar": "Heritage in Experimental Cinema #1: BEYOND PROVENANCE (Total: 75m + Q&A 30m = 105m) [16:00 – 17:15] • Idak-Idak-Idak (45m), Sharp Objects (16m), The Stone That Remembers (14m)",
           "ruangAudiovisual": "Kompetisi Karyanagri (Total: 95m + Q&A 30m = 125m) • Bong (18m), Khatib Gantarang Lalang Bata (12m), Ruang Sesak (26m), Nyanyian Pohon Lontar (11m), Mateos Anin (23m)",
-          "ruangKacaBawah": "-",
+          "ruangKacaBawah": "Director Talk: \"Mistik Melampaui Ketakutan\" (Total: 120m) [16:00 – 18:00] • Pembicara: Wregas Bhanuteja",
           "mainStage": "Playback Sinema"
         },
         {
@@ -685,7 +685,7 @@
           "time": "19:15 – 21:15",
           "ruangSeminar": "Heritage in Experimental Cinema #2 (Total: 50m + Q&A 30m = 80m) [19:15 – 20:05] • Garden Amidst the Flame (28m), Afterlives (22m)",
           "ruangAudiovisual": "Heritage in Indonesian Cinema #1 (Total: 103m) [19:15 – 20:58] • IBUNDA (Teguh Karya, 1986)",
-          "ruangKacaBawah": "Director Talk: \"Mistik Melampaui Ketakutan\" (Total: 120m) • Pembicara: Wregas Bhanuteja",
+          "ruangKacaBawah": "-",
           "mainStage": "Penutupan Hari Kedua & Pengumuman Agenda [21:15 – 21:30]"
         }
       ],
@@ -926,17 +926,12 @@
           "name": "Ruang Kaca Bawah",
           "sessions": [
             {
-              "time": "12:30 – 13:00",
+              "time": "15:30 – 16:00",
               "duration": "30 menit",
-              "title": "Persiapan & Pengumuman Agenda"
+              "title": "Registrasi & Open Gate"
             },
             {
-              "time": "13:00 – 18:05",
-              "duration": "-",
-              "title": "Area Persiapan & Break"
-            },
-            {
-              "time": "19:15 – 21:15",
+              "time": "16:00 – 18:00",
               "duration": "120 menit",
               "title": "Director Talk: \"Mistik Melampaui Ketakutan\"",
               "speaker": "Wregas Bhanuteja"
