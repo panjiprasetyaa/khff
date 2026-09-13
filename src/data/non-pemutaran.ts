@@ -23,7 +23,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
     id: "director-talks",
     slug: "director-talks",
     category: "Director Talks",
-    title: "Mistik Melampaui Ketakutan",
+    title: "Director Talks: Mistik Melampaui Ketakutan",
     theme: "Heritage dalam Sudut Pandang Pembuat Film",
     day: "Jumat, 18 September 2026",
     date: "18 September 2026",

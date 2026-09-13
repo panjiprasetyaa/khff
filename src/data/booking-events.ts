@@ -155,7 +155,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     programId: "non-pemutaran",
     programLabel: "Program Non-Pemutaran",
     category: "Director Talks",
-    title: "Mistik Melampaui Ketakutan",
+    title: "Director Talks: Mistik Melampaui Ketakutan",
     subtitle: "Wregas Bhanuteja (Sutradara 'Para Perasuk')",
     scheduleDate: "Jumat, 18 September 2026",
     scheduleTime: "19.15 WIB",
