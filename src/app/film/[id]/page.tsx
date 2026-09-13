@@ -164,31 +164,6 @@ export default function FilmDetail({
           </div>
         </div>
 
-        {/* Official Trailer Section */}
-        {film.trailerUrl && (
-          <section className="mt-20 pt-12 border-t border-khff-cream/15">
-            <div className="mb-8">
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-khff-pink font-black block mb-1">
-                Official Trailer
-              </span>
-              <h2 className="text-2xl md:text-4xl font-serif font-black text-white">
-                Cuplikan Film
-              </h2>
-              <div className="w-16 h-1 bg-khff-pink rounded-full mt-3"></div>
-            </div>
-
-            <div className="max-w-4xl aspect-video rounded-3xl overflow-hidden border-2 border-khff-cream/20 shadow-2xl bg-black">
-              <iframe
-                src={film.trailerUrl}
-                title={`Trailer ${film.title}`}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </section>
-        )}
-
         {/* Film Stills Gallery */}
         {film.stills && film.stills.length > 0 && (
           <section className="mt-20 pt-12 border-t border-khff-cream/15">

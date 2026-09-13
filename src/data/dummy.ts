@@ -8,7 +8,7 @@ export interface Film {
   duration: number; // in minutes
   synopsis: string;
   posterUrl: string;
-  trailerUrl: string; // youtube embed or local video
+  trailerUrl?: string; // youtube embed or local video
   stills?: string[];
   directorPhoto?: string;
   phLogo?: string;
