@@ -97,14 +97,13 @@ export default async function NonPemutaranDetailPage({
             </span>
           </div>
 
-          {/* Event Category & Theme Badge */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span
-              className={`px-4 py-1.5 rounded-full font-mono text-xs sm:text-sm font-black uppercase tracking-wider shadow-xl ${event.badgeBg}`}
-            >
+          {/* Event Category & Theme */}
+          <div className="flex flex-wrap items-center gap-3 mb-5 font-mono text-xs sm:text-sm">
+            <span className="font-bold text-khff-yellow uppercase tracking-widest">
               {event.category}
             </span>
-            <span className="bg-black/40 backdrop-blur-xs border border-white/20 text-khff-yellow text-xs sm:text-sm font-serif italic px-4 py-1.5 rounded-full">
+            <span className="text-white/40">•</span>
+            <span className="text-khff-cream/80 italic font-serif text-sm sm:text-base">
               &ldquo;{event.theme}&rdquo;
             </span>
           </div>

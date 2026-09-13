@@ -496,7 +496,7 @@ export default function DriveInCinemaRegistrationPage() {
           {/* Kolom Kiri: Informasi Acara & Status Kuota Live */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-gradient-to-br from-white/10 to-white/5 border border-khff-cream/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-khff-pink text-white font-mono text-[11px] font-black tracking-[0.25em] uppercase mb-4 shadow-sm">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] font-bold text-khff-pink block mb-3">
                 Special Program
               </span>
               <h1 className="text-3xl sm:text-4xl font-serif font-black text-white mb-4 leading-tight">
@@ -741,7 +741,7 @@ export default function DriveInCinemaRegistrationPage() {
                             }`}>
                               <Bike size={20} />
                             </div>
-                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-white/10 text-khff-cream/90 border border-white/10">
+                            <span className="text-xs font-mono text-khff-cream/70 font-semibold">
                               Maks. 2 Orang
                             </span>
                           </div>
@@ -799,7 +799,7 @@ export default function DriveInCinemaRegistrationPage() {
                             }`}>
                               <Armchair size={20} />
                             </div>
-                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-full bg-white/10 text-khff-cream/90 border border-white/10">
+                            <span className="text-xs font-mono text-khff-cream/70 font-semibold">
                               1 Orang / Kursi
                             </span>
                           </div>

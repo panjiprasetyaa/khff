@@ -8,7 +8,6 @@ import {
   Calendar,
   MapPin,
   ArrowRight,
-  CheckCircle2,
   Users,
 } from "lucide-react";
 import ProgramBookingModal from "@/components/ProgramBookingModal";
@@ -151,7 +150,7 @@ export default function Home() {
 
             <div className="relative z-20 p-8 md:p-16 lg:p-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
               <div className="max-w-2xl">
-                <span className="inline-block px-4 py-1 rounded-full bg-khff-pink text-white font-bold tracking-[0.3em] uppercase mb-6 font-mono text-xs shadow-md">
+                <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-pink block mb-4">
                   Special Program
                 </span>
                 <h3 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 drop-shadow-xl leading-none">
@@ -165,12 +164,10 @@ export default function Home() {
                   Yogyakarta yang ramah lingkungan.
                 </p>
                 
-                <div className="inline-flex flex-wrap items-center gap-3 text-xs md:text-sm font-mono text-khff-yellow bg-white/10 px-5 py-2.5 rounded-full backdrop-blur-sm border border-khff-cream/20 font-bold">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs md:text-sm font-mono text-khff-yellow font-bold">
                   <span>Halaman Pasar Terban</span>
                   <span className="opacity-40">•</span>
                   <span>17 September 2026</span>
-                  <span className="opacity-40">•</span>
-                  <span>KUOTA TERBATAS!</span>
                 </div>
               </div>
 
@@ -199,7 +196,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Left Column: Promotion Details */}
               <div className="lg:col-span-7 space-y-6">
-                <span className="inline-block px-4 py-1 rounded-full bg-khff-yellow text-khff-navy font-bold tracking-[0.3em] uppercase mb-2 font-mono text-xs shadow-md">
+                <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-2">
                   Pemesanan Tiket Program
                 </span>
 
@@ -210,26 +207,6 @@ export default function Home() {
                 <p className="text-khff-cream/90 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   Dapatkan akses gratis untuk menyaksikan karya sinema terbaik dan mengikuti temu wicara eksklusif bersama sutradara ternama di PDIN Yogyakarta. Kuota sangat terbatas hanya <strong className="text-khff-yellow font-bold">20 Slot per sesi</strong> demi pengalaman festival yang intim dan kondusif.
                 </p>
-
-                {/* Key Points Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono text-khff-cream/90 bg-black/25 px-4 py-2.5 rounded-xl border border-white/10">
-                    <CheckCircle2 size={16} className="text-khff-yellow shrink-0" />
-                    <span>11 Sesi Penayangan & Diskusi</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono text-khff-cream/90 bg-black/25 px-4 py-2.5 rounded-xl border border-white/10">
-                    <CheckCircle2 size={16} className="text-khff-yellow shrink-0" />
-                    <span>Konfirmasi Instan Akun Google</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono text-khff-cream/90 bg-black/25 px-4 py-2.5 rounded-xl border border-white/10">
-                    <CheckCircle2 size={16} className="text-khff-yellow shrink-0" />
-                    <span>E-Tiket Digital Langsung Terbit</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm font-mono text-khff-cream/90 bg-black/25 px-4 py-2.5 rounded-xl border border-white/10">
-                    <CheckCircle2 size={16} className="text-khff-yellow shrink-0" />
-                    <span>100% Gratis Tanpa Biaya</span>
-                  </div>
-                </div>
               </div>
 
               {/* Right Column: Ticket Box */}
@@ -364,9 +341,6 @@ export default function Home() {
                   />
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-navy text-khff-yellow rounded-full inline-block mb-6">
-                    Competition
-                  </span>
                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">
                     Program
                     <br />
@@ -396,9 +370,6 @@ export default function Home() {
                   />
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-white text-khff-pink rounded-full inline-block mb-6">
-                    Screenings
-                  </span>
                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">
                     Program Non
                     <br />
@@ -427,9 +398,6 @@ export default function Home() {
                   />
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-bold font-mono uppercase tracking-widest px-3 py-1 bg-khff-navy text-white rounded-full inline-block mb-6">
-                    Education & Forum
-                  </span>
                   <h3 className="text-4xl font-serif font-black mb-4 leading-tight">
                     Program Non
                     <br />
@@ -454,7 +422,7 @@ export default function Home() {
       {/* 4. PRA-EVENT PANORAMA (CINEMATIC HERITAGE GRADIENT) */}
       <section className="py-24 bg-gradient-to-b from-[#18393b] via-[#23585a] to-[#143638] text-khff-cream relative overflow-hidden">
         <div className="container mx-auto px-6 lg:px-12 mb-16 text-center relative z-10">
-          <span className="text-sm md:text-base uppercase font-mono tracking-[0.3em] font-black text-khff-yellow bg-white/10 border border-khff-cream/20 px-6 py-2 rounded-full inline-block mb-6 shadow-md">
+          <span className="text-sm md:text-base font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-4 drop-shadow-md">
             Pra Event KHFF 2026
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black text-white mb-6 tracking-tight drop-shadow-lg">

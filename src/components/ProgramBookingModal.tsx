@@ -497,7 +497,7 @@ export default function ProgramBookingModal({
 
           {/* Modal Header */}
           <div className="pr-10 mb-6">
-            <span className="inline-block px-3 py-1 rounded-full bg-khff-yellow text-khff-navy font-mono text-[11px] font-black uppercase tracking-wider mb-2">
+            <span className="text-xs font-mono text-khff-yellow font-bold uppercase tracking-wider block mb-1">
               Reservasi Tiket Program KHFF 2026
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-black text-white leading-snug">

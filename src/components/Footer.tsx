@@ -6,8 +6,8 @@ export default function Footer() {
       {/* Supported By & Official Media Partners (Custom Illustrated Landscape Background) */}
       <div className="relative py-12 sm:py-16 md:py-24 overflow-hidden bg-[#f39920] bg-[url('/assets/sponsors/sponsor-bg.png')] bg-cover bg-bottom bg-no-repeat text-khff-navy">
         <div className="container mx-auto px-4 sm:px-8 md:px-12 max-w-7xl relative z-10 text-center">
-          {/* Section Heading Badge */}
-          <span className="text-xs md:text-sm font-mono tracking-[0.3em] uppercase text-khff-navy font-black mb-8 sm:mb-12 md:mb-14 inline-block px-5 py-2 rounded-full bg-khff-navy/10 border border-khff-navy/20 shadow-xs backdrop-blur-xs">
+          {/* Section Heading */}
+          <span className="text-xs md:text-sm font-mono tracking-[0.3em] uppercase text-khff-navy font-black mb-8 sm:mb-12 md:mb-14 block">
             Didukung Oleh & Mitra Media Resmi
           </span>
 

@@ -94,13 +94,11 @@ export default function ProgramList() {
                   </div>
 
                   <div className="relative z-10 max-w-4xl">
-                    <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-6">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-6 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider opacity-85">
                       {category.subtitle.map((item, idx) => (
-                        <span
-                          key={idx}
-                          className={`text-[10px] md:text-xs font-mono font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-sm ${category.tagClass}`}
-                        >
-                          {item}
+                        <span key={idx} className="flex items-center gap-2 md:gap-3">
+                          <span>{item}</span>
+                          {idx < category.subtitle.length - 1 && <span className="opacity-40">•</span>}
                         </span>
                       ))}
                     </div>
