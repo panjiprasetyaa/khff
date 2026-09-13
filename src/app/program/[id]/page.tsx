@@ -147,7 +147,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                 </div>
                 <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
                   <Link
-                    href={`/tiket?session=kompetisi-${activeKompetisiTab}`}
+                    href={`/registrasi?session=kompetisi-${activeKompetisiTab}`}
                     className="px-7 py-3.5 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-xl inline-flex items-center gap-2.5 cursor-pointer text-center"
                   >
                     <Ticket size={16} />
@@ -297,7 +297,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                           <span className="font-bold text-khff-cream">{session.films?.length || 0} Film Terpilih</span>
                         </span>
                         <Link
-                          href={`/tiket?session=${
+                          href={`/registrasi?session=${
                             session.id === "heritage-in-indonesian-cinema-1"
                               ? "nonkomp-indonesian-cinema-1"
                               : session.id === "heritage-in-indonesian-cinema-2"
@@ -331,7 +331,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                     Daftar Karya Seleksi ({currentProgram.films.length} Film)
                   </h3>
                   <Link
-                    href="/tiket?session=nonkomp-panorama"
+                    href="/registrasi?session=nonkomp-panorama"
                     className="px-6 py-3 rounded-full bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-105 transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer text-center"
                   >
                     <Ticket size={16} />
@@ -522,7 +522,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                           {/* Interactive Buttons */}
                           <div className="grid grid-cols-2 gap-2 mt-3">
                             <Link
-                              href={`/tiket?session=nonpemutaran-${event.id}`}
+                              href={`/registrasi?session=nonpemutaran-${event.id}`}
                               className="py-2.5 px-3 rounded-xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white transition-all cursor-pointer text-center"
                             >
                               <Ticket size={13} />
@@ -613,7 +613,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                       {/* Interactive Buttons (Registrasi & Buka Halaman) */}
                       <div className="grid grid-cols-2 gap-2.5">
                         <Link
-                          href={`/tiket?session=nonpemutaran-${event.id}`}
+                          href={`/registrasi?session=nonpemutaran-${event.id}`}
                           className="py-3 px-3 rounded-2xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white hover:scale-105 transition-all cursor-pointer text-center"
                         >
                           <Ticket size={14} />

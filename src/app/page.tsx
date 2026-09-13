@@ -229,7 +229,7 @@ export default function Home() {
                   {/* Main CTA Button */}
                   <div className="space-y-3 pt-2">
                     <Link
-                      href="/tiket"
+                      href="/registrasi"
                       className="w-full inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white hover:text-khff-navy font-mono font-black text-base sm:text-lg py-4 sm:py-4.5 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer uppercase tracking-wider group text-center"
                     >
                       <Ticket size={20} className="group-hover:rotate-12 transition-transform duration-300" />
@@ -249,19 +249,19 @@ export default function Home() {
                     </span>
                     <div className="flex flex-wrap gap-2">
                       <Link
-                        href="/tiket?session=kompetisi-purwaseswa"
+                        href="/registrasi?session=kompetisi-purwaseswa"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Kompetisi
                       </Link>
                       <Link
-                        href="/tiket?session=nonkomp-panorama"
+                        href="/registrasi?session=nonkomp-panorama"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-pink hover:text-white text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Non-Kompetisi
                       </Link>
                       <Link
-                        href="/tiket?session=nonpemutaran-director-talks"
+                        href="/registrasi?session=nonpemutaran-director-talks"
                         className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Talks & Workshop

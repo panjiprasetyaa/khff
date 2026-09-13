@@ -92,7 +92,7 @@ interface SlotDetail {
   tabSheet?: string;
 }
 
-export default function TiketClientPage() {
+export default function RegistrasiClientPage() {
   const searchParams = useSearchParams();
   const sessionParam = searchParams.get("session") || searchParams.get("sesi");
 

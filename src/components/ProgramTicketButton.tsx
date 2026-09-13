@@ -38,7 +38,7 @@ export default function ProgramTicketButton({
 
   return (
     <Link
-      href={`/tiket?session=${eventId}`}
+      href={`/registrasi?session=${eventId}`}
       className={`${baseStyles} ${sizeStyles} ${variantStyles} ${className}`}
     >
       <Ticket size={size === "sm" ? 13 : size === "lg" ? 17 : 15} />

@@ -1,31 +1,41 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import TiketClientPage from "./tiket-client-page";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Registrasi Tiket Program - Kotabaru Heritage Film Festival 2026",
-  description:
-    "Registrasi tiket resmi gratis untuk pemutaran program kompetisi, non-kompetisi, dan temu wicara Kotabaru Heritage Film Festival 2026 di PDIN Yogyakarta. Kuota terbatas 20 slot per sesi.",
-  openGraph: {
-    title: "Registrasi Tiket Program | Kotabaru Heritage Film Festival 2026",
-    description:
-      "Registrasi tiket resmi gratis untuk pemutaran program kompetisi, non-kompetisi, dan temu wicara Kotabaru Heritage Film Festival 2026 di PDIN Yogyakarta.",
-  },
-};
+import { useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function TiketPage() {
+function TiketRedirectHandler() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const qs = searchParams.toString();
+    const destination = qs ? `/registrasi/?${qs}` : "/registrasi/";
+    router.replace(destination);
+  }, [router, searchParams]);
+
+  return (
+    <div className="min-h-screen bg-khff-navy text-khff-cream flex items-center justify-center font-mono">
+      <div className="animate-pulse text-khff-yellow flex items-center gap-3">
+        <span className="w-2.5 h-2.5 rounded-full bg-khff-yellow animate-ping" />
+        <span>Mengalihkan ke halaman registrasi...</span>
+      </div>
+    </div>
+  );
+}
+
+export default function TiketRedirectPage() {
   return (
     <Suspense
       fallback={
         <div className="min-h-screen bg-khff-navy text-khff-cream flex items-center justify-center font-mono">
           <div className="animate-pulse text-khff-yellow flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-khff-yellow animate-ping" />
-            <span>Memuat sistem registrasi tiket...</span>
+            <span>Mengalihkan...</span>
           </div>
         </div>
       }
     >
-      <TiketClientPage />
+      <TiketRedirectHandler />
     </Suspense>
   );
 }
