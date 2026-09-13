@@ -104,8 +104,8 @@ export default function Home() {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-khff-navy/70 via-khff-navy/30 to-khff-navy/95 pointer-events-none" />
 
         {/* Center Text Container with High Contrast Typography & Subtle Glass Staging */}
-        <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-7xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
+        <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-black text-khff-cream mb-6 leading-[0.9] tracking-tight drop-shadow-[0_6px_35px_rgba(0,0,0,0.85)]">
             Kotabaru Heritage <br /> Film Festival <br /> 2026
           </h1>
           <p className="text-sm sm:text-lg md:text-3xl font-mono mb-6 tracking-wide md:tracking-widest font-black py-2 inline-block text-khff-yellow drop-shadow-[0_3px_12px_rgba(0,0,0,0.9)]">
@@ -137,7 +137,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-khff-navy via-khff-navy/60 to-khff-navy/30 z-10" />
             </div>
 
-            <div className="relative z-20 p-8 md:p-16 lg:p-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+            <div className="relative z-20 p-6 sm:p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
               <div className="max-w-2xl">
                 <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-pink block mb-4">
                   Special Program
@@ -181,14 +181,10 @@ export default function Home() {
       {/* 2.5 PROMOTIONAL SECTION - PROGRAM TICKETS RESERVATION */}
       <section className="py-20 bg-khff-navy text-khff-cream relative border-t border-khff-cream/10 z-10">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="relative rounded-3xl overflow-hidden border-4 border-khff-yellow bg-[#163839] p-8 sm:p-12 lg:p-16 shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden border-4 border-khff-yellow bg-[#163839] p-6 sm:p-10 lg:p-16 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Left Column: Promotion Details */}
               <div className="lg:col-span-7 space-y-6">
-                <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] font-bold text-khff-yellow block mb-2">
-                  Registrasi Tiket Program
-                </span>
-
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-white leading-tight tracking-tight">
                   Amankan Tiket Program Festival Sekarang!
                 </h3>
@@ -247,22 +243,22 @@ export default function Home() {
                     <span className="text-[10px] font-mono uppercase tracking-wider text-khff-cream/60 block mb-2 text-center sm:text-left">
                       Pilih langsung kategori program:
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-3 gap-2">
                       <Link
                         href="/registrasi?session=kompetisi-purwaseswa"
-                        className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
+                        className="flex items-center justify-center text-center min-h-[46px] text-[11px] font-mono font-bold px-2 py-1.5 leading-tight rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Kompetisi
                       </Link>
                       <Link
                         href="/registrasi?session=nonkomp-panorama"
-                        className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-pink hover:text-white text-khff-cream border border-white/15 transition-all cursor-pointer"
+                        className="flex items-center justify-center text-center min-h-[46px] text-[11px] font-mono font-bold px-2 py-1.5 leading-tight rounded-xl bg-white/10 hover:bg-khff-pink hover:text-white text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Non-Kompetisi
                       </Link>
                       <Link
                         href="/registrasi?session=nonpemutaran-director-talks"
-                        className="flex-1 text-center text-[11px] font-mono font-bold px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
+                        className="flex items-center justify-center text-center min-h-[46px] text-[11px] font-mono font-bold px-2 py-1.5 leading-tight rounded-xl bg-white/10 hover:bg-khff-yellow hover:text-khff-navy text-khff-cream border border-white/15 transition-all cursor-pointer"
                       >
                         Talks & Workshop
                       </Link>

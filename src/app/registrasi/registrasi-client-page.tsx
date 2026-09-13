@@ -595,18 +595,18 @@ export default function RegistrasiClientPage() {
               </div>
 
               {/* Attendee Details */}
-              <div className="border-t border-white/15 pt-5 space-y-2 text-xs sm:text-sm font-mono text-khff-cream/80 mb-6">
-                <div className="flex justify-between">
-                  <span className="text-khff-cream/60">Nama Pemegang:</span>
-                  <span className="font-bold text-white">{statusState.name}</span>
+              <div className="border-t border-white/15 pt-5 space-y-2.5 text-xs sm:text-sm font-mono text-khff-cream/80 mb-6">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-khff-cream/60 shrink-0">Nama Pemegang:</span>
+                  <span className="font-bold text-white text-right break-words">{statusState.name}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-khff-cream/60">Email:</span>
-                  <span className="text-khff-yellow">{statusState.email}</span>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-khff-cream/60 shrink-0">Email:</span>
+                  <span className="text-khff-yellow text-right break-all">{statusState.email}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-khff-cream/60">WhatsApp:</span>
-                  <span className="text-white">{statusState.whatsapp}</span>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-khff-cream/60 shrink-0">WhatsApp:</span>
+                  <span className="text-white text-right">{statusState.whatsapp}</span>
                 </div>
               </div>
 
@@ -760,7 +760,7 @@ export default function RegistrasiClientPage() {
 
             {/* RIGHT COLUMN: BOOKING FORM CARD */}
             <div className="lg:col-span-5">
-              <div className="bg-gradient-to-br from-white/10 to-white/5 border-2 border-khff-cream/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md sticky top-28">
+              <div className="bg-gradient-to-br from-white/10 to-white/5 border-2 border-khff-cream/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md lg:sticky lg:top-28">
                 {/* Active Session Highlight Box */}
                 <div className="p-4 rounded-2xl bg-black/40 border border-white/15 mb-6">
                   <div className="flex items-center justify-between mb-2">
@@ -877,8 +877,8 @@ export default function RegistrasiClientPage() {
                     </div>
 
                     {/* Google GSI Button Container */}
-                    <div className="flex justify-center py-2">
-                      <div id="googleProgramSignInBtn" ref={btnContainerRef} className="min-h-[44px]" />
+                    <div className="flex justify-center py-2 max-w-full overflow-hidden">
+                      <div id="googleProgramSignInBtn" ref={btnContainerRef} className="min-h-[44px] max-w-full" />
                     </div>
 
                     {/* Demo / Simulation Mode Button */}
