@@ -809,7 +809,7 @@ export default function RegistrasiClientPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin size={13} className="text-khff-yellow shrink-0" />
-                      <span>{currentEvent.venue} (PDIN Yogyakarta)</span>
+                      <span>{currentEvent.venue}</span>
                     </div>
                   </div>
 

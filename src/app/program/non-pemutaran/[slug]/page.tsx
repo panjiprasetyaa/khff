@@ -275,7 +275,7 @@ export default async function NonPemutaranDetailPage({
                     {event.venueDetail}
                   </p>
                   <p className="pt-2 border-t border-white/10">
-                    <strong className="text-white block">Ruang:</strong>
+                    <strong className="text-white block">Ruang / Lokasi:</strong>
                     {event.venue}
                   </p>
                   <p className="pt-2 border-t border-white/10 text-khff-yellow/90">
