@@ -37,7 +37,7 @@ export default function ProgramList() {
     {
       id: "non-pemutaran",
       title: "Program Non-Pemutaran",
-      subtitle: ["Heritage Talks", "Director Talks", "Workshop"],
+      subtitle: ["Heritage Talks", "Director Talks", "Heritage Workshop"],
       description:
         "Ruang interaksi yang menghadirkan berbagai kegiatan untuk belajar, berdiskusi, dan merayakan keberagaman budaya melalui film.",
       bgClass: "bg-white text-khff-navy border-white",

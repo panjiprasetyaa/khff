@@ -72,7 +72,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
   {
     id: "workshop-stop-motion",
     slug: "workshop-stop-motion",
-    category: "Workshop",
+    category: "Heritage Workshop",
     title: "Heritage Workshop: Stop Motion!",
     theme: "Stop Motion: Heritage dan Workshop Partisipatif",
     day: "Sabtu, 19 September 2026",
