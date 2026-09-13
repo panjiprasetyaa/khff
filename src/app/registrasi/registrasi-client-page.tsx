@@ -21,9 +21,7 @@ import {
   AlertTriangle,
   Loader2,
   CheckCircle2,
-  Share2,
   Printer,
-  Sparkles,
   Trash2,
   X,
 } from "lucide-react";
@@ -31,9 +29,7 @@ import {
   BookingEvent,
   BOOKING_EVENTS,
   getBookingEventById,
-  checkScheduleConflict,
   findConflictingRegisteredEvent,
-  getConflictingEventIds,
 } from "@/data/booking-events";
 
 interface GoogleUser {
@@ -121,7 +117,6 @@ export default function RegistrasiClientPage() {
   // Slots dictionary mapped by eventId
   const [slotsData, setSlotsData] = useState<Record<string, SlotDetail>>({});
   const [loadingSlots, setLoadingSlots] = useState(true);
-  const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 
   // User registered event IDs for conflict detection
   const [userRegisteredEventIds, setUserRegisteredEventIds] = useState<string[]>([]);
@@ -147,8 +142,10 @@ export default function RegistrasiClientPage() {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
   const scriptUrl = process.env.NEXT_PUBLIC_PROGRAM_SCRIPT_URL || "";
 
-  // Sync with searchParams if it changes
-  useEffect(() => {
+  // Adjust selected event and category during render when session query param changes
+  const [prevSessionParam, setPrevSessionParam] = useState(sessionParam);
+  if (sessionParam !== prevSessionParam) {
+    setPrevSessionParam(sessionParam);
     if (sessionParam) {
       const ev = getBookingEventById(sessionParam);
       if (ev) {
@@ -156,7 +153,7 @@ export default function RegistrasiClientPage() {
         setSelectedCategory(ev.programId);
       }
     }
-  }, [sessionParam]);
+  }
 
   // Fetch slots data from Google Apps Script
   const fetchSlots = useCallback(async () => {
@@ -184,7 +181,6 @@ export default function RegistrasiClientPage() {
               };
             });
             setSlotsData(normalizedSlots);
-            setLastRefreshed(new Date());
             return;
           }
         }
@@ -201,7 +197,6 @@ export default function RegistrasiClientPage() {
         };
       });
       setSlotsData(defaultSlots);
-      setLastRefreshed(new Date());
     } catch (err) {
       console.warn("Live Apps Script slots offline / default:", err);
       const defaultSlots: Record<string, SlotDetail> = {};
@@ -215,7 +210,6 @@ export default function RegistrasiClientPage() {
         };
       });
       setSlotsData(defaultSlots);
-      setLastRefreshed(new Date());
     } finally {
       setLoadingSlots(false);
     }
@@ -268,46 +262,59 @@ export default function RegistrasiClientPage() {
     []
   );
 
-  // Load registered events for the active Google user from local storage & remote script
-  useEffect(() => {
-    if (!googleUser) {
+  // User registered event IDs for conflict detection
+  const [prevUserEmail, setPrevUserEmail] = useState<string | null>(null);
+  const currentUserEmail = googleUser ? googleUser.email.toLowerCase() : null;
+
+  // Synchronize local storage registration state during render when user changes
+  if (currentUserEmail !== prevUserEmail) {
+    setPrevUserEmail(currentUserEmail);
+    if (!currentUserEmail) {
       setUserRegisteredEventIds([]);
-      return;
-    }
-
-    const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setUserRegisteredEventIds(parsed);
-        }
-      }
-    } catch (e) {
-      console.warn("Gagal membaca riwayat pendaftaran lokal:", e);
-    }
-
-    // Sync with remote Apps Script if scriptUrl configured
-    if (scriptUrl) {
-      const checkUrl = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=userRegistrations&email=${encodeURIComponent(googleUser.email)}`;
-      fetch(checkUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.status === "success" && Array.isArray(data.registeredEventIds)) {
-            setUserRegisteredEventIds((prev) => {
-              const merged = Array.from(new Set([...prev, ...data.registeredEventIds]));
-              try {
-                localStorage.setItem(storageKey, JSON.stringify(merged));
-              } catch (err) {}
-              return merged;
-            });
+    } else {
+      const storageKey = `khff_registered_events_${currentUserEmail}`;
+      try {
+        const saved = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            setUserRegisteredEventIds(parsed);
           }
-        })
-        .catch((err) => {
-          console.warn("Could not sync remote user registrations:", err);
-        });
+        }
+      } catch {
+        // ignore parse error
+      }
     }
+  }
+
+  // Remote sync with Apps Script when user email or scriptUrl changes (asynchronous effect)
+  useEffect(() => {
+    if (!googleUser || !scriptUrl) return;
+
+    let isMounted = true;
+    const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+    const checkUrl = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=userRegistrations&email=${encodeURIComponent(googleUser.email)}`;
+
+    fetch(checkUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data && data.status === "success" && Array.isArray(data.registeredEventIds)) {
+          setUserRegisteredEventIds((prev) => {
+            const merged = Array.from(new Set([...prev, ...data.registeredEventIds]));
+            try {
+              localStorage.setItem(storageKey, JSON.stringify(merged));
+            } catch {
+              // ignore storage error
+            }
+            return merged;
+          });
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
   }, [googleUser, scriptUrl]);
 
   // Record a successful registration locally
@@ -319,7 +326,9 @@ export default function RegistrasiClientPage() {
         const updated = Array.from(new Set([...prev, eventId]));
         try {
           localStorage.setItem(storageKey, JSON.stringify(updated));
-        } catch (e) {}
+        } catch {
+          // ignore
+        }
         return updated;
       });
     },
@@ -352,7 +361,9 @@ export default function RegistrasiClientPage() {
     // Clear local storage and component state
     try {
       localStorage.removeItem(storageKey);
-    } catch (e) {}
+    } catch {
+      // ignore
+    }
 
     setUserRegisteredEventIds([]);
     setStatusState(null);
@@ -793,16 +804,18 @@ export default function RegistrasiClientPage() {
             <div className="lg:col-span-7 space-y-6">
               {/* Category Filter Tabs */}
               <div className="flex flex-wrap gap-2 pb-2">
-                {[
-                  { id: "all", label: "Semua Sesi (11)" },
-                  { id: "kompetisi", label: "Kompetisi (3)" },
-                  { id: "non-kompetisi", label: "Non-Kompetisi (5)" },
-                  { id: "non-pemutaran", label: "Talks & Workshop (3)" },
-                ].map((cat) => (
+                {(
+                  [
+                    { id: "all", label: "Semua Sesi (11)" },
+                    { id: "kompetisi", label: "Kompetisi (3)" },
+                    { id: "non-kompetisi", label: "Non-Kompetisi (5)" },
+                    { id: "non-pemutaran", label: "Talks & Workshop (3)" },
+                  ] as const
+                ).map((cat) => (
                   <button
                     key={cat.id}
                     type="button"
-                    onClick={() => setSelectedCategory(cat.id as any)}
+                    onClick={() => setSelectedCategory(cat.id)}
                     className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                       selectedCategory === cat.id
                         ? "bg-khff-yellow text-khff-navy shadow-md font-black"
@@ -1015,7 +1028,7 @@ export default function RegistrasiClientPage() {
                       <div>
                         <strong className="block font-bold text-amber-300">Jadwal Bertabrakan (Konflik Sesi)</strong>
                         <span>
-                          Anda telah terdaftar di program <strong>'{conflictingEvent.title}'</strong> ({conflictingEvent.scheduleTime}) pada rentang waktu yang sama. Anda hanya dapat memilih 1 program pada slot jam yang bertabrakan.
+                          Anda telah terdaftar di program <strong>&lsquo;{conflictingEvent.title}&rsquo;</strong> ({conflictingEvent.scheduleTime}) pada rentang waktu yang sama. Anda hanya dapat memilih 1 program pada slot jam yang bertabrakan.
                         </span>
                       </div>
                     </div>
