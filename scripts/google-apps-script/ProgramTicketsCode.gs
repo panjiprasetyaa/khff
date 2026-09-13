@@ -300,15 +300,8 @@ function doGet(e) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-    // 1. Cek & Inisiasi Seluruh Tab jika belum lengkap
-    var isMissingTab = false;
-    for (var i = 0; i < ORDERED_PROGRAM_EVENTS.length; i++) {
-      if (!ss.getSheetByName(ORDERED_PROGRAM_EVENTS[i].tabSheet)) {
-        isMissingTab = true;
-        break;
-      }
-    }
-    if (isMissingTab || (e && e.parameter && e.parameter.action === "init")) {
+    // 1. Inisiasi tab jika dipanggil secara eksplisit (?action=init)
+    if (e && e.parameter && e.parameter.action === "init") {
       initAllSheets(ss);
     }
 
@@ -376,7 +369,12 @@ function doGet(e) {
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
-  lock.tryLock(15000); // Lock 15 detik untuk konsistensi kuota
+  var hasLock = false;
+  try {
+    hasLock = lock.tryLock(30000); // 30 detik lock timeout
+  } catch (eLock) {
+    hasLock = false;
+  }
 
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -553,7 +551,12 @@ function doPost(e) {
       message: "Terjadi kesalahan pada server Apps Script: " + err.toString()
     });
   } finally {
-    lock.releaseLock();
+    SpreadsheetApp.flush();
+    if (hasLock) {
+      try {
+        lock.releaseLock();
+      } catch (eRelease) {}
+    }
   }
 }
 
@@ -576,8 +579,9 @@ function isEmailRegisteredInSheet(sheet, email) {
   if (!sheet || sheet.getLastRow() <= 1) return false;
 
   var lastRow = sheet.getLastRow();
-  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  var emailCol = -1;
+  // Default kolom email pada format standar KHFF adalah Kolom 3
+  var emailCol = 3;
+  var headers = sheet.getRange(1, 1, 1, Math.min(sheet.getLastColumn(), 7)).getValues()[0];
 
   for (var c = 0; c < headers.length; c++) {
     if (headers[c].toString().toLowerCase().indexOf("email") !== -1) {
@@ -586,12 +590,10 @@ function isEmailRegisteredInSheet(sheet, email) {
     }
   }
 
-  if (emailCol !== -1) {
-    var values = sheet.getRange(2, emailCol, lastRow - 1, 1).getValues();
-    for (var r = 0; r < values.length; r++) {
-      if (values[r][0].toString().trim().toLowerCase() === email) {
-        return true;
-      }
+  var values = sheet.getRange(2, emailCol, lastRow - 1, 1).getValues();
+  for (var r = 0; r < values.length; r++) {
+    if (values[r][0].toString().trim().toLowerCase() === email) {
+      return true;
     }
   }
   return false;

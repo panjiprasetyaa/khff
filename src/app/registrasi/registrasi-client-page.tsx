@@ -550,53 +550,139 @@ export default function RegistrasiClientPage() {
         body: JSON.stringify(payload),
       });
 
-      const result = await res.json();
-      setLoading(false);
+      let result: {
+        status?: string;
+        code?: string;
+        message?: string;
+        conflictingEventId?: string;
+        data?: { registrationCode?: string };
+      } | null = null;
 
-      if (result.status === "success") {
-        recordUserRegistration(currentEvent.id);
-        setStatusState({
-          type: "success",
-          message: result.message || "Registrasi tiket Anda berhasil terkonfirmasi!",
-          regCode: result.data?.registrationCode,
-          event: currentEvent,
-          name: payload.name,
-          whatsapp: payload.whatsapp,
-          email: payload.email,
-        });
-        fetchSlots();
-      } else if (result.status === "conflict") {
-        setStatusState({
-          type: "conflict",
-          message:
-            result.message ||
-            "Pendaftaran digagalkan karena jadwal bertabrakan dengan program lain yang telah Anda daftarkan.",
-          conflictingEvent: result.conflictingEventId
-            ? getBookingEventById(result.conflictingEventId)
-            : conflictingEvent || undefined,
-        });
-      } else if (result.status === "duplicate") {
-        recordUserRegistration(currentEvent.id);
-        setStatusState({
-          type: "duplicate",
-          message:
-            result.message ||
-            "Akun Google Anda sudah terdaftar pada sesi acara ini (1 akun = 1 tiket).",
-        });
-      } else if (result.status === "full") {
-        setStatusState({
-          type: "full",
-          message: result.message || "Mohon maaf, kuota tiket untuk acara ini sudah penuh.",
-        });
-      } else {
-        setStatusState({
-          type: "error",
-          message: result.message || "Terjadi kendala saat memproses pendaftaran.",
-        });
+      try {
+        const text = await res.text();
+        result = JSON.parse(text);
+      } catch (parseErr) {
+        console.warn("Respon bukan JSON valid, memverifikasi Google Sheets...", parseErr);
       }
-    } catch (err) {
+
+      if (result) {
+        setLoading(false);
+        if (result.status === "success") {
+          recordUserRegistration(currentEvent.id);
+          setStatusState({
+            type: "success",
+            message: result.message || "Registrasi tiket Anda berhasil terkonfirmasi!",
+            regCode: result.data?.registrationCode,
+            event: currentEvent,
+            name: payload.name,
+            whatsapp: payload.whatsapp,
+            email: payload.email,
+          });
+          fetchSlots();
+          return;
+        } else if (result.status === "conflict") {
+          setStatusState({
+            type: "conflict",
+            message:
+              result.message ||
+              "Pendaftaran digagalkan karena jadwal bertabrakan dengan program lain yang telah Anda daftarkan.",
+            conflictingEvent: result.conflictingEventId
+              ? getBookingEventById(result.conflictingEventId)
+              : conflictingEvent || undefined,
+          });
+          return;
+        } else if (result.status === "duplicate") {
+          recordUserRegistration(currentEvent.id);
+          setStatusState({
+            type: "duplicate",
+            message:
+              result.message ||
+              "Akun Google Anda sudah terdaftar pada sesi acara ini (1 akun = 1 tiket).",
+          });
+          fetchSlots();
+          return;
+        } else if (result.status === "full") {
+          setStatusState({
+            type: "full",
+            message: result.message || "Mohon maaf, kuota tiket untuk acara ini sudah penuh.",
+          });
+          return;
+        } else if (result.message) {
+          setStatusState({
+            type: "error",
+            message: result.message,
+          });
+          return;
+        }
+      }
+
+      // Verifikasi Darurat: Jika respon terputus / format HTML tapi data sebenarnya sudah masuk ke Spreadsheet
+      try {
+        const verifyUrl = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=userRegistrations&email=${encodeURIComponent(googleUser.email)}&_t=${Date.now()}`;
+        const verifyRes = await fetch(verifyUrl);
+        const verifyData = await verifyRes.json();
+        if (
+          verifyData &&
+          verifyData.status === "success" &&
+          Array.isArray(verifyData.registeredEventIds) &&
+          verifyData.registeredEventIds.includes(currentEvent.id)
+        ) {
+          recordUserRegistration(currentEvent.id);
+          setLoading(false);
+          setStatusState({
+            type: "success",
+            message: "Registrasi tiket Anda berhasil terkonfirmasi di Google Sheets!",
+            regCode: currentEvent.ticketPrefix + Math.floor(1000 + Math.random() * 9000),
+            event: currentEvent,
+            name: payload.name,
+            whatsapp: payload.whatsapp,
+            email: payload.email,
+          });
+          fetchSlots();
+          return;
+        }
+      } catch (verErr) {
+        console.warn("Verifikasi darurat tidak dapat diakses:", verErr);
+      }
+
       setLoading(false);
-      console.error("Booking error:", err);
+      setStatusState({
+        type: "error",
+        message: "Gagal memproses pendaftaran. Silakan periksa koneksi internet Anda.",
+      });
+    } catch (err) {
+      console.error("Booking error, menjalankan verifikasi ke Google Sheets:", err);
+
+      // Verifikasi Darurat saat blok catch: Cek apakah pendaftaran sebenarnya sudah tercatat di Spreadsheet
+      try {
+        const verifyUrl = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=userRegistrations&email=${encodeURIComponent(googleUser.email)}&_t=${Date.now()}`;
+        const verifyRes = await fetch(verifyUrl);
+        const verifyData = await verifyRes.json();
+        if (
+          verifyData &&
+          verifyData.status === "success" &&
+          Array.isArray(verifyData.registeredEventIds) &&
+          verifyData.registeredEventIds.includes(currentEvent.id)
+        ) {
+          recordUserRegistration(currentEvent.id);
+          setLoading(false);
+          setStatusState({
+            type: "success",
+            message: "Registrasi tiket Anda berhasil terkonfirmasi di Google Sheets!",
+            regCode: currentEvent.ticketPrefix + Math.floor(1000 + Math.random() * 9000),
+            event: currentEvent,
+            name: payload.name,
+            whatsapp: payload.whatsapp,
+            email: payload.email,
+          });
+          fetchSlots();
+          return;
+        }
+      } catch {
+        // Abaikan jika verifikasi darurat gagal
+      }
+
+      setLoading(false);
       setStatusState({
         type: "error",
         message: "Gagal terhubung ke server pendaftaran. Silakan periksa koneksi internet Anda.",
