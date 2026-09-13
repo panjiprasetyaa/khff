@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
@@ -617,21 +617,24 @@ export default function JadwalClientPage() {
     }
     return defaultDay;
   });
+  const [prevDayParam, setPrevDayParam] = useState(dayParam);
 
   // Filter by room inside the active day
   const [selectedRoom, setSelectedRoom] = useState<string>("all");
 
-  // Keep state synced with URL query param
-  useEffect(() => {
-    if (dayParam && schedule.some((d) => d.id === dayParam)) {
+  // Adjust state during render when URL query param changes without triggering cascading effect renders
+  if (dayParam !== prevDayParam) {
+    setPrevDayParam(dayParam);
+    if (dayParam && schedule.some((d) => d.id === dayParam) && dayParam !== activeDay) {
       setActiveDay(dayParam);
       setSelectedRoom("all");
     }
-  }, [dayParam]);
+  }
 
   const handleDayTabClick = (dayId: string) => {
     setActiveDay(dayId);
     setSelectedRoom("all");
+    setPrevDayParam(dayId);
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       url.searchParams.set("day", dayId);
