@@ -170,13 +170,14 @@ export default function RegistrasiClientPage() {
                 data.slots[e.id] ||
                 (e.tabSheet ? data.slots[e.tabSheet] : null);
               const maxCap = e.maxSlots || 20;
-              const used = remote ? Number(remote.used) || 0 : 0;
-              const available = Math.max(0, maxCap - used);
+              const isPermanentlySoldOut = !!e.isSoldOut || (remote && remote.isSoldOut);
+              const used = isPermanentlySoldOut ? maxCap : (remote ? Number(remote.used) || 0 : 0);
+              const available = isPermanentlySoldOut ? 0 : Math.max(0, maxCap - used);
               normalizedSlots[e.id] = {
                 total: maxCap,
                 used: used,
                 available: available,
-                isFull: available <= 0,
+                isFull: isPermanentlySoldOut || available <= 0,
                 tabSheet: e.tabSheet,
               };
             });
@@ -188,11 +189,13 @@ export default function RegistrasiClientPage() {
       // Fallback default 20 slots for all events
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
+        const isPermanentlySoldOut = !!e.isSoldOut;
+        const maxCap = e.maxSlots || 20;
         defaultSlots[e.id] = {
-          total: e.maxSlots || 20,
-          used: 0,
-          available: e.maxSlots || 20,
-          isFull: false,
+          total: maxCap,
+          used: isPermanentlySoldOut ? maxCap : 0,
+          available: isPermanentlySoldOut ? 0 : maxCap,
+          isFull: isPermanentlySoldOut,
           tabSheet: e.tabSheet,
         };
       });
@@ -201,11 +204,13 @@ export default function RegistrasiClientPage() {
       console.warn("Live Apps Script slots offline / default:", err);
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
+        const isPermanentlySoldOut = !!e.isSoldOut;
+        const maxCap = e.maxSlots || 20;
         defaultSlots[e.id] = {
-          total: e.maxSlots || 20,
-          used: 0,
-          available: e.maxSlots || 20,
-          isFull: false,
+          total: maxCap,
+          used: isPermanentlySoldOut ? maxCap : 0,
+          available: isPermanentlySoldOut ? 0 : maxCap,
+          isFull: isPermanentlySoldOut,
           tabSheet: e.tabSheet,
         };
       });
@@ -345,7 +350,7 @@ export default function RegistrasiClientPage() {
     // If scriptUrl is connected, send request to Apps Script to delete matching rows in Spreadsheet
     if (scriptUrl) {
       try {
-        await fetch(scriptUrl, {
+        const res = await fetch(scriptUrl, {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
@@ -353,6 +358,8 @@ export default function RegistrasiClientPage() {
             email: googleUser.email,
           }),
         });
+        const resText = await res.text();
+        console.log("Reset registrations response:", resText);
       } catch (err) {
         console.error("Gagal menghapus registrasi di Spreadsheet:", err);
       }
@@ -366,9 +373,12 @@ export default function RegistrasiClientPage() {
     }
 
     setUserRegisteredEventIds([]);
-    setStatusState(null);
     setResetting(false);
     setShowResetModal(false);
+    setStatusState({
+      type: "success",
+      message: "Seluruh pendaftaran sesi Anda berhasil dibatalkan dan dihapus dari Google Sheets. Slot kuota telah dikembalikan.",
+    });
 
     // Refresh quota numbers immediately so freed slots are visible
     fetchSlots();
@@ -438,10 +448,10 @@ export default function RegistrasiClientPage() {
     e.preventDefault();
     if (!googleUser) return;
 
-    if (currentSlot.isFull) {
+    if (currentSlot.isFull || currentEvent.isSoldOut) {
       setStatusState({
         type: "full",
-        message: `Mohon maaf, kuota 20 slot untuk acara '${currentEvent.title}' sudah penuh.`,
+        message: `Mohon maaf, kuota tiket untuk acara '${currentEvent.title}' sudah penuh (SOLD OUT).`,
       });
       return;
     }
@@ -1142,11 +1152,11 @@ export default function RegistrasiClientPage() {
                 )}
 
                 {/* Slot Full Notice */}
-                {currentSlot.isFull ? (
+                {currentSlot.isFull || currentEvent.isSoldOut ? (
                   <div className="text-center p-6 bg-red-950/40 border border-red-500/30 rounded-2xl">
                     <AlertCircle size={32} className="text-red-400 mx-auto mb-2" />
                     <h4 className="font-serif font-black text-white text-base mb-1">
-                      Kuota Sesi Ini Sudah Penuh
+                      {currentEvent.isSoldOut ? "Tiket Acara Ini Telah Habis (SOLD OUT)" : "Kuota Sesi Ini Sudah Penuh"}
                     </h4>
                     <p className="text-xs text-khff-cream/70 leading-relaxed">
                       Silakan pilih sesi atau hari penayangan lain yang masih memiliki slot tersedia di kolom sebelah kiri.
@@ -1324,6 +1334,11 @@ export default function RegistrasiClientPage() {
                           <>
                             <AlertTriangle size={16} />
                             <span>Jadwal Bertabrakan (Tidak Dapat Mendaftar)</span>
+                          </>
+                        ) : currentSlot.isFull || currentEvent.isSoldOut ? (
+                          <>
+                            <Ticket size={16} />
+                            <span>Kuota Tiket Penuh (SOLD OUT)</span>
                           </>
                         ) : (
                           <>

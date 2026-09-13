@@ -13,6 +13,7 @@ export interface BookingEvent {
   maxSlots: number;
   ticketPrefix: string;
   programUrl: string;
+  isSoldOut?: boolean;
   // Metadata waktu untuk deteksi bentrok jadwal
   dateIso: string;
   startTime: string;
@@ -250,6 +251,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
+    isSoldOut: true,
     ticketPrefix: "KHFF-WKP-",
     programUrl: "/program/non-pemutaran/workshop-stop-motion",
     dateIso: "2026-09-19",

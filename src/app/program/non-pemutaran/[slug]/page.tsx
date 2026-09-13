@@ -196,6 +196,7 @@ export default async function NonPemutaranDetailPage({
                   label="Registrasi di Sini"
                   size="md"
                   variant="primary"
+                  isSoldOut={event.isSoldOut}
                 />
               </div>
             </div>
@@ -210,12 +211,20 @@ export default async function NonPemutaranDetailPage({
                   <span className="text-xs font-mono text-khff-yellow uppercase tracking-wider font-black">
                     Reservasi Kursi
                   </span>
-                  <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white" /> Kuota 20 Slot
-                  </span>
+                  {event.isSoldOut ? (
+                    <span className="bg-red-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
+                      SOLD OUT
+                    </span>
+                  ) : (
+                    <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" /> Kuota 20 Slot
+                    </span>
+                  )}
                 </div>
                 <p className="text-xs text-khff-cream/85 leading-relaxed">
-                  Amankan tempat duduk Anda untuk sesi ini. Registrasi instan via akun Google.
+                  {event.isSoldOut
+                    ? "Mohon maaf, kuota kursi untuk sesi workshop ini telah habis terpesan (Sold Out)."
+                    : "Amankan tempat duduk Anda untuk sesi ini. Registrasi instan via akun Google."}
                 </p>
                 <ProgramTicketButton
                   eventId={`nonpemutaran-${event.id}`}
@@ -223,6 +232,7 @@ export default async function NonPemutaranDetailPage({
                   className="w-full"
                   size="lg"
                   variant="primary"
+                  isSoldOut={event.isSoldOut}
                 />
               </div>
 

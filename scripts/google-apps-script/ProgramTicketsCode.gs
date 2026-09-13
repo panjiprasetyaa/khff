@@ -48,6 +48,9 @@
 
 const MAX_SLOTS_PER_EVENT = 20;
 
+// Daftar Acara yang Diset Sebagai SOLD OUT (Kuota Penuh Permanen)
+const SOLD_OUT_EVENTS = ["nonpemutaran-workshop-stop-motion"];
+
 // Daftar 11 Acara Program Festival dalam Urutan Rapi
 var ORDERED_PROGRAM_EVENTS = [
   // --- 1. PROGRAM KOMPETISI ---
@@ -214,6 +217,43 @@ function setupAllSheets() {
 }
 
 /**
+ * ===================================================================
+ * FUNGSI RESET: Mengosongkan Seluruh Data Pendaftar di 11 Tab Sheet
+ * ===================================================================
+ * Menghapus seluruh baris data pendaftar (baris 2 ke bawah) di 11 tab sheet,
+ * mengembalikan kuota seluruh acara menjadi 20 slot utuh, serta mempertahankan
+ * baris 1 (header berwarna KHFF) tanpa merusak struktur.
+ * Jalankan fungsi ini dari menu Apps Script editor (dropdown function -> "resetAllSheetsData" -> Run).
+ */
+function resetAllSheetsData() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var totalDeleted = clearAllSheetsRegistrations(ss);
+  SpreadsheetApp.flush();
+  Logger.log("Berhasil! Seluruh data pendaftar di 11 tab telah dibersihkan. Total baris dihapus: " + totalDeleted);
+  return "Berhasil mereset seluruh data di sheets! Total baris dihapus: " + totalDeleted;
+}
+
+/**
+ * Helper: Hapus seluruh baris data pendaftar di 11 tab sheet
+ */
+function clearAllSheetsRegistrations(ss) {
+  if (!ss) ss = SpreadsheetApp.getActiveSpreadsheet();
+  var totalRowsDeleted = 0;
+
+  for (var i = 0; i < ORDERED_PROGRAM_EVENTS.length; i++) {
+    var tabName = ORDERED_PROGRAM_EVENTS[i].tabSheet;
+    var sheet = ss.getSheetByName(tabName);
+    if (sheet && sheet.getLastRow() > 1) {
+      var numRows = sheet.getLastRow() - 1;
+      sheet.deleteRows(2, numRows);
+      totalRowsDeleted += numRows;
+    }
+  }
+
+  return totalRowsDeleted;
+}
+
+/**
  * Logika Inisialisasi Seluruh Tab Sheet
  */
 function initAllSheets(ss) {
@@ -305,7 +345,19 @@ function doGet(e) {
       initAllSheets(ss);
     }
 
-    // 2. Query registrasi user berdasarkan email: ?action=userRegistrations&email=...
+    // 2. Reset seluruh data tab sheet jika dipanggil: ?action=resetAllData
+    if (e && e.parameter && (e.parameter.action === "resetAllData" || e.parameter.action === "clearAllData")) {
+      var totalClearedGet = clearAllSheetsRegistrations(ss);
+      SpreadsheetApp.flush();
+      return createJsonResponse({
+        status: "success",
+        action: "resetAllData",
+        message: "Seluruh data pendaftaran di 11 tab Google Sheets berhasil dikosongkan (" + totalClearedGet + " baris dihapus). Seluruh kuota kembali menjadi 20 slot.",
+        deletedCount: totalClearedGet
+      });
+    }
+
+    // 3. Query registrasi user berdasarkan email: ?action=userRegistrations&email=...
     if (e && e.parameter && e.parameter.action === "userRegistrations" && e.parameter.email) {
       var queryEmail = e.parameter.email.toString().trim().toLowerCase();
       var registeredIds = [];
@@ -328,7 +380,7 @@ function doGet(e) {
       });
     }
 
-    // 3. Default: Status Kuota Seluruh Sesi
+    // 4. Default: Status Kuota Seluruh Sesi
     var slots = {};
 
     for (var eventId in EVENT_SHEET_MAP) {
@@ -338,12 +390,14 @@ function doGet(e) {
       if (sheet && sheet.getLastRow() > 1) {
         used = sheet.getLastRow() - 1;
       }
-      var available = Math.max(0, MAX_SLOTS_PER_EVENT - used);
+      var isSoldOut = SOLD_OUT_EVENTS.indexOf(eventId) !== -1;
+      var available = isSoldOut ? 0 : Math.max(0, MAX_SLOTS_PER_EVENT - used);
       slots[eventId] = {
         total: MAX_SLOTS_PER_EVENT,
-        used: used,
+        used: isSoldOut ? MAX_SLOTS_PER_EVENT : used,
         available: available,
-        isFull: used >= MAX_SLOTS_PER_EVENT,
+        isFull: isSoldOut || (used >= MAX_SLOTS_PER_EVENT),
+        isSoldOut: isSoldOut,
         tabSheet: tabName
       };
     }
@@ -380,6 +434,18 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var contents = e.postData.contents;
     var data = JSON.parse(contents);
+
+    // ACTION: Reset Seluruh Data Sheet (Kosongkan semua pendaftar di 11 tab)
+    if (data.action === "resetAllData" || data.action === "clearAllSheetsData") {
+      var totalCleared = clearAllSheetsRegistrations(ss);
+      SpreadsheetApp.flush();
+      return createJsonResponse({
+        status: "success",
+        action: "resetAllData",
+        message: "Seluruh data pendaftaran di 11 tab Google Sheets berhasil dikosongkan (" + totalCleared + " baris dihapus). Seluruh kuota kembali menjadi 20 slot.",
+        deletedCount: totalCleared
+      });
+    }
 
     // ACTION: Reset / Pembatalan Sesi oleh User (Menghapus baris dari Spreadsheet)
     if (data.action === "resetRegistrations" || data.action === "cancelRegistrations") {
@@ -441,6 +507,15 @@ function doPost(e) {
     var whatsapp = (data.whatsapp || "").toString().trim();
     var email = (data.email || "").toString().trim().toLowerCase();
     var ticketPrefix = (data.ticketPrefix || "KHFF-TKT-").toString().trim();
+
+    // 0. Cek apakah acara diset sebagai SOLD OUT permanen
+    if (SOLD_OUT_EVENTS.indexOf(eventId) !== -1) {
+      return createJsonResponse({
+        status: "full",
+        code: "SLOT_FULL",
+        message: "Mohon maaf, kuota tiket untuk acara '" + eventTitle + "' sudah penuh (SOLD OUT)."
+      });
+    }
 
     // 1. Validasi Kelengkapan Data
     if (!eventId || !EVENT_SHEET_MAP[eventId]) {

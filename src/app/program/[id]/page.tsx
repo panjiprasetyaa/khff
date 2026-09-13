@@ -521,13 +521,20 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
 
                           {/* Interactive Buttons */}
                           <div className="grid grid-cols-2 gap-2 mt-3">
-                            <Link
-                              href={`/registrasi?session=nonpemutaran-${event.id}`}
-                              className="py-2.5 px-3 rounded-xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white transition-all cursor-pointer text-center"
-                            >
-                              <Ticket size={13} />
-                              <span>Registrasi di Sini</span>
-                            </Link>
+                            {event.isSoldOut ? (
+                              <span className="py-2.5 px-3 rounded-xl bg-red-500/20 text-red-300 border border-red-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
+                                <Ticket size={13} />
+                                <span>SOLD OUT</span>
+                              </span>
+                            ) : (
+                              <Link
+                                href={`/registrasi?session=nonpemutaran-${event.id}`}
+                                className="py-2.5 px-3 rounded-xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white transition-all cursor-pointer text-center"
+                              >
+                                <Ticket size={13} />
+                                <span>Registrasi di Sini</span>
+                              </Link>
+                            )}
                             <Link
                               href={`/program/non-pemutaran/${event.slug}`}
                               className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1 border border-white/20 transition-all text-center"
@@ -570,9 +577,15 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                         {event.category}
                       </span>
                       <div className="flex items-center gap-1.5">
-                        <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white" /> 20 Slot
-                        </span>
+                        {event.isSoldOut ? (
+                          <span className="bg-red-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
+                            SOLD OUT
+                          </span>
+                        ) : (
+                          <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white" /> 20 Slot
+                          </span>
+                        )}
                         <span className="bg-black/60 backdrop-blur-xs border border-white/20 text-white/90 text-xs font-mono px-3 py-1 rounded-full">
                           #{idx + 1}
                         </span>
@@ -612,13 +625,20 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
 
                       {/* Interactive Buttons (Registrasi & Buka Halaman) */}
                       <div className="grid grid-cols-2 gap-2.5">
-                        <Link
-                          href={`/registrasi?session=nonpemutaran-${event.id}`}
-                          className="py-3 px-3 rounded-2xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white hover:scale-105 transition-all cursor-pointer text-center"
-                        >
-                          <Ticket size={14} />
-                          <span>Registrasi di Sini</span>
-                        </Link>
+                        {event.isSoldOut ? (
+                          <span className="py-3 px-3 rounded-2xl bg-red-500/20 text-red-300 border border-red-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
+                            <Ticket size={14} />
+                            <span>SOLD OUT</span>
+                          </span>
+                        ) : (
+                          <Link
+                            href={`/registrasi?session=nonpemutaran-${event.id}`}
+                            className="py-3 px-3 rounded-2xl bg-khff-yellow text-khff-navy font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg hover:bg-white hover:scale-105 transition-all cursor-pointer text-center"
+                          >
+                            <Ticket size={14} />
+                            <span>Registrasi di Sini</span>
+                          </Link>
+                        )}
                         <Link
                           href={`/program/non-pemutaran/${event.slug}`}
                           className="py-3 px-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 border border-white/20 transition-all text-center"
