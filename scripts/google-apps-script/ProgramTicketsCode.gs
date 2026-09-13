@@ -171,6 +171,59 @@ function doPost(e) {
     var contents = e.postData.contents;
     var data = JSON.parse(contents);
 
+    // ACTION: Reset / Pembatalan Sesi oleh User (Menghapus data dari Spreadsheet)
+    if (data.action === "resetRegistrations" || data.action === "cancelRegistrations") {
+      var emailToReset = (data.email || "").toString().trim().toLowerCase();
+      if (!emailToReset) {
+        return createJsonResponse({
+          status: "error",
+          code: "INVALID_EMAIL",
+          message: "Email akun Google wajib disertakan untuk membatalkan sesi."
+        });
+      }
+
+      var deletedCount = 0;
+      var affectedSheets = [];
+
+      for (var evId in EVENT_SHEET_MAP) {
+        var tName = EVENT_SHEET_MAP[evId];
+        var s = ss.getSheetByName(tName);
+        if (s && s.getLastRow() > 1) {
+          var lastRow = s.getLastRow();
+          var headers = s.getRange(1, 1, 1, s.getLastColumn()).getValues()[0];
+          var emailCol = -1;
+          for (var col = 0; col < headers.length; col++) {
+            if (headers[col].toString().toLowerCase().indexOf("email") !== -1) {
+              emailCol = col + 1;
+              break;
+            }
+          }
+
+          if (emailCol !== -1) {
+            var values = s.getRange(2, emailCol, lastRow - 1, 1).getValues();
+            // Loop mundur dari bawah ke atas agar indeks baris konsisten saat deleteRow
+            for (var r = values.length - 1; r >= 0; r--) {
+              if (values[r][0].toString().trim().toLowerCase() === emailToReset) {
+                s.deleteRow(r + 2);
+                deletedCount++;
+                if (affectedSheets.indexOf(tName) === -1) {
+                  affectedSheets.push(tName);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      return createJsonResponse({
+        status: "success",
+        action: "resetRegistrations",
+        message: "Seluruh pendaftaran sesi untuk " + emailToReset + " berhasil dibatalkan dan dihapus dari Spreadsheet (" + deletedCount + " baris dihapus). Slot kursi telah dikembalikan.",
+        deletedCount: deletedCount,
+        affectedSheets: affectedSheets
+      });
+    }
+
     var eventId = (data.eventId || "").toString().trim();
     var eventTitle = (data.eventTitle || "").toString().trim();
     var programType = (data.programType || "").toString().trim();

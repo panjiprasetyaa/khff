@@ -24,6 +24,8 @@ import {
   Share2,
   Printer,
   Sparkles,
+  Trash2,
+  X,
 } from "lucide-react";
 import {
   BookingEvent,
@@ -123,6 +125,8 @@ export default function RegistrasiClientPage() {
 
   // User registered event IDs for conflict detection
   const [userRegisteredEventIds, setUserRegisteredEventIds] = useState<string[]>([]);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [statusState, setStatusState] = useState<{
@@ -322,15 +326,41 @@ export default function RegistrasiClientPage() {
     [googleUser]
   );
 
-  // Reset user's registrations (useful for demo testing)
-  const handleResetMyRegistrations = () => {
+  // Handle confirmed reset: deletes rows from Google Spreadsheet and clears local state
+  const handleConfirmReset = async () => {
     if (!googleUser) return;
+    setResetting(true);
+
     const storageKey = `khff_registered_events_${googleUser.email.toLowerCase()}`;
+
+    // If scriptUrl is connected, send request to Apps Script to delete matching rows in Spreadsheet
+    if (scriptUrl) {
+      try {
+        await fetch(scriptUrl, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action: "resetRegistrations",
+            email: googleUser.email,
+          }),
+        });
+      } catch (err) {
+        console.error("Gagal menghapus registrasi di Spreadsheet:", err);
+      }
+    }
+
+    // Clear local storage and component state
     try {
       localStorage.removeItem(storageKey);
     } catch (e) {}
+
     setUserRegisteredEventIds([]);
     setStatusState(null);
+    setResetting(false);
+    setShowResetModal(false);
+
+    // Refresh quota numbers immediately so freed slots are visible
+    fetchSlots();
   };
 
   const currentEvent = getBookingEventById(selectedEventId) || BOOKING_EVENTS[0];
@@ -1104,11 +1134,12 @@ export default function RegistrasiClientPage() {
                           <span>Sesi Terdaftar: <strong className="text-khff-yellow">{userRegisteredEventIds.length}</strong> sesi</span>
                           <button
                             type="button"
-                            onClick={handleResetMyRegistrations}
-                            className="text-khff-cream/50 hover:text-red-400 underline transition-colors cursor-pointer"
-                            title="Reset riwayat pendaftaran lokal akun ini"
+                            onClick={() => setShowResetModal(true)}
+                            className="text-khff-cream/60 hover:text-red-400 underline transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                            title="Batalkan dan hapus sesi terdaftar dari akun ini"
                           >
-                            Reset Sesi Saya
+                            <Trash2 size={12} />
+                            <span>Reset Sesi Saya</span>
                           </button>
                         </div>
                       )}
@@ -1210,6 +1241,99 @@ export default function RegistrasiClientPage() {
           </div>
         )}
       </div>
+
+      {/* CONFIRMATION MODAL: RESET SESI SAYA */}
+      {showResetModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div
+            className="bg-[#122829] border-2 border-red-500/40 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative animate-in zoom-in-95 duration-200 text-khff-cream"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => !resetting && setShowResetModal(false)}
+              disabled={resetting}
+              className="absolute top-5 right-5 text-khff-cream/50 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Modal Header */}
+            <div className="flex items-start gap-3.5 mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 shrink-0">
+                <Trash2 size={24} />
+              </div>
+              <div className="min-w-0 pr-6">
+                <h3 className="font-serif font-black text-lg sm:text-xl text-white leading-tight">
+                  Batalkan & Hapus Sesi?
+                </h3>
+                <p className="text-xs text-khff-cream/70 mt-1 truncate">
+                  Akun: <strong className="text-khff-yellow font-mono">{googleUser?.email}</strong>
+                </p>
+              </div>
+            </div>
+
+            {/* Warning description */}
+            <p className="text-xs sm:text-sm text-khff-cream/85 leading-relaxed mb-4">
+              Apakah Anda yakin ingin membatalkan semua reservasi sesi program Anda? Tindakan ini akan <strong>menghapus data pendaftaran di Google Spreadsheet</strong> dan membebaskan kuota kursi untuk pengunjung lain.
+            </p>
+
+            {/* List of registered sessions that will be removed */}
+            {userRegisteredEventIds.length > 0 && (
+              <div className="mb-6 p-3 rounded-2xl bg-black/50 border border-white/10 max-h-36 overflow-y-auto custom-mini-scrollbar space-y-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-khff-yellow/80 block mb-1">
+                  Daftar Sesi yang Akan Dihapus ({userRegisteredEventIds.length}):
+                </span>
+                {userRegisteredEventIds.map((id) => {
+                  const ev = getBookingEventById(id);
+                  if (!ev) return null;
+                  return (
+                    <div
+                      key={id}
+                      className="flex items-center justify-between text-xs font-mono py-1.5 px-2.5 rounded-lg bg-white/5 text-khff-cream/90"
+                    >
+                      <span className="truncate pr-2">{ev.title}</span>
+                      <span className="text-[10px] text-khff-yellow shrink-0">{ev.scheduleTime}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Action buttons */}
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => setShowResetModal(false)}
+                disabled={resetting}
+                className="flex-1 py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmReset}
+                disabled={resetting}
+                className="flex-1 py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-black transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+              >
+                {resetting ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    <span>Menghapus...</span>
+                  </>
+                ) : (
+                  <>
+                    <Trash2 size={14} />
+                    <span>Ya, Hapus Sesi</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
