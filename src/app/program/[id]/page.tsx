@@ -462,8 +462,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               >
                 {nonPemutaranEvents.map((event, idx) => (
                   <SwiperSlide key={`mobile-${event.id}`} className="!w-auto !h-auto">
-                    <Link
-                      href={`/program/non-pemutaran/${event.slug}`}
+                    <div
                       className="block w-[300px] h-[520px] rounded-3xl overflow-hidden relative shadow-2xl bg-khff-navy border-4 border-white/20 transition-all duration-500 transform-gpu active:scale-95 group [.swiper-slide:not(.swiper-slide-active)_&]:scale-[0.9] [.swiper-slide:not(.swiper-slide-active)_&]:opacity-60 [.swiper-slide-active_&]:scale-100 [.swiper-slide-active_&]:border-khff-yellow"
                     >
                       <Image
@@ -473,9 +472,14 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                         sizes="300px"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20 p-6 flex flex-col justify-between">
+                      <Link
+                        href={`/program/non-pemutaran/${event.slug}`}
+                        className="absolute inset-0 z-10"
+                        aria-label={`Buka detail program ${event.title}`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20 p-6 flex flex-col justify-between pointer-events-none z-20">
                         {/* Top badges */}
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2 pointer-events-auto">
                           <span className={`px-3 py-1 rounded-full font-mono text-[10px] font-black uppercase tracking-wider shadow-md ${event.badgeBg}`}>
                             {event.category}
                           </span>
@@ -485,13 +489,15 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                         </div>
 
                         {/* Bottom Content */}
-                        <div>
+                        <div className="pointer-events-auto">
                           <p className="text-khff-yellow font-serif text-sm italic mb-1">
                             {event.theme}
                           </p>
-                          <h3 className="text-white font-serif font-black text-2xl leading-tight drop-shadow-md mb-3">
-                            {event.title}
-                          </h3>
+                          <Link href={`/program/non-pemutaran/${event.slug}`} className="block mb-3 hover:text-khff-yellow transition-colors">
+                            <h3 className="text-white font-serif font-black text-2xl leading-tight drop-shadow-md">
+                              {event.title}
+                            </h3>
+                          </Link>
 
                           {/* Info chips */}
                           <div className="space-y-1.5 text-xs text-khff-cream/90 mb-4 bg-black/40 backdrop-blur-xs p-3 rounded-xl border border-white/10">
@@ -522,14 +528,17 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                               <Ticket size={13} />
                               <span>Registrasi di Sini</span>
                             </Link>
-                            <div className="py-2.5 px-3 rounded-xl bg-white/10 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1 border border-white/20 transition-all">
+                            <Link
+                              href={`/program/non-pemutaran/${event.slug}`}
+                              className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1 border border-white/20 transition-all text-center"
+                            >
                               <span>Detail</span>
                               <ChevronRight size={13} />
-                            </div>
+                            </Link>
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -538,9 +547,8 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
             {/* DESKTOP 3-CARD SHOWCASE (Grid View: Clear & Immersive) */}
             <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
               {nonPemutaranEvents.map((event, idx) => (
-                <Link
+                <div
                   key={`desktop-${event.id}`}
-                  href={`/program/non-pemutaran/${event.slug}`}
                   className="rounded-3xl overflow-hidden relative group shadow-2xl bg-khff-navy border-4 border-white/20 hover:border-khff-yellow transition-all duration-500 transform-gpu flex flex-col justify-between h-[540px] lg:h-[580px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
                 >
                   <Image
@@ -550,9 +558,14 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                     sizes="(max-width: 1200px) 33vw, 400px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30 p-7 flex flex-col justify-between z-10">
+                  <Link
+                    href={`/program/non-pemutaran/${event.slug}`}
+                    className="absolute inset-0 z-10"
+                    aria-label={`Buka detail program ${event.title}`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30 p-7 flex flex-col justify-between z-20 pointer-events-none">
                     {/* Top Row */}
-                    <div className="flex justify-between items-start gap-2">
+                    <div className="flex justify-between items-start gap-2 pointer-events-auto">
                       <span className={`px-3.5 py-1.5 rounded-full font-mono text-xs font-black uppercase tracking-wider shadow-lg ${event.badgeBg}`}>
                         {event.category}
                       </span>
@@ -567,13 +580,15 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                     </div>
 
                     {/* Bottom Row */}
-                    <div>
+                    <div className="pointer-events-auto">
                       <span className="inline-block text-khff-yellow/90 font-serif text-sm italic mb-1.5">
                         {event.theme}
                       </span>
-                      <h3 className="text-white font-serif font-black text-2xl lg:text-3xl leading-snug drop-shadow-md mb-4 group-hover:text-khff-yellow transition-colors">
-                        {event.title}
-                      </h3>
+                      <Link href={`/program/non-pemutaran/${event.slug}`} className="block mb-4 hover:text-khff-yellow transition-colors">
+                        <h3 className="text-white font-serif font-black text-2xl lg:text-3xl leading-snug drop-shadow-md group-hover:text-khff-yellow transition-colors">
+                          {event.title}
+                        </h3>
+                      </Link>
 
                       {/* Info Pills */}
                       <div className="space-y-2 text-xs lg:text-sm text-khff-cream/90 mb-5 bg-black/50 backdrop-blur-xs p-3.5 rounded-2xl border border-white/10">
@@ -604,15 +619,18 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                           <Ticket size={14} />
                           <span>Registrasi di Sini</span>
                         </Link>
-                        <div className="py-3 px-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 border border-white/20 transition-all">
+                        <Link
+                          href={`/program/non-pemutaran/${event.slug}`}
+                          className="py-3 px-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 border border-white/20 transition-all text-center"
+                        >
                           <BookOpen size={14} />
                           <span>Detail</span>
                           <ChevronRight size={14} />
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
