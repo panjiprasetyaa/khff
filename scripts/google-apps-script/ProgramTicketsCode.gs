@@ -6,53 +6,155 @@
  * ===================================================================
  * 
  * FITUR UTAMA:
- * 1. Multi-Tab Otomatis: Setiap acara memiliki tab terpisah di Spreadsheet.
+ * 1. Inisialisasi Otomatis: Membuat seluruh 11 tab program festival lengkap dengan
+ *    format kolom, warna tema KHFF, dan urutan rapi secara otomatis.
  * 2. Kuota 20 Slot per Acara: Dikelola ketat dengan LockService serverless.
  * 3. Anti-Duplikasi: 1 Akun Google hanya dapat memesan 1 slot per acara.
- * 4. Realtime Quota Tracking: Endpoint doGet mengembalikan status sisa slot live.
+ * 4. Pencegahan Konflik Jadwal: Menolak registrasi pada 2 program yang jamnya bentrok.
+ * 5. Fitur Reset / Pembatalan Sesi: Menghapus baris registrasi dan mengembalikan kuota slot.
+ * 6. Realtime Quota Tracking: Endpoint doGet mengembalikan status sisa slot live.
  * 
  * -------------------------------------------------------------------
- * PANDUAN LENGKAP MENGHUBUNGKAN GOOGLE SPREADSHEET BARU (STEP-BY-STEP):
+ * PANDUAN MENGHUBUNGKAN GOOGLE SPREADSHEET BARU (STEP-BY-STEP):
  * -------------------------------------------------------------------
- * 1. Buka Google Spreadsheet baru yang telah Anda buat di Google Drive.
+ * 1. Buka Google Spreadsheet BARU di Google Drive Anda (file kosong).
  * 2. Di menu atas Spreadsheet, klik "Extensions" (Ekstensi) > "Apps Script".
- * 3. Hapus kode default (myFunction) di editor Apps Script.
+ * 3. Hapus seluruh kode default yang ada di editor Apps Script.
  * 4. Salin seluruh isi file ini (ProgramTicketsCode.gs) dan tempel ke editor Apps Script.
  * 5. Beri nama proyek di kiri atas, contoh: "KHFF 2026 Program Tickets API".
  * 6. Tekan tombol Save (ikon Disket atau Cmd+S / Ctrl+S).
- * 7. Klik tombol biru "Deploy" (Terapkan) di kanan atas > pilih "New deployment" (Deployment baru).
- * 8. Pada jendela yang muncul:
- *    - Klik ikon gerigi (Select type) di sebelah kiri > pilih "Web app".
- *    - Description: "Versi 1 - Multi Program Tickets".
- *    - Execute as: "Me (email-anda@gmail.com)".
- *    - Who has access: WAJIB pilih "Anyone" (Siapa saja, bahkan anonim).
- * 9. Klik tombol "Deploy".
- *    - Jika muncul permintaan "Authorize access" (Otorisasi Akses), klik "Authorize access".
- *    - Pilih akun Google Anda.
- *    - Klik "Advanced" (Lanjutan) di kiri bawah > klik "Go to KHFF 2026 Program Tickets API (unsafe)".
- *    - Klik "Allow" (Izinkan).
- * 10. Salin "Web app URL" yang diberikan (berformat: https://script.google.com/macros/s/.../exec).
- * 11. Buka file `.env.local` pada project web KHFF, lalu masukkan URL tersebut:
+ * 
+ * --- [LANGKAH INISIASI TAB SPREADSHEET]:
+ * 7. Di toolbar atas editor Apps Script, pilih fungsi "setupAllSheets" dari dropdown.
+ * 8. Klik tombol "Run" (Jalankan).
+ *    - Jika muncul otorisasi, klik "Review permissions" > pilih akun Anda > klik "Advanced" > "Go to ... (unsafe)" > "Allow".
+ *    - SELESAI! Seluruh 11 tab program festival akan langsung otomatis dibuat, diurutkan,
+ *      dan diformat rapi di Google Spreadsheet Anda, serta tab 'Sheet1' kosong otomatis dihapus.
+ * 
+ * --- [LANGKAH DEPLOYMENT WEB APP]:
+ * 9. Klik tombol biru "Deploy" (Terapkan) di kanan atas > pilih "New deployment".
+ * 10. Pada jendela deployment:
+ *     - Klik ikon gerigi (Select type) di sebelah kiri > pilih "Web app".
+ *     - Description: "Versi 1 - Inisialisasi 11 Program KHFF".
+ *     - Execute as: "Me (email-anda@gmail.com)".
+ *     - Who has access: WAJIB pilih "Anyone" (Siapa saja, bahkan anonim).
+ * 11. Klik "Deploy".
+ * 12. Salin "Web app URL" yang diberikan (berformat: https://script.google.com/macros/s/.../exec).
+ * 13. Buka file `.env.local` pada project web KHFF, lalu perbarui variabel:
  *     NEXT_PUBLIC_PROGRAM_SCRIPT_URL=https://script.google.com/macros/s/.../exec
- * 12. Selesai! Web akan langsung terhubung secara realtime dengan Google Spreadsheet Anda.
+ * 14. Selesai! Web akan langsung terhubung secara realtime dengan Google Spreadsheet Anda.
  * ===================================================================
  */
 
 const MAX_SLOTS_PER_EVENT = 20;
 
-// Pemetaan Event ID ke Nama Tab Spreadsheet
+// Daftar 11 Acara Program Festival dalam Urutan Rapi
+var ORDERED_PROGRAM_EVENTS = [
+  // --- 1. PROGRAM KOMPETISI ---
+  {
+    eventId: "kompetisi-purwaseswa",
+    tabSheet: "Kompetisi_Purwaseswa",
+    title: "Kompetisi: Purwaseswa",
+    category: "Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 13.00 - 14.20 WIB",
+    venue: "Ruang Audiovisual, PDIN Yogyakarta"
+  },
+  {
+    eventId: "kompetisi-karyanagri",
+    tabSheet: "Kompetisi_Karyanagri",
+    title: "Kompetisi: Karyanagri",
+    category: "Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 16.00 - 18.10 WIB",
+    venue: "Ruang Audiovisual, PDIN Yogyakarta"
+  },
+  {
+    eventId: "kompetisi-mahaditya",
+    tabSheet: "Kompetisi_Mahaditya",
+    title: "Kompetisi: Mahaditya",
+    category: "Kompetisi",
+    schedule: "Sabtu, 19 Sep 2026 | 13.00 - 15.45 WIB",
+    venue: "Ruang Audiovisual, PDIN Yogyakarta"
+  },
+
+  // --- 2. PROGRAM NON-KOMPETISI ---
+  {
+    eventId: "nonkomp-panorama",
+    tabSheet: "NonKomp_Panorama",
+    title: "Panorama: Jogja Film Academy",
+    category: "Non-Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 13.00 - 15.30 WIB",
+    venue: "Ruang Seminar, PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonkomp-experimental-cinema-1",
+    tabSheet: "NonKomp_Experimental_1",
+    title: "Heritage in Experimental Cinema #1",
+    category: "Non-Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 16.00 - 17.55 WIB",
+    venue: "Ruang Seminar, PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonkomp-experimental-cinema-2",
+    tabSheet: "NonKomp_Experimental_2",
+    title: "Heritage in Experimental Cinema #2",
+    category: "Non-Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 19.15 - 20.45 WIB",
+    venue: "Ruang Seminar, PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonkomp-indonesian-cinema-1",
+    tabSheet: "NonKomp_IndoCinema_1",
+    title: "Heritage in Indonesian Cinema #1",
+    category: "Non-Kompetisi",
+    schedule: "Jumat, 18 Sep 2026 | 19.15 - 21.08 WIB",
+    venue: "Ruang Audiovisual, PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonkomp-indonesian-cinema-2",
+    tabSheet: "NonKomp_IndoCinema_2",
+    title: "Heritage in Indonesian Cinema #2",
+    category: "Non-Kompetisi",
+    schedule: "Sabtu, 19 Sep 2026 | 16.00 - 17.20 WIB",
+    venue: "Ruang Audiovisual, PDIN Yogyakarta"
+  },
+
+  // --- 3. PROGRAM NON-PEMUTARAN (Talks & Workshop) ---
+  {
+    eventId: "nonpemutaran-director-talks",
+    tabSheet: "NonPemutaran_DirectorTalks",
+    title: "Director Talks: Mistik Melampaui Ketakutan (Wregas Bhanuteja)",
+    category: "Director Talks",
+    schedule: "Jumat, 18 Sep 2026 | 16.00 - 18.10 WIB",
+    venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonpemutaran-workshop-stop-motion",
+    tabSheet: "NonPemutaran_Workshop",
+    title: "Heritage Workshop: Stop Motion!",
+    category: "Heritage Workshop",
+    schedule: "Sabtu, 19 Sep 2026 | 13.00 - 16.00 WIB",
+    venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta"
+  },
+  {
+    eventId: "nonpemutaran-heritage-talks",
+    tabSheet: "NonPemutaran_HeritageTalks",
+    title: "Merawat yang Hidup (Heritage Talks: Zaki Habibi)",
+    category: "Heritage Talks",
+    schedule: "Sabtu, 19 Sep 2026 | 16.00 - 18.10 WIB",
+    venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta"
+  }
+];
+
+// Pemetaan Event ID ke Nama Tab Sheet
 var EVENT_SHEET_MAP = {
-  // Kompetisi
   "kompetisi-purwaseswa": "Kompetisi_Purwaseswa",
   "kompetisi-karyanagri": "Kompetisi_Karyanagri",
   "kompetisi-mahaditya": "Kompetisi_Mahaditya",
-  // Non-Kompetisi
   "nonkomp-panorama": "NonKomp_Panorama",
   "nonkomp-indonesian-cinema-1": "NonKomp_IndoCinema_1",
   "nonkomp-indonesian-cinema-2": "NonKomp_IndoCinema_2",
   "nonkomp-experimental-cinema-1": "NonKomp_Experimental_1",
   "nonkomp-experimental-cinema-2": "NonKomp_Experimental_2",
-  // Non-Pemutaran
   "nonpemutaran-director-talks": "NonPemutaran_DirectorTalks",
   "nonpemutaran-heritage-talks": "NonPemutaran_HeritageTalks",
   "nonpemutaran-workshop-stop-motion": "NonPemutaran_Workshop"
@@ -98,14 +200,119 @@ var EVENT_TITLES_MAP = {
 };
 
 /**
- * Endpoint GET: Mengambil status sisa kuota seluruh acara secara realtime
- * atau daftar registrasi user berdasarkan email
+ * ===================================================================
+ * FUNGSI SETUP: Inisialisasi Seluruh 11 Tab Program & Format Kolom Rapi
+ * ===================================================================
+ * Jalankan fungsi ini dari menu Apps Script editor (dropdown function -> Run).
+ * Bisa juga dipanggil otomatis saat Spreadsheet baru pertama kali terhubung.
+ */
+function setupAllSheets() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  initAllSheets(ss);
+  Logger.log("Berhasil! Semua 11 tab program festival telah dibuat, diurutkan, dan diformat.");
+  return "Berhasil membuat & merapikan 11 tab program festival!";
+}
+
+/**
+ * Logika Inisialisasi Seluruh Tab Sheet
+ */
+function initAllSheets(ss) {
+  if (!ss) ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  for (var i = 0; i < ORDERED_PROGRAM_EVENTS.length; i++) {
+    var item = ORDERED_PROGRAM_EVENTS[i];
+    var sheet = ss.getSheetByName(item.tabSheet);
+
+    if (!sheet) {
+      sheet = ss.insertSheet(item.tabSheet);
+      formatSheetHeader(sheet);
+    } else if (sheet.getLastRow() === 0) {
+      formatSheetHeader(sheet);
+    }
+
+    // Pindahkan tab agar urutannya konsisten 1..11
+    ss.setActiveSheet(sheet);
+    ss.moveActiveSheet(i + 1);
+  }
+
+  // Hapus tab default kosong (Sheet1 / Lembar1) jika ada tab program lain
+  var defaultSheetNames = ["Sheet1", "Sheet 1", "Lembar1", "Lembar 1"];
+  for (var d = 0; d < defaultSheetNames.length; d++) {
+    var defSheet = ss.getSheetByName(defaultSheetNames[d]);
+    if (defSheet && ss.getSheets().length > ORDERED_PROGRAM_EVENTS.length) {
+      if (defSheet.getLastRow() <= 1) {
+        try {
+          ss.deleteSheet(defSheet);
+        } catch (e) {
+          // Abaikan jika sheet sedang aktif atau tidak bisa dihapus
+        }
+      }
+    }
+  }
+
+  // Set active sheet kembali ke tab pertama
+  var firstSheet = ss.getSheetByName(ORDERED_PROGRAM_EVENTS[0].tabSheet);
+  if (firstSheet) {
+    ss.setActiveSheet(firstSheet);
+  }
+}
+
+/**
+ * Format Header Baris 1 pada Setiap Tab Sheet
+ */
+function formatSheetHeader(sheet) {
+  sheet.appendRow([
+    "Timestamp",
+    "Nama Lengkap",
+    "Email (Google Terverifikasi)",
+    "No. WhatsApp",
+    "Nama Acara / Sesi",
+    "Kode Tiket",
+    "Status Kehadiran"
+  ]);
+
+  var header = sheet.getRange(1, 1, 1, 7);
+  header.setFontWeight("bold");
+  header.setBackground("#1d4d4f"); // KHFF Dark Teal
+  header.setFontColor("#ffffff");
+  header.setHorizontalAlignment("center");
+  header.setVerticalAlignment("middle");
+  sheet.setRowHeight(1, 36);
+
+  // Bekukan baris 1 (Freeze Row 1)
+  sheet.setFrozenRows(1);
+
+  // Atur lebar kolom yang rapi
+  sheet.setColumnWidth(1, 170); // Timestamp
+  sheet.setColumnWidth(2, 230); // Nama Lengkap
+  sheet.setColumnWidth(3, 260); // Email
+  sheet.setColumnWidth(4, 160); // No WhatsApp
+  sheet.setColumnWidth(5, 280); // Nama Acara
+  sheet.setColumnWidth(6, 170); // Kode Tiket
+  sheet.setColumnWidth(7, 150); // Status
+}
+
+/**
+ * Endpoint GET: Mengambil status sisa kuota seluruh acara secara realtime,
+ * query registrasi user, atau inisialisasi tab otomatis.
  */
 function doGet(e) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-    // Query registrasi user berdasarkan email: ?action=userRegistrations&email=...
+    // 1. Cek & Inisiasi Seluruh Tab jika belum lengkap
+    var isMissingTab = false;
+    for (var i = 0; i < ORDERED_PROGRAM_EVENTS.length; i++) {
+      if (!ss.getSheetByName(ORDERED_PROGRAM_EVENTS[i].tabSheet)) {
+        isMissingTab = true;
+        break;
+      }
+    }
+    if (isMissingTab || (e && e.parameter && e.parameter.action === "init")) {
+      initAllSheets(ss);
+    }
+
+    // 2. Query registrasi user berdasarkan email: ?action=userRegistrations&email=...
     if (e && e.parameter && e.parameter.action === "userRegistrations" && e.parameter.email) {
       var queryEmail = e.parameter.email.toString().trim().toLowerCase();
       var registeredIds = [];
@@ -122,11 +329,13 @@ function doGet(e) {
         status: "success",
         email: queryEmail,
         registeredEventIds: registeredIds,
+        spreadsheetName: ss.getName(),
+        spreadsheetUrl: ss.getUrl(),
         timestamp: new Date().toISOString()
       });
     }
 
-    // Default: Status Kuota Seluruh Sesi
+    // 3. Default: Status Kuota Seluruh Sesi
     var slots = {};
 
     for (var eventId in EVENT_SHEET_MAP) {
@@ -148,6 +357,9 @@ function doGet(e) {
 
     return createJsonResponse({
       status: "success",
+      spreadsheetName: ss.getName(),
+      spreadsheetUrl: ss.getUrl(),
+      totalEvents: ORDERED_PROGRAM_EVENTS.length,
       slots: slots,
       timestamp: new Date().toISOString()
     });
@@ -160,7 +372,7 @@ function doGet(e) {
 }
 
 /**
- * Endpoint POST: Menangani pemesanan tiket untuk acara tertentu
+ * Endpoint POST: Menangani pemesanan tiket & pembatalan/reset sesi
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -171,7 +383,7 @@ function doPost(e) {
     var contents = e.postData.contents;
     var data = JSON.parse(contents);
 
-    // ACTION: Reset / Pembatalan Sesi oleh User (Menghapus data dari Spreadsheet)
+    // ACTION: Reset / Pembatalan Sesi oleh User (Menghapus baris dari Spreadsheet)
     if (data.action === "resetRegistrations" || data.action === "cancelRegistrations") {
       var emailToReset = (data.email || "").toString().trim().toLowerCase();
       if (!emailToReset) {
@@ -259,7 +471,7 @@ function doPost(e) {
 
     // 2. Ambil atau Buat Tab Sheet yang Sesuai
     var tabName = EVENT_SHEET_MAP[eventId];
-    var sheet = getOrCreateEventSheet(ss, tabName, eventTitle);
+    var sheet = getOrCreateEventSheet(ss, tabName);
 
     // 3. Cek Kapasitas Kuota (Maksimal 20 Slot)
     var currentUsed = Math.max(0, sheet.getLastRow() - 1);
@@ -346,36 +558,13 @@ function doPost(e) {
 }
 
 /**
- * Helper: Ambil tab sheet atau buat baru secara otomatis lengkap dengan styling header
+ * Helper: Ambil tab sheet atau buat baru jika belum ada
  */
-function getOrCreateEventSheet(ss, tabName, eventTitle) {
+function getOrCreateEventSheet(ss, tabName) {
   var sheet = ss.getSheetByName(tabName);
   if (!sheet) {
     sheet = ss.insertSheet(tabName);
-    sheet.appendRow([
-      "Timestamp",
-      "Nama Lengkap",
-      "Email (Google Terverifikasi)",
-      "No. WhatsApp",
-      "Nama Acara / Sesi",
-      "Kode Tiket",
-      "Status Kehadiran"
-    ]);
-
-    var header = sheet.getRange(1, 1, 1, 7);
-    header.setFontWeight("bold");
-    header.setBackground("#1d4d4f");
-    header.setFontColor("#ffffff");
-    header.setHorizontalAlignment("center");
-
-    // Atur lebar kolom yang rapi
-    sheet.setColumnWidth(1, 160); // Timestamp
-    sheet.setColumnWidth(2, 220); // Nama
-    sheet.setColumnWidth(3, 240); // Email
-    sheet.setColumnWidth(4, 150); // No WA
-    sheet.setColumnWidth(5, 260); // Acara
-    sheet.setColumnWidth(6, 160); // Kode Tiket
-    sheet.setColumnWidth(7, 140); // Status
+    formatSheetHeader(sheet);
   }
   return sheet;
 }
