@@ -119,6 +119,45 @@ export default function RegistrasiClientPage() {
   const [slotsData, setSlotsData] = useState<Record<string, SlotDetail>>({});
   const [loadingSlots, setLoadingSlots] = useState(true);
 
+  // Initial loading screen state (waiting for spreadsheet slots sync)
+  const [isInitialSlotsLoading, setIsInitialSlotsLoading] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const [showSkipButton, setShowSkipButton] = useState(false);
+  const isInitialFetchRef = useRef(true);
+
+  // Handle slow connection fallback skip button
+  useEffect(() => {
+    if (!isInitialSlotsLoading) return;
+
+    const skipTimer = setTimeout(() => {
+      setShowSkipButton(true);
+    }, 7000);
+
+    return () => {
+      clearTimeout(skipTimer);
+    };
+  }, [isInitialSlotsLoading]);
+
+  // Lock body scroll while initial loading screen is active
+  useEffect(() => {
+    if (isInitialSlotsLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isInitialSlotsLoading]);
+
+  const handleSkipLoading = () => {
+    isInitialFetchRef.current = false;
+    setIsFadingOut(true);
+    setTimeout(() => {
+      setIsInitialSlotsLoading(false);
+    }, 350);
+  };
+
   // User registered event IDs for conflict detection
   const [userRegisteredEventIds, setUserRegisteredEventIds] = useState<string[]>([]);
   const [showResetModal, setShowResetModal] = useState(false);
@@ -163,7 +202,10 @@ export default function RegistrasiClientPage() {
     try {
       if (scriptUrl) {
         const url = `${scriptUrl}${scriptUrl.includes("?") ? "&" : "?"}action=slots`;
-        const res = await fetch(url, { method: "GET" });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const res = await fetch(url, { method: "GET", signal: controller.signal });
+        clearTimeout(timeoutId);
         if (res.ok) {
           const data = await res.json();
           if (data && data.slots) {
@@ -220,6 +262,13 @@ export default function RegistrasiClientPage() {
       setSlotsData(defaultSlots);
     } finally {
       setLoadingSlots(false);
+      if (isInitialFetchRef.current) {
+        isInitialFetchRef.current = false;
+        setIsFadingOut(true);
+        setTimeout(() => {
+          setIsInitialSlotsLoading(false);
+        }, 400);
+      }
     }
   }, [scriptUrl]);
 
@@ -765,6 +814,64 @@ export default function RegistrasiClientPage() {
 
   return (
     <main className="min-h-screen bg-khff-navy text-khff-cream font-sans relative overflow-hidden pb-24">
+      {/* INITIAL FULLSCREEN LOADING SCREEN (WAITING FOR SPREADSHEET SLOTS) */}
+      {isInitialSlotsLoading && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0B2027] px-6 text-center transition-opacity duration-400 ease-out select-none ${
+            isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          {/* Ambient Lighting & Glows */}
+          <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-khff-yellow/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full bg-khff-pink/10 blur-3xl pointer-events-none" />
+
+          {/* Decorative Cultural Assets */}
+          <div className="absolute top-4 left-4 sm:top-8 sm:left-8 w-32 sm:w-48 md:w-56 opacity-25 pointer-events-none select-none -rotate-12">
+            <img src="/assets/illustrations/kendhang.png" alt="" className="w-full h-auto" />
+          </div>
+          <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-40 sm:w-56 md:w-64 opacity-25 pointer-events-none select-none rotate-12">
+            <img src="/assets/illustrations/gong.png" alt="" className="w-full h-auto" />
+          </div>
+          <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 w-36 sm:w-52 md:w-60 opacity-25 pointer-events-none select-none rotate-6">
+            <img src="/assets/illustrations/geni.png" alt="" className="w-full h-auto" />
+          </div>
+          <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 w-32 sm:w-48 md:w-56 opacity-25 pointer-events-none select-none -rotate-12">
+            <img src="/assets/illustrations/terompet.png" alt="" className="w-full h-auto" />
+          </div>
+          <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 -right-8 w-44 md:w-52 opacity-20 pointer-events-none select-none rotate-12">
+            <img src="/assets/illustrations/bendera.png" alt="" className="w-full h-auto" />
+          </div>
+          <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 -left-8 w-44 md:w-52 opacity-20 pointer-events-none select-none -rotate-12">
+            <img src="/assets/illustrations/buto2.png" alt="" className="w-full h-auto" />
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center max-w-md mx-auto">
+            {/* Title */}
+            <h2 className="text-xl sm:text-2xl font-serif font-black text-khff-cream mb-4 tracking-wider drop-shadow-sm">
+              Memuat...
+            </h2>
+
+            {/* Animated Indeterminate Progress Bar */}
+            <div className="w-64 sm:w-80 h-2 bg-white/10 rounded-full overflow-hidden relative shadow-inner border border-white/5">
+              <div className="absolute top-0 bottom-0 bg-gradient-to-r from-transparent via-khff-yellow to-transparent w-40 rounded-full animate-progress-slide shadow-[0_0_12px_rgba(238,173,47,0.8)]" />
+            </div>
+
+            {/* Optional Skip Button if network is taking unusually long */}
+            {showSkipButton && (
+              <button
+                type="button"
+                onClick={handleSkipLoading}
+                className="mt-6 text-[11px] font-mono text-khff-cream/50 hover:text-khff-yellow underline transition-colors cursor-pointer"
+              >
+                Koneksi lambat? Lewati dan buka form langsung
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       <Script
         src="https://accounts.google.com/gsi/client"
         strategy="afterInteractive"
