@@ -12,10 +12,7 @@ export default function Navbar() {
 
   // Dropdown states
   const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<"program" | "jadwal" | "tentang" | "arsip" | null>(null);
-  const [mobileProgramOpen, setMobileProgramOpen] = useState<boolean | null>(null);
-  const [mobileJadwalOpen, setMobileJadwalOpen] = useState<boolean | null>(null);
-  const [mobileAboutOpen, setMobileAboutOpen] = useState<boolean | null>(null);
-  const [mobileArsipOpen, setMobileArsipOpen] = useState<boolean | null>(null);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState<"program" | "jadwal" | "tentang" | "arsip" | null>(null);
 
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navRef = useRef<HTMLElement | null>(null);
@@ -27,11 +24,18 @@ export default function Navbar() {
   const isJadwalActive = pathname.startsWith("/jadwal");
   const isArsipActive = pathname === "/galeri" || pathname === "/katalog";
 
-  // Derived mobile open state (defaults to true if user is on that route, or follows user toggle)
-  const isMobileProgramOpen = mobileProgramOpen !== null ? mobileProgramOpen : isProgramActive;
-  const isMobileJadwalOpen = mobileJadwalOpen !== null ? mobileJadwalOpen : isJadwalActive;
-  const isMobileAboutOpen = mobileAboutOpen !== null ? mobileAboutOpen : isAboutActive;
-  const isMobileArsipOpen = mobileArsipOpen !== null ? mobileArsipOpen : isArsipActive;
+  // Sync active mobile dropdown when mobile menu opens or route changes
+  useEffect(() => {
+    if (isProgramActive) setActiveMobileDropdown("program");
+    else if (isJadwalActive) setActiveMobileDropdown("jadwal");
+    else if (isAboutActive) setActiveMobileDropdown("tentang");
+    else if (isArsipActive) setActiveMobileDropdown("arsip");
+    else setActiveMobileDropdown(null);
+  }, [pathname, isMobileMenuOpen, isProgramActive, isJadwalActive, isAboutActive, isArsipActive]);
+
+  const toggleMobileDropdown = (menu: "program" | "jadwal" | "tentang" | "arsip") => {
+    setActiveMobileDropdown((prev) => (prev === menu ? null : menu));
+  };
 
   const handleNavClick = () => {
     setIsMobileMenuOpen(false);
@@ -414,12 +418,12 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-khff-navy text-khff-cream flex flex-col p-8 text-center shadow-2xl min-h-screen overflow-y-auto animate-in fade-in duration-200">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-khff-navy text-khff-cream flex flex-col p-6 text-center shadow-2xl min-h-screen overflow-y-auto animate-in fade-in duration-200">
           <div className="flex flex-col divide-y divide-khff-cream/10 border-b border-khff-cream/10">
             {/* BERANDA */}
             <Link
               href="/"
-              className={`text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5 ${
+              className={`text-base sm:text-lg font-serif font-bold hover:text-khff-yellow transition-colors py-3.5 tracking-wide ${
                 isHomeActive ? "text-khff-yellow" : ""
               }`}
               onClick={handleNavClick}
@@ -428,24 +432,24 @@ export default function Navbar() {
             </Link>
 
             {/* PROGRAM ACCORDION */}
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-2.5">
               <button
-                onClick={() => setMobileProgramOpen(!isMobileProgramOpen)}
-                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+                onClick={() => toggleMobileDropdown("program")}
+                className="flex items-center justify-center gap-2 text-base sm:text-lg font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer tracking-wide"
               >
                 <span className={isProgramActive ? "text-khff-yellow" : ""}>PROGRAM</span>
                 <ChevronDown
-                  size={20}
+                  size={16}
                   className={`transition-transform duration-300 ${
-                    isMobileProgramOpen ? "rotate-180 text-khff-yellow" : ""
+                    activeMobileDropdown === "program" ? "rotate-180 text-khff-yellow" : ""
                   }`}
                 />
               </button>
-              {isMobileProgramOpen && (
-                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+              {activeMobileDropdown === "program" && (
+                <div className="flex flex-col gap-1.5 py-2.5 px-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/program"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-3 mb-1 ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-2.5 mb-0.5 ${
                       pathname === "/program" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -454,7 +458,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/program/kompetisi"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname.startsWith("/program/kompetisi") ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -463,7 +467,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/program/non-kompetisi"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname.startsWith("/program/non-kompetisi") ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -472,7 +476,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/program/non-pemutaran"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname.startsWith("/program/non-pemutaran") ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -484,24 +488,24 @@ export default function Navbar() {
             </div>
 
             {/* JADWAL ACCORDION */}
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-2.5">
               <button
-                onClick={() => setMobileJadwalOpen(!isMobileJadwalOpen)}
-                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+                onClick={() => toggleMobileDropdown("jadwal")}
+                className="flex items-center justify-center gap-2 text-base sm:text-lg font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer tracking-wide"
               >
                 <span className={isJadwalActive ? "text-khff-yellow" : ""}>JADWAL</span>
                 <ChevronDown
-                  size={20}
+                  size={16}
                   className={`transition-transform duration-300 ${
-                    isMobileJadwalOpen ? "rotate-180 text-khff-yellow" : ""
+                    activeMobileDropdown === "jadwal" ? "rotate-180 text-khff-yellow" : ""
                   }`}
                 />
               </button>
-              {isMobileJadwalOpen && (
-                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+              {activeMobileDropdown === "jadwal" && (
+                <div className="flex flex-col gap-1.5 py-2.5 px-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/jadwal"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-3 mb-1 ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors border-b border-khff-cream/10 pb-2.5 mb-0.5 ${
                       pathname === "/jadwal" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -510,21 +514,21 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/jadwal?day=day-1"
-                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors text-khff-cream/80"
                     onClick={handleNavClick}
                   >
                     DAY 1 (KAMIS, 17 SEP)
                   </Link>
                   <Link
                     href="/jadwal?day=day-2"
-                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors text-khff-cream/80"
                     onClick={handleNavClick}
                   >
                     DAY 2 (JUMAT, 18 SEP)
                   </Link>
                   <Link
                     href="/jadwal?day=day-3"
-                    className="text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors text-khff-cream/80"
+                    className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors text-khff-cream/80"
                     onClick={handleNavClick}
                   >
                     DAY 3 (SABTU, 19 SEP)
@@ -534,24 +538,24 @@ export default function Navbar() {
             </div>
 
             {/* TENTANG KAMI ACCORDION */}
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-2.5">
               <button
-                onClick={() => setMobileAboutOpen(!isMobileAboutOpen)}
-                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+                onClick={() => toggleMobileDropdown("tentang")}
+                className="flex items-center justify-center gap-2 text-base sm:text-lg font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer tracking-wide"
               >
                 <span className={isAboutActive ? "text-khff-yellow" : ""}>TENTANG KAMI</span>
                 <ChevronDown
-                  size={20}
+                  size={16}
                   className={`transition-transform duration-300 ${
-                    isMobileAboutOpen ? "rotate-180 text-khff-yellow" : ""
+                    activeMobileDropdown === "tentang" ? "rotate-180 text-khff-yellow" : ""
                   }`}
                 />
               </button>
-              {isMobileAboutOpen && (
-                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+              {activeMobileDropdown === "tentang" && (
+                <div className="flex flex-col gap-1.5 py-2.5 px-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/about"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname === "/about" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -560,7 +564,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/festival-team"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname === "/festival-team" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -572,24 +576,24 @@ export default function Navbar() {
             </div>
 
             {/* ARSIP ACCORDION (GALERI & KATALOG) */}
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-2.5">
               <button
-                onClick={() => setMobileArsipOpen(!isMobileArsipOpen)}
-                className="flex items-center justify-center gap-2 text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer"
+                onClick={() => toggleMobileDropdown("arsip")}
+                className="flex items-center justify-center gap-2 text-base sm:text-lg font-serif font-bold hover:text-khff-yellow transition-colors py-2 cursor-pointer tracking-wide"
               >
                 <span className={isArsipActive ? "text-khff-yellow" : ""}>ARSIP</span>
                 <ChevronDown
-                  size={20}
+                  size={16}
                   className={`transition-transform duration-300 ${
-                    isMobileArsipOpen ? "rotate-180 text-khff-yellow" : ""
+                    activeMobileDropdown === "arsip" ? "rotate-180 text-khff-yellow" : ""
                   }`}
                 />
               </button>
-              {isMobileArsipOpen && (
-                <div className="flex flex-col gap-2 py-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
+              {activeMobileDropdown === "arsip" && (
+                <div className="flex flex-col gap-1.5 py-2.5 px-3 bg-khff-navy/60 rounded-xl my-2 border border-khff-cream/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link
                     href="/galeri"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname === "/galeri" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -598,7 +602,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/katalog"
-                    className={`text-base font-mono font-bold uppercase tracking-wider py-2.5 hover:text-khff-yellow transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold uppercase tracking-wider py-2 hover:text-khff-yellow transition-colors ${
                       pathname === "/katalog" ? "text-khff-yellow font-black" : "text-khff-cream/80"
                     }`}
                     onClick={handleNavClick}
@@ -608,21 +612,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            {/*
-            <a
-              href="/festival-guide.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl font-serif font-bold hover:text-khff-yellow transition-colors py-5"
-              onClick={handleNavClick}
-            >
-              FESTIVAL GUIDE
-            </a>
-            */}
           </div>
           <Link
             href="/registrasi"
-            className="text-lg font-mono font-black text-khff-navy bg-khff-yellow px-8 py-3.5 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-8 shadow-xl uppercase tracking-wider cursor-pointer"
+            className="text-xs sm:text-sm font-mono font-black text-khff-navy bg-khff-yellow px-6 py-2.5 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-6 shadow-xl uppercase tracking-wider cursor-pointer"
             onClick={handleNavClick}
           >
             <span>REGISTRASI TIKET</span>
