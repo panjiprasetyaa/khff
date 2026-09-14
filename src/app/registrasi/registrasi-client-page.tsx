@@ -833,7 +833,7 @@ export default function RegistrasiClientPage() {
                 Petunjuk Setup Akun Google:
               </strong>
               <p className="text-khff-cream/90">
-                <code>NEXT_PUBLIC_GOOGLE_CLIENT_ID</code> belum dikonfigurasi di <code>.env.local</code>. Anda dapat menggunakan tombol <strong>Simulasi Login Demo</strong> di bawah untuk menguji form reservasi.
+                <code>NEXT_PUBLIC_GOOGLE_CLIENT_ID</code> belum dikonfigurasi di <code>.env.local</code>. Silakan konfigurasikan Google Client ID untuk mengaktifkan login Google.
               </p>
             </div>
           </div>
@@ -1252,25 +1252,6 @@ export default function RegistrasiClientPage() {
                     {/* Google GSI Button Container */}
                     <div className="flex justify-center py-2 max-w-full overflow-hidden">
                       <div id="googleProgramSignInBtn" ref={btnContainerRef} className="min-h-[44px] max-w-full" />
-                    </div>
-
-                    {/* Demo / Simulation Mode Button */}
-                    <div className="pt-3 border-t border-white/10 text-center">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setGoogleUser({
-                            name: "Festival Attendee (Demo)",
-                            email: "festival.attendee@gmail.com",
-                            picture: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-                          });
-                          setFullName("Festival Attendee");
-                          setStatusState(null);
-                        }}
-                        className="text-[11px] font-mono text-khff-cream/60 hover:text-khff-yellow underline transition-colors cursor-pointer"
-                      >
-                        Atau klik di sini untuk simulasi login demo
-                      </button>
                     </div>
                   </div>
                 ) : (
