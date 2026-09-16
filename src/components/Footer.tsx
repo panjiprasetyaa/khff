@@ -77,9 +77,10 @@ export default function Footer() {
             {/* Garis Divider */}
             <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-khff-navy/25 to-transparent my-1 sm:my-2" />
 
-            {/* Hotel Hospitality Sponsors: 8 Logos (4 + 4 on Mobile, 8 on Desktop) */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 md:gap-7 lg:gap-8 w-full">
-              <div className="flex justify-center items-center gap-3 sm:gap-5 md:gap-7 lg:gap-8 flex-wrap">
+            {/* Hotel Hospitality Sponsors: 10 Logos (5 on Top, 5 on Bottom) */}
+            <div className="flex flex-col items-center justify-center gap-3.5 sm:gap-5 md:gap-7 w-full">
+              {/* Row 1: 5 Logos */}
+              <div className="flex justify-center items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 flex-wrap">
                 <img
                   src="/assets/sponsors/harper-malioboro.png"
                   alt="Harper Malioboro Yogyakarta"
@@ -100,13 +101,15 @@ export default function Footer() {
                   alt="The Prajan Hotel & Villas"
                   className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
-              </div>
-              <div className="flex justify-center items-center gap-3.5 sm:gap-5 md:gap-7 lg:gap-8 flex-wrap">
                 <img
                   src="/assets/sponsors/nueve-hotel.png"
                   alt="Nueve Jogja Hotel"
                   className="h-7 sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
+              </div>
+
+              {/* Row 2: 5 Logos */}
+              <div className="flex justify-center items-center gap-3.5 sm:gap-6 md:gap-8 lg:gap-10 flex-wrap">
                 <img
                   src="/assets/sponsors/aveon-hotel.png"
                   alt="Aveon Hotel Yogyakarta"
@@ -121,6 +124,16 @@ export default function Footer() {
                   src="/assets/sponsors/favehotel.png"
                   alt="favehotel Yogyakarta"
                   className="h-[18px] sm:h-[22px] md:h-[26px] w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                />
+                <img
+                  src="/assets/sponsors/fortuna-suites.png"
+                  alt="Fortuna Suites Yogyakarta"
+                  className="h-5 sm:h-7 md:h-8 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
+                />
+                <img
+                  src="/assets/sponsors/grand-hotel-de-djokja.png"
+                  alt="Grand Hotel De Djokja"
+                  className="h-6 sm:h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
               </div>
             </div>
