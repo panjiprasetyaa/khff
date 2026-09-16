@@ -460,32 +460,35 @@
       "tracks": [
         {
           "venue": "Pasar Terban",
-          "label": "Becak Drive In Cinema & Jelajah Becak",
+          "label": "Rangkaian Peserta / Jelajah Becak",
           "type": "single",
           "events": [
             {
-              "time": "16:00 – 16:10",
-              "startTime": "16:00",
-              "endTime": "16:10",
-              "duration": "10 menit",
+              "time": "14:30 – 15:20",
+              "startTime": "14:30",
+              "endTime": "15:20",
+              "duration": "50 menit",
               "location": "Pasar Terban",
-              "program": "Registrasi Ulang Peserta"
+              "program": "Registrasi Ulang Peserta",
+              "keterangan": "Registrasi ulang, pembagian kebutuhan peserta & briefing singkat"
             },
             {
-              "time": "16:10 – 17:40",
-              "startTime": "16:10",
-              "endTime": "17:40",
+              "time": "15:30 – 17:00",
+              "startTime": "15:30",
+              "endTime": "17:00",
               "duration": "1 jam 30 menit",
               "location": "Rute Kotabaru",
-              "program": "Jelajah Becak"
+              "program": "Jelajah Becak",
+              "keterangan": "Peserta mulai perjalanan mengikuti rute yang telah ditentukan"
             },
             {
-              "time": "17:40 – 17:50",
-              "startTime": "17:40",
+              "time": "17:00 – 17:50",
+              "startTime": "17:00",
               "endTime": "17:50",
-              "duration": "10 menit",
+              "duration": "50 menit",
               "location": "Pasar Terban",
-              "program": "Break Maghrib"
+              "program": "Break Maghrib dan Registrasi ulang",
+              "keterangan": "Snack time – Mayora, pengkondisian audience naik ke atas becak (persiapan opening Drive in Cinema Kotabaru)"
             },
             {
               "time": "17:50 – 18:00",
@@ -493,7 +496,8 @@
               "endTime": "18:00",
               "duration": "10 menit",
               "location": "Halaman Pasar Terban",
-              "program": "Opening Becak Drive In Cinema"
+              "program": "Opening Becak Drive In Cinema",
+              "keterangan": "Voice Over (sinema), Tari pulung + kampung menari"
             },
             {
               "time": "18:00 – 19:59",
@@ -501,7 +505,8 @@
               "endTime": "19:59",
               "duration": "1 jam 59 menit",
               "location": "Halaman Pasar Terban",
-              "program": "Drive in Cinema Kotabaru"
+              "program": "Drive in Cinema Kotabaru",
+              "keterangan": "Pelaksanaan program Becak Drive In Cinema"
             }
           ]
         },
