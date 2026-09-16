@@ -102,9 +102,9 @@ export default function Footer() {
                   className="h-6 sm:h-9 md:h-11 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
                 <img
-                  src="/assets/sponsors/nueve-hotel.png"
-                  alt="Nueve Jogja Hotel"
-                  className="h-7 sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                  src="/assets/sponsors/grand-hotel-de-djokja.png"
+                  alt="Grand Hotel De Djokja"
+                  className="h-6 sm:h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
               </div>
 
@@ -131,9 +131,9 @@ export default function Footer() {
                   className="h-5 sm:h-7 md:h-8 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]"
                 />
                 <img
-                  src="/assets/sponsors/grand-hotel-de-djokja.png"
-                  alt="Grand Hotel De Djokja"
-                  className="h-6 sm:h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                  src="/assets/sponsors/nueve-hotel.png"
+                  alt="Nueve Jogja Hotel"
+                  className="h-7 sm:h-10 md:h-12 w-auto object-contain hover:scale-105 transition-transform drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 />
               </div>
             </div>
