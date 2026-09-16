@@ -243,15 +243,12 @@ const activeTabAccent: Record<string, string> = {
 
 // Render table for single-track (Day 1)
 function SingleTrackTable({ events }: { events: SingleEvent[] }) {
-  const hasNotes = events.some((ev) => !!(ev.keterangan || ev.note));
-
   return (
     <div className="w-full">
       {/* Mobile Card View */}
       <div className="md:hidden space-y-4">
         {events.map((ev, i) => {
           const progUrl = getProgramUrl(ev.program);
-          const noteText = ev.keterangan || ev.note;
           return (
             <div
               key={i}
@@ -280,14 +277,6 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                   {ev.program}
                 </h4>
               )}
-              {noteText && (
-                <div className="mt-3 pt-3 border-t border-khff-cream/15 text-xs text-khff-cream/90 leading-relaxed">
-                  <span className="text-khff-yellow font-mono font-bold text-[10px] uppercase tracking-widest block mb-1">
-                    Keterangan
-                  </span>
-                  <span>{noteText}</span>
-                </div>
-              )}
             </div>
           );
         })}
@@ -295,30 +284,24 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
 
       {/* Desktop Table View */}
       <div className="hidden md:block overflow-x-auto custom-mini-scrollbar pb-4 scroll-smooth">
-        <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[760px]">
+        <div className="overflow-hidden rounded-2xl border-2 border-khff-cream/20 shadow-2xl bg-black/20 min-w-[700px]">
           <table className="w-full text-sm md:text-base">
             <thead>
               <tr className="bg-khff-navy text-left border-b border-khff-cream/20">
                 <th className="px-6 py-4 text-khff-yellow font-mono uppercase tracking-widest text-xs md:text-sm font-black w-44">
                   Waktu
                 </th>
-                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black w-52">
+                <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black w-56">
                   Lokasi
                 </th>
                 <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black">
                   Program / Kegiatan
                 </th>
-                {hasNotes && (
-                  <th className="px-6 py-4 text-white font-mono uppercase tracking-widest text-xs md:text-sm font-black w-80">
-                    Keterangan
-                  </th>
-                )}
               </tr>
             </thead>
             <tbody className="divide-y divide-khff-cream/10">
               {events.map((ev, i) => {
                 const progUrl = getProgramUrl(ev.program);
-                const noteText = ev.keterangan || ev.note;
                 return (
                   <tr
                     key={i}
@@ -349,11 +332,6 @@ function SingleTrackTable({ events }: { events: SingleEvent[] }) {
                         </h4>
                       )}
                     </td>
-                    {hasNotes && (
-                      <td className="px-6 py-5 align-top text-khff-cream/80 text-sm leading-relaxed font-sans">
-                        {noteText || "—"}
-                      </td>
-                    )}
                   </tr>
                 );
               })}

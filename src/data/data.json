@@ -469,8 +469,7 @@
               "endTime": "15:20",
               "duration": "50 menit",
               "location": "Pasar Terban",
-              "program": "Registrasi Ulang Peserta",
-              "keterangan": "Registrasi ulang, pembagian kebutuhan peserta & briefing singkat"
+              "program": "Registrasi Ulang Peserta"
             },
             {
               "time": "15:30 – 17:00",
@@ -478,8 +477,7 @@
               "endTime": "17:00",
               "duration": "1 jam 30 menit",
               "location": "Rute Kotabaru",
-              "program": "Jelajah Becak",
-              "keterangan": "Peserta mulai perjalanan mengikuti rute yang telah ditentukan"
+              "program": "Jelajah Becak"
             },
             {
               "time": "17:00 – 17:50",
@@ -487,8 +485,7 @@
               "endTime": "17:50",
               "duration": "50 menit",
               "location": "Pasar Terban",
-              "program": "Break Maghrib dan Registrasi ulang",
-              "keterangan": "Snack time – Mayora, pengkondisian audience naik ke atas becak (persiapan opening Drive in Cinema Kotabaru)"
+              "program": "Break Maghrib dan Registrasi ulang"
             },
             {
               "time": "17:50 – 18:00",
@@ -496,8 +493,7 @@
               "endTime": "18:00",
               "duration": "10 menit",
               "location": "Halaman Pasar Terban",
-              "program": "Opening Becak Drive In Cinema",
-              "keterangan": "Voice Over (sinema), Tari pulung + kampung menari"
+              "program": "Opening Becak Drive In Cinema"
             },
             {
               "time": "18:00 – 19:59",
@@ -505,8 +501,7 @@
               "endTime": "19:59",
               "duration": "1 jam 59 menit",
               "location": "Halaman Pasar Terban",
-              "program": "Drive in Cinema Kotabaru",
-              "keterangan": "Pelaksanaan program Becak Drive In Cinema"
+              "program": "Drive in Cinema Kotabaru"
             }
           ]
         },
