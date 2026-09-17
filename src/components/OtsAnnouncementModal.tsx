@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { X, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
 
 interface OtsAnnouncementModalProps {
@@ -22,6 +22,7 @@ export default function OtsAnnouncementModal({
 
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
   const [countdown, setCountdown] = useState(3);
+  const modalCardRef = useRef<HTMLDivElement>(null);
 
   if (isOpen !== prevIsOpen) {
     setPrevIsOpen(isOpen);
@@ -30,21 +31,20 @@ export default function OtsAnnouncementModal({
     }
   }
 
-  // 3-second countdown timer when modal opens
+  // 3-second countdown timer when modal opens (precise sub-second timer)
   useEffect(() => {
     if (!isOpen) return;
 
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    const endTime = Date.now() + 3000;
+    const interval = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      setCountdown(remaining);
+      if (remaining <= 0) {
+        clearInterval(interval);
+      }
+    }, 100);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, [isOpen]);
 
   // Lock background scroll completely to popup (Desktop & iOS/Mobile)
@@ -56,6 +56,7 @@ export default function OtsAnnouncementModal({
     const originalPosition = document.body.style.position;
     const originalTop = document.body.style.top;
     const originalWidth = document.body.style.width;
+    const originalTouchAction = document.body.style.touchAction;
     const scrollY = window.scrollY;
 
     document.documentElement.style.overflow = "hidden";
@@ -63,6 +64,7 @@ export default function OtsAnnouncementModal({
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
+    document.body.style.touchAction = "none";
 
     return () => {
       document.documentElement.style.overflow = originalHtmlOverflow;
@@ -70,8 +72,24 @@ export default function OtsAnnouncementModal({
       document.body.style.position = originalPosition;
       document.body.style.top = originalTop;
       document.body.style.width = originalWidth;
+      document.body.style.touchAction = originalTouchAction;
       window.scrollTo(0, scrollY);
     };
+  }, [isOpen]);
+
+  // Block wheel scrolling on background/backdrop
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && !modalCardRef.current?.contains(target)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWheel);
   }, [isOpen]);
 
   // Close on Escape key only after countdown finishes
@@ -94,7 +112,7 @@ export default function OtsAnnouncementModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-300 overscroll-contain select-none"
+      className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-300 overscroll-contain select-none touch-none"
       role="dialog"
       aria-modal="true"
       aria-labelledby="ots-modal-title"
@@ -105,8 +123,10 @@ export default function OtsAnnouncementModal({
       }}
     >
       <div
+        ref={modalCardRef}
         onClick={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
+        style={{ touchAction: "pan-y" }}
         className="bg-[#122829] border-2 border-khff-yellow/50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 max-w-xl w-full shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative animate-in zoom-in-95 duration-200 text-khff-cream max-h-[88vh] overflow-y-auto overscroll-contain my-auto select-text"
       >
         {/* TOMBOL CLOSE 'X' DI POJOK KANAN ATAS (COUNTDOWN 3 DETIK) */}

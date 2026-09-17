@@ -139,17 +139,21 @@ export default function RegistrasiClientPage() {
     };
   }, [isInitialSlotsLoading]);
 
+  const [showOtsModal, setShowOtsModal] = useState(true);
+
   // Lock body scroll while initial loading screen is active
   useEffect(() => {
     if (isInitialSlotsLoading) {
       document.body.style.overflow = "hidden";
-    } else {
+    } else if (!showOtsModal) {
       document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "";
+      if (!showOtsModal) {
+        document.body.style.overflow = "";
+      }
     };
-  }, [isInitialSlotsLoading]);
+  }, [isInitialSlotsLoading, showOtsModal]);
 
   const handleSkipLoading = () => {
     isInitialFetchRef.current = false;
@@ -165,7 +169,6 @@ export default function RegistrasiClientPage() {
   const [selectedResetEventIds, setSelectedResetEventIds] = useState<string[]>([]);
   const [resetNotice, setResetNotice] = useState<string | null>(null);
   const [resetting, setResetting] = useState(false);
-  const [showOtsModal, setShowOtsModal] = useState(true);
 
   const [loading, setLoading] = useState(false);
   const [statusState, setStatusState] = useState<{
@@ -1673,7 +1676,7 @@ export default function RegistrasiClientPage() {
 
       {/* POP-UP MODAL PENGUMUMAN RESMI HARI H & TIKET OTS */}
       <OtsAnnouncementModal
-        isOpen={showOtsModal}
+        isOpen={!isInitialSlotsLoading && showOtsModal}
         onClose={() => setShowOtsModal(false)}
       />
     </main>
