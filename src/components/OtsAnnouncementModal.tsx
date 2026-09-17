@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { X, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
 
 interface OtsAnnouncementModalProps {
@@ -20,44 +20,115 @@ export default function OtsAnnouncementModal({
     () => false
   );
 
-  // Prevent background scroll when modal is open
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [countdown, setCountdown] = useState(3);
+
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      setCountdown(3);
     }
+  }
+
+  // 3-second countdown timer when modal opens
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isOpen]);
+
+  // Lock background scroll completely to popup (Desktop & iOS/Mobile)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen]);
 
+  // Close on Escape key only after countdown finishes
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && countdown === 0) {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, countdown, onClose]);
+
   if (!mounted || !isOpen) return null;
+
+  const canClose = countdown === 0;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-300 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-300 overscroll-contain select-none"
       role="dialog"
       aria-modal="true"
       aria-labelledby="ots-modal-title"
+      onTouchMove={(e) => {
+        if (e.target === e.currentTarget) {
+          e.preventDefault();
+        }
+      }}
     >
-      {/* 
-        PENTING: Klik backdrop di luar modal sengaja TIDAK menutup modal.
-        User WAJIB membaca dan klik tanda 'X' di pojok kanan atas untuk menutupnya.
-      */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-[#122829] border-2 border-khff-yellow/50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 max-w-xl w-full shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative animate-in zoom-in-95 duration-200 text-khff-cream max-h-[88vh] overflow-y-auto overscroll-contain my-auto"
+        onTouchMove={(e) => e.stopPropagation()}
+        className="bg-[#122829] border-2 border-khff-yellow/50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 max-w-xl w-full shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative animate-in zoom-in-95 duration-200 text-khff-cream max-h-[88vh] overflow-y-auto overscroll-contain my-auto select-text"
       >
-        {/* TOMBOL CLOSE 'X' DI POJOK KANAN ATAS (RESPONSIF & MUDAH DIKLIK) */}
+        {/* TOMBOL CLOSE 'X' DI POJOK KANAN ATAS (COUNTDOWN 3 DETIK) */}
         <button
           type="button"
-          onClick={onClose}
-          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-khff-yellow hover:text-khff-navy border border-white/20 text-khff-cream flex items-center justify-center transition-all cursor-pointer shadow-lg group focus:outline-none focus:ring-2 focus:ring-khff-yellow shrink-0 z-10"
-          title="Tutup Pengumuman (Klik X)"
-          aria-label="Tutup Pengumuman (Klik X)"
+          onClick={canClose ? onClose : undefined}
+          disabled={!canClose}
+          className={`absolute top-3.5 right-3.5 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all shrink-0 z-10 ${
+            canClose
+              ? "bg-white/10 hover:bg-khff-yellow hover:text-khff-navy border-white/20 text-khff-cream cursor-pointer shadow-lg group focus:outline-none focus:ring-2 focus:ring-khff-yellow"
+              : "bg-white/5 border-white/10 text-khff-cream/40 cursor-not-allowed"
+          }`}
+          title={canClose ? "Tutup Pengumuman (Klik X)" : `Tunggu ${countdown} detik untuk menutup`}
+          aria-label={canClose ? "Tutup Pengumuman (Klik X)" : `Tunggu ${countdown} detik untuk menutup`}
         >
-          <X size={18} className="sm:w-5 sm:h-5 group-hover:rotate-90 transition-transform duration-200" />
+          {canClose ? (
+            <X size={18} className="sm:w-5 sm:h-5 group-hover:rotate-90 transition-transform duration-200" />
+          ) : (
+            <span className="font-mono text-xs sm:text-sm font-bold text-khff-yellow animate-pulse">
+              {countdown}
+            </span>
+          )}
         </button>
 
         {/* Title */}
@@ -116,13 +187,28 @@ export default function OtsAnnouncementModal({
         </div>
 
         {/* Footer Confirmation */}
-        <div className="pt-3 sm:pt-4 border-t border-white/10 flex justify-end">
+        <div className="pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          {!canClose ? (
+            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono text-khff-cream/70 justify-center sm:justify-start">
+              <Clock size={14} className="text-khff-yellow shrink-0 animate-spin" style={{ animationDuration: "3s" }} />
+              <span>
+                Dapat ditutup dalam <strong className="text-khff-yellow font-bold">{countdown} detik</strong>
+              </span>
+            </div>
+          ) : (
+            <div className="hidden sm:block" />
+          )}
           <button
             type="button"
-            onClick={onClose}
-            className="w-full sm:w-auto px-5 py-2.5 sm:py-2.5 rounded-xl bg-khff-yellow text-khff-navy hover:bg-white font-mono font-black text-xs uppercase tracking-wider transition-all shadow-lg cursor-pointer text-center"
+            onClick={canClose ? onClose : undefined}
+            disabled={!canClose}
+            className={`w-full sm:w-auto px-5 py-2.5 sm:py-2.5 rounded-xl font-mono font-black text-xs uppercase tracking-wider transition-all shadow-lg text-center ${
+              canClose
+                ? "bg-khff-yellow text-khff-navy hover:bg-white cursor-pointer"
+                : "bg-white/10 text-khff-cream/40 border border-white/10 cursor-not-allowed"
+            }`}
           >
-            Saya Mengerti (X)
+            {canClose ? "Saya Mengerti (X)" : `Tunggu (${countdown}s)`}
           </button>
         </div>
       </div>
