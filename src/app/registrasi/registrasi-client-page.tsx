@@ -926,7 +926,7 @@ export default function RegistrasiClientPage() {
           <button
             type="button"
             onClick={() => setShowOtsModal(true)}
-            className="shrink-0 px-4 py-2 rounded-xl bg-khff-yellow/20 hover:bg-khff-yellow text-khff-yellow hover:text-khff-navy border border-khff-yellow/40 font-mono text-xs font-bold transition-all cursor-pointer shadow"
+            className="w-full sm:w-auto text-center justify-center shrink-0 px-4 py-2.5 sm:py-2 rounded-xl bg-khff-yellow/20 hover:bg-khff-yellow text-khff-yellow hover:text-khff-navy border border-khff-yellow/40 font-mono text-xs font-bold transition-all cursor-pointer shadow"
           >
             Baca Ketentuan Lengkap
           </button>
@@ -1206,7 +1206,7 @@ export default function RegistrasiClientPage() {
                         {/* Quota indicator */}
                         <div className="shrink-0 text-right">
                           <span
-                            className={`inline-block px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold ${
+                            className={`inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg text-[9px] sm:text-[10px] font-mono font-bold whitespace-nowrap ${
                               event.isSoldOut || slot.isFull
                                 ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
                                 : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
