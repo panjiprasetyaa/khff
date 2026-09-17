@@ -1,22 +1,24 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useState } from "react";
-import { X, Sparkles, CheckCircle2, AlertTriangle, Clock, MapPin } from "lucide-react";
+import { useEffect, useSyncExternalStore } from "react";
+import { X, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
 
 interface OtsAnnouncementModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const emptySubscribe = () => () => {};
+
 export default function OtsAnnouncementModal({
   isOpen,
   onClose,
 }: OtsAnnouncementModalProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
   // Prevent background scroll when modal is open
   useEffect(() => {
@@ -58,16 +60,10 @@ export default function OtsAnnouncementModal({
           <X size={18} className="sm:w-5 sm:h-5 group-hover:rotate-90 transition-transform duration-200" />
         </button>
 
-        {/* Modal Badge */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-khff-yellow/20 border border-khff-yellow/40 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-khff-yellow font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 pr-10 sm:pr-12 max-w-[82%]">
-          <Sparkles size={13} className="shrink-0" />
-          <span className="truncate">Pengumuman Tiket & OTS</span>
-        </div>
-
         {/* Title */}
         <h2
           id="ots-modal-title"
-          className="text-lg sm:text-2xl md:text-3xl font-serif font-black text-white leading-tight mb-3 sm:mb-4 pr-8 sm:pr-10"
+          className="text-lg sm:text-2xl md:text-3xl font-serif font-black text-white leading-tight mb-3 sm:mb-4 pr-10 sm:pr-12"
         >
           Pendaftaran Seluruh Slot Dibuka & Ketentuan Hari H
         </h2>
@@ -117,19 +113,10 @@ export default function OtsAnnouncementModal({
               </span>
             </div>
           </div>
-
-          {/* Point 4: Lokasi Venue */}
-          <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-black/40 border border-white/10 flex items-center gap-2.5 sm:gap-3 text-[11px] sm:text-xs font-mono text-khff-cream/80">
-            <MapPin size={15} className="text-khff-yellow shrink-0" />
-            <span className="truncate">PDIN Yogyakarta, Jl. Terban No. 35</span>
-          </div>
         </div>
 
-        {/* Footer info & Confirmation */}
-        <div className="pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          <span className="text-[10px] sm:text-[11px] font-mono text-khff-cream/60 text-center sm:text-left">
-            Klik tanda silang <strong>[X]</strong> di pojok kanan atas untuk menutup.
-          </span>
+        {/* Footer Confirmation */}
+        <div className="pt-3 sm:pt-4 border-t border-white/10 flex justify-end">
           <button
             type="button"
             onClick={onClose}
