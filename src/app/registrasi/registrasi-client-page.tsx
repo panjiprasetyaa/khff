@@ -31,6 +31,7 @@ import {
   getBookingEventById,
   findConflictingRegisteredEvent,
 } from "@/data/booking-events";
+import { FESTIVAL_CONFIG } from "@/data/festival-config";
 import OtsAnnouncementModal from "@/components/OtsAnnouncementModal";
 
 interface GoogleUser {
@@ -220,7 +221,10 @@ export default function RegistrasiClientPage() {
                 data.slots[e.id] ||
                 (e.tabSheet ? data.slots[e.tabSheet] : null);
               const maxCap = 9999;
-              const isPermanentlySoldOut = !!e.isSoldOut || (remote && remote.isSoldOut);
+              const isPermanentlySoldOut =
+                !!e.isSoldOut ||
+                (remote && remote.isSoldOut) ||
+                FESTIVAL_CONFIG.isEventOts(e.dateIso);
               const used = remote ? Number(remote.used) || 0 : 0;
               const available = isPermanentlySoldOut ? 0 : 9999;
               normalizedSlots[e.id] = {
@@ -496,6 +500,12 @@ export default function RegistrasiClientPage() {
     tabSheet: currentEvent.tabSheet,
   };
 
+  // Status apakah sesi terpilih berstatus OTS ONLY (Hari H acara bersangkutan)
+  const isCurrentEventOts =
+    !!currentEvent.isSoldOut ||
+    currentSlot.isFull ||
+    FESTIVAL_CONFIG.isEventOts(currentEvent.dateIso);
+
   // Schedule collision detection for the selected event
   const conflictingEvent = findConflictingRegisteredEvent(currentEvent.id, userRegisteredEventIds);
   const isAlreadyRegisteredForThisEvent = userRegisteredEventIds.includes(currentEvent.id);
@@ -551,7 +561,7 @@ export default function RegistrasiClientPage() {
     e.preventDefault();
     if (!googleUser) return;
 
-    if (currentEvent.isSoldOut) {
+    if (isCurrentEventOts) {
       setStatusState({
         type: "full",
         message: `Mohon maaf, pendaftaran online untuk acara '${currentEvent.title}' telah ditutup. Tiket tersedia On The Spot (OTS ONLY) langsung di venue PDIN Yogyakarta.`,
@@ -1299,8 +1309,8 @@ export default function RegistrasiClientPage() {
                   <div className="mt-4 pt-3 border-t border-white/10">
                     <div className="flex justify-between items-center text-xs font-mono mb-1.5">
                       <span className="text-khff-cream/80">Kapasitas Kursi:</span>
-                      <span className={`font-bold ${currentEvent.isSoldOut ? "text-amber-300" : "text-emerald-400"}`}>
-                        {currentEvent.isSoldOut ? "OTS ONLY (DI LOKASI)" : "Pendaftaran Terbuka (Gratis)"}
+                      <span className={`font-bold ${isCurrentEventOts ? "text-amber-300" : "text-emerald-400"}`}>
+                        {isCurrentEventOts ? "OTS ONLY (DI LOKASI)" : "Pendaftaran Terbuka (Gratis)"}
                       </span>
                     </div>
                     <p className="text-[11px] font-mono text-khff-cream/65 leading-relaxed">
@@ -1351,7 +1361,7 @@ export default function RegistrasiClientPage() {
                 )}
 
                 {/* Closed / OTS Notice */}
-                {currentEvent.isSoldOut ? (
+                {isCurrentEventOts ? (
                   <div className="text-center p-6 bg-amber-950/40 border border-amber-500/30 rounded-2xl">
                     <AlertCircle size={32} className="text-amber-400 mx-auto mb-2" />
                     <h4 className="font-serif font-black text-white text-base mb-1">
@@ -1494,7 +1504,7 @@ export default function RegistrasiClientPage() {
                         type="submit"
                         disabled={
                           loading ||
-                          currentSlot.isFull ||
+                          isCurrentEventOts ||
                           isAlreadyRegisteredForThisEvent ||
                           !!conflictingEvent
                         }
@@ -1515,7 +1525,7 @@ export default function RegistrasiClientPage() {
                             <AlertTriangle size={16} />
                             <span>Jadwal Bertabrakan (Tidak Dapat Mendaftar)</span>
                           </>
-                        ) : currentEvent.isSoldOut ? (
+                        ) : isCurrentEventOts ? (
                           <>
                             <Ticket size={16} />
                             <span>Pendaftaran Ditutup (OTS ONLY)</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { X, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
+import { X, AlertTriangle, Clock } from "lucide-react";
 
 interface OtsAnnouncementModalProps {
   isOpen: boolean;
@@ -166,20 +166,7 @@ export default function OtsAnnouncementModal({
 
         {/* Information Highlights */}
         <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6">
-          {/* Point 1: Malam ini semua slot dibuka */}
-          <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-start gap-2.5 sm:gap-3">
-            <CheckCircle2 size={17} className="text-emerald-400 shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-emerald-300 block font-bold mb-0.5 text-xs sm:text-sm">
-                Semua Slot Program Dibuka Online Malam Ini
-              </strong>
-              <span className="text-khff-cream/90 text-[11px] sm:text-xs leading-relaxed">
-                Seluruh 11 program festival (Kompetisi, Non-Kompetisi, dan Workshop) kini telah dibuka penuh untuk pendaftaran tiket gratis tanpa pembatasan kuota 20 slot.
-              </span>
-            </div>
-          </div>
-
-          {/* Point 2: Hari H Tiket OTS Only */}
+          {/* Point 1: Hari H Tiket OTS Only */}
           <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-amber-500/15 border border-amber-500/35 flex items-start gap-2.5 sm:gap-3">
             <AlertTriangle size={17} className="text-amber-400 shrink-0 mt-0.5" />
             <div>

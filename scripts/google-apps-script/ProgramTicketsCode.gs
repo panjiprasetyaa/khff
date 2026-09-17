@@ -49,9 +49,39 @@
 const IS_UNLIMITED_QUOTA = true;
 const MAX_SLOTS_PER_EVENT = 20;
 
-// Daftar Acara yang Diset Sebagai OTS ONLY (Pendaftaran Online Ditutup)
-// Kosong ([]) agar seluruh slot program dibuka malam ini untuk pendaftaran online
+// Daftar Acara yang Diset Sebagai OTS ONLY (Pendaftaran Online Ditutup Manual)
 const SOLD_OUT_EVENTS = [];
+
+// Pemetaan Tanggal Pelaksanaan Tiap Acara (YYYY-MM-DD) di WIB
+const EVENT_SCHEDULE_DATES = {
+  "kompetisi-purwaseswa": "2026-09-18",
+  "kompetisi-karyanagri": "2026-09-18",
+  "kompetisi-mahaditya": "2026-09-19",
+  "nonkomp-panorama": "2026-09-18",
+  "nonkomp-indonesian-cinema-1": "2026-09-18",
+  "nonkomp-indonesian-cinema-2": "2026-09-19",
+  "nonkomp-experimental-cinema-1": "2026-09-18",
+  "nonkomp-experimental-cinema-2": "2026-09-18",
+  "nonpemutaran-director-talks": "2026-09-18",
+  "nonpemutaran-heritage-talks": "2026-09-19",
+  "nonpemutaran-workshop-stop-motion": "2026-09-19"
+};
+
+/**
+ * Cek apakah sebuah acara berstatus OTS ONLY (Pendaftaran Online Ditutup pada Hari H)
+ * Otomatis per tanggal acara di zona waktu Asia/Jakarta (WIB)
+ */
+function isEventOts(eventId) {
+  if (SOLD_OUT_EVENTS.indexOf(eventId) !== -1) return true;
+  var eventDate = EVENT_SCHEDULE_DATES[eventId];
+  if (!eventDate) return false;
+  try {
+    var todayWib = Utilities.formatDate(new Date(), "Asia/Jakarta", "yyyy-MM-dd");
+    return todayWib >= eventDate;
+  } catch (e) {
+    return false;
+  }
+}
 
 // Daftar 11 Acara Program Festival dalam Urutan Rapi
 var ORDERED_PROGRAM_EVENTS = [
@@ -392,7 +422,7 @@ function doGet(e) {
       if (sheet && sheet.getLastRow() > 1) {
         used = sheet.getLastRow() - 1;
       }
-      var isSoldOut = SOLD_OUT_EVENTS.indexOf(eventId) !== -1;
+      var isSoldOut = isEventOts(eventId);
       var available = isSoldOut ? 0 : (IS_UNLIMITED_QUOTA ? 9999 : Math.max(0, MAX_SLOTS_PER_EVENT - used));
       var isFull = isSoldOut || (!IS_UNLIMITED_QUOTA && used >= MAX_SLOTS_PER_EVENT);
       slots[eventId] = {
@@ -521,8 +551,8 @@ function doPost(e) {
     var email = (data.email || "").toString().trim().toLowerCase();
     var ticketPrefix = (data.ticketPrefix || "KHFF-TKT-").toString().trim();
 
-    // 0. Cek apakah acara diset sebagai OTS ONLY (Pendaftaran Online Ditutup)
-    if (SOLD_OUT_EVENTS.indexOf(eventId) !== -1) {
+    // 0. Cek apakah acara diset sebagai OTS ONLY (Pendaftaran Online Ditutup pada Hari H)
+    if (isEventOts(eventId)) {
       return createJsonResponse({
         status: "full",
         code: "SLOT_FULL",

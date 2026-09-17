@@ -1,3 +1,5 @@
+import { FESTIVAL_CONFIG } from "./festival-config";
+
 export interface NonPemutaranEvent {
   id: string;
   slug: string;
@@ -17,9 +19,10 @@ export interface NonPemutaranEvent {
   shortDesc: string;
   notes: string[];
   isSoldOut?: boolean;
+  dateIso: string;
 }
 
-export const nonPemutaranEvents: NonPemutaranEvent[] = [
+const RAW_NON_PEMUTARAN_EVENTS: NonPemutaranEvent[] = [
   {
     id: "director-talks",
     slug: "director-talks",
@@ -44,6 +47,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
       "Para Perasuk karya Wregas Bhanuteja menawarkan kemungkinan yang berbeda. Film ini tidak semata-mata menggunakan mistik untuk menakut-nakuti, tetapi menghadirkannya sebagai bagian dari pengalaman komunal: sebuah praktik yang mempertemukan tubuh, tradisi, kesenangan, kepercayaan, ruang hidup, dan relasi antarmanusia. Kerasukan tidak berhenti sebagai fenomena yang harus ditakuti, melainkan membuka kemungkinan untuk mengalami sesuatu yang berada di luar batas keseharian.",
       "Berangkat dari film tersebut, Director Talk ini mengajak kita melihat kembali hubungan antara mistik, tradisi, dan kebudayaan melalui medium sinema. Jika heritage adalah sesuatu yang terus hidup, berubah, dan dinegosiasikan oleh masyarakat, bagaimana kita memahami praktik-praktik mistik yang juga terus mengalami perubahan dan penafsiran? Apakah modernitas harus selalu berarti meninggalkan yang dianggap irasional? Dan ketika sinema mencoba melihat mistik melampaui fungsi terornya, pengalaman macam apa yang sesungguhnya sedang dibuka?",
     ],
+    dateIso: "2026-09-18",
   },
   {
     id: "heritage-talks",
@@ -69,6 +73,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
       "Bagi Kotabaru Heritage Film Festival (KHFF), 'Merawat yang Hidup' adalah landasan etis sekaligus tawaran kuratorial. Heritage bukanlah monumen mati, melainkan proses yang terus bergerak dan dirawat bersama. Melalui medium sinema, festival berupaya mengaktifkan memori ruang Kotabaru dan ekosistem budaya Nusantara sebagai panggung dialog antara masa lalu, masa kini, dan masa depan yang partisipatif.",
       "Sesi Heritage Talks ini mengundang publik, peneliti, komunitas, dan pegiat seni untuk membongkar kembali makna warisan budaya dalam sudut pandang sinematik. Bagaimana festival film dapat menjadi wahana pelestarian yang kontekstual dan kritis? Apa peran komunitas dalam merawat lanskap budaya di tengah gempuran modernitas yang seragam? Ruang percakapan ini dirancang sebagai wadah bertukar gagasan untuk bersama-sama merawat dan merayakan apa yang terus hidup di sekitar kita.",
     ],
+    dateIso: "2026-09-19",
   },
   {
     id: "workshop-stop-motion",
@@ -87,7 +92,6 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
       "Kolektif kreatif berbasis di Yogyakarta yang mendedikasikan diri pada eksplorasi animasi stop motion mandiri dan lokakarya seni gerak komunitas.",
     image: "/assets/gallery/2025/Salinan dari Workshop KHFF-10.jpg",
     badgeBg: "bg-[#23585a] text-khff-yellow border border-khff-yellow/40",
-    isSoldOut: false,
     shortDesc:
       "Ruang belajar kreatif teknik animasi gerak henti (stop motion) secara partisipatif dengan merespons narasi, arsip, dan objek warisan budaya.",
     notes: [
@@ -95,8 +99,16 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
       "Workshop bertajuk 'Diam-Diam Bergerak' bersama Rimbun Project dirancang sebagai laboratorium kreatif partisipatif. Peserta diajak berkenalan langsung dengan prinsip dasar animasi stop motion, perancangan papan cerita (storyboard), hingga manipulasi material fisik di sekitar kita. Di sini, warisan budaya tidak didekati secara teoritis, melainkan dialami melalui sentuhan tangan, ketelitian visual, dan eksperimen artistik yang menyenangkan.",
       "Program ini terbuka untuk pelajar, mahasiswa, penggiat komunitas, maupun pemula yang tertarik mengeksplorasi sinema gerak henti. Di akhir sesi workshop, karya-karya singkat yang dihasilkan secara kolektif akan diputar bersama sebagai bentuk perayaan atas kreativitas yang tumbuh dari pemahaman akan warisan budaya bersama.",
     ],
+    dateIso: "2026-09-19",
   },
 ];
+
+export const nonPemutaranEvents: NonPemutaranEvent[] = RAW_NON_PEMUTARAN_EVENTS.map((event) => ({
+  ...event,
+  get isSoldOut(): boolean {
+    return FESTIVAL_CONFIG.isEventOts(this.dateIso);
+  },
+}));
 
 export function getNonPemutaranEvent(slug: string): NonPemutaranEvent | undefined {
   return nonPemutaranEvents.find((e) => e.slug === slug || e.id === slug);

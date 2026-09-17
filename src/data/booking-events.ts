@@ -1,3 +1,5 @@
+import { FESTIVAL_CONFIG } from "./festival-config";
+
 export interface BookingEvent {
   id: string;
   tabSheet: string;
@@ -22,7 +24,7 @@ export interface BookingEvent {
   endMinutes: number;
 }
 
-export const BOOKING_EVENTS: BookingEvent[] = [
+const RAW_BOOKING_EVENTS: BookingEvent[] = [
   // --- 1. PROGRAM KOMPETISI (Karya Pelajar, Pemerintah, & Independen) ---
   {
     id: "kompetisi-purwaseswa",
@@ -251,7 +253,6 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
-    isSoldOut: false,
     ticketPrefix: "KHFF-WKP-",
     programUrl: "/program/non-pemutaran/workshop-stop-motion",
     dateIso: "2026-09-19",
@@ -261,6 +262,23 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     endMinutes: 960,
   },
 ];
+
+/**
+ * Seluruh 11 sesi program festival dengan status isSoldOut otomatis per tanggal acara (Hari H di WIB)
+ */
+export const BOOKING_EVENTS: BookingEvent[] = RAW_BOOKING_EVENTS.map((event) => ({
+  ...event,
+  get isSoldOut(): boolean {
+    return FESTIVAL_CONFIG.isEventOts(this.dateIso);
+  },
+}));
+
+/**
+ * Helper untuk mengecek apakah acara tertentu berstatus OTS ONLY (Hari H)
+ */
+export function isBookingEventSoldOut(event: BookingEvent): boolean {
+  return !!event.isSoldOut || FESTIVAL_CONFIG.isEventOts(event.dateIso);
+}
 
 export function getAllBookingEvents(): BookingEvent[] {
   return BOOKING_EVENTS;
