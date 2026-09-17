@@ -416,21 +416,11 @@ function RoomCardView({
                               className="group/link inline-flex flex-wrap items-center gap-2 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg md:text-xl leading-snug"
                             >
                               <span>{session.title}</span>
-                              {(session.title.toLowerCase().includes("stop motion") || session.title.toLowerCase().includes("heritage workshop")) && (
-                                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-black bg-red-500/20 text-red-300 border border-red-500/40 uppercase tracking-wider">
-                                  SOLD OUT
-                                </span>
-                              )}
                               <ArrowUpRight size={18} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
                             </Link>
                           ) : (
                             <h4 className="text-white font-serif font-black text-lg md:text-xl leading-snug flex flex-wrap items-center gap-2">
                               <span>{session.title}</span>
-                              {(session.title.toLowerCase().includes("stop motion") || session.title.toLowerCase().includes("heritage workshop")) && (
-                                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-black bg-red-500/20 text-red-300 border border-red-500/40 uppercase tracking-wider">
-                                  SOLD OUT
-                                </span>
-                              )}
                             </h4>
                           )}
 
@@ -534,21 +524,11 @@ function RoomCardView({
                       className="group/link inline-flex flex-wrap items-center gap-2 text-white hover:text-khff-yellow transition-colors font-serif font-black text-lg leading-snug"
                     >
                       <span>{session.title}</span>
-                      {(session.title.toLowerCase().includes("stop motion") || session.title.toLowerCase().includes("heritage workshop")) && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-red-500/20 text-red-300 border border-red-500/40 uppercase tracking-wider">
-                          SOLD OUT
-                        </span>
-                      )}
                       <ArrowUpRight size={16} className="text-khff-yellow opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
                     </Link>
                   ) : (
                     <h4 className="text-white font-serif font-black text-lg leading-snug flex flex-wrap items-center gap-2">
                       <span>{session.title}</span>
-                      {(session.title.toLowerCase().includes("stop motion") || session.title.toLowerCase().includes("heritage workshop")) && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-red-500/20 text-red-300 border border-red-500/40 uppercase tracking-wider">
-                          SOLD OUT
-                        </span>
-                      )}
                     </h4>
                   )}
 

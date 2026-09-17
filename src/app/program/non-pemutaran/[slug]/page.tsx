@@ -212,18 +212,18 @@ export default async function NonPemutaranDetailPage({
                     Reservasi Kursi
                   </span>
                   {event.isSoldOut ? (
-                    <span className="bg-red-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
-                      SOLD OUT
+                    <span className="bg-amber-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
+                      OTS ONLY
                     </span>
                   ) : (
                     <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white" /> Kuota 20 Slot
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" /> Pendaftaran Terbuka
                     </span>
                   )}
                 </div>
                 <p className="text-xs text-khff-cream/85 leading-relaxed">
                   {event.isSoldOut
-                    ? "Mohon maaf, kuota kursi untuk sesi workshop ini telah habis terpesan (Sold Out)."
+                    ? "Pendaftaran online untuk sesi ini telah ditutup. Tiket tersedia On The Spot (OTS ONLY) langsung di venue PDIN Yogyakarta."
                     : "Amankan tempat duduk Anda untuk sesi ini. Registrasi instan via akun Google."}
                 </p>
                 <ProgramTicketButton

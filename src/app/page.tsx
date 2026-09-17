@@ -189,7 +189,7 @@ export default function Home() {
                 </h3>
 
                 <p className="text-khff-cream/90 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
-                  Dapatkan akses gratis untuk menyaksikan karya sinema terbaik dan mengikuti temu wicara eksklusif bersama sutradara ternama di PDIN Yogyakarta. Kuota sangat terbatas hanya <strong className="text-khff-yellow font-bold">20 Slot per sesi</strong> demi pengalaman festival yang intim dan kondusif.
+                  Dapatkan akses gratis untuk menyaksikan karya sinema terbaik dan mengikuti temu wicara eksklusif bersama sutradara ternama di PDIN Yogyakarta. <strong className="text-khff-yellow font-bold">Pendaftaran dibuka untuk umum</strong> dengan sistem tempat duduk <em>First Come, First Served</em> di lokasi.
                 </p>
               </div>
 
@@ -217,7 +217,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Users size={14} className="text-khff-yellow shrink-0" />
-                      <span>Kapasitas 20 Kursi per Sesi</span>
+                      <span>Kapasitas Terbuka (Akses Gratis)</span>
                     </div>
                   </div>
 

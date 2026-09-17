@@ -87,7 +87,7 @@ export const nonPemutaranEvents: NonPemutaranEvent[] = [
       "Kolektif kreatif berbasis di Yogyakarta yang mendedikasikan diri pada eksplorasi animasi stop motion mandiri dan lokakarya seni gerak komunitas.",
     image: "/assets/gallery/2025/Salinan dari Workshop KHFF-10.jpg",
     badgeBg: "bg-[#23585a] text-khff-yellow border border-khff-yellow/40",
-    isSoldOut: true,
+    isSoldOut: false,
     shortDesc:
       "Ruang belajar kreatif teknik animasi gerak henti (stop motion) secara partisipatif dengan merespons narasi, arsip, dan objek warisan budaya.",
     notes: [

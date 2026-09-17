@@ -18,10 +18,7 @@ export default function ProgramTicketButton({
   variant = "primary",
   isSoldOut = false,
 }: ProgramTicketButtonProps) {
-  const soldOut =
-    isSoldOut ||
-    eventId === "nonpemutaran-workshop-stop-motion" ||
-    eventId === "workshop-stop-motion";
+  const soldOut = !!isSoldOut;
 
   const baseStyles =
     "inline-flex items-center justify-center gap-2 font-mono font-black uppercase tracking-wider transition-all duration-300 shadow-md text-center";
@@ -35,10 +32,10 @@ export default function ProgramTicketButton({
   if (soldOut) {
     return (
       <span
-        className={`${baseStyles} ${sizeStyles} bg-red-500/20 text-red-300 border border-red-500/40 cursor-not-allowed ${className}`}
+        className={`${baseStyles} ${sizeStyles} bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-not-allowed ${className}`}
       >
         <Ticket size={size === "sm" ? 13 : size === "lg" ? 17 : 15} />
-        <span>SOLD OUT</span>
+        <span>OTS ONLY</span>
       </span>
     );
   }

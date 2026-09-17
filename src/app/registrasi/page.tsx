@@ -5,7 +5,7 @@ import RegistrasiClientPage from "./registrasi-client-page";
 export const metadata: Metadata = {
   title: "Registrasi Tiket Program - Kotabaru Heritage Film Festival 2026",
   description:
-    "Registrasi tiket resmi gratis untuk pemutaran program kompetisi, non-kompetisi, dan temu wicara Kotabaru Heritage Film Festival 2026 di PDIN Yogyakarta. Kuota terbatas 20 slot per sesi.",
+    "Registrasi tiket resmi gratis untuk pemutaran program kompetisi, non-kompetisi, dan temu wicara Kotabaru Heritage Film Festival 2026 di PDIN Yogyakarta. Pendaftaran dibuka untuk umum (Akses Terbuka).",
   openGraph: {
     title: "Registrasi Tiket Program | Kotabaru Heritage Film Festival 2026",
     description:

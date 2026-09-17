@@ -140,7 +140,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
               <div className="bg-white/5 border-l-4 border-khff-yellow p-5 sm:p-8 rounded-2xl sm:rounded-r-3xl mb-10 sm:mb-12 backdrop-blur-sm max-w-5xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="max-w-2xl">
                   <span className="text-xs font-mono uppercase tracking-wider font-bold text-khff-yellow block mb-1.5">
-                    Sesi Kompetisi • Kuota 20 Slot
+                    Sesi Kompetisi • Pendaftaran Terbuka
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif font-black text-khff-yellow mb-2">Program {activeTabInfo.label}</h2>
                   <p className="text-khff-cream/90 text-base sm:text-lg font-medium leading-relaxed">{activeTabInfo.desc}</p>
@@ -154,7 +154,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                     <span>Registrasi di Sini</span>
                   </Link>
                   <span className="text-[11px] font-mono text-khff-cream/60">
-                    Kapasitas: 20 Kursi per Sesi
+                    Kapasitas Terbuka (Akses Gratis)
                   </span>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 mb-8 sm:mb-10 border-b border-khff-cream/10">
                       <div>
                         <span className="text-xs font-mono uppercase tracking-wider font-bold text-khff-pink block mb-1.5">
-                          Sesi {sIdx + 1} • Kuota 20 Slot
+                          Sesi {sIdx + 1} • Pendaftaran Terbuka
                         </span>
                         <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-black text-white">
                           {session.title}
@@ -522,9 +522,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                           {/* Interactive Buttons */}
                           <div className="grid grid-cols-2 gap-2 mt-3">
                             {event.isSoldOut ? (
-                              <span className="py-2.5 px-3 rounded-xl bg-red-500/20 text-red-300 border border-red-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
+                              <span className="py-2.5 px-3 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
                                 <Ticket size={13} />
-                                <span>SOLD OUT</span>
+                                <span>OTS ONLY</span>
                               </span>
                             ) : (
                               <Link
@@ -578,12 +578,12 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                       </span>
                       <div className="flex items-center gap-1.5">
                         {event.isSoldOut ? (
-                          <span className="bg-red-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
-                            SOLD OUT
+                          <span className="bg-amber-500/80 text-white text-xs font-mono px-3 py-1 rounded-full font-black tracking-wider shadow-md">
+                            OTS ONLY
                           </span>
                         ) : (
                           <span className="bg-emerald-600 text-white text-xs font-mono px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-white" /> 20 Slot
+                            <span className="w-1.5 h-1.5 rounded-full bg-white" /> Terbuka
                           </span>
                         )}
                         <span className="bg-black/60 backdrop-blur-xs border border-white/20 text-white/90 text-xs font-mono px-3 py-1 rounded-full">
@@ -626,9 +626,9 @@ export default function ProgramDetail({ params }: { params: Promise<{ id: string
                       {/* Interactive Buttons (Registrasi & Buka Halaman) */}
                       <div className="grid grid-cols-2 gap-2.5">
                         {event.isSoldOut ? (
-                          <span className="py-3 px-3 rounded-2xl bg-red-500/20 text-red-300 border border-red-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
+                          <span className="py-3 px-3 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-not-allowed text-center">
                             <Ticket size={14} />
-                            <span>SOLD OUT</span>
+                            <span>OTS ONLY</span>
                           </span>
                         ) : (
                           <Link

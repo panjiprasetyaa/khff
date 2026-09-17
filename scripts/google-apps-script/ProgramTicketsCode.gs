@@ -46,10 +46,12 @@
  * ===================================================================
  */
 
+const IS_UNLIMITED_QUOTA = true;
 const MAX_SLOTS_PER_EVENT = 20;
 
-// Daftar Acara yang Diset Sebagai SOLD OUT (Kuota Penuh Permanen)
-const SOLD_OUT_EVENTS = ["nonpemutaran-workshop-stop-motion"];
+// Daftar Acara yang Diset Sebagai OTS ONLY (Pendaftaran Online Ditutup)
+// Kosong ([]) agar seluruh slot program dibuka malam ini untuk pendaftaran online
+const SOLD_OUT_EVENTS = [];
 
 // Daftar 11 Acara Program Festival dalam Urutan Rapi
 var ORDERED_PROGRAM_EVENTS = [
@@ -391,12 +393,13 @@ function doGet(e) {
         used = sheet.getLastRow() - 1;
       }
       var isSoldOut = SOLD_OUT_EVENTS.indexOf(eventId) !== -1;
-      var available = isSoldOut ? 0 : Math.max(0, MAX_SLOTS_PER_EVENT - used);
+      var available = isSoldOut ? 0 : (IS_UNLIMITED_QUOTA ? 9999 : Math.max(0, MAX_SLOTS_PER_EVENT - used));
+      var isFull = isSoldOut || (!IS_UNLIMITED_QUOTA && used >= MAX_SLOTS_PER_EVENT);
       slots[eventId] = {
-        total: MAX_SLOTS_PER_EVENT,
-        used: isSoldOut ? MAX_SLOTS_PER_EVENT : used,
+        total: IS_UNLIMITED_QUOTA ? 9999 : MAX_SLOTS_PER_EVENT,
+        used: isSoldOut ? (IS_UNLIMITED_QUOTA ? used : MAX_SLOTS_PER_EVENT) : used,
         available: available,
-        isFull: isSoldOut || (used >= MAX_SLOTS_PER_EVENT),
+        isFull: isFull,
         isSoldOut: isSoldOut,
         tabSheet: tabName
       };
@@ -518,12 +521,12 @@ function doPost(e) {
     var email = (data.email || "").toString().trim().toLowerCase();
     var ticketPrefix = (data.ticketPrefix || "KHFF-TKT-").toString().trim();
 
-    // 0. Cek apakah acara diset sebagai SOLD OUT permanen
+    // 0. Cek apakah acara diset sebagai OTS ONLY (Pendaftaran Online Ditutup)
     if (SOLD_OUT_EVENTS.indexOf(eventId) !== -1) {
       return createJsonResponse({
         status: "full",
         code: "SLOT_FULL",
-        message: "Mohon maaf, kuota tiket untuk acara '" + eventTitle + "' sudah penuh (SOLD OUT)."
+        message: "Mohon maaf, pendaftaran online untuk acara '" + eventTitle + "' telah ditutup. Tiket tersedia langsung On The Spot (OTS ONLY) di venue PDIN Yogyakarta."
       });
     }
 
@@ -556,13 +559,13 @@ function doPost(e) {
     var tabName = EVENT_SHEET_MAP[eventId];
     var sheet = getOrCreateEventSheet(ss, tabName);
 
-    // 3. Cek Kapasitas Kuota (Maksimal 20 Slot)
+    // 3. Cek Kapasitas Kuota (Jika kuota terbatas diaktifkan)
     var currentUsed = Math.max(0, sheet.getLastRow() - 1);
-    if (currentUsed >= MAX_SLOTS_PER_EVENT) {
+    if (!IS_UNLIMITED_QUOTA && currentUsed >= MAX_SLOTS_PER_EVENT) {
       return createJsonResponse({
         status: "full",
         code: "SLOT_FULL",
-        message: "Mohon maaf, kuota 20 slot untuk acara '" + eventTitle + "' sudah penuh."
+        message: "Mohon maaf, kuota " + MAX_SLOTS_PER_EVENT + " slot untuk acara '" + eventTitle + "' sudah penuh."
       });
     }
 

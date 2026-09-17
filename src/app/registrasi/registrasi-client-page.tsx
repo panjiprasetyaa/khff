@@ -31,6 +31,7 @@ import {
   getBookingEventById,
   findConflictingRegisteredEvent,
 } from "@/data/booking-events";
+import OtsAnnouncementModal from "@/components/OtsAnnouncementModal";
 
 interface GoogleUser {
   name: string;
@@ -164,6 +165,7 @@ export default function RegistrasiClientPage() {
   const [selectedResetEventIds, setSelectedResetEventIds] = useState<string[]>([]);
   const [resetNotice, setResetNotice] = useState<string | null>(null);
   const [resetting, setResetting] = useState(false);
+  const [showOtsModal, setShowOtsModal] = useState(true);
 
   const [loading, setLoading] = useState(false);
   const [statusState, setStatusState] = useState<{
@@ -214,15 +216,15 @@ export default function RegistrasiClientPage() {
               const remote =
                 data.slots[e.id] ||
                 (e.tabSheet ? data.slots[e.tabSheet] : null);
-              const maxCap = e.maxSlots || 20;
+              const maxCap = 9999;
               const isPermanentlySoldOut = !!e.isSoldOut || (remote && remote.isSoldOut);
-              const used = isPermanentlySoldOut ? maxCap : (remote ? Number(remote.used) || 0 : 0);
-              const available = isPermanentlySoldOut ? 0 : Math.max(0, maxCap - used);
+              const used = remote ? Number(remote.used) || 0 : 0;
+              const available = isPermanentlySoldOut ? 0 : 9999;
               normalizedSlots[e.id] = {
                 total: maxCap,
                 used: used,
                 available: available,
-                isFull: isPermanentlySoldOut || available <= 0,
+                isFull: isPermanentlySoldOut,
                 tabSheet: e.tabSheet,
               };
             });
@@ -231,15 +233,15 @@ export default function RegistrasiClientPage() {
           }
         }
       }
-      // Fallback default 20 slots for all events
+      // Fallback default open slots for all events
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
         const isPermanentlySoldOut = !!e.isSoldOut;
-        const maxCap = e.maxSlots || 20;
+        const maxCap = 9999;
         defaultSlots[e.id] = {
           total: maxCap,
-          used: isPermanentlySoldOut ? maxCap : 0,
-          available: isPermanentlySoldOut ? 0 : maxCap,
+          used: 0,
+          available: isPermanentlySoldOut ? 0 : 9999,
           isFull: isPermanentlySoldOut,
           tabSheet: e.tabSheet,
         };
@@ -250,11 +252,11 @@ export default function RegistrasiClientPage() {
       const defaultSlots: Record<string, SlotDetail> = {};
       BOOKING_EVENTS.forEach((e) => {
         const isPermanentlySoldOut = !!e.isSoldOut;
-        const maxCap = e.maxSlots || 20;
+        const maxCap = 9999;
         defaultSlots[e.id] = {
           total: maxCap,
-          used: isPermanentlySoldOut ? maxCap : 0,
-          available: isPermanentlySoldOut ? 0 : maxCap,
+          used: 0,
+          available: isPermanentlySoldOut ? 0 : 9999,
           isFull: isPermanentlySoldOut,
           tabSheet: e.tabSheet,
         };
@@ -546,10 +548,10 @@ export default function RegistrasiClientPage() {
     e.preventDefault();
     if (!googleUser) return;
 
-    if (currentSlot.isFull || currentEvent.isSoldOut) {
+    if (currentEvent.isSoldOut) {
       setStatusState({
         type: "full",
-        message: `Mohon maaf, kuota tiket untuk acara '${currentEvent.title}' sudah penuh (SOLD OUT).`,
+        message: `Mohon maaf, pendaftaran online untuk acara '${currentEvent.title}' telah ditutup. Tiket tersedia On The Spot (OTS ONLY) langsung di venue PDIN Yogyakarta.`,
       });
       return;
     }
@@ -904,8 +906,30 @@ export default function RegistrasiClientPage() {
             Registrasi Tiket Program
           </h1>
           <p className="text-khff-cream/90 text-sm sm:text-base md:text-lg leading-relaxed">
-            Dapatkan tiket resmi gratis untuk menyaksikan penayangan program festival dan mengikuti temu wicara di PDIN Yogyakarta. Kuota sangat terbatas hanya <strong className="text-khff-yellow font-bold">20 slot kursi per sesi</strong> demi kenyamanan festival.
+            Dapatkan tiket resmi gratis untuk menyaksikan penayangan program festival dan mengikuti temu wicara di PDIN Yogyakarta. <strong className="text-khff-yellow font-bold">Pendaftaran dibuka untuk umum (Akses Terbuka)</strong>. Kursi penonton di venue PDIN menggunakan sistem <em>First Come, First Served</em>.
           </p>
+        </div>
+
+        {/* OTS Announcement Banner */}
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-amber-500/15 border border-amber-500/35 text-khff-cream flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 backdrop-blur-sm shadow-md max-w-5xl animate-in fade-in duration-300">
+          <div className="flex items-start gap-3">
+            <AlertTriangle size={22} className="text-amber-400 shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm leading-relaxed">
+              <strong className="text-amber-300 block font-mono uppercase tracking-wider mb-0.5">
+                Pengumuman Tiket & Ketentuan OTS (On The Spot)
+              </strong>
+              <p className="text-khff-cream/90">
+                Seluruh slot program dibuka malam ini. Pada Hari H pelaksanaan festival, pendaftaran online ditutup dan tiket dialihkan ke sistem OTS langsung di venue PDIN Yogyakarta.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowOtsModal(true)}
+            className="shrink-0 px-4 py-2 rounded-xl bg-khff-yellow/20 hover:bg-khff-yellow text-khff-yellow hover:text-khff-navy border border-khff-yellow/40 font-mono text-xs font-bold transition-all cursor-pointer shadow"
+          >
+            Baca Ketentuan Lengkap
+          </button>
         </div>
 
         {/* Reset / Cancellation Banner Notice */}
@@ -1183,12 +1207,12 @@ export default function RegistrasiClientPage() {
                         <div className="shrink-0 text-right">
                           <span
                             className={`inline-block px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold ${
-                              slot.isFull
-                                ? "bg-red-500/20 text-red-400 border border-red-500/40"
+                              event.isSoldOut || slot.isFull
+                                ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
                                 : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
                             }`}
                           >
-                            {slot.isFull ? "SOLD OUT" : `Sisa ${slot.available} Slot`}
+                            {event.isSoldOut || slot.isFull ? "OTS ONLY" : "KUOTA TERSEDIA"}
                           </span>
                         </div>
                       </div>
@@ -1268,24 +1292,17 @@ export default function RegistrasiClientPage() {
                     </div>
                   </div>
 
-                  {/* Slot progress bar */}
+                  {/* Slot capacity status */}
                   <div className="mt-4 pt-3 border-t border-white/10">
-                    <div className="flex justify-between text-xs font-mono mb-1.5">
+                    <div className="flex justify-between items-center text-xs font-mono mb-1.5">
                       <span className="text-khff-cream/80">Kapasitas Kursi:</span>
-                      <span className={`font-bold ${currentSlot.isFull ? "text-red-400" : "text-emerald-400"}`}>
-                        {currentSlot.isFull ? "KUOTA PENUH" : `Tersisa ${currentSlot.available} / 20 Kursi`}
+                      <span className={`font-bold ${currentEvent.isSoldOut ? "text-amber-300" : "text-emerald-400"}`}>
+                        {currentEvent.isSoldOut ? "OTS ONLY (DI LOKASI)" : "Pendaftaran Terbuka (Gratis)"}
                       </span>
                     </div>
-                    <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                      <div
-                        className={`h-full transition-all duration-500 rounded-full ${
-                          currentSlot.isFull ? "bg-red-400" : "bg-emerald-400"
-                        }`}
-                        style={{
-                          width: `${Math.min(100, (currentSlot.used / (currentSlot.total || 20)) * 100)}%`,
-                        }}
-                      />
-                    </div>
+                    <p className="text-[11px] font-mono text-khff-cream/65 leading-relaxed">
+                      Sistem tempat duduk di lokasi: <strong>First Come, First Served</strong> di PDIN Yogyakarta.
+                    </p>
                   </div>
 
                   {/* Registered or Conflict Alert in Active Session Box */}
@@ -1330,15 +1347,15 @@ export default function RegistrasiClientPage() {
                   </div>
                 )}
 
-                {/* Slot Full Notice */}
-                {currentSlot.isFull || currentEvent.isSoldOut ? (
-                  <div className="text-center p-6 bg-red-950/40 border border-red-500/30 rounded-2xl">
-                    <AlertCircle size={32} className="text-red-400 mx-auto mb-2" />
+                {/* Closed / OTS Notice */}
+                {currentEvent.isSoldOut ? (
+                  <div className="text-center p-6 bg-amber-950/40 border border-amber-500/30 rounded-2xl">
+                    <AlertCircle size={32} className="text-amber-400 mx-auto mb-2" />
                     <h4 className="font-serif font-black text-white text-base mb-1">
-                      {currentEvent.isSoldOut ? "Tiket Acara Ini Telah Habis (SOLD OUT)" : "Kuota Sesi Ini Sudah Penuh"}
+                      Pendaftaran Online Ditutup (OTS ONLY)
                     </h4>
                     <p className="text-xs text-khff-cream/70 leading-relaxed">
-                      Silakan pilih sesi atau hari penayangan lain yang masih memiliki slot tersedia di kolom sebelah kiri.
+                      Sesi ini hanya melayani pendaftaran langsung On The Spot (OTS) di meja registrasi venue PDIN Yogyakarta sebelum acara dimulai.
                     </p>
                   </div>
                 ) : !googleUser ? (
@@ -1495,10 +1512,10 @@ export default function RegistrasiClientPage() {
                             <AlertTriangle size={16} />
                             <span>Jadwal Bertabrakan (Tidak Dapat Mendaftar)</span>
                           </>
-                        ) : currentSlot.isFull || currentEvent.isSoldOut ? (
+                        ) : currentEvent.isSoldOut ? (
                           <>
                             <Ticket size={16} />
-                            <span>Kuota Tiket Penuh (SOLD OUT)</span>
+                            <span>Pendaftaran Ditutup (OTS ONLY)</span>
                           </>
                         ) : (
                           <>
@@ -1653,6 +1670,12 @@ export default function RegistrasiClientPage() {
           </div>
         </div>
       )}
+
+      {/* POP-UP MODAL PENGUMUMAN RESMI HARI H & TIKET OTS */}
+      <OtsAnnouncementModal
+        isOpen={showOtsModal}
+        onClose={() => setShowOtsModal(false)}
+      />
     </main>
   );
 }

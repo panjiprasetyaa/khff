@@ -251,7 +251,7 @@ export const BOOKING_EVENTS: BookingEvent[] = [
     venue: "Ruang Kaca Bawah (Selatan), PDIN Yogyakarta",
     venueDetail: "Pusat Desain Industri Nasional (PDIN), Jl. Terban",
     maxSlots: 20,
-    isSoldOut: true,
+    isSoldOut: false,
     ticketPrefix: "KHFF-WKP-",
     programUrl: "/program/non-pemutaran/workshop-stop-motion",
     dateIso: "2026-09-19",
