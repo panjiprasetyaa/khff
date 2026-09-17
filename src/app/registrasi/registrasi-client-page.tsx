@@ -185,7 +185,6 @@ export default function RegistrasiClientPage() {
 
   const btnContainerRef = useRef<HTMLDivElement>(null);
   const isInitializedRef = useRef(false);
-  const googleRenderedRef = useRef(false);
 
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
   const scriptUrl = process.env.NEXT_PUBLIC_PROGRAM_SCRIPT_URL || "";
@@ -511,17 +510,16 @@ export default function RegistrasiClientPage() {
   const isAlreadyRegisteredForThisEvent = userRegisteredEventIds.includes(currentEvent.id);
 
   const handleSignOut = () => {
-    googleRenderedRef.current = false;
     setGoogleUser(null);
     setUserRegisteredEventIds([]);
     setFullName("");
     setStatusState(null);
   };
 
-  // Initialize Google GIS button once without re-rendering on session switch
+  // Initialize Google GIS button
   const initGoogleSignIn = useCallback(() => {
     if (typeof window === "undefined" || !window.google || !clientId) return;
-    if (googleRenderedRef.current) return;
+    if (isCurrentEventOts || googleUser) return;
 
     try {
       if (!isInitializedRef.current) {
@@ -536,25 +534,54 @@ export default function RegistrasiClientPage() {
       const btnContainer =
         btnContainerRef.current || document.getElementById("googleProgramSignInBtn");
       if (btnContainer && !googleUser && btnContainer.children.length === 0) {
+        const screenW = typeof window !== "undefined" ? window.innerWidth : 360;
+        const btnWidth = Math.min(280, Math.max(220, screenW - 80));
+
         window.google.accounts.id.renderButton(btnContainer, {
           theme: "filled_blue",
           size: "large",
           shape: "pill",
           text: "continue_with",
-          width: 280,
+          width: btnWidth,
         });
-        googleRenderedRef.current = true;
       }
     } catch (e) {
       console.error("GIS render error:", e);
     }
-  }, [clientId, handleCredentialResponse, googleUser]);
+  }, [clientId, handleCredentialResponse, googleUser, isCurrentEventOts]);
 
+  // Ensure Google button renders whenever user views an open session
   useEffect(() => {
-    if (!googleUser && typeof window !== "undefined" && window.google) {
+    if (isCurrentEventOts || googleUser) return;
+
+    if (typeof window !== "undefined" && window.google) {
       initGoogleSignIn();
     }
-  }, [googleUser, initGoogleSignIn]);
+
+    const interval = setInterval(() => {
+      const btnContainer =
+        btnContainerRef.current || document.getElementById("googleProgramSignInBtn");
+      if (
+        !isCurrentEventOts &&
+        !googleUser &&
+        typeof window !== "undefined" &&
+        window.google &&
+        btnContainer &&
+        btnContainer.children.length === 0
+      ) {
+        initGoogleSignIn();
+      }
+    }, 250);
+
+    const timer = setTimeout(() => {
+      clearInterval(interval);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+  }, [selectedEventId, isCurrentEventOts, googleUser, initGoogleSignIn]);
 
   // Submit Booking
   const handleSubmit = async (e: React.FormEvent) => {
@@ -891,7 +918,7 @@ export default function RegistrasiClientPage() {
         src="https://accounts.google.com/gsi/client"
         strategy="afterInteractive"
         onLoad={() => {
-          if (!currentSlot.isFull) initGoogleSignIn();
+          initGoogleSignIn();
         }}
       />
 
