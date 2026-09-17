@@ -959,7 +959,7 @@ export default function RegistrasiClientPage() {
                 Pengumuman Tiket & Ketentuan OTS (On The Spot)
               </strong>
               <p className="text-khff-cream/90">
-                Seluruh slot program dibuka malam ini. Pada Hari H pelaksanaan festival, pendaftaran online ditutup dan tiket dialihkan ke sistem OTS langsung di venue PDIN Yogyakarta.
+                Pada Hari H pelaksanaan festival, pendaftaran online ditutup dan tiket dialihkan ke sistem OTS langsung di venue PDIN Yogyakarta.
               </p>
             </div>
           </div>
