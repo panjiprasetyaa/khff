@@ -68,7 +68,7 @@ const EVENT_SCHEDULE_DATES = {
 };
 
 /**
- * Cek apakah sebuah acara berstatus OTS ONLY (Pendaftaran Online Ditutup pada Hari H)
+ * Cek apakah sebuah acara berstatus OTS ONLY (Pendaftaran Online Ditutup pada Hari H pukul 07:00 WIB)
  * Otomatis per tanggal acara di zona waktu Asia/Jakarta (WIB)
  */
 function isEventOts(eventId) {
@@ -76,8 +76,10 @@ function isEventOts(eventId) {
   var eventDate = EVENT_SCHEDULE_DATES[eventId];
   if (!eventDate) return false;
   try {
-    var todayWib = Utilities.formatDate(new Date(), "Asia/Jakarta", "yyyy-MM-dd");
-    return todayWib >= eventDate;
+    // Pendaftaran online ditutup pukul 07:00 WIB pada tanggal pelaksanaan acara
+    var nowWib = Utilities.formatDate(new Date(), "Asia/Jakarta", "yyyy-MM-dd HH:mm");
+    var cutoff = eventDate + " 07:00";
+    return nowWib >= cutoff;
   } catch (e) {
     return false;
   }

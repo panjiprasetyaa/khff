@@ -959,7 +959,7 @@ export default function RegistrasiClientPage() {
                 Pengumuman Tiket & Ketentuan OTS (On The Spot)
               </strong>
               <p className="text-khff-cream/90">
-                Pada Hari H pelaksanaan festival, pendaftaran online ditutup dan tiket dialihkan ke sistem OTS langsung di venue PDIN Yogyakarta.
+                Pendaftaran online ditutup pada pukul 07.00 WIB di Hari H pelaksanaan dan tiket dialihkan ke sistem OTS langsung di venue PDIN Yogyakarta.
               </p>
             </div>
           </div>

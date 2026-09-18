@@ -171,10 +171,10 @@ export default function OtsAnnouncementModal({
             <AlertTriangle size={17} className="text-amber-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-amber-300 block font-bold mb-0.5 text-xs sm:text-sm">
-                Pada Hari H: Tiket Tersedia On The Spot (OTS ONLY)
+                Pada Hari H: Tiket Dialihkan ke On The Spot (OTS ONLY) Pukul 07.00 WIB
               </strong>
               <span className="text-khff-cream/90 text-[11px] sm:text-xs leading-relaxed">
-                Saat festival memasuki Hari H pelaksanaan, pendaftaran online akan ditutup dan seluruh tiket dialihkan ke sistem <strong>On The Spot (OTS)</strong> langsung di meja registrasi venue PDIN Yogyakarta.
+                Pendaftaran online untuk acara di tiap tanggal pelaksanaan akan ditutup pada pukul <strong>07.00 WIB</strong> di Hari H dan seluruh tiket dialihkan ke sistem <strong>On The Spot (OTS)</strong> langsung di meja registrasi venue PDIN Yogyakarta.
               </span>
             </div>
           </div>

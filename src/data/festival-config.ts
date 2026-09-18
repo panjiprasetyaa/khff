@@ -4,13 +4,16 @@
  */
 export const FESTIVAL_CONFIG = {
   // Mode Pendaftaran:
-  // - "auto": Otomatis beralih ke OTS per tanggal masing-masing acara (Hari H acara bersangkutan di zona waktu WIB)
+  // - "auto": Otomatis beralih ke OTS per tanggal masing-masing acara (Hari H acara bersangkutan pada pukul 07:00 WIB)
   // - "open": Paksa buka seluruh slot online untuk pendaftaran
   // - "ots": Paksa tutup seluruh slot online ke OTS
   registrationMode: "auto" as "auto" | "open" | "ots",
 
   // Tanggal mulai Hari H Festival (Day 1)
-  eventStartIso: "2026-09-18T00:00:00+07:00",
+  eventStartIso: "2026-09-18T07:00:00+07:00",
+
+  // Jam penutupan pendaftaran online pada Hari H pelaksanaan acara (WIB)
+  otsCutoffTime: "07:00",
 
   /**
    * Mendapatkan tanggal hari ini dalam format "YYYY-MM-DD" pada zona waktu Indonesia Barat (WIB / Asia/Jakarta)
@@ -31,7 +34,8 @@ export const FESTIVAL_CONFIG = {
   /**
    * Pengecekan apakah sebuah acara sudah memasuki Hari H (OTS ONLY)
    * Otomatis per tanggal acara:
-   * Jika tanggal hari ini (WIB) >= tanggal pelaksanaan acara (dateIso),
+   * Pendaftaran online ditutup pada pukul 07:00 WIB di Hari H pelaksanaan masing-masing acara.
+   * Jika waktu sekarang (WIB) >= [eventDateIso]T07:00:00+07:00,
    * pendaftaran online untuk acara tersebut ditutup dan dialihkan ke On The Spot (OTS).
    *
    * @param eventDateIso format "YYYY-MM-DD" (contoh: "2026-09-18", "2026-09-19")
@@ -41,17 +45,19 @@ export const FESTIVAL_CONFIG = {
     if (this.registrationMode === "ots") return true;
     if (!eventDateIso) return false;
 
-    const todayWib = this.getTodayWib();
-    return todayWib >= eventDateIso;
+    const dateStr = eventDateIso.slice(0, 10);
+    const cutoffTimestamp = new Date(`${dateStr}T${this.otsCutoffTime}:00+07:00`).getTime();
+    return Date.now() >= cutoffTimestamp;
   },
 
   /**
-   * Pengecekan apakah festival secara umum sudah berada di mode Hari H (Day 1 ke atas)
+   * Pengecekan apakah festival secara umum sudah berada di mode Hari H (Day 1 setelah pukul 07:00 WIB)
    */
   isHariH(): boolean {
     if (this.registrationMode === "open") return false;
     if (this.registrationMode === "ots") return true;
-    return this.getTodayWib() >= "2026-09-18";
+    const cutoffTimestamp = new Date(`2026-09-18T${this.otsCutoffTime}:00+07:00`).getTime();
+    return Date.now() >= cutoffTimestamp;
   },
 };
 
