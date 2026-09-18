@@ -1,4 +1,4 @@
-"use client";
+import { BookOpen } from "lucide-react";
 
 export default function GuidePage() {
   return (
@@ -15,8 +15,6 @@ export default function GuidePage() {
           <img src="/assets/illustrations/tebu.png" alt="Tebu" className="w-full h-auto" />
         </div>
 
-
-
         <div className="container mx-auto max-w-4xl relative z-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-black text-white mb-8 tracking-tight drop-shadow-lg break-words">
@@ -28,11 +26,17 @@ export default function GuidePage() {
                 Panduan Menjelajahi Sinema & Warisan
               </h3>
               <p className="text-khff-cream/95 text-base sm:text-lg md:text-2xl font-medium leading-relaxed mb-8">
-                Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 berisi direktori venue, peta rute becak Drive-In, jadwal penayangan lengkap, dan catatan kurator festival.
+                Buku panduan digital resmi Kotabaru Heritage Film Festival 2026 berisi direktori venue, peta rute becak Drive-In, tata tertib, jadwal penayangan lengkap, dan informasi festival.
               </p>
-              <div className="w-full sm:w-auto inline-block bg-khff-pink text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-mono text-xs sm:text-sm md:text-base font-black tracking-widest uppercase shadow-xl">
-                [ e-Book PDF Segera Tersedia ]
-              </div>
+              <a
+                href="/festival-guide.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-khff-yellow text-khff-navy hover:bg-white px-8 py-4 rounded-full font-mono text-sm md:text-base font-black tracking-widest uppercase shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+              >
+                <BookOpen size={20} />
+                <span>Buka Festival Guide (PDF)</span>
+              </a>
             </div>
           </div>
         </div>

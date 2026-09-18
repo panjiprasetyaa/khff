@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, BookOpen } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -118,7 +118,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-5 lg:space-x-8 text-sm font-mono font-bold tracking-wider items-center">
+        <div className="hidden md:flex items-center gap-2 md:gap-2.5 lg:gap-3.5 xl:gap-5 text-xs lg:text-sm font-mono font-bold tracking-wider">
           {/* BERANDA */}
           <Link
             href="/"
@@ -389,14 +389,20 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          {/* 
-          <a href="/festival-guide.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-khff-yellow transition-colors">
-            FESTIVAL GUIDE
-          </a> 
-          */}
+          {/* FESTIVAL GUIDE VIEW BUTTON */}
+          <a
+            href="/festival-guide.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 lg:px-4 py-2 rounded-full border border-khff-yellow/80 hover:bg-khff-yellow hover:text-khff-navy text-khff-yellow transition-all duration-300 transform hover:scale-105 shadow-sm flex items-center gap-1.5 font-mono font-bold text-xs tracking-wider uppercase cursor-pointer shrink-0"
+            title="Lihat Festival Guide KHFF 2026"
+          >
+            <BookOpen size={14} className="shrink-0" />
+            <span>FESTIVAL GUIDE</span>
+          </a>
           <Link
             href="/registrasi"
-            className={`px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 font-black text-xs font-mono tracking-wider uppercase cursor-pointer ${
+            className={`px-4 lg:px-5 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-1.5 font-black text-xs font-mono tracking-wider uppercase cursor-pointer shrink-0 ${
               pathname === "/registrasi"
                 ? "bg-white text-khff-navy"
                 : "bg-khff-yellow text-khff-navy hover:bg-white"
@@ -612,14 +618,38 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+            {/* FESTIVAL GUIDE */}
+            <a
+              href="/festival-guide.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleNavClick}
+              className="text-base sm:text-lg font-serif font-bold text-khff-cream hover:text-khff-yellow transition-colors py-3.5 tracking-wide flex items-center justify-center gap-2"
+            >
+              <BookOpen size={18} />
+              <span>FESTIVAL GUIDE</span>
+            </a>
           </div>
-          <Link
-            href="/registrasi"
-            className="text-xs sm:text-sm font-mono font-black text-khff-navy bg-khff-yellow px-6 py-2.5 rounded-full hover:bg-white transition-colors mx-auto inline-flex items-center gap-2 mt-6 shadow-xl uppercase tracking-wider cursor-pointer"
-            onClick={handleNavClick}
-          >
-            <span>REGISTRASI TIKET</span>
-          </Link>
+
+          <div className="flex flex-col gap-3 mt-6 w-full max-w-xs mx-auto">
+            <a
+              href="/festival-guide.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleNavClick}
+              className="text-xs sm:text-sm font-mono font-bold text-khff-yellow border border-khff-yellow/80 hover:bg-khff-yellow hover:text-khff-navy px-6 py-2.5 rounded-full transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg uppercase tracking-wider cursor-pointer"
+            >
+              <BookOpen size={16} />
+              <span>LIHAT FESTIVAL GUIDE</span>
+            </a>
+            <Link
+              href="/registrasi"
+              className="text-xs sm:text-sm font-mono font-black text-khff-navy bg-khff-yellow px-6 py-2.5 rounded-full hover:bg-white transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-xl uppercase tracking-wider cursor-pointer"
+              onClick={handleNavClick}
+            >
+              <span>REGISTRASI TIKET</span>
+            </Link>
+          </div>
         </div>
       )}
     </nav>
